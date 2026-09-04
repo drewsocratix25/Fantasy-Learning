@@ -805,6 +805,958 @@
 "ab957656": {
 "text": "Can you find the number 3?",
 "dur": 1.51
+},
+"42a1bf02": {
+"text": "Yes! 3 frogs!",
+"dur": 1.32
+},
+"73da3550": {
+"text": "Yes! That's 3! Let's count 3 frogs!",
+"dur": 2.6
+},
+"ea0392b3": {
+"text": "That's 3.",
+"dur": 0.89
+},
+"c14e5630": {
+"text": "Look for 3!",
+"dur": 1.05
+},
+"310ca263": {
+"text": "4",
+"dur": 0.69
+},
+"ae957b0f": {
+"text": "Can you find the number 4?",
+"dur": 1.56
+},
+"7b0e0ebb": {
+"text": "Yes! 4 frogs!",
+"dur": 1.41
+},
+"61aa897c": {
+"text": "Yes! That's 4! Let's count 4 frogs!",
+"dur": 2.56
+},
+"ef039a92": {
+"text": "That's 4.",
+"dur": 0.9
+},
+"c84e6135": {
+"text": "Look for 4!",
+"dur": 1.05
+},
+"300ca0d0": {
+"text": "5",
+"dur": 0.75
+},
+"ad95797c": {
+"text": "Can you find the number 5?",
+"dur": 1.51
+},
+"ac68a404": {
+"text": "Yes! 5 frogs!",
+"dur": 1.43
+},
+"3e44625c": {
+"text": "Yes! That's 5! Let's count 5 frogs!",
+"dur": 2.71
+},
+"f0039c25": {
+"text": "That's 5.",
+"dur": 0.97
+},
+"c74e5fa2": {
+"text": "Look for 5!",
+"dur": 1.09
+},
+"330ca589": {
+"text": "6",
+"dur": 0.72
+},
+"b0957e35": {
+"text": "Can you find the number 6?",
+"dur": 1.59
+},
+"45300575": {
+"text": "Yes! 6 frogs!",
+"dur": 1.41
+},
+"12f56c58": {
+"text": "Yes! That's 6! Let's count 6 frogs!",
+"dur": 2.62
+},
+"ed03976c": {
+"text": "That's 6.",
+"dur": 0.96
+},
+"c64e5e0f": {
+"text": "Look for 6!",
+"dur": 1.1
+},
+"320ca3f6": {
+"text": "7",
+"dur": 0.75
+},
+"af957ca2": {
+"text": "Can you find the number 7?",
+"dur": 1.58
+},
+"9b9bfca6": {
+"text": "Yes! 7 frogs!",
+"dur": 1.58
+},
+"951abf30": {
+"text": "Yes! That's 7! Let's count 7 frogs!",
+"dur": 2.82
+},
+"ee0398ff": {
+"text": "That's 7.",
+"dur": 0.95
+},
+"c54e5c7c": {
+"text": "Look for 7!",
+"dur": 1.09
+},
+"3d0cb547": {
+"text": "8",
+"dur": 0.64
+},
+"b295815b": {
+"text": "Can you find the number 8?",
+"dur": 1.51
+},
+"bfe1c80f": {
+"text": "Yes! 8 frogs!",
+"dur": 1.41
+},
+"5ffd8274": {
+"text": "Yes! That's 8! Let's count 8 frogs!",
+"dur": 2.52
+},
+"f303a0de": {
+"text": "That's 8.",
+"dur": 0.91
+},
+"cc4e6781": {
+"text": "Look for 8!",
+"dur": 1.06
+},
+"3c0cb3b4": {
+"text": "9",
+"dur": 0.72
+},
+"b1957fc8": {
+"text": "Can you find the number 9?",
+"dur": 1.51
+},
+"8fb1fcd8": {
+"text": "Yes! 9 frogs!",
+"dur": 1.41
+},
+"613c5e54": {
+"text": "Yes! That's 9! Let's count 9 frogs!",
+"dur": 2.71
+},
+"f403a271": {
+"text": "That's 9.",
+"dur": 0.9
+},
+"cb4e65ee": {
+"text": "Look for 9!",
+"dur": 1.08
+},
+"1beb2a44": {
+"text": "10",
+"dur": 0.65
+},
+"f6440900": {
+"text": "Can you find the number 10?",
+"dur": 1.54
+},
+"4a7fb262": {
+"text": "Yes! 10 frogs!",
+"dur": 1.37
+},
+"0ad0a9de": {
+"text": "Yes! That's 10! Let's count 10 frogs!",
+"dur": 2.58
+},
+"72a4fdcb": {
+"text": "That's 10.",
+"dur": 0.91
+},
+"da56bb92": {
+"text": "Look for 10!",
+"dur": 1.07
+},
+"e0d3c527": {
+"text": "Pop the red balloon!",
+"dur": 1.34
+},
+"38131e5c": {
+"text": "Pop the orange balloon!",
+"dur": 1.41
+},
+"e486f99a": {
+"text": "Pop the yellow balloon!",
+"dur": 1.41
+},
+"35c9a6a7": {
+"text": "Pop the green balloon!",
+"dur": 1.41
+},
+"7ef98716": {
+"text": "Pop the blue balloon!",
+"dur": 1.3
+},
+"aefc19a0": {
+"text": "Pop the purple balloon!",
+"dur": 1.47
+},
+"b1bab346": {
+"text": "Pop the pink balloon!",
+"dur": 1.4
+},
+"5c8ff175": {
+"text": "Pop the circle!",
+"dur": 1.15
+},
+"d33c6302": {
+"text": "Pop the square!",
+"dur": 1.03
+},
+"67b10c59": {
+"text": "Pop the triangle!",
+"dur": 1.22
+},
+"28080e65": {
+"text": "Pop the star!",
+"dur": 1.07
+},
+"5b0658e7": {
+"text": "Pop the heart!",
+"dur": 1.06
+},
+"90a1e3f2": {
+"text": "Pop the rectangle!",
+"dur": 1.27
+},
+"8ad2f109": {
+"text": "Pop the oval!",
+"dur": 1.02
+},
+"31495543": {
+"text": "Pop the diamond!",
+"dur": 1.17
+},
+"b8317214": {
+"text": "Pop the red circle!",
+"dur": 1.35
+},
+"3bfe61fc": {
+"text": "Pop! A red circle!",
+"dur": 1.49
+},
+"9eea2b56": {
+"text": "That's a red circle.",
+"dur": 1.29
+},
+"f00b1f0f": {
+"text": "Pop the red square!",
+"dur": 1.28
+},
+"ceed18f7": {
+"text": "Pop! A red square!",
+"dur": 1.37
+},
+"3ad51d7d": {
+"text": "That's a red square.",
+"dur": 1.22
+},
+"54819d64": {
+"text": "Pop the red triangle!",
+"dur": 1.48
+},
+"b239ce9c": {
+"text": "Pop! A red triangle!",
+"dur": 1.63
+},
+"0df2304e": {
+"text": "That's a red triangle.",
+"dur": 1.37
+},
+"587f7a50": {
+"text": "Pop the red star!",
+"dur": 1.26
+},
+"b11ba8f8": {
+"text": "Pop! A red star!",
+"dur": 1.32
+},
+"566eb89e": {
+"text": "That's a red star.",
+"dur": 1.19
+},
+"0dfac3cc": {
+"text": "Pop the red heart!",
+"dur": 1.24
+},
+"c07225d4": {
+"text": "Pop! A red heart!",
+"dur": 1.3
+},
+"828e739a": {
+"text": "That's a red heart.",
+"dur": 1.24
+},
+"7d355e95": {
+"text": "Pop the red rectangle!",
+"dur": 1.48
+},
+"953e3d4d": {
+"text": "Pop! A red rectangle!",
+"dur": 1.59
+},
+"3b996267": {
+"text": "That's a red rectangle.",
+"dur": 1.44
+},
+"86548fa4": {
+"text": "Pop the red oval!",
+"dur": 1.26
+},
+"0036830c": {
+"text": "Pop! A red oval!",
+"dur": 1.37
+},
+"3099afe2": {
+"text": "That's a red oval.",
+"dur": 1.25
+},
+"1b004d7c": {
+"text": "Pop the red diamond!",
+"dur": 1.44
+},
+"43b48594": {
+"text": "Pop! A red diamond!",
+"dur": 1.53
+},
+"ad9a600e": {
+"text": "That's a red diamond.",
+"dur": 1.37
+},
+"468156c9": {
+"text": "Pop the orange circle!",
+"dur": 1.44
+},
+"d6a51241": {
+"text": "Pop! A orange circle!",
+"dur": 1.53
+},
+"f7dd9c6b": {
+"text": "That's a orange circle.",
+"dur": 1.39
+},
+"1b564286": {
+"text": "Pop the orange square!",
+"dur": 1.35
+},
+"380e223e": {
+"text": "Pop! A orange square!",
+"dur": 1.46
+},
+"7326d28c": {
+"text": "That's a orange square.",
+"dur": 1.36
+},
+"34b42cc5": {
+"text": "Pop the orange triangle!",
+"dur": 1.6
+},
+"7fba16cd": {
+"text": "Pop! A orange triangle!",
+"dur": 1.69
+},
+"2011673f": {
+"text": "That's a orange triangle.",
+"dur": 1.53
+},
+"143e0bb1": {
+"text": "Pop the orange star!",
+"dur": 1.35
+},
+"35ac2349": {
+"text": "Pop! A orange star!",
+"dur": 1.44
+},
+"af78c2bf": {
+"text": "That's a orange star.",
+"dur": 1.32
+},
+"94304423": {
+"text": "Pop the orange heart!",
+"dur": 1.38
+},
+"8e7909db": {
+"text": "Pop! A orange heart!",
+"dur": 1.44
+},
+"4c459901": {
+"text": "That's a orange heart.",
+"dur": 1.32
+},
+"ee1074ce": {
+"text": "Pop the orange rectangle!",
+"dur": 1.64
+},
+"cc005f56": {
+"text": "Pop! A orange rectangle!",
+"dur": 1.73
+},
+"e026cde8": {
+"text": "That's a orange rectangle.",
+"dur": 1.57
+},
+"8875ed95": {
+"text": "Pop the orange oval!",
+"dur": 1.38
+},
+"d13e524d": {
+"text": "Pop! A orange oval!",
+"dur": 1.51
+},
+"5cccf8bb": {
+"text": "That's a orange oval.",
+"dur": 1.34
+},
+"fcdb8ae7": {
+"text": "Pop the orange diamond!",
+"dur": 1.63
+},
+"2984044f": {
+"text": "Pop! A orange diamond!",
+"dur": 1.64
+},
+"312ddc71": {
+"text": "That's a orange diamond.",
+"dur": 1.53
+},
+"0e475e4f": {
+"text": "Pop the yellow circle!",
+"dur": 1.47
+},
+"986e5ce7": {
+"text": "Pop! A yellow circle!",
+"dur": 1.56
+},
+"2f3e0011": {
+"text": "That's a yellow circle.",
+"dur": 1.41
+},
+"c1f5fa10": {
+"text": "Pop the yellow square!",
+"dur": 1.37
+},
+"e23928c8": {
+"text": "Pop! A yellow square!",
+"dur": 1.41
+},
+"a99e066e": {
+"text": "That's a yellow square.",
+"dur": 1.34
+},
+"34dcd37b": {
+"text": "Pop the yellow triangle!",
+"dur": 1.54
+},
+"f0699303": {
+"text": "Pop! A yellow triangle!",
+"dur": 1.73
+},
+"16f6b57d": {
+"text": "That's a yellow triangle.",
+"dur": 1.48
+},
+"219b476b": {
+"text": "Pop the yellow star!",
+"dur": 1.34
+},
+"9a873c83": {
+"text": "Pop! A yellow star!",
+"dur": 1.44
+},
+"ba8b0019": {
+"text": "That's a yellow star.",
+"dur": 1.28
+},
+"e5739a7d": {
+"text": "Pop the yellow heart!",
+"dur": 1.4
+},
+"cc20fd15": {
+"text": "Pop! A yellow heart!",
+"dur": 1.44
+},
+"0ede61eb": {
+"text": "That's a yellow heart.",
+"dur": 1.36
+},
+"abfc5884": {
+"text": "Pop the yellow rectangle!",
+"dur": 1.58
+},
+"da54af6c": {
+"text": "Pop! A yellow rectangle!",
+"dur": 1.66
+},
+"1de8e5a6": {
+"text": "That's a yellow rectangle.",
+"dur": 1.55
+},
+"783fb107": {
+"text": "Pop the yellow oval!",
+"dur": 1.36
+},
+"ae0aa9bf": {
+"text": "Pop! A yellow oval!",
+"dur": 1.47
+},
+"b963159d": {
+"text": "That's a yellow oval.",
+"dur": 1.34
+},
+"ef9ea385": {
+"text": "Pop the yellow diamond!",
+"dur": 1.51
+},
+"13a99b2d": {
+"text": "Pop! A yellow diamond!",
+"dur": 1.62
+},
+"2ef7721f": {
+"text": "That's a yellow diamond.",
+"dur": 1.44
+},
+"62f6fa94": {
+"text": "Pop the green circle!",
+"dur": 1.42
+},
+"3a722c0c": {
+"text": "Pop! A green circle!",
+"dur": 1.54
+},
+"32b37186": {
+"text": "That's a green circle.",
+"dur": 1.34
+},
+"9ad0a78f": {
+"text": "Pop the green square!",
+"dur": 1.34
+},
+"fde09f27": {
+"text": "Pop! A green square!",
+"dur": 1.37
+},
+"04e4f30d": {
+"text": "That's a green square.",
+"dur": 1.26
+},
+"939399e4": {
+"text": "Pop the green triangle!",
+"dur": 1.51
+},
+"f7ea334c": {
+"text": "Pop! A green triangle!",
+"dur": 1.64
+},
+"9d0da81e": {
+"text": "That's a green triangle.",
+"dur": 1.44
+},
+"b872aed0": {
+"text": "Pop the green star!",
+"dur": 1.3
+},
+"c4f87408": {
+"text": "Pop! A green star!",
+"dur": 1.3
+},
+"94b84d8e": {
+"text": "That's a green star.",
+"dur": 1.26
+},
+"99d6694c": {
+"text": "Pop the green heart!",
+"dur": 1.34
+},
+"55d82c24": {
+"text": "Pop! A green heart!",
+"dur": 1.39
+},
+"6c29368a": {
+"text": "That's a green heart.",
+"dur": 1.28
+},
+"4685dc15": {
+"text": "Pop the green rectangle!",
+"dur": 1.51
+},
+"5943b8dd": {
+"text": "Pop! A green rectangle!",
+"dur": 1.58
+},
+"2787e417": {
+"text": "That's a green rectangle.",
+"dur": 1.5
+},
+"e647c424": {
+"text": "Pop the green oval!",
+"dur": 1.3
+},
+"b43fcc9c": {
+"text": "Pop! A green oval!",
+"dur": 1.38
+},
+"ce176292": {
+"text": "That's a green oval.",
+"dur": 1.28
+},
+"6ff62efc": {
+"text": "Pop the green diamond!",
+"dur": 1.5
+},
+"8b061e64": {
+"text": "Pop! A green diamond!",
+"dur": 1.54
+},
+"fb1db37e": {
+"text": "That's a green diamond.",
+"dur": 1.44
+},
+"05de917b": {
+"text": "Pop the blue circle!",
+"dur": 1.42
+},
+"050fefc3": {
+"text": "Pop! A blue circle!",
+"dur": 1.49
+},
+"ca45f7e1": {
+"text": "That's a blue circle.",
+"dur": 1.28
+},
+"402dd57c": {
+"text": "Pop the blue square!",
+"dur": 1.29
+},
+"e5d80e24": {
+"text": "Pop! A blue square!",
+"dur": 1.3
+},
+"d07df4de": {
+"text": "That's a blue square.",
+"dur": 1.23
+},
+"4c0622af": {
+"text": "Pop the blue triangle!",
+"dur": 1.45
+},
+"eb8f0607": {
+"text": "Pop! A blue triangle!",
+"dur": 1.56
+},
+"0e82016d": {
+"text": "That's a blue triangle.",
+"dur": 1.38
+},
+"6750220f": {
+"text": "Pop the blue star!",
+"dur": 1.25
+},
+"aaf175f7": {
+"text": "Pop! A blue star!",
+"dur": 1.26
+},
+"496d58e9": {
+"text": "That's a blue star.",
+"dur": 1.22
+},
+"da129cd1": {
+"text": "Pop the blue heart!",
+"dur": 1.25
+},
+"cb4cfe99": {
+"text": "Pop! A blue heart!",
+"dur": 1.29
+},
+"07a1a2fb": {
+"text": "That's a blue heart.",
+"dur": 1.19
+},
+"ff72aff8": {
+"text": "Pop the blue rectangle!",
+"dur": 1.44
+},
+"4096c990": {
+"text": "Pop! A blue rectangle!",
+"dur": 1.56
+},
+"fcba0d76": {
+"text": "That's a blue rectangle.",
+"dur": 1.39
+},
+"8aac54cb": {
+"text": "Pop the blue oval!",
+"dur": 1.23
+},
+"0bf85c33": {
+"text": "Pop! A blue oval!",
+"dur": 1.33
+},
+"fe4dcfed": {
+"text": "That's a blue oval.",
+"dur": 1.15
+},
+"87311c81": {
+"text": "Pop the blue diamond!",
+"dur": 1.44
+},
+"f8aca8d9": {
+"text": "Pop! A blue diamond!",
+"dur": 1.49
+},
+"2919cf6f": {
+"text": "That's a blue diamond.",
+"dur": 1.3
+},
+"2a4fe3dd": {
+"text": "Pop the purple circle!",
+"dur": 1.48
+},
+"5fabc3c5": {
+"text": "Pop! A purple circle!",
+"dur": 1.6
+},
+"e6b07f03": {
+"text": "That's a purple circle.",
+"dur": 1.39
+},
+"4548e5aa": {
+"text": "Pop the purple square!",
+"dur": 1.44
+},
+"03864cb2": {
+"text": "Pop! A purple square!",
+"dur": 1.44
+},
+"1db4de64": {
+"text": "That's a purple square.",
+"dur": 1.3
+},
+"cf175551": {
+"text": "Pop the purple triangle!",
+"dur": 1.63
+},
+"49814309": {
+"text": "Pop! A purple triangle!",
+"dur": 1.72
+},
+"85e99d47": {
+"text": "That's a purple triangle.",
+"dur": 1.49
+},
+"88f8412d": {
+"text": "Pop the purple star!",
+"dur": 1.4
+},
+"4beeb3b5": {
+"text": "Pop! A purple star!",
+"dur": 1.44
+},
+"6284b437": {
+"text": "That's a purple star.",
+"dur": 1.3
+},
+"50f7d18f": {
+"text": "Pop the purple heart!",
+"dur": 1.38
+},
+"9bb835b7": {
+"text": "Pop! A purple heart!",
+"dur": 1.5
+},
+"9b0b22d9": {
+"text": "That's a purple heart.",
+"dur": 1.33
+},
+"8dd529aa": {
+"text": "Pop the purple rectangle!",
+"dur": 1.61
+},
+"60b364c2": {
+"text": "Pop! A purple rectangle!",
+"dur": 1.72
+},
+"7c554fd0": {
+"text": "That's a purple rectangle.",
+"dur": 1.54
+},
+"54868cd1": {
+"text": "Pop the purple oval!",
+"dur": 1.4
+},
+"0f8513d9": {
+"text": "Pop! A purple oval!",
+"dur": 1.5
+},
+"aa3d5273": {
+"text": "That's a purple oval.",
+"dur": 1.3
+},
+"387c717b": {
+"text": "Pop the purple diamond!",
+"dur": 1.56
+},
+"ff15d353": {
+"text": "Pop! A purple diamond!",
+"dur": 1.67
+},
+"5a725319": {
+"text": "That's a purple diamond.",
+"dur": 1.47
+},
+"209e236b": {
+"text": "Pop the pink circle!",
+"dur": 1.38
+},
+"4e6b37f3": {
+"text": "Pop! A pink circle!",
+"dur": 1.4
+},
+"5e891cb5": {
+"text": "That's a pink circle.",
+"dur": 1.32
+},
+"9be7598c": {
+"text": "Pop the pink square!",
+"dur": 1.29
+},
+"cf29d174": {
+"text": "Pop! A pink square!",
+"dur": 1.3
+},
+"5a2e6f42": {
+"text": "That's a pink square.",
+"dur": 1.24
+},
+"a55ec63f": {
+"text": "Pop the pink triangle!",
+"dur": 1.5
+},
+"c0763b57": {
+"text": "Pop! A pink triangle!",
+"dur": 1.54
+},
+"89e7f899": {
+"text": "That's a pink triangle.",
+"dur": 1.41
+},
+"601e31bf": {
+"text": "Pop the pink star!",
+"dur": 1.31
+},
+"4a5e36a7": {
+"text": "Pop! A pink star!",
+"dur": 1.31
+},
+"a7c28da5": {
+"text": "That's a pink star.",
+"dur": 1.26
+},
+"60b35601": {
+"text": "Pop the pink heart!",
+"dur": 1.25
+},
+"4c02d109": {
+"text": "Pop! A pink heart!",
+"dur": 1.29
+},
+"57608927": {
+"text": "That's a pink heart.",
+"dur": 1.24
+},
+"b8f35ae8": {
+"text": "Pop the pink rectangle!",
+"dur": 1.51
+},
+"c7560e00": {
+"text": "Pop! A pink rectangle!",
+"dur": 1.6
+},
+"9f7a6432": {
+"text": "That's a pink rectangle.",
+"dur": 1.49
+},
+"0d7267bb": {
+"text": "Pop the pink oval!",
+"dur": 1.29
+},
+"341feba3": {
+"text": "Pop! A pink oval!",
+"dur": 1.37
+},
+"0a8bdd49": {
+"text": "That's a pink oval.",
+"dur": 1.26
+},
+"58426171": {
+"text": "Pop the pink diamond!",
+"dur": 1.44
+},
+"68173cc9": {
+"text": "Pop! A pink diamond!",
+"dur": 1.51
+},
+"9d448683": {
+"text": "That's a pink diamond.",
+"dur": 1.43
+},
+"f0d3bd57": {
+"text": "What comes next?",
+"dur": 1.15
+},
+"cf585f6f": {
+"text": "Yes! The bear comes next!",
+"dur": 1.71
+},
+"be6a4796": {
+"text": "Hmm, not the bear. Listen again!",
+"dur": 2.09
+},
+"ef5f4bcb": {
+"text": "Yes! The bunny comes next!",
+"dur": 1.75
+},
+"42d5504a": {
+"text": "Hmm, not the bunny. Listen again!",
+"dur": 2.13
+},
+"1f036a00": {
+"text": "Yes! The fox comes next!",
+"dur": 1.79
+},
+"144a604d": {
+"text": "Hmm, not the fox. Listen again!",
+"dur": 2.22
+},
+"516cfb2b": {
+"text": "Yes! The frog comes next!",
+"dur": 1.77
+},
+"827e8b32": {
+"text": "Hmm, not the frog. Listen again!",
+"dur": 2.2
 }
 }
 }
