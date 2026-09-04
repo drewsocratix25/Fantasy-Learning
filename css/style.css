@@ -1,0 +1,40 @@
+html, body {
+  margin: 0; padding: 0; height: 100%; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, #7c3aed 0%, #4c1d95 55%, #2e1065 100%);
+  font-family: Fredoka, "Arial Rounded MT Bold", "Helvetica Rounded", system-ui, sans-serif;
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+#stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+#game {
+  display: block;
+  touch-action: none;
+  border-radius: 0;
+  box-shadow: 0 0 60px rgba(0,0,0,.35);
+}
+#nameWrap[hidden] { display: none; }
+#nameWrap {
+  position: absolute;
+  display: flex; flex-direction: column; gap: 4px;
+  font-weight: 700; color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.25);
+}
+#nameWrap label { font-size: 18px; letter-spacing: .5px; }
+#nameInput {
+  font: 700 26px Fredoka, "Arial Rounded MT Bold", system-ui, sans-serif;
+  padding: 8px 14px; border-radius: 18px; border: 4px solid #f9a8d4;
+  background: #fff; color: #5b21b6; outline: none; width: 220px;
+  box-shadow: 0 6px 0 #db2777;
+}
+#nameInput:focus { border-color: #fde68a; }
+#rotate {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: #4c1d95; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
+}
+#rotate[hidden] { display: none; }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Melody Kingdom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="description" content="A princess music adventure that teaches kindergarten letters, numbers, shapes, colors and rhythm.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Melody Kingdom">
+<meta name="theme-color" content="#6d28d9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" aria-label="Melody Kingdom game"></canvas>
+  <div id="nameWrap" hidden>
+    <label for="nameInput">Princess name</label>
+    <input id="nameInput" type="text" maxlength="14" autocomplete="off" autocapitalize="words" placeholder="Type a name">
+  </div>
+</div>
+<div id="rotate" hidden><div>📱 ➡️ 🔄<br>Please turn sideways!</div></div>
+
+<script src="js/save.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/songs.js"></script>
+<script src="js/art.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/title.js"></script>
+<script src="js/world.js"></script>
+<script src="js/games/songselect.js"></script>
+<script src="js/games/rhythm.js"></script>
+<script src="js/games/letters.js"></script>
+<script src="js/games/numbers.js"></script>
+<script src="js/games/shapes.js"></script>
+<script src="js/games/piano.js"></script>
+<script src="js/games/patterns.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
