@@ -2,14 +2,7 @@
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
   const MAP_W = 2400, MAP_H = 1700;
-  const LOCS = [
-    { id: 'rhythm', name: 'Melody Castle', emoji: '🏰', x: 1200, y: 790, r: 130, scene: 'songs', hint: 'Play songs like a rock star!' },
-    { id: 'letters', name: 'Letter Garden', emoji: '🌸', x: 430, y: 620, r: 120, scene: 'letters', hint: 'Find the letters!' },
-    { id: 'numbers', name: 'Counting Pond', emoji: '🐸', x: 1980, y: 660, r: 120, scene: 'numbers', hint: 'Count the frogs!' },
-    { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
-    { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
-    { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
-  ];
+  const LOCS = FL.Data.LOCS;
   const OBSTACLES = [
     { type: 'rect', x: 970, y: 300, w: 460, h: 340 },        // castle body
     { type: 'circle', x: 1980, y: 470, r: 190 },               // pond

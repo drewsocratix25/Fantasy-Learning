@@ -1,12 +1,7 @@
 // Pattern Bridge: musical creatures make a pattern; pick which comes next, then hop across.
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
-  const CREATURES = [
-    { e: '🐻', name: 'bear', inst: 'kick', note: 60, color: '#a16207' },
-    { e: '🐰', name: 'bunny', inst: 'bell', note: 'E6', color: '#f9a8d4' },
-    { e: '🦊', name: 'fox', inst: 'flute', note: 'G5', color: '#fb923c' },
-    { e: '🐸', name: 'frog', inst: 'wood', note: 900, color: '#4ade80' },
-  ];
+  const CREATURES = FL.Data.CREATURES;
   const TEMPLATES = { 1: ['AB', 'AB', 'AAB'], 2: ['AB', 'AAB', 'ABB', 'ABC'], 3: ['ABC', 'AABB', 'ABB', 'ABCC', 'AAB'] };
   const scene = {
     t: 0, hud: { home: true, repeat: true }, round: 0, total: 6, good: 0, seq: [], answer: null, choices: [], locked: true, tries: 0, level: 1, lit: -1, playing: false, hopX: 0, hopping: false,

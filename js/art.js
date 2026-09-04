@@ -6,12 +6,7 @@
   Art.FONT = FONT;
   Art.font = (size, weight) => `${weight || 700} ${size}px ${FONT}`;
 
-  Art.PRINCESSES = [
-    { name: 'Rosie', dress: '#f472b6', dressDark: '#db2777', hair: '#7c2d12', skin: '#fde0c8', crown: '#fbbf24' },
-    { name: 'Violet', dress: '#a78bfa', dressDark: '#7c3aed', hair: '#1f1235', skin: '#8d5524', crown: '#fbbf24' },
-    { name: 'Sunny', dress: '#fde047', dressDark: '#f59e0b', hair: '#f59e0b', skin: '#f1c27d', crown: '#f472b6' },
-    { name: 'Coral', dress: '#5eead4', dressDark: '#0d9488', hair: '#3b1f0e', skin: '#c68642', crown: '#fbbf24' },
-  ];
+  Art.PRINCESSES = FL.Data.PRINCESSES;
   Art.DRESS_COLORS = [['#f472b6', '#db2777'], ['#a78bfa', '#7c3aed'], ['#fde047', '#f59e0b'], ['#5eead4', '#0d9488'], ['#60a5fa', '#2563eb'], ['#fb7185', '#e11d48'], ['#86efac', '#16a34a'], ['#fdba74', '#ea580c']];
 
   // ---------- primitives ----------

@@ -103,8 +103,8 @@
     overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Kingdom', emoji: '🏡', color: '#60a5fa', onTap: () => { UI.closeOverlay(); (o.home || (() => G.go('world')))(); } }));
     G.fx.burst(G.W / 2, G.H / 2 - 100, { count: 90, type: 'confetti', speed: 700, life: 2.2, size: 16, gravity: 500 });
     UI.checkUnlocks();
-    const name = FL.Save.data.name; const praise = ['Wonderful', 'Amazing', 'Beautiful', 'Fantastic', 'Bravo'][Math.floor(Math.random() * 5)];
-    setTimeout(() => FL.Audio.say(`${praise}${name ? ', ' + name : ''}! You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`), 600);
+    const name = FL.Save.data.name; const praise = FL.Data.PRAISE[Math.floor(Math.random() * FL.Data.PRAISE.length)]; const tail = `You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`;
+    setTimeout(() => FL.Audio.say(name ? `${praise}, ${name}! ${tail}` : `${praise}! ${tail}`, { alt: [`${praise}! ${tail}`] }), 600);
   };
   UI.showFriends = function () {
     const G = FL.Game; overlay.kind = 'friends'; overlay.t = 0; overlay.buttons = [];
@@ -116,7 +116,7 @@
     });
     overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: G.H / 2 + 182, w: 240, h: 84, label: 'Done', emoji: '✅', color: '#4ade80', onTap: () => UI.closeOverlay() }));
   };
-  UI.FRIENDS = [['🐰', 'Bunny', 0], ['🦄', 'Unicorn', 12], ['🐉', 'Dragon', 30], ['🦋', 'Butterfly', 50], ['🐥', 'Chick', 75], ['🐧', 'Penguin', 100], ['🦊', 'Fox', 130], ['🐬', 'Dolphin', 170]];
+  UI.FRIENDS = FL.Data.FRIENDS;
   UI.friendName = (e) => (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1];
   UI.nextUnlock = function () { const s = FL.Save.data.stars; return UI.FRIENDS.find((f) => !FL.Save.data.unlocked.includes(f[0]) && f[2] > s) || null; };
   UI.checkUnlocks = function () {
@@ -132,8 +132,8 @@
     const voices = FL.Audio.voices(); const vname = FL.Audio.voiceName();
     overlay.buttons.push(new Button({ x: L, y: py + 140, w: W, h: H, label: `Music: ${s.music ? 'On' : 'Off'}`, emoji: '🎵', color: s.music ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.music = !s.music; FL.Save.save(); FL.Audio.applySettings(); refresh(); } }));
     overlay.buttons.push(new Button({ x: R, y: py + 140, w: W, h: H, label: `Voice: ${s.speech ? 'On' : 'Off'}`, emoji: '🗣️', color: s.speech ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.speech = !s.speech; FL.Save.save(); if (!s.speech) FL.Audio.hush(); refresh(); } }));
-    overlay.buttons.push(new Button({ x: L, y: py + 262, w: W - 90, h: H, label: vname.length > 15 ? vname.slice(0, 14) + '…' : vname, emoji: '🎙️', color: '#c084fc', size: 24, onTap: () => { if (!voices.length) { UI.toast('No extra voices on this device', '🎙️', '#475569'); return; } const want = FL.Save.data.settings.voice || ''; const cur = voices.findIndex((v) => v.voiceURI === want || v.name === want); const nxt = voices[(Math.max(0, cur) + 1) % voices.length]; FL.Audio.setVoice(nxt); refresh(); FL.Audio.say(`Hello. I'm ${nxt.name.split(' ')[0]}. Let's play in Melody Kingdom.`); } }));
-    overlay.buttons.push(new Button({ x: L + W - 80, y: py + 262, w: 80, h: H, emoji: '▶️', color: '#fbbf24', emojiSize: 34, onTap: () => FL.Audio.say(`Hello${FL.Save.data.name ? ' Princess ' + FL.Save.data.name : ''}. Can you find the letter B? Wonderful. B is for butterfly.`) }));
+    overlay.buttons.push(new Button({ x: L, y: py + 262, w: W - 90, h: H, label: vname.length > 15 ? vname.slice(0, 14) + '…' : vname, emoji: '🎙️', color: '#c084fc', size: 24, onTap: () => { if (!voices.length) { UI.toast('No extra voices on this device', '🎙️', '#475569'); return; } const want = FL.Save.data.settings.voice || ''; const cur = voices.findIndex((v) => v.voiceURI === want || v.name === want); const nxt = voices[(Math.max(0, cur) + 1) % voices.length]; FL.Audio.setVoice(nxt); refresh(); FL.Audio.say(`Hello. I'm ${nxt.name.split(' ')[0]}. Let's play in Melody Kingdom.`, { tts: true }); } }));
+    overlay.buttons.push(new Button({ x: L + W - 80, y: py + 262, w: 80, h: H, emoji: '▶️', color: '#fbbf24', emojiSize: 34, onTap: () => { const plain = 'Hello. Can you find the letter B? Wonderful. B is for butterfly.'; FL.Audio.say(FL.Save.data.name ? `Hello Princess ${FL.Save.data.name}. Can you find the letter B? Wonderful. B is for butterfly.` : plain, { alt: [plain] }); } }));
     overlay.buttons.push(new Button({ x: R, y: py + 262, w: W, h: H, label: 'Change princess', emoji: '👸', color: '#f472b6', size: 28, onTap: () => { UI.closeOverlay(); G.go('title'); } }));
     overlay.buttons.push(new Button({ x: L, y: py + 362, w: W, h: H, label: 'Reset all progress', emoji: '🧹', color: '#f87171', size: 28, onTap: () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go('title'); } else { overlay.data = Object.assign(overlay.data || {}, { confirm: true }); UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } } }));
     overlay.buttons.push(new Button({ x: R, y: py + 362, w: W, h: H, label: 'Close', emoji: '✅', color: '#60a5fa', size: 28, onTap: () => UI.closeOverlay() }));
@@ -172,8 +172,8 @@
       A.text(ctx, 'Grown-up Corner', G.W / 2, py + 60, { size: 46, color: '#7c3aed' });
       const p = FL.Save.data.plays; const played = Object.keys(p).reduce((a, k) => a + p[k], 0);
       A.text(ctx, `${FL.Save.data.stars} stars · ${played} games played · levels: letters ${FL.Save.level('letters')}, numbers ${FL.Save.level('numbers')}, shapes ${FL.Save.level('shapes')}, patterns ${FL.Save.level('patterns')}`, G.W / 2, py + 108, { size: 20, color: '#6b7280' });
-      A.text(ctx, `Narrator voice · ${(overlay.data && overlay.data.voiceCount) || 0} on this device · tap to change, ▶ to hear`, G.W / 2 - 410, py + 248, { size: 17, color: '#6b7280', align: 'left' });
-      const h1 = 'For a much more natural voice on iPad: Settings › Accessibility › Spoken Content › Voices › English,'; const h2 = 'download "Ava (Premium)" or "Samantha (Enhanced)", restart the game, then pick it above.';
+      const vp = FL.Audio.voicePack; A.text(ctx, vp.ready ? `Narrator: ${vp.name} (built in) · fallback voice below · ▶ to hear` : `Narrator voice · ${(overlay.data && overlay.data.voiceCount) || 0} on this device · tap to change, ▶ to hear`, G.W / 2 - 410, py + 248, { size: 17, color: '#6b7280', align: 'left' });
+      const h1 = vp.ready ? 'The narrator is a built-in studio voice, so it sounds the same on every device. The fallback voice is only used' : 'For a much more natural voice on iPad: Settings › Accessibility › Spoken Content › Voices › English,'; const h2 = vp.ready ? 'for lines that include a custom name (see README to bake a name into the voice pack).' : 'download "Ava (Premium)" or "Samantha (Enhanced)", restart the game, then pick it above.';
       A.text(ctx, h1, G.W / 2, py + ph - 70, { size: A.fitSize(ctx, h1, pw - 60, 17), color: '#6b7280' });
       A.text(ctx, h2, G.W / 2, py + ph - 44, { size: A.fitSize(ctx, h2, pw - 60, 17), color: '#6b7280' });
     }

@@ -334,10 +334,53 @@
   if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => { voice = null; pickVoice(); }; setTimeout(pickVoice, 300); }
   A.voiceName = function () { const v = pickVoice(); return v ? v.name.replace(/\(.*?\)/g, '').trim() : 'Default'; };
   A.setVoice = function (v) { FL.Save.data.settings.voice = v ? v.voiceURI || v.name : null; FL.Save.save(); voice = null; pickVoice(); };
+  // ---- pre-rendered voice pack (voice/*.mp3, see tools/make-voices.py) --------
+  let voiceBus = null; const clipCache = new Map(); let voiceQueueEnd = 0; let activeVoices = [];
+  A.voicePack = { ready: false, name: '', clips: null };
+  A.loadVoicePack = function () {
+    return fetch('voice/manifest.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).then((m) => {
+      if (!m || !m.clips || !Object.keys(m.clips).length) return false;
+      A.voicePack = { ready: true, name: (m.voice || 'Kokoro').replace(/^[a-z]+_/, '').replace(/^\w/, (c) => c.toUpperCase()), clips: m.clips, engine: m.engine };
+      return true;
+    }).catch(() => false);
+  };
+  function clipFor(text) { if (!A.voicePack.ready) return null; const id = FL.Lines.id(text); return A.voicePack.clips[id] ? id : null; }
+  function loadClip(id) {
+    if (clipCache.has(id)) return clipCache.get(id);
+    const p = fetch(`voice/${id}.mp3`).then((r) => r.arrayBuffer()).then((buf) => new Promise((res, rej) => ctx.decodeAudioData(buf, res, rej))).catch((e) => { clipCache.delete(id); throw e; });
+    clipCache.set(id, p); return p;
+  }
+  A.warmVoicePack = function () { // decode everything in the background so lines play instantly (and cache offline)
+    if (!ctx || !A.voicePack.ready || A._warmed) return; A._warmed = true;
+    const ids = Object.keys(A.voicePack.clips); let i = 0;
+    const next = () => { if (i >= ids.length) return; const id = ids[i++]; loadClip(id).catch(() => {}).then(() => setTimeout(next, 40)); };
+    next(); setTimeout(next, 500);
+  };
+  function stopClips() { const now = ctx ? ctx.currentTime : 0; activeVoices.forEach((v) => { try { v.g.gain.cancelScheduledValues(now); v.g.gain.setValueAtTime(v.g.gain.value, now); v.g.gain.linearRampToValueAtTime(0.0001, now + 0.05); v.src.stop(now + 0.06); } catch (e) { /* done */ } }); activeVoices = []; voiceQueueEnd = 0; }
+  function playClip(id, o) {
+    if (!ctx) return; if (!voiceBus) { voiceBus = ctx.createGain(); voiceBus.gain.value = 1.15; voiceBus.connect(master); }
+    if (o.interrupt !== false) stopClips();
+    const token = { src: null, g: null, cancelled: false }; activeVoices.push(token);
+    A.duck(true);
+    loadClip(id).then((buf) => {
+      if (token.cancelled || !activeVoices.includes(token)) return;
+      const now = ctx.currentTime; const start = Math.max(now + 0.02, voiceQueueEnd); voiceQueueEnd = start + buf.duration + 0.25;
+      const src = ctx.createBufferSource(); src.buffer = buf; const g = ctx.createGain(); g.gain.value = 1; src.connect(g); g.connect(voiceBus); token.src = src; token.g = g;
+      src.onended = () => { activeVoices = activeVoices.filter((v) => v !== token); if (!activeVoices.length) { A.duck(false); voiceQueueEnd = 0; } };
+      src.start(start);
+    }).catch(() => { activeVoices = activeVoices.filter((v) => v !== token); if (!activeVoices.length) A.duck(false); });
+  }
+  A.speakingNow = () => activeVoices.length > 0 || speaking > 0;
+  A._voiceDebug = () => ({ active: activeVoices.length, tts: speaking, queueEnd: voiceQueueEnd, now: ctx ? ctx.currentTime : 0 });
+
   let speaking = 0;
   A.say = function (text, o) {
     o = o || {};
     if (!FL.Save.data.settings.speech) return;
+    if (!o.tts && A.voicePack.ready && ctx) {
+      const id = clipFor(text) || (o.alt || []).map(clipFor).find(Boolean);
+      if (id) { if ('speechSynthesis' in window && o.interrupt !== false) speechSynthesis.cancel(); playClip(id, o); return; }
+    }
     if (!('speechSynthesis' in window)) return;
     try {
       if (o.interrupt !== false) { speechSynthesis.cancel(); speaking = 0; }
@@ -348,11 +391,12 @@
       const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
       u.onstart = () => { speaking++; A.duck(true); };
       const done = () => { speaking = Math.max(0, speaking - 1); if (!speaking) A.duck(false); };
-      u.onend = done; u.onerror = done;
+      let finished = false; const once = () => { if (!finished) { finished = true; done(); } };
+      u.onend = once; u.onerror = once; setTimeout(once, 2500 + clean.length * 90); // safety: never leave the music ducked
       speechSynthesis.speak(u);
     } catch (e) { /* ignore */ }
   };
-  A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } speaking = 0; A.duck(false); };
+  A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } speaking = 0; stopClips(); A.duck(false); };
 
   window.FL = window.FL || {};
   FL.Audio = A;

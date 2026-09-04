@@ -1,0 +1,250 @@
+{
+"engine": "Kokoro-82M (open source, Apache-2.0)",
+"voice": "af_heart",
+"clips": {
+"1921ee7f": {
+"text": "Welcome to Melody Kingdom! Let's go explore!",
+"dur": 2.84
+},
+"117d4d03": {
+"text": "Hi! I'm Rosie!",
+"dur": 1.37
+},
+"2d37b358": {
+"text": "Hi! I'm Violet!",
+"dur": 1.32
+},
+"5438328a": {
+"text": "Hi! I'm Sunny!",
+"dur": 1.17
+},
+"4b287bc8": {
+"text": "Hi! I'm Coral!",
+"dur": 1.26
+},
+"a1e88305": {
+"text": "Tap anywhere to walk. Walk to a sign and tap Play!",
+"dur": 2.94
+},
+"39a764e8": {
+"text": "Melody Castle! Play songs like a rock star!",
+"dur": 2.79
+},
+"30e48ed8": {
+"text": "Let's go to the Melody Castle!",
+"dur": 1.77
+},
+"d48441bf": {
+"text": "Letter Garden! Find the letters!",
+"dur": 2.02
+},
+"b37b7ee9": {
+"text": "Let's go to the Letter Garden!",
+"dur": 1.69
+},
+"14fd9500": {
+"text": "Counting Pond! Count the frogs!",
+"dur": 2.15
+},
+"d6b032e8": {
+"text": "Let's go to the Counting Pond!",
+"dur": 1.71
+},
+"a756fef4": {
+"text": "Rainbow Meadow! Pop the shapes!",
+"dur": 2.01
+},
+"13ec4c4f": {
+"text": "Let's go to the Rainbow Meadow!",
+"dur": 1.73
+},
+"8521f8d2": {
+"text": "Piano Pavilion! Play the piano!",
+"dur": 2.2
+},
+"091534bf": {
+"text": "Let's go to the Piano Pavilion!",
+"dur": 1.86
+},
+"560d151e": {
+"text": "Pattern Bridge! What comes next?",
+"dur": 1.92
+},
+"90bbd277": {
+"text": "Let's go to the Pattern Bridge!",
+"dur": 1.69
+},
+"7fd09eee": {
+"text": "Wonderful! You earned 1 star!",
+"dur": 1.9
+},
+"5386c336": {
+"text": "Wonderful! You earned 2 stars!",
+"dur": 1.83
+},
+"a2313945": {
+"text": "Wonderful! You earned 3 stars!",
+"dur": 1.92
+},
+"67a3f4bf": {
+"text": "Amazing! You earned 1 star!",
+"dur": 1.92
+},
+"f3483741": {
+"text": "Amazing! You earned 2 stars!",
+"dur": 1.9
+},
+"28c629c2": {
+"text": "Amazing! You earned 3 stars!",
+"dur": 1.96
+},
+"63f8035f": {
+"text": "Beautiful! You earned 1 star!",
+"dur": 1.88
+},
+"06a38a61": {
+"text": "Beautiful! You earned 2 stars!",
+"dur": 1.82
+},
+"c2501f62": {
+"text": "Beautiful! You earned 3 stars!",
+"dur": 1.93
+},
+"6258fb89": {
+"text": "Fantastic! You earned 1 star!",
+"dur": 2.15
+},
+"7ef74dff": {
+"text": "Fantastic! You earned 2 stars!",
+"dur": 2.03
+},
+"0c63d840": {
+"text": "Fantastic! You earned 3 stars!",
+"dur": 2.18
+},
+"2fe358e0": {
+"text": "Bravo! You earned 1 star!",
+"dur": 1.69
+},
+"73185f4c": {
+"text": "Bravo! You earned 2 stars!",
+"dur": 1.78
+},
+"28e7022b": {
+"text": "Bravo! You earned 3 stars!",
+"dur": 1.8
+},
+"fc36ee2e": {
+"text": "Bunny will come with you!",
+"dur": 1.37
+},
+"b66de957": {
+"text": "A new friend! Bunny wants to play with you!",
+"dur": 2.47
+},
+"71834ea6": {
+"text": "Unicorn will come with you!",
+"dur": 1.54
+},
+"3af49f57": {
+"text": "A new friend! Unicorn wants to play with you!",
+"dur": 2.67
+},
+"f884459d": {
+"text": "Dragon will come with you!",
+"dur": 1.44
+},
+"946e180a": {
+"text": "A new friend! Dragon wants to play with you!",
+"dur": 2.58
+},
+"ba7e936b": {
+"text": "Butterfly will come with you!",
+"dur": 1.62
+},
+"e8e154a2": {
+"text": "A new friend! Butterfly wants to play with you!",
+"dur": 2.71
+},
+"f41f9882": {
+"text": "Chick will come with you!",
+"dur": 1.33
+},
+"e00221eb": {
+"text": "A new friend! Chick wants to play with you!",
+"dur": 2.37
+},
+"6d660a4e": {
+"text": "Penguin will come with you!",
+"dur": 1.43
+},
+"2c88d6c7": {
+"text": "A new friend! Penguin wants to play with you!",
+"dur": 2.58
+},
+"7ce963cd": {
+"text": "Fox will come with you!",
+"dur": 1.38
+},
+"4b7193fc": {
+"text": "A new friend! Fox wants to play with you!",
+"dur": 2.45
+},
+"6b643cee": {
+"text": "Dolphin will come with you!",
+"dur": 1.49
+},
+"37157597": {
+"text": "A new friend! Dolphin wants to play with you!",
+"dur": 2.62
+},
+"025f9694": {
+"text": "Hello. Can you find the letter B? Wonderful. B is for butterfly.",
+"dur": 4.18
+},
+"c2d3e2f9": {
+"text": "Pick a song to play!",
+"dur": 1.28
+},
+"b7975043": {
+"text": "Tap the gems when they reach the sparkly pads!",
+"dur": 2.65
+},
+"b2ebbbf0": {
+"text": "Twinkle Twinkle! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.25
+},
+"67969c37": {
+"text": "Listen to Twinkle Twinkle!",
+"dur": 1.73
+},
+"bf088c28": {
+"text": "Let's learn Twinkle Twinkle! Tap the glowing key.",
+"dur": 2.92
+},
+"d43ccc22": {
+"text": "The ABC Song! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.61
+},
+"2f00c895": {
+"text": "Listen to The ABC Song!",
+"dur": 1.81
+},
+"6634bd48": {
+"text": "Let's learn The ABC Song! Tap the glowing key.",
+"dur": 3.09
+},
+"c576c657": {
+"text": "Mary Had a Little Lamb! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.63
+},
+"e6f431b0": {
+"text": "Listen to Mary Had a Little Lamb!",
+"dur": 1.96
+},
+"1756c431": {
+"text": "Let's learn Mary Had a Little Lamb! Tap the glowing key.",
+"dur": 3.14
+}
+}
+}

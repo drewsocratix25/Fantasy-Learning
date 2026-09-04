@@ -26,7 +26,7 @@
     play() {
       FL.Save.data.princess = this.sel; FL.Save.save();
       const name = FL.Save.data.name;
-      FL.Audio.say(`Welcome to Melody Kingdom${name ? ', Princess ' + name : ''}! Let's go explore!`);
+      FL.Audio.say(name ? `Welcome to Melody Kingdom, Princess ${name}! Let's go explore!` : 'Welcome to Melody Kingdom! Let\'s go explore!', { alt: ['Welcome to Melody Kingdom! Let\'s go explore!'] });
       G().go('world');
     },
     princessAt(i) { const g = G(); const n = A.PRINCESSES.length; return { x: g.W / 2 + (i - (n - 1) / 2) * 190, y: g.H / 2 + 150 }; },

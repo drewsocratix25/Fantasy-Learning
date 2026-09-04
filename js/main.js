@@ -45,7 +45,7 @@
 
   // ---- input ----
   function onDown(e) {
-    e.preventDefault(); FL.Audio.unlock();
+    e.preventDefault(); FL.Audio.unlock(); FL.Audio.warmVoicePack();
     const p = toLogical(e); p.id = e.pointerId; p.sx = p.x; p.sy = p.y; p.t = G.time;
     G.pointers.set(e.pointerId, p);
     try { canvas.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
@@ -114,6 +114,7 @@
 
   // ---- boot ----
   G.fx = new FL.Art.Particles();
+  FL.Audio.loadVoicePack();
   resize();
   switchScene('title', {});
   requestAnimationFrame(frame);

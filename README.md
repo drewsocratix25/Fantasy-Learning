@@ -17,13 +17,17 @@ Everything is read aloud, every game gives stars, and stars unlock new companion
 
 ## Voice and music
 
-**The narrator's voice comes from the iPad itself** (the browser's built-in speech), so its quality depends on which voices are installed. The compact default voice sounds robotic; Apple's downloadable voices sound natural. One-time setup on the iPad:
+**The narrator is a pre-rendered studio voice.** Every sentence the game can say (about 440 lines) is rendered ahead of time with [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M), an open-source (Apache-2.0) neural text-to-speech model, and shipped as small MP3 clips in `voice/`. The game plays those clips through its own audio engine, so the voice sounds the same on every device, works offline, and needs no setup. If a line has no clip (for example one that includes a custom name), the game falls back to the device's built-in speech, ranking Apple's Enhanced/Premium voices first; the grown-up corner lets you pick and preview that fallback voice.
 
-1. Settings → Accessibility → Spoken Content → Voices → English.
-2. Download **Ava (Premium)** or **Samantha (Enhanced)** (Zoe, Allison, and Nicky Premium are also good).
-3. Reopen Melody Kingdom. It picks the best installed voice automatically, and you can switch and preview voices in the grown-up corner.
+**Baking her name into the voice** (optional, on your Mac):
 
-On a Mac, Chrome's "Google US English" voice or the same downloaded Apple voices in Safari work well.
+```bash
+pip install kokoro-onnx lameenc numpy      # once
+python3 tools/make-voices.py --name Ava     # renders only the new name lines
+git add voice && git commit -m "Voice pack with Ava" && git push
+```
+
+The script fetches the Kokoro model through npm (`expo-kokoro` bundles the weights), so it works without a HuggingFace account. Existing clips are kept. Use `--voice af_bella` (or any voice in the model: af_heart, af_bella, af_nicole, af_sarah, bf_emma, bf_isabella...) to change the narrator; delete the `voice/` folder first to re-render everything.
 
 **The background music is generated live**, not looped: it composes from rotating chord progressions, a melody that develops a short motif and answers it, instruments and textures that change every phrase, and gentle key changes. Each area has its own mood (a music-box kingdom theme, a flute waltz in the garden, marimba at the pond, a bright waltz in the meadow, a soft pad on the bridge), the music ducks whenever the narrator speaks, and the music games play with no backing track so the songs stay clear.
 

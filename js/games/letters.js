@@ -1,7 +1,7 @@
 // Letter Garden: find the letter (by name, or by the first sound of a word) among singing flowers.
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
-  const WORDS = { A: ['apple', '🍎'], B: ['butterfly', '🦋'], C: ['cat', '🐱'], D: ['dog', '🐶'], E: ['elephant', '🐘'], F: ['frog', '🐸'], G: ['grapes', '🍇'], H: ['house', '🏠'], I: ['ice cream', '🍦'], J: ['jellyfish', '🪼'], K: ['kite', '🪁'], L: ['lion', '🦁'], M: ['moon', '🌙'], N: ['nest', '🪺'], O: ['octopus', '🐙'], P: ['pig', '🐷'], Q: ['queen', '👸'], R: ['rainbow', '🌈'], S: ['star', '⭐'], T: ['turtle', '🐢'], U: ['umbrella', '☂️'], V: ['violin', '🎻'], W: ['whale', '🐳'], X: ['xylophone', '🎼'], Y: ['yo-yo', '🪀'], Z: ['zebra', '🦓'] };
+  const WORDS = FL.Data.LETTER_WORDS;
   const COLORS = ['#f472b6', '#60a5fa', '#facc15', '#c084fc', '#fb923c', '#f87171', '#34d399'];
   const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const scene = {
@@ -25,10 +25,10 @@
       if (!first) FL.Audio.sfx.whoosh();
       setTimeout(() => this.repeatPrompt(), first ? 400 : 700);
     },
-    repeatPrompt() {
-      const L = this.target; const [word] = WORDS[L];
-      if (this.mode === 'word') FL.Audio.say(`Which letter does ${word} start with?`);
-      else FL.Audio.say(`Can you find the letter ${L === 'A' ? 'A' : L}?`);
+    repeatPrompt(queue) {
+      const L = this.target; const [word] = WORDS[L]; const o = { interrupt: !queue };
+      if (this.mode === 'word') FL.Audio.say(`Which letter does ${word} start with?`, o);
+      else FL.Audio.say(`Can you find the letter ${L}?`, o);
     },
     down(p) {
       if (this.locked) return;
@@ -49,7 +49,7 @@
         setTimeout(() => { this.reveal = null; if (this.round >= this.total) this.finish(); else this.newRound(false); }, 2300);
       } else {
         this.tries++; f.wob = 1; FL.Audio.sfx.wrong();
-        FL.Audio.say(`That's the letter ${f.L}. Try again! Find ${this.mode === 'word' ? 'the first letter of ' + word : L}.`);
+        FL.Audio.say(`That's the letter ${f.L}. Try again!`); this.repeatPrompt(true);
       }
     },
     finish() {

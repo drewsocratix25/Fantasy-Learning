@@ -6,7 +6,7 @@
     t: 0, hud: { home: true, repeat: true }, round: 0, total: 6, good: 0, frogs: [], choices: [], n: 1, mode: 'count', counted: 0, phase: 'count', locked: false, tries: 0, level: 1, hopFrogs: [],
     enter() { this.t = 0; this.round = 0; this.good = 0; this.level = FL.Save.level('numbers'); FL.Save.addPlay('numbers'); this.newRound(true); },
     newRound(first) {
-      const g = G(); const max = Math.min(10, 4 + this.level * 2); this.n = 1 + Math.floor(Math.random() * max);
+      const g = G(); const max = Math.min(FL.Data.MAX_COUNT, 4 + this.level * 2); this.n = 1 + Math.floor(Math.random() * max);
       this.mode = this.level >= 2 && this.round % 2 === 1 ? 'find' : 'count';
       this.tries = 0; this.locked = false; this.counted = 0; this.roundT = 0; this.choices = []; this.hopFrogs = []; this.frogs = [];
       const cx = g.W / 2, cy = g.H / 2 + 60; // pond centre
@@ -27,7 +27,7 @@
       else FL.Audio.say(`Can you find the number ${this.n}?`);
     },
     showChoices() {
-      const g = G(); const max = Math.min(10, 4 + this.level * 2); const opts = new Set([this.n]); while (opts.size < 3) opts.add(Math.max(1, Math.min(Math.max(max, this.n + 2), this.n + Math.floor(Math.random() * 5) - 2)));
+      const g = G(); const max = Math.min(FL.Data.MAX_COUNT, 4 + this.level * 2); const opts = new Set([this.n]); while (opts.size < 3) opts.add(Math.max(1, Math.min(Math.max(max, this.n + 2), this.n + Math.floor(Math.random() * 5) - 2)));
       const arr = [...opts].sort(() => Math.random() - 0.5); arr.forEach((v, i) => this.choices.push({ v, x: g.W / 2 + (i - 1) * 220, y: g.H - 120, wob: 0 }));
       this.phase = 'choose'; setTimeout(() => this.repeatPrompt(), 300);
     },
@@ -48,7 +48,7 @@
         this.round++;
         const wait = this.mode === 'count' ? 2200 : 2200 + this.n * 550;
         setTimeout(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, wait);
-      } else { this.tries++; c.wob = 1; FL.Audio.sfx.wrong(); FL.Audio.say(`That's ${c.v}. ${this.mode === 'count' ? 'Count the frogs again!' : 'Look for ' + this.n + '!'}`); }
+      } else { this.tries++; c.wob = 1; FL.Audio.sfx.wrong(); FL.Audio.say(`That's ${c.v}.`); FL.Audio.say(this.mode === 'count' ? 'Count the frogs again!' : `Look for ${this.n}!`, { interrupt: false }); }
     },
     finish() {
       const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp('numbers');

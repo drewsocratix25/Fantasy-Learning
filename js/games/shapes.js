@@ -1,8 +1,7 @@
 // Rainbow Meadow: pop the balloon with the right colour and/or shape.
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
-  const SHAPES = ['circle', 'square', 'triangle', 'star', 'heart', 'rectangle', 'oval', 'diamond'];
-  const COLORS = [['red', '#ef4444'], ['orange', '#f97316'], ['yellow', '#facc15'], ['green', '#22c55e'], ['blue', '#3b82f6'], ['purple', '#a855f7'], ['pink', '#f472b6']];
+  const SHAPES = FL.Data.SHAPES, COLORS = FL.Data.COLORS;
   const scene = {
     t: 0, hud: { home: true, repeat: true }, round: 0, total: 8, good: 0, balloons: [], target: null, kind: 'color', locked: false, tries: 0, level: 1,
     enter() { this.t = 0; this.round = 0; this.good = 0; this.level = FL.Save.level('shapes'); FL.Save.addPlay('shapes'); this.newRound(true); },
@@ -29,7 +28,7 @@
       setTimeout(() => this.repeatPrompt(), first ? 400 : 800);
     },
     label() { const tg = this.target; return this.kind === 'color' ? `${tg.color[0]} balloon` : this.kind === 'shape' ? tg.shape : `${tg.color[0]} ${tg.shape}`; },
-    repeatPrompt() { FL.Audio.say(`Pop the ${this.label()}!`); },
+    repeatPrompt(queue) { FL.Audio.say(`Pop the ${this.label()}!`, { interrupt: !queue }); },
     down(p) {
       if (this.locked) return;
       for (const b of this.balloons) { if (b.popped) continue; if (Math.hypot(p.x - b.x, p.y - b.y) < 78) { this.pick(b); return; } }
@@ -42,7 +41,7 @@
         FL.Audio.sfx.pop(); FL.Audio.sfx.correct(); g.fx.burst(b.x, b.y, { count: 40, type: 'confetti', colors: [b.color[1], '#fff', '#fde047'], speed: 420, life: 1.1, size: 14 });
         FL.Audio.say(`Pop! A ${b.color[0]} ${b.shape}!`);
         this.round++; setTimeout(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, 1900);
-      } else { this.tries++; b.wob = 1; FL.Audio.sfx.squeak(); FL.Audio.say(`That's a ${b.color[0]} ${b.shape}. Pop the ${this.label()}!`); }
+      } else { this.tries++; b.wob = 1; FL.Audio.sfx.squeak(); FL.Audio.say(`That's a ${b.color[0]} ${b.shape}.`); this.repeatPrompt(true); }
     },
     finish() {
       const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp('shapes');
