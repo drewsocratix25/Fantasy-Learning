@@ -245,6 +245,566 @@
 "1756c431": {
 "text": "Let's learn Mary Had a Little Lamb! Tap the glowing key.",
 "dur": 3.14
+},
+"1e83f002": {
+"text": "Old MacDonald! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.5
+},
+"0d6c13f5": {
+"text": "Listen to Old MacDonald!",
+"dur": 1.69
+},
+"5e3ca916": {
+"text": "Let's learn Old MacDonald! Tap the glowing key.",
+"dur": 3.09
+},
+"6978a7d7": {
+"text": "Row Your Boat! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.27
+},
+"3320cf30": {
+"text": "Listen to Row Your Boat!",
+"dur": 1.47
+},
+"77ec4c6b": {
+"text": "Let's learn Row Your Boat! Tap the glowing key.",
+"dur": 2.79
+},
+"c218062f": {
+"text": "London Bridge! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.39
+},
+"7fd84708": {
+"text": "Listen to London Bridge!",
+"dur": 1.54
+},
+"ebbd47cb": {
+"text": "Let's learn London Bridge! Tap the glowing key.",
+"dur": 2.86
+},
+"dbb0a2b3": {
+"text": "Itsy Bitsy Spider! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.76
+},
+"c524cf1c": {
+"text": "Listen to Itsy Bitsy Spider!",
+"dur": 1.92
+},
+"ae770e5f": {
+"text": "Let's learn Itsy Bitsy Spider! Tap the glowing key.",
+"dur": 3.24
+},
+"9b9fed15": {
+"text": "Happy Birthday! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.2
+},
+"6b33f422": {
+"text": "Listen to Happy Birthday!",
+"dur": 1.58
+},
+"34815513": {
+"text": "Let's learn Happy Birthday! Tap the glowing key.",
+"dur": 2.79
+},
+"2dc856ef": {
+"text": "Welcome to the Piano Pavilion! Tap the colourful keys to make music!",
+"dur": 4.29
+},
+"23f5d510": {
+"text": "Free play! Make up your own song!",
+"dur": 1.94
+},
+"ec257d17": {
+"text": "You played the whole song! Beautiful!",
+"dur": 2.1
+},
+"b0517b29": {
+"text": "Now you try! Tap Teach me.",
+"dur": 1.94
+},
+"858cbd95": {
+"text": "Can you find the letter A?",
+"dur": 1.47
+},
+"c83c849d": {
+"text": "Which letter does apple start with?",
+"dur": 1.86
+},
+"9afa7002": {
+"text": "A! A is for apple!",
+"dur": 1.46
+},
+"2a7783b5": {
+"text": "That's the letter A. Try again!",
+"dur": 1.98
+},
+"828cb8dc": {
+"text": "Can you find the letter B?",
+"dur": 1.49
+},
+"71a6c81c": {
+"text": "Which letter does butterfly start with?",
+"dur": 2.13
+},
+"7b4f7609": {
+"text": "B! B is for butterfly!",
+"dur": 1.86
+},
+"1afdea7c": {
+"text": "That's the letter B. Try again!",
+"dur": 2.11
+},
+"838cba6f": {
+"text": "Can you find the letter C?",
+"dur": 1.51
+},
+"51ed1cdd": {
+"text": "Which letter does cat start with?",
+"dur": 1.75
+},
+"5d027a7a": {
+"text": "C! C is for cat!",
+"dur": 1.49
+},
+"4c73db17": {
+"text": "That's the letter C. Try again!",
+"dur": 2.01
+},
+"808cb5b6": {
+"text": "Can you find the letter D?",
+"dur": 1.49
+},
+"275096ff": {
+"text": "Which letter does dog start with?",
+"dur": 1.79
+},
+"5a8ef23c": {
+"text": "D! D is for dog!",
+"dur": 1.49
+},
+"64c7d94e": {
+"text": "That's the letter D. Try again!",
+"dur": 2.11
+},
+"818cb749": {
+"text": "Can you find the letter E?",
+"dur": 1.49
+},
+"1fed126c": {
+"text": "Which letter does elephant start with?",
+"dur": 1.96
+},
+"4f0b815f": {
+"text": "E! E is for elephant!",
+"dur": 1.64
+},
+"88b48e81": {
+"text": "That's the letter E. Try again!",
+"dur": 1.96
+},
+"7e8cb290": {
+"text": "Can you find the letter F?",
+"dur": 1.78
+},
+"ba00c335": {
+"text": "Which letter does frog start with?",
+"dur": 1.78
+},
+"fd6f89ac": {
+"text": "F! F is for frog!",
+"dur": 2.13
+},
+"70e80c68": {
+"text": "That's the letter F. Try again!",
+"dur": 2.41
+},
+"7f8cb423": {
+"text": "Can you find the letter G?",
+"dur": 1.54
+},
+"3532bb2f": {
+"text": "Which letter does grapes start with?",
+"dur": 1.83
+},
+"442e7be2": {
+"text": "G! G is for grapes!",
+"dur": 1.71
+},
+"6a0b9ff3": {
+"text": "That's the letter G. Try again!",
+"dur": 2.11
+},
+"8c8cc89a": {
+"text": "Can you find the letter H?",
+"dur": 1.52
+},
+"b4eab259": {
+"text": "Which letter does house start with?",
+"dur": 1.78
+},
+"1cee65ae": {
+"text": "H! H is for house!",
+"dur": 1.55
+},
+"07aa221a": {
+"text": "That's the letter H. Try again!",
+"dur": 1.83
+},
+"8d8cca2d": {
+"text": "Can you find the letter I?",
+"dur": 1.47
+},
+"43e6569e": {
+"text": "Which letter does ice cream start with?",
+"dur": 2.05
+},
+"70b3b65b": {
+"text": "I! I is for ice cream!",
+"dur": 1.73
+},
+"d347063d": {
+"text": "That's the letter I. Try again!",
+"dur": 1.98
+},
+"8a8cc574": {
+"text": "Can you find the letter J?",
+"dur": 1.51
+},
+"da4cab57": {
+"text": "Which letter does jellyfish start with?",
+"dur": 1.99
+},
+"46931fe0": {
+"text": "J! J is for jellyfish!",
+"dur": 1.87
+},
+"9088b3c4": {
+"text": "That's the letter J. Try again!",
+"dur": 2.11
+},
+"8b8cc707": {
+"text": "Can you find the letter K?",
+"dur": 1.44
+},
+"588d6d36": {
+"text": "Which letter does kite start with?",
+"dur": 1.77
+},
+"67a02e6d": {
+"text": "K! K is for kite!",
+"dur": 1.54
+},
+"8ec1597f": {
+"text": "That's the letter K. Try again!",
+"dur": 2.01
+},
+"888cc24e": {
+"text": "Can you find the letter L?",
+"dur": 1.47
+},
+"38892cdd": {
+"text": "Which letter does lion start with?",
+"dur": 1.86
+},
+"84f53a28": {
+"text": "L! L is for lion!",
+"dur": 1.46
+},
+"87c1bab6": {
+"text": "That's the letter L. Try again!",
+"dur": 2.07
+},
+"898cc3e1": {
+"text": "Can you find the letter M?",
+"dur": 1.49
+},
+"5a41d2f8": {
+"text": "Which letter does moon start with?",
+"dur": 1.79
+},
+"ecd15793": {
+"text": "M! M is for moon!",
+"dur": 1.6
+},
+"660fad09": {
+"text": "That's the letter M. Try again!",
+"dur": 2.09
+},
+"868cbf28": {
+"text": "Can you find the letter N?",
+"dur": 1.45
+},
+"76055ad1": {
+"text": "Which letter does nest start with?",
+"dur": 1.73
+},
+"ff199440": {
+"text": "N! N is for nest!",
+"dur": 1.5
+},
+"01a47410": {
+"text": "That's the letter N. Try again!",
+"dur": 2.07
+},
+"878cc0bb": {
+"text": "Can you find the letter O?",
+"dur": 1.49
+},
+"aaa76916": {
+"text": "Which letter does octopus start with?",
+"dur": 1.94
+},
+"a104b383": {
+"text": "O! O is for octopus!",
+"dur": 1.77
+},
+"8bde857b": {
+"text": "That's the letter O. Try again!",
+"dur": 2.03
+},
+"748ca2d2": {
+"text": "Can you find the letter P?",
+"dur": 1.45
+},
+"2a14f055": {
+"text": "Which letter does pig start with?",
+"dur": 1.73
+},
+"01cf74da": {
+"text": "P! P is for pig!",
+"dur": 1.45
+},
+"86407362": {
+"text": "That's the letter P. Try again!",
+"dur": 2.01
+},
+"758ca465": {
+"text": "Can you find the letter Q?",
+"dur": 1.49
+},
+"7ef4ac67": {
+"text": "Which letter does queen start with?",
+"dur": 1.77
+},
+"63d28d20": {
+"text": "Q! Q is for queen!",
+"dur": 1.51
+},
+"3140a8a5": {
+"text": "That's the letter Q. Try again!",
+"dur": 2.09
+},
+"728c9fac": {
+"text": "Can you find the letter R?",
+"dur": 1.49
+},
+"f72edcdf": {
+"text": "Which letter does rainbow start with?",
+"dur": 1.98
+},
+"e11fc100": {
+"text": "R! R is for rainbow!",
+"dur": 1.64
+},
+"ce2808ac": {
+"text": "That's the letter R. Try again!",
+"dur": 1.92
+},
+"738ca13f": {
+"text": "Can you find the letter S?",
+"dur": 1.47
+},
+"c6cd33bf": {
+"text": "Which letter does star start with?",
+"dur": 1.85
+},
+"1124e946": {
+"text": "S! S is for star!",
+"dur": 1.48
+},
+"0d9c0747": {
+"text": "That's the letter S. Try again!",
+"dur": 2.0
+},
+"708c9c86": {
+"text": "Can you find the letter T?",
+"dur": 1.54
+},
+"ca1927ad": {
+"text": "Which letter does turtle start with?",
+"dur": 1.88
+},
+"c979d3ec": {
+"text": "T! T is for turtle!",
+"dur": 1.56
+},
+"d8f539be": {
+"text": "That's the letter T. Try again!",
+"dur": 2.09
+},
+"718c9e19": {
+"text": "Can you find the letter U?",
+"dur": 1.41
+},
+"e51adf7b": {
+"text": "Which letter does umbrella start with?",
+"dur": 2.03
+},
+"b6defb62": {
+"text": "U! U is for umbrella!",
+"dur": 1.64
+},
+"168fd1b1": {
+"text": "That's the letter U. Try again!",
+"dur": 2.04
+},
+"6e8c9960": {
+"text": "Can you find the letter V?",
+"dur": 1.47
+},
+"75e93608": {
+"text": "Which letter does violin start with?",
+"dur": 1.94
+},
+"568aa507": {
+"text": "V! V is for violin!",
+"dur": 1.74
+},
+"9ca8d598": {
+"text": "That's the letter V. Try again!",
+"dur": 2.07
+},
+"6f8c9af3": {
+"text": "Can you find the letter W?",
+"dur": 1.75
+},
+"c171d626": {
+"text": "Which letter does whale start with?",
+"dur": 1.81
+},
+"9d20bdb3": {
+"text": "W! W is for whale!",
+"dur": 2.12
+},
+"5b0b1723": {
+"text": "That's the letter W. Try again!",
+"dur": 2.34
+},
+"7c8caf6a": {
+"text": "Can you find the letter X?",
+"dur": 1.54
+},
+"7bee0b23": {
+"text": "Which letter does xylophone start with?",
+"dur": 2.06
+},
+"6abc7624": {
+"text": "X! X is for xylophone!",
+"dur": 1.92
+},
+"aeb1714a": {
+"text": "That's the letter X. Try again!",
+"dur": 2.07
+},
+"7d8cb0fd": {
+"text": "Can you find the letter Y?",
+"dur": 1.47
+},
+"1a8f82d9": {
+"text": "Which letter does yo-yo start with?",
+"dur": 1.81
+},
+"41de905a": {
+"text": "Y! Y is for yo-yo!",
+"dur": 1.71
+},
+"fb3a972d": {
+"text": "That's the letter Y. Try again!",
+"dur": 2.07
+},
+"7a8cac44": {
+"text": "Can you find the letter Z?",
+"dur": 1.54
+},
+"db696165": {
+"text": "Which letter does zebra start with?",
+"dur": 1.94
+},
+"a08ed10e": {
+"text": "Z! Z is for zebra!",
+"dur": 1.67
+},
+"37b02b34": {
+"text": "That's the letter Z. Try again!",
+"dur": 2.11
+},
+"568e87eb": {
+"text": "Tap each frog to count them!",
+"dur": 1.65
+},
+"fcfa1831": {
+"text": "How many frogs did you count? Tap the number.",
+"dur": 2.71
+},
+"11984cc0": {
+"text": "Count the frogs again!",
+"dur": 1.36
+},
+"340ca71c": {
+"text": "1",
+"dur": 0.65
+},
+"a9957330": {
+"text": "Can you find the number 1?",
+"dur": 1.48
+},
+"5eb523a3": {
+"text": "Yes! 1 frog!",
+"dur": 1.28
+},
+"f713ed44": {
+"text": "Yes! That's 1! Let's count 1 frogs!",
+"dur": 2.47
+},
+"ec0395d9": {
+"text": "That's 1.",
+"dur": 0.84
+},
+"c34e5956": {
+"text": "Look for 1!",
+"dur": 0.98
+},
+"370cabd5": {
+"text": "2",
+"dur": 0.7
+},
+"ac9577e9": {
+"text": "Can you find the number 2?",
+"dur": 1.5
+},
+"9feef441": {
+"text": "Yes! 2 frogs!",
+"dur": 1.34
+},
+"a5ed61f8": {
+"text": "Yes! That's 2! Let's count 2 frogs!",
+"dur": 2.43
+},
+"e9039120": {
+"text": "That's 2.",
+"dur": 0.9
+},
+"c24e57c3": {
+"text": "Look for 2!",
+"dur": 1.02
+},
+"360caa42": {
+"text": "3",
+"dur": 0.71
+},
+"ab957656": {
+"text": "Can you find the number 3?",
+"dur": 1.51
 }
 }
 }
