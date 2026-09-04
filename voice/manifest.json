@@ -3081,6 +3081,86 @@
 "0f1da23b": {
 "text": "That's a cab.",
 "dur": 0.98
+},
+"9f35dce5": {
+"text": "Can you spell ant?",
+"dur": 1.11
+},
+"c39cd2bf": {
+"text": "ant! You spelled ant!",
+"dur": 1.32
+},
+"d544088e": {
+"text": "Yes! That says ant!",
+"dur": 1.39
+},
+"a33975f8": {
+"text": "That's an ant.",
+"dur": 1.04
+},
+"e78318b1": {
+"text": "Can you spell egg?",
+"dur": 1.13
+},
+"13e03c77": {
+"text": "egg! You spelled egg!",
+"dur": 1.35
+},
+"2f6d3b6e": {
+"text": "Yes! That says egg!",
+"dur": 1.43
+},
+"e3de78c4": {
+"text": "That's an egg.",
+"dur": 0.99
+},
+"22f48e0a": {
+"text": "Can you spell owl?",
+"dur": 1.15
+},
+"b5b15c13": {
+"text": "owl! You spelled owl!",
+"dur": 1.39
+},
+"9cbfbbcd": {
+"text": "Yes! That says owl!",
+"dur": 1.41
+},
+"9893f9ab": {
+"text": "That's an owl.",
+"dur": 1.01
+},
+"17a3eb97": {
+"text": "Can you spell bat?",
+"dur": 1.15
+},
+"03d2214f": {
+"text": "bat! You spelled bat!",
+"dur": 1.35
+},
+"06a8cb90": {
+"text": "Yes! That says bat!",
+"dur": 1.39
+},
+"8593e33b": {
+"text": "Can you spell cow?",
+"dur": 1.19
+},
+"3385ea3b": {
+"text": "cow! You spelled cow!",
+"dur": 1.43
+},
+"ad56c428": {
+"text": "Yes! That says cow!",
+"dur": 1.43
+},
+"f218f766": {
+"text": "That's a cow.",
+"dur": 1.0
+},
+"f6acb200": {
+"text": "Can you spell bee?",
+"dur": 1.15
 }
 }
 }
