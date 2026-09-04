@@ -1150,97 +1150,33 @@
 "text": "Pop the orange circle!",
 "dur": 1.44
 },
-"d6a51241": {
-"text": "Pop! A orange circle!",
-"dur": 1.53
-},
-"f7dd9c6b": {
-"text": "That's a orange circle.",
-"dur": 1.39
-},
 "1b564286": {
 "text": "Pop the orange square!",
 "dur": 1.35
-},
-"380e223e": {
-"text": "Pop! A orange square!",
-"dur": 1.46
-},
-"7326d28c": {
-"text": "That's a orange square.",
-"dur": 1.36
 },
 "34b42cc5": {
 "text": "Pop the orange triangle!",
 "dur": 1.6
 },
-"7fba16cd": {
-"text": "Pop! A orange triangle!",
-"dur": 1.69
-},
-"2011673f": {
-"text": "That's a orange triangle.",
-"dur": 1.53
-},
 "143e0bb1": {
 "text": "Pop the orange star!",
 "dur": 1.35
-},
-"35ac2349": {
-"text": "Pop! A orange star!",
-"dur": 1.44
-},
-"af78c2bf": {
-"text": "That's a orange star.",
-"dur": 1.32
 },
 "94304423": {
 "text": "Pop the orange heart!",
 "dur": 1.38
 },
-"8e7909db": {
-"text": "Pop! A orange heart!",
-"dur": 1.44
-},
-"4c459901": {
-"text": "That's a orange heart.",
-"dur": 1.32
-},
 "ee1074ce": {
 "text": "Pop the orange rectangle!",
 "dur": 1.64
-},
-"cc005f56": {
-"text": "Pop! A orange rectangle!",
-"dur": 1.73
-},
-"e026cde8": {
-"text": "That's a orange rectangle.",
-"dur": 1.57
 },
 "8875ed95": {
 "text": "Pop the orange oval!",
 "dur": 1.38
 },
-"d13e524d": {
-"text": "Pop! A orange oval!",
-"dur": 1.51
-},
-"5cccf8bb": {
-"text": "That's a orange oval.",
-"dur": 1.34
-},
 "fcdb8ae7": {
 "text": "Pop the orange diamond!",
 "dur": 1.63
-},
-"2984044f": {
-"text": "Pop! A orange diamond!",
-"dur": 1.64
-},
-"312ddc71": {
-"text": "That's a orange diamond.",
-"dur": 1.53
 },
 "0e475e4f": {
 "text": "Pop the yellow circle!",
@@ -3841,6 +3777,754 @@
 "9a3f0b1a": {
 "text": "What is 8 take away 4?",
 "dur": 1.6
+},
+"52a634a5": {
+"text": "Yes! 8 take away 4 is 4!",
+"dur": 2.09
+},
+"9b3f0cad": {
+"text": "What is 8 take away 5?",
+"dur": 1.64
+},
+"a4d593a9": {
+"text": "Yes! 8 take away 5 is 3!",
+"dur": 2.13
+},
+"983f07f4": {
+"text": "What is 8 take away 6?",
+"dur": 1.6
+},
+"68dce125": {
+"text": "Yes! 8 take away 6 is 2!",
+"dur": 2.09
+},
+"993f0987": {
+"text": "What is 8 take away 7?",
+"dur": 1.69
+},
+"d7717a81": {
+"text": "Yes! 8 take away 7 is 1!",
+"dur": 2.15
+},
+"2c66b586": {
+"text": "What is 9 take away 1?",
+"dur": 1.66
+},
+"7a475145": {
+"text": "Yes! 9 take away 1 is 8!",
+"dur": 2.07
+},
+"2b66b3f3": {
+"text": "What is 9 take away 2?",
+"dur": 1.66
+},
+"308ae473": {
+"text": "Yes! 9 take away 2 is 7!",
+"dur": 2.18
+},
+"2a66b260": {
+"text": "What is 9 take away 3?",
+"dur": 1.66
+},
+"d3026895": {
+"text": "Yes! 9 take away 3 is 6!",
+"dur": 2.11
+},
+"3166bd65": {
+"text": "What is 9 take away 4?",
+"dur": 1.71
+},
+"aa7afacf": {
+"text": "Yes! 9 take away 4 is 5!",
+"dur": 2.22
+},
+"3066bbd2": {
+"text": "What is 9 take away 5?",
+"dur": 1.75
+},
+"564b98a5": {
+"text": "Yes! 9 take away 5 is 4!",
+"dur": 2.2
+},
+"2f66ba3f": {
+"text": "What is 9 take away 6?",
+"dur": 1.73
+},
+"d916db5b": {
+"text": "Yes! 9 take away 6 is 3!",
+"dur": 2.11
+},
+"2e66b8ac": {
+"text": "What is 9 take away 7?",
+"dur": 1.75
+},
+"6c824525": {
+"text": "Yes! 9 take away 7 is 2!",
+"dur": 2.22
+},
+"3566c3b1": {
+"text": "What is 9 take away 8?",
+"dur": 1.64
+},
+"7650d42f": {
+"text": "Yes! 9 take away 8 is 1!",
+"dur": 2.03
+},
+"bee6128a": {
+"text": "What is 10 take away 1?",
+"dur": 1.59
+},
+"10bf3070": {
+"text": "Yes! 10 take away 1 is 9!",
+"dur": 2.09
+},
+"bde610f7": {
+"text": "What is 10 take away 2?",
+"dur": 1.6
+},
+"7961b4a4": {
+"text": "Yes! 10 take away 2 is 8!",
+"dur": 2.05
+},
+"bce60f64": {
+"text": "What is 10 take away 3?",
+"dur": 1.64
+},
+"31e93b90": {
+"text": "Yes! 10 take away 3 is 7!",
+"dur": 2.15
+},
+"bbe60dd1": {
+"text": "What is 10 take away 4?",
+"dur": 1.66
+},
+"0900a2cc": {
+"text": "Yes! 10 take away 4 is 6!",
+"dur": 2.13
+},
+"bae60c3e": {
+"text": "What is 10 take away 5?",
+"dur": 1.66
+},
+"86000898": {
+"text": "Yes! 10 take away 5 is 5!",
+"dur": 2.24
+},
+"b9e60aab": {
+"text": "What is 10 take away 6?",
+"dur": 1.71
+},
+"91a52634": {
+"text": "Yes! 10 take away 6 is 4!",
+"dur": 2.07
+},
+"b8e60918": {
+"text": "What is 10 take away 7?",
+"dur": 1.73
+},
+"1ca70758": {
+"text": "Yes! 10 take away 7 is 3!",
+"dur": 2.18
+},
+"b7e60785": {
+"text": "What is 10 take away 8?",
+"dur": 1.62
+},
+"9885039c": {
+"text": "Yes! 10 take away 8 is 2!",
+"dur": 2.01
+},
+"b6e605f2": {
+"text": "What is 10 take away 9?",
+"dur": 1.62
+},
+"9549a100": {
+"text": "Yes! 10 take away 9 is 1!",
+"dur": 2.13
+},
+"c5114a17": {
+"text": "Listen to the owl's song, then play it back on the mushrooms!",
+"dur": 3.33
+},
+"e9ec29ea": {
+"text": "Listen to the dragon's beat, then drum it back!",
+"dur": 2.62
+},
+"b174e055": {
+"text": "Your turn!",
+"dur": 0.94
+},
+"087b1010": {
+"text": "Yes! Now a longer one!",
+"dur": 1.62
+},
+"af70c793": {
+"text": "Not quite. Listen again!",
+"dur": 1.57
+},
+"c99e727b": {
+"text": "Yes! You did it!",
+"dur": 1.3
+},
+"a3abed29": {
+"text": "What time is it?",
+"dur": 1.11
+},
+"b0e39c4c": {
+"text": "Yes! It's 1 o'clock!",
+"dur": 1.48
+},
+"36e3fe63": {
+"text": "Yes! It's half past 1!",
+"dur": 1.69
+},
+"61ca86b1": {
+"text": "That's 1 o'clock.",
+"dur": 1.19
+},
+"0cb4e64a": {
+"text": "That's half past 1.",
+"dur": 1.39
+},
+"0b8f11dd": {
+"text": "Yes! It's 2 o'clock!",
+"dur": 1.43
+},
+"37e3fff6": {
+"text": "Yes! It's half past 2!",
+"dur": 1.71
+},
+"e0c4c100": {
+"text": "That's 2 o'clock.",
+"dur": 1.22
+},
+"0bb4e4b7": {
+"text": "That's half past 2.",
+"dur": 1.41
+},
+"b20d4c02": {
+"text": "Yes! It's 3 o'clock!",
+"dur": 1.53
+},
+"38e40189": {
+"text": "Yes! It's half past 3!",
+"dur": 1.71
+},
+"e5fefc2b": {
+"text": "That's 3 o'clock.",
+"dur": 1.24
+},
+"0ab4e324": {
+"text": "That's half past 3.",
+"dur": 1.41
+},
+"5293037b": {
+"text": "Yes! It's 4 o'clock!",
+"dur": 1.54
+},
+"39e4031c": {
+"text": "Yes! It's half past 4!",
+"dur": 1.71
+},
+"e1ae8272": {
+"text": "That's 4 o'clock.",
+"dur": 1.21
+},
+"09b4e191": {
+"text": "That's half past 4.",
+"dur": 1.41
+},
+"26041ad0": {
+"text": "Yes! It's 5 o'clock!",
+"dur": 1.64
+},
+"3ae404af": {
+"text": "Yes! It's half past 5!",
+"dur": 1.75
+},
+"353ff14d": {
+"text": "That's 5 o'clock.",
+"dur": 1.28
+},
+"08b4dffe": {
+"text": "That's half past 5.",
+"dur": 1.47
+},
+"38959001": {
+"text": "Yes! It's 6 o'clock!",
+"dur": 1.53
+},
+"3be40642": {
+"text": "Yes! It's half past 6!",
+"dur": 1.71
+},
+"54cc0fbc": {
+"text": "That's 6 o'clock.",
+"dur": 1.25
+},
+"07b4de6b": {
+"text": "That's half past 6.",
+"dur": 1.43
+},
+"a5f2c466": {
+"text": "Yes! It's 7 o'clock!",
+"dur": 1.64
+},
+"3ce407d5": {
+"text": "Yes! It's half past 7!",
+"dur": 1.77
+},
+"7fab4a77": {
+"text": "That's 7 o'clock.",
+"dur": 1.38
+},
+"06b4dcd8": {
+"text": "That's half past 7.",
+"dur": 1.45
+},
+"295e279f": {
+"text": "Yes! It's 8 o'clock!",
+"dur": 1.47
+},
+"3de40968": {
+"text": "Yes! It's half past 8!",
+"dur": 1.71
+},
+"24a8d2ae": {
+"text": "That's 8 o'clock.",
+"dur": 1.26
+},
+"05b4db45": {
+"text": "That's half past 8.",
+"dur": 1.39
+},
+"e54b27c4": {
+"text": "Yes! It's 9 o'clock!",
+"dur": 1.6
+},
+"3ee40afb": {
+"text": "Yes! It's half past 9!",
+"dur": 1.75
+},
+"9e7c5b29": {
+"text": "That's 9 o'clock.",
+"dur": 1.28
+},
+"04b4d9b2": {
+"text": "That's half past 9.",
+"dur": 1.43
+},
+"64173d14": {
+"text": "Yes! It's 10 o'clock!",
+"dur": 1.54
+},
+"bbe95ca9": {
+"text": "Yes! It's half past 10!",
+"dur": 1.66
+},
+"a1a62763": {
+"text": "That's 10 o'clock.",
+"dur": 1.26
+},
+"7ac6d20e": {
+"text": "That's half past 10.",
+"dur": 1.39
+},
+"c164a9ef": {
+"text": "Yes! It's 11 o'clock!",
+"dur": 1.77
+},
+"bae95b16": {
+"text": "Yes! It's half past 11!",
+"dur": 1.94
+},
+"f64e6b58": {
+"text": "That's 11 o'clock.",
+"dur": 1.45
+},
+"7bc6d3a1": {
+"text": "That's half past 11.",
+"dur": 1.53
+},
+"da3c0aca": {
+"text": "Yes! It's 12 o'clock!",
+"dur": 1.6
+},
+"b9e95983": {
+"text": "Yes! It's half past 12!",
+"dur": 1.79
+},
+"63db09a9": {
+"text": "That's 12 o'clock.",
+"dur": 1.3
+},
+"78c6cee8": {
+"text": "That's half past 12.",
+"dur": 1.47
+},
+"21f44560": {
+"text": "What number is missing?",
+"dur": 1.41
+},
+"bb42fff3": {
+"text": "Yes! 1!",
+"dur": 0.98
+},
+"bc430186": {
+"text": "Yes! 2!",
+"dur": 1.02
+},
+"bd430319": {
+"text": "Yes! 3!",
+"dur": 0.98
+},
+"be4304ac": {
+"text": "Yes! 4!",
+"dur": 1.14
+},
+"bf43063f": {
+"text": "Yes! 5!",
+"dur": 1.15
+},
+"c04307d2": {
+"text": "Yes! 6!",
+"dur": 1.1
+},
+"c1430965": {
+"text": "Yes! 7!",
+"dur": 1.2
+},
+"c2430af8": {
+"text": "Yes! 8!",
+"dur": 1.02
+},
+"c3430c8b": {
+"text": "Yes! 9!",
+"dur": 1.05
+},
+"8d789ff9": {
+"text": "Yes! 10!",
+"dur": 1.02
+},
+"8c789e66": {
+"text": "Yes! 11!",
+"dur": 1.35
+},
+"71a4fc38": {
+"text": "That's 11.",
+"dur": 1.0
+},
+"8b789cd3": {
+"text": "Yes! 12!",
+"dur": 1.13
+},
+"74a500f1": {
+"text": "That's 12.",
+"dur": 1.0
+},
+"8a789b40": {
+"text": "Yes! 13!",
+"dur": 1.34
+},
+"73a4ff5e": {
+"text": "That's 13.",
+"dur": 1.09
+},
+"9178a645": {
+"text": "Yes! 14!",
+"dur": 1.27
+},
+"76a50417": {
+"text": "That's 14.",
+"dur": 1.06
+},
+"9078a4b2": {
+"text": "Yes! 15!",
+"dur": 1.28
+},
+"75a50284": {
+"text": "That's 15.",
+"dur": 1.05
+},
+"8f78a31f": {
+"text": "Yes! 16!",
+"dur": 1.22
+},
+"78a5073d": {
+"text": "That's 16.",
+"dur": 1.07
+},
+"8e78a18c": {
+"text": "Yes! 17!",
+"dur": 1.45
+},
+"77a505aa": {
+"text": "That's 17.",
+"dur": 1.19
+},
+"9578ac91": {
+"text": "Yes! 18!",
+"dur": 1.3
+},
+"6aa4f133": {
+"text": "That's 18.",
+"dur": 1.02
+},
+"9478aafe": {
+"text": "Yes! 19!",
+"dur": 1.17
+},
+"69a4efa0": {
+"text": "That's 19.",
+"dur": 1.1
+},
+"137bb182": {
+"text": "Yes! 20!",
+"dur": 1.16
+},
+"e09d5c30": {
+"text": "That's 20.",
+"dur": 1.02
+},
+"147bb315": {
+"text": "Yes! 21!",
+"dur": 1.34
+},
+"e19d5dc3": {
+"text": "That's 21.",
+"dur": 1.19
+},
+"117bae5c": {
+"text": "Yes! 22!",
+"dur": 1.37
+},
+"e29d5f56": {
+"text": "That's 22.",
+"dur": 1.19
+},
+"127bafef": {
+"text": "Yes! 23!",
+"dur": 1.37
+},
+"e39d60e9": {
+"text": "That's 23.",
+"dur": 1.17
+},
+"0f7bab36": {
+"text": "Yes! 24!",
+"dur": 1.41
+},
+"e49d627c": {
+"text": "That's 24.",
+"dur": 1.22
+},
+"107bacc9": {
+"text": "Yes! 25!",
+"dur": 1.41
+},
+"e59d640f": {
+"text": "That's 25.",
+"dur": 1.24
+},
+"0d7ba810": {
+"text": "Yes! 26!",
+"dur": 1.41
+},
+"e69d65a2": {
+"text": "That's 26.",
+"dur": 1.24
+},
+"0e7ba9a3": {
+"text": "Yes! 27!",
+"dur": 1.43
+},
+"e79d6735": {
+"text": "That's 27.",
+"dur": 1.24
+},
+"1b7bbe1a": {
+"text": "Yes! 28!",
+"dur": 1.34
+},
+"e89d68c8": {
+"text": "That's 28.",
+"dur": 1.15
+},
+"1c7bbfad": {
+"text": "Yes! 29!",
+"dur": 1.36
+},
+"e99d6a5b": {
+"text": "That's 29.",
+"dur": 1.19
+},
+"197df98b": {
+"text": "Yes! 30!",
+"dur": 1.25
+},
+"e69fa439": {
+"text": "That's 30.",
+"dur": 0.97
+},
+"187df7f8": {
+"text": "Yes! 31!",
+"dur": 1.39
+},
+"e59fa2a6": {
+"text": "That's 31.",
+"dur": 1.15
+},
+"1b7dfcb1": {
+"text": "Yes! 32!",
+"dur": 1.26
+},
+"e49fa113": {
+"text": "That's 32.",
+"dur": 1.09
+},
+"1a7dfb1e": {
+"text": "Yes! 33!",
+"dur": 1.26
+},
+"e39f9f80": {
+"text": "That's 33.",
+"dur": 1.13
+},
+"1d7dffd7": {
+"text": "Yes! 34!",
+"dur": 1.34
+},
+"ea9faa85": {
+"text": "That's 34.",
+"dur": 1.15
+},
+"1c7dfe44": {
+"text": "Yes! 35!",
+"dur": 1.34
+},
+"e99fa8f2": {
+"text": "That's 35.",
+"dur": 1.22
+},
+"1f7e02fd": {
+"text": "Yes! 36!",
+"dur": 1.32
+},
+"e89fa75f": {
+"text": "That's 36.",
+"dur": 1.19
+},
+"1e7e016a": {
+"text": "Yes! 37!",
+"dur": 1.43
+},
+"e79fa5cc": {
+"text": "That's 37.",
+"dur": 1.19
+},
+"117decf3": {
+"text": "Yes! 38!",
+"dur": 1.28
+},
+"ee9fb0d1": {
+"text": "That's 38.",
+"dur": 1.15
+},
+"107deb60": {
+"text": "Yes! 39!",
+"dur": 1.28
+},
+"ed9faf3e": {
+"text": "That's 39.",
+"dur": 1.15
+},
+"1f804194": {
+"text": "Yes! 40!",
+"dur": 1.09
+},
+"e4ac6d06": {
+"text": "That's 40.",
+"dur": 0.94
+},
+"20804327": {
+"text": "Yes! 41!",
+"dur": 1.34
+},
+"e5ac6e99": {
+"text": "That's 41.",
+"dur": 1.12
+},
+"218044ba": {
+"text": "Yes! 42!",
+"dur": 1.26
+},
+"e2ac69e0": {
+"text": "That's 42.",
+"dur": 1.11
+},
+"2280464d": {
+"text": "Yes! 43!",
+"dur": 1.3
+},
+"e3ac6b73": {
+"text": "That's 43.",
+"dur": 1.17
+},
+"1b803b48": {
+"text": "Yes! 44!",
+"dur": 1.37
+},
+"e8ac7352": {
+"text": "That's 44.",
+"dur": 1.17
+},
+"1c803cdb": {
+"text": "Yes! 45!",
+"dur": 1.34
+},
+"e9ac74e5": {
+"text": "That's 45.",
+"dur": 1.22
+},
+"1d803e6e": {
+"text": "Yes! 46!",
+"dur": 1.3
+},
+"e6ac702c": {
+"text": "That's 46.",
+"dur": 1.22
+},
+"1e804001": {
+"text": "Yes! 47!",
+"dur": 1.41
+},
+"e7ac71bf": {
+"text": "That's 47.",
+"dur": 1.22
+},
+"178034fc": {
+"text": "Yes! 48!",
+"dur": 1.32
+},
+"ecac799e": {
+"text": "That's 48.",
+"dur": 1.13
+},
+"1880368f": {
+"text": "Yes! 49!",
+"dur": 1.26
+},
+"edac7b31": {
+"text": "That's 49.",
+"dur": 1.17
+},
+"2582899d": {
+"text": "Yes! 50!",
+"dur": 1.19
+},
+"eaaeb50f": {
+"text": "That's 50.",
+"dur": 1.0
 }
 }
 }
