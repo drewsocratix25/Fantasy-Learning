@@ -3161,6 +3161,686 @@
 "f6acb200": {
 "text": "Can you spell bee?",
 "dur": 1.15
+},
+"438232bf": {
+"text": "bee! You spelled bee!",
+"dur": 1.37
+},
+"279e7227": {
+"text": "Yes! That says bee!",
+"dur": 1.39
+},
+"de12af33": {
+"text": "Can you spell key?",
+"dur": 1.17
+},
+"c28b816f": {
+"text": "key! You spelled key!",
+"dur": 1.3
+},
+"403a07f4": {
+"text": "Yes! That says key!",
+"dur": 1.37
+},
+"8884dd6a": {
+"text": "Can you spell car?",
+"dur": 1.15
+},
+"58963993": {
+"text": "car! You spelled car!",
+"dur": 1.43
+},
+"9a65b0c9": {
+"text": "Yes! That says car!",
+"dur": 1.45
+},
+"58c2711f": {
+"text": "Can you spell pen?",
+"dur": 1.19
+},
+"b833cd3f": {
+"text": "pen! You spelled pen!",
+"dur": 1.39
+},
+"77c79ca8": {
+"text": "Yes! That says pen!",
+"dur": 1.45
+},
+"7f9cd7d1": {
+"text": "Can you spell van?",
+"dur": 1.19
+},
+"cc8debeb": {
+"text": "van! You spelled van!",
+"dur": 1.45
+},
+"9ea3965a": {
+"text": "Yes! That says van!",
+"dur": 1.49
+},
+"f9e20db4": {
+"text": "That's a van.",
+"dur": 1.01
+},
+"bc9977cf": {
+"text": "Can you spell nut?",
+"dur": 1.15
+},
+"3fde0f37": {
+"text": "nut! You spelled nut!",
+"dur": 1.41
+},
+"eb6bf120": {
+"text": "Yes! That says nut!",
+"dur": 1.41
+},
+"bd6fb6be": {
+"text": "That's a nut.",
+"dur": 0.97
+},
+"cb9110a8": {
+"text": "Can you spell toe?",
+"dur": 1.19
+},
+"9c336c57": {
+"text": "toe! You spelled toe!",
+"dur": 1.43
+},
+"ac65d0cb": {
+"text": "Yes! That says toe!",
+"dur": 1.41
+},
+"adf6cf39": {
+"text": "That's a toe.",
+"dur": 0.98
+},
+"65d87be4": {
+"text": "Can you spell jam?",
+"dur": 1.22
+},
+"5828daf7": {
+"text": "jam! You spelled jam!",
+"dur": 1.58
+},
+"b9120c03": {
+"text": "Yes! That says jam!",
+"dur": 1.51
+},
+"11c9d161": {
+"text": "That's a jam.",
+"dur": 1.02
+},
+"00e8926b": {
+"text": "Can you spell ice?",
+"dur": 1.17
+},
+"b94b74db": {
+"text": "ice! You spelled ice!",
+"dur": 1.5
+},
+"592a4bf8": {
+"text": "Yes! That says ice!",
+"dur": 1.41
+},
+"410fff22": {
+"text": "That's an ice.",
+"dur": 1.04
+},
+"0001cc0d": {
+"text": "What is 1 plus 1?",
+"dur": 1.36
+},
+"0fcbd778": {
+"text": "Yes! 1 plus 1 is 2!",
+"dur": 1.81
+},
+"fd01c754": {
+"text": "What is 1 plus 2?",
+"dur": 1.38
+},
+"8e0c9910": {
+"text": "Yes! 1 plus 2 is 3!",
+"dur": 1.83
+},
+"fe01c8e7": {
+"text": "What is 1 plus 3?",
+"dur": 1.43
+},
+"86fe312c": {
+"text": "Yes! 1 plus 3 is 4!",
+"dur": 1.88
+},
+"fb01c42e": {
+"text": "What is 1 plus 4?",
+"dur": 1.4
+},
+"ae236c8c": {
+"text": "Yes! 1 plus 4 is 5!",
+"dur": 1.92
+},
+"fc01c5c1": {
+"text": "What is 1 plus 5?",
+"dur": 1.37
+},
+"eeea8890": {
+"text": "Yes! 1 plus 5 is 6!",
+"dur": 1.9
+},
+"f901c108": {
+"text": "What is 1 plus 6?",
+"dur": 1.38
+},
+"86bd3f88": {
+"text": "Yes! 1 plus 6 is 7!",
+"dur": 1.96
+},
+"fa01c29b": {
+"text": "What is 1 plus 7?",
+"dur": 1.42
+},
+"47321dac": {
+"text": "Yes! 1 plus 7 is 8!",
+"dur": 1.92
+},
+"f701bde2": {
+"text": "What is 1 plus 8?",
+"dur": 1.42
+},
+"dc658d8c": {
+"text": "Yes! 1 plus 8 is 9!",
+"dur": 1.86
+},
+"f801bf75": {
+"text": "What is 1 plus 9?",
+"dur": 1.41
+},
+"2fd7b6eb": {
+"text": "Yes! 1 plus 9 is 10!",
+"dur": 1.96
+},
+"f8a76622": {
+"text": "What is 2 plus 1?",
+"dur": 1.37
+},
+"ce866dba": {
+"text": "Yes! 2 plus 1 is 3!",
+"dur": 1.73
+},
+"f7a7648f": {
+"text": "What is 2 plus 2?",
+"dur": 1.35
+},
+"5d6bf6a4": {
+"text": "Yes! 2 plus 2 is 4!",
+"dur": 1.71
+},
+"f6a762fc": {
+"text": "What is 2 plus 3?",
+"dur": 1.39
+},
+"6625687a": {
+"text": "Yes! 2 plus 3 is 5!",
+"dur": 1.88
+},
+"f5a76169": {
+"text": "What is 2 plus 4?",
+"dur": 1.35
+},
+"dc6fd288": {
+"text": "Yes! 2 plus 4 is 6!",
+"dur": 1.79
+},
+"f4a75fd6": {
+"text": "What is 2 plus 5?",
+"dur": 1.35
+},
+"023cff2a": {
+"text": "Yes! 2 plus 5 is 7!",
+"dur": 1.9
+},
+"f3a75e43": {
+"text": "What is 2 plus 6?",
+"dur": 1.33
+},
+"f02b2b14": {
+"text": "Yes! 2 plus 6 is 8!",
+"dur": 1.75
+},
+"f2a75cb0": {
+"text": "What is 2 plus 7?",
+"dur": 1.39
+},
+"ea1a2aca": {
+"text": "Yes! 2 plus 7 is 9!",
+"dur": 1.9
+},
+"01a7744d": {
+"text": "What is 2 plus 8?",
+"dur": 1.34
+},
+"d9e6d583": {
+"text": "Yes! 2 plus 8 is 10!",
+"dur": 1.75
+},
+"e7dbae97": {
+"text": "What is 3 plus 1?",
+"dur": 1.39
+},
+"9a1d8cb8": {
+"text": "Yes! 3 plus 1 is 4!",
+"dur": 1.79
+},
+"e8dbb02a": {
+"text": "What is 3 plus 2?",
+"dur": 1.37
+},
+"294de64c": {
+"text": "Yes! 3 plus 2 is 5!",
+"dur": 1.88
+},
+"e9dbb1bd": {
+"text": "What is 3 plus 3?",
+"dur": 1.41
+},
+"24893c50": {
+"text": "Yes! 3 plus 3 is 6!",
+"dur": 1.88
+},
+"e2dba6b8": {
+"text": "What is 3 plus 4?",
+"dur": 1.4
+},
+"0d37191c": {
+"text": "Yes! 3 plus 4 is 7!",
+"dur": 1.94
+},
+"e3dba84b": {
+"text": "What is 3 plus 5?",
+"dur": 1.37
+},
+"ecdbfc38": {
+"text": "Yes! 3 plus 5 is 8!",
+"dur": 1.92
+},
+"e4dba9de": {
+"text": "What is 3 plus 6?",
+"dur": 1.39
+},
+"1d525374": {
+"text": "Yes! 3 plus 6 is 9!",
+"dur": 1.96
+},
+"e5dbab71": {
+"text": "What is 3 plus 7?",
+"dur": 1.43
+},
+"c0c04cd3": {
+"text": "Yes! 3 plus 7 is 10!",
+"dur": 1.98
+},
+"ecf4c704": {
+"text": "What is 4 plus 1?",
+"dur": 1.33
+},
+"198ade6e": {
+"text": "Yes! 4 plus 1 is 5!",
+"dur": 1.9
+},
+"eff4cbbd": {
+"text": "What is 4 plus 2?",
+"dur": 1.35
+},
+"53791350": {
+"text": "Yes! 4 plus 2 is 6!",
+"dur": 1.83
+},
+"eef4ca2a": {
+"text": "What is 4 plus 3?",
+"dur": 1.37
+},
+"5a3dc072": {
+"text": "Yes! 4 plus 3 is 7!",
+"dur": 1.98
+},
+"e9f4c24b": {
+"text": "What is 4 plus 4?",
+"dur": 1.38
+},
+"1bcbd338": {
+"text": "Yes! 4 plus 4 is 8!",
+"dur": 1.86
+},
+"e8f4c0b8": {
+"text": "What is 4 plus 5?",
+"dur": 1.37
+},
+"4226f98e": {
+"text": "Yes! 4 plus 5 is 9!",
+"dur": 1.98
+},
+"ebf4c571": {
+"text": "What is 4 plus 6?",
+"dur": 1.4
+},
+"a44fc1d3": {
+"text": "Yes! 4 plus 6 is 10!",
+"dur": 1.86
+},
+"d5fa4969": {
+"text": "What is 5 plus 1?",
+"dur": 1.45
+},
+"68573b48": {
+"text": "Yes! 5 plus 1 is 6!",
+"dur": 1.9
+},
+"d2fa44b0": {
+"text": "What is 5 plus 2?",
+"dur": 1.47
+},
+"94408e80": {
+"text": "Yes! 5 plus 2 is 7!",
+"dur": 1.98
+},
+"d3fa4643": {
+"text": "What is 5 plus 3?",
+"dur": 1.51
+},
+"955f48d4": {
+"text": "Yes! 5 plus 3 is 8!",
+"dur": 1.92
+},
+"d8fa4e22": {
+"text": "What is 5 plus 4?",
+"dur": 1.47
+},
+"95f98cbc": {
+"text": "Yes! 5 plus 4 is 9!",
+"dur": 1.98
+},
+"d9fa4fb5": {
+"text": "What is 5 plus 5?",
+"dur": 1.47
+},
+"50d04a9b": {
+"text": "Yes! 5 plus 5 is 10!",
+"dur": 2.09
+},
+"c763795e": {
+"text": "What is 6 plus 1?",
+"dur": 1.39
+},
+"7b3cad22": {
+"text": "Yes! 6 plus 1 is 7!",
+"dur": 2.03
+},
+"c66377cb": {
+"text": "What is 6 plus 2?",
+"dur": 1.43
+},
+"4514ed1c": {
+"text": "Yes! 6 plus 2 is 8!",
+"dur": 1.83
+},
+"c5637638": {
+"text": "What is 6 plus 3?",
+"dur": 1.45
+},
+"4da14952": {
+"text": "Yes! 6 plus 3 is 9!",
+"dur": 1.98
+},
+"cc63813d": {
+"text": "What is 6 plus 4?",
+"dur": 1.44
+},
+"3fa422c3": {
+"text": "Yes! 6 plus 4 is 10!",
+"dur": 2.01
+},
+"af09a7d3": {
+"text": "What is 7 plus 1?",
+"dur": 1.47
+},
+"c6931868": {
+"text": "Yes! 7 plus 1 is 8!",
+"dur": 2.01
+},
+"b009a966": {
+"text": "What is 7 plus 2?",
+"dur": 1.45
+},
+"de5a8b64": {
+"text": "Yes! 7 plus 2 is 9!",
+"dur": 2.01
+},
+"b109aaf9": {
+"text": "What is 7 plus 3?",
+"dur": 1.51
+},
+"8bf35803": {
+"text": "Yes! 7 plus 3 is 10!",
+"dur": 2.05
+},
+"7c1c3f60": {
+"text": "What is 8 plus 1?",
+"dur": 1.4
+},
+"aa48b14e": {
+"text": "Yes! 8 plus 1 is 9!",
+"dur": 1.86
+},
+"7f1c4419": {
+"text": "What is 8 plus 2?",
+"dur": 1.36
+},
+"cc6cb713": {
+"text": "Yes! 8 plus 2 is 10!",
+"dur": 1.86
+},
+"3e944fa5": {
+"text": "What is 9 plus 1?",
+"dur": 1.43
+},
+"bcf0323b": {
+"text": "Yes! 9 plus 1 is 10!",
+"dur": 1.9
+},
+"e1986883": {
+"text": "What is 2 take away 1?",
+"dur": 1.55
+},
+"7e83da15": {
+"text": "Yes! 2 take away 1 is 1!",
+"dur": 1.96
+},
+"71a6cc40": {
+"text": "What is 3 take away 1?",
+"dur": 1.62
+},
+"4d288761": {
+"text": "Yes! 3 take away 1 is 2!",
+"dur": 1.92
+},
+"74a6d0f9": {
+"text": "What is 3 take away 2?",
+"dur": 1.62
+},
+"a28dbabf": {
+"text": "Yes! 3 take away 2 is 1!",
+"dur": 2.05
+},
+"2ac04ee5": {
+"text": "What is 4 take away 1?",
+"dur": 1.58
+},
+"92b73521": {
+"text": "Yes! 4 take away 1 is 3!",
+"dur": 1.98
+},
+"27c04a2c": {
+"text": "What is 4 take away 2?",
+"dur": 1.58
+},
+"8f12241d": {
+"text": "Yes! 4 take away 2 is 2!",
+"dur": 2.01
+},
+"28c04bbf": {
+"text": "What is 4 take away 3?",
+"dur": 1.6
+},
+"0a12b1b9": {
+"text": "Yes! 4 take away 3 is 1!",
+"dur": 2.09
+},
+"e9e64f0a": {
+"text": "What is 5 take away 1?",
+"dur": 1.6
+},
+"9b1898ed": {
+"text": "Yes! 5 take away 1 is 4!",
+"dur": 2.05
+},
+"e8e64d77": {
+"text": "What is 5 take away 2?",
+"dur": 1.64
+},
+"9cd2eb63": {
+"text": "Yes! 5 take away 2 is 3!",
+"dur": 2.13
+},
+"e7e64be4": {
+"text": "What is 5 take away 3?",
+"dur": 1.7
+},
+"55e04b2d": {
+"text": "Yes! 5 take away 3 is 2!",
+"dur": 2.15
+},
+"e6e64a51": {
+"text": "What is 5 take away 4?",
+"dur": 1.66
+},
+"0a2bf2ef": {
+"text": "Yes! 5 take away 4 is 1!",
+"dur": 2.2
+},
+"89458def": {
+"text": "What is 6 take away 1?",
+"dur": 1.6
+},
+"3652c78d": {
+"text": "Yes! 6 take away 1 is 5!",
+"dur": 2.13
+},
+"8a458f82": {
+"text": "What is 6 take away 2?",
+"dur": 1.64
+},
+"ad877b65": {
+"text": "Yes! 6 take away 2 is 4!",
+"dur": 2.11
+},
+"8b459115": {
+"text": "What is 6 take away 3?",
+"dur": 1.66
+},
+"ffb6da69": {
+"text": "Yes! 6 take away 3 is 3!",
+"dur": 2.15
+},
+"84458610": {
+"text": "What is 6 take away 4?",
+"dur": 1.71
+},
+"f9ff3409": {
+"text": "Yes! 6 take away 4 is 2!",
+"dur": 2.11
+},
+"854587a3": {
+"text": "What is 6 take away 5?",
+"dur": 1.71
+},
+"6187bfa5": {
+"text": "Yes! 6 take away 5 is 1!",
+"dur": 2.24
+},
+"8bfd343c": {
+"text": "What is 7 take away 1?",
+"dur": 1.73
+},
+"b33ab521": {
+"text": "Yes! 7 take away 1 is 6!",
+"dur": 2.18
+},
+"8efd38f5": {
+"text": "What is 7 take away 2?",
+"dur": 1.75
+},
+"1ebb73d7": {
+"text": "Yes! 7 take away 2 is 5!",
+"dur": 2.26
+},
+"8dfd3762": {
+"text": "What is 7 take away 3?",
+"dur": 1.73
+},
+"e326542d": {
+"text": "Yes! 7 take away 3 is 4!",
+"dur": 2.24
+},
+"88fd2f83": {
+"text": "What is 7 take away 4?",
+"dur": 1.73
+},
+"b114a607": {
+"text": "Yes! 7 take away 4 is 3!",
+"dur": 2.24
+},
+"87fd2df0": {
+"text": "What is 7 take away 5?",
+"dur": 1.79
+},
+"f9ffe691": {
+"text": "Yes! 7 take away 5 is 2!",
+"dur": 2.26
+},
+"8afd32a9": {
+"text": "What is 7 take away 6?",
+"dur": 1.75
+},
+"7e78bf2f": {
+"text": "Yes! 7 take away 6 is 1!",
+"dur": 2.18
+},
+"973f0661": {
+"text": "What is 8 take away 1?",
+"dur": 1.56
+},
+"74159a81": {
+"text": "Yes! 8 take away 1 is 7!",
+"dur": 2.15
+},
+"943f01a8": {
+"text": "What is 8 take away 2?",
+"dur": 1.58
+},
+"cf5d0495": {
+"text": "Yes! 8 take away 2 is 6!",
+"dur": 2.09
+},
+"953f033b": {
+"text": "What is 8 take away 3?",
+"dur": 1.62
+},
+"2ee58399": {
+"text": "Yes! 8 take away 3 is 5!",
+"dur": 2.18
+},
+"9a3f0b1a": {
+"text": "What is 8 take away 4?",
+"dur": 1.6
 }
 }
 }
