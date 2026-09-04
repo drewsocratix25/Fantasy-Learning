@@ -42,7 +42,6 @@
       this.companion = { x: this.px - 70, y: this.py + 10 };
       this.cam.x = this.px - g.W / 2; this.cam.y = this.py - g.H / 2; this.clampCam();
       this.layout();
-      FL.Audio.startBgm('kingdom');
       if (!this.greeted) { this.greeted = true; setTimeout(() => { if (G().sceneName === 'world') FL.Audio.say('Tap anywhere to walk. Walk to a sign and tap Play!', { interrupt: false }); }, 2500); }
     },
     layout() {
@@ -53,7 +52,6 @@
       this.buttons = [this.friendsBtn];
     },
     resize() { this.layout(); },
-    exit() { FL.Audio.stopBgm(); },
     clampCam() { const g = G(); this.cam.x = Math.max(0, Math.min(MAP_W - g.W, this.cam.x)); this.cam.y = Math.max(0, Math.min(MAP_H - g.H, this.cam.y)); },
     toWorld(p) { return { x: p.x + this.cam.x, y: p.y + this.cam.y }; },
     enterLoc(loc) { if (!loc) return; this.exitAt = loc.id; if (!FL.Save.data.visited.includes(loc.id)) { FL.Save.data.visited.push(loc.id); FL.Save.save(); } FL.Audio.sfx.whoosh(); G().go(loc.scene, { from: loc.id }); },
@@ -179,7 +177,7 @@
       if (!FL.Save.data.visited.length && this.t < 30) { const l = LOCS[0]; const sx = l.x - cx, sy = l.y - cy - 190 - Math.abs(Math.sin(t * 4)) * 20; if (sx > 0 && sx < g.W && sy > 0) A.emoji(ctx, '👇', sx, sy, 70); }
     },
   };
-  scene.hud = { home: false };
+  scene.hud = { home: false }; scene.music = 'kingdom';
   FL.scenes.world = scene;
   FL.WORLD_LOCS = LOCS;
 })();

@@ -85,5 +85,6 @@
       if (!this.locked) A.text(ctx, 'Tap the ? to hear it again', g.W / 2, sy - 150, { size: 22, color: '#fff', stroke: 'rgba(80,20,90,.4)' });
     },
   };
+  scene.music = 'bridge';
   FL.scenes.patterns = scene;
 })();

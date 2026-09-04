@@ -10,7 +10,6 @@
       input.oninput = () => { FL.Save.data.name = input.value.trim(); FL.Save.save(); };
       this.notes = []; for (let i = 0; i < 14; i++) this.notes.push({ x: Math.random() * g.W, y: Math.random() * g.H, s: 22 + Math.random() * 26, v: 20 + Math.random() * 30, ph: Math.random() * 6, e: ['🎵', '🎶', '⭐', '✨', '💖'][i % 5] });
       if (!this.said) { this.said = true; }
-      FL.Audio.stopBgm();
     },
     layout() {
       const g = G(); this.buttons = [];
@@ -66,5 +65,6 @@
       A.text(ctx, `⭐ ${FL.Save.data.stars} stars collected`, g.W - 30, g.H - 30, { size: 24, color: '#fff', align: 'right', stroke: 'rgba(80,20,90,.5)' });
     },
   };
+  scene.music = 'title';
   FL.scenes.title = scene;
 })();

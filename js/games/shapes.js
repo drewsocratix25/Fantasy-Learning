@@ -81,5 +81,6 @@
       A.emoji(ctx, FL.Save.data.companion, 230, g.H - 60 - Math.abs(Math.sin(t * 5)) * 8, 56);
     },
   };
+  scene.music = 'meadow';
   FL.scenes.shapes = scene;
 })();

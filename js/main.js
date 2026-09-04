@@ -40,6 +40,7 @@
     if (FL.Save.data.dress) { G.look = Object.assign({}, G.look, { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] }); }
     document.getElementById('nameWrap').hidden = name !== 'title';
     if (G.scene.enter) G.scene.enter(params || {});
+    FL.Audio.music.play(G.scene.music || null);
   }
 
   // ---- input ----

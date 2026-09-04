@@ -35,5 +35,6 @@
       A.princess(ctx, 110, g.H - 40, g.look, { t, dance: 0.6 }, 1);
     },
   };
+  scene.music = 'title';
   FL.scenes.songs = scene;
 })();

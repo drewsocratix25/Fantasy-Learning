@@ -43,7 +43,7 @@
     }
     if (ctx.state === 'suspended') ctx.resume();
     try { const b = ctx.createBuffer(1, 1, 22050); const s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0); } catch (e) { /* ignore */ }
-    A.applySettings();
+    A.applySettings(); if (A.music) A.music.resume();
   };
   A.now = () => (ctx ? ctx.currentTime : 0);
   A.applySettings = function () {
@@ -157,32 +157,136 @@
     return group;
   };
 
-  // ---- background music ---------------------------------------------------
-  const bgm = { timer: null, group: null, step: 0, next: 0, style: null };
-  const CHORDS = { kingdom: [['C4', 'E4', 'G4', 'C5'], ['G3', 'B3', 'D4', 'G4'], ['A3', 'C4', 'E4', 'A4'], ['F3', 'A3', 'C4', 'F4']] };
-  const ARP = [0, 1, 2, 3, 2, 1, 2, 3, 0, 2, 1, 3, 2, 3, 1, 2];
-  A.startBgm = function (style) {
-    style = style || 'kingdom';
-    if (!ctx || bgm.timer) return;
-    bgm.group = A.group(); bgm.step = 0; bgm.next = ctx.currentTime + 0.1; bgm.style = style;
-    const stepDur = 60 / 92 / 2;
-    bgm.timer = setInterval(() => {
-      while (bgm.next < ctx.currentTime + 0.4) {
-        const chord = CHORDS.kingdom[Math.floor(bgm.step / 16) % 4];
-        const idx = ARP[bgm.step % 16];
-        const n = chord[idx];
-        A.note(A.transpose(n, 12), { inst: 'music', when: bgm.next, dur: 0.5, vol: 0.09, group: bgm.group, bus: 'music' });
-        if (bgm.step % 16 === 0) A.note(A.transpose(chord[0], -12), { inst: 'piano', when: bgm.next, dur: 3, vol: 0.12, group: bgm.group, bus: 'music' });
-        if (bgm.step % 16 === 8) A.note(chord[2], { inst: 'flute', when: bgm.next, dur: 1.4, vol: 0.05, group: bgm.group, bus: 'music' });
-        if (bgm.step % 4 === 0 && bgm.step % 16 !== 0 && Math.random() < 0.25) A.note(A.transpose(chord[(idx + 2) % 4], 24), { inst: 'bell', when: bgm.next + stepDur / 2, dur: 0.3, vol: 0.05, group: bgm.group, bus: 'music' });
-        bgm.step++; bgm.next += stepDur;
-        // keep the group list from growing forever
-        if (bgm.group.nodes.length > 200) bgm.group.nodes = bgm.group.nodes.filter((e) => e.endAt > ctx.currentTime);
-      }
-    }, 60);
+  // ---- generative background music ---------------------------------------
+  // Composes as it plays: rotating chord progressions, a motif-based melody that
+  // varies itself, textures and instruments that change every phrase, and gentle
+  // key changes, so nothing loops verbatim.
+  INST.pad = function (f, t, dur, v, out, group) {
+    const g = ctx.createGain(); const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1100; lp.Q.value = 0.4;
+    const o1 = osc('triangle', f, t); o1.detune.value = -6; const o2 = osc('triangle', f, t); o2.detune.value = 6; const o3 = osc('sine', f / 2, t); const g3 = ctx.createGain(); g3.gain.value = 0.6;
+    o1.connect(lp); o2.connect(lp); o3.connect(g3); g3.connect(lp); lp.connect(g);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.5); g.gain.setValueAtTime(v, t + dur - 0.2); g.gain.linearRampToValueAtTime(0.0001, t + dur + 0.9);
+    g.connect(out); g.connect(reverbSend);
+    [o1, o2, o3].forEach((o) => { o.start(t); o.stop(t + dur + 1); });
+    track(group, [o1, o2, o3, g], t + dur + 1);
   };
-  A.stopBgm = function () { if (bgm.timer) { clearInterval(bgm.timer); bgm.timer = null; } if (bgm.group) { bgm.group.stop(); bgm.group = null; } };
-  A.bgmPlaying = () => !!bgm.timer;
+  INST.harp = function (f, t, dur, v, out, group) { // soft pluck for arpeggios
+    const g = ctx.createGain(); const o1 = osc('triangle', f, t); const o2 = osc('sine', f * 2, t); const g2 = ctx.createGain(); g2.gain.value = 0.2;
+    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(Math.min(8000, f * 6), t); lp.frequency.exponentialRampToValueAtTime(Math.max(400, f * 1.2), t + 0.6);
+    o1.connect(lp); o2.connect(g2); g2.connect(lp); lp.connect(g);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + Math.max(0.5, dur * 1.4));
+    g.connect(out); g.connect(reverbSend); [o1, o2].forEach((o) => { o.start(t); o.stop(t + Math.max(0.5, dur * 1.4) + 0.05); });
+    track(group, [o1, o2, g], t + dur * 1.4 + 0.05);
+  };
+  INST.marimba = function (f, t, dur, v, out, group) {
+    const g = ctx.createGain(); const o1 = osc('sine', f, t); const o2 = osc('sine', f * 4, t); const g2 = ctx.createGain(); g2.gain.value = 0.18; const o3 = osc('triangle', f, t); const g3 = ctx.createGain(); g3.gain.value = 0.25;
+    o1.connect(g); o2.connect(g2); g2.connect(g); o3.connect(g3); g3.connect(g);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v * 1.3, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
+    g.connect(out); g.connect(reverbSend); [o1, o2, o3].forEach((o) => { o.start(t); o.stop(t + 0.5); }); track(group, [o1, o2, o3, g], t + 0.5);
+  };
+
+  const MAJOR = [0, 2, 4, 5, 7, 9, 11];
+  const KEY_ROOTS = { C: 60, Db: 61, D: 62, Eb: 63, E: 64, F: 65, Gb: 66, G: 67, Ab: 68, A: 69, Bb: 70, B: 71 };
+  const PROGRESSIONS = [[1, 5, 6, 4], [1, 6, 4, 5], [6, 4, 1, 5], [1, 4, 6, 5], [1, 3, 6, 4], [4, 5, 3, 6], [1, 4, 5, 4], [2, 5, 1, 1], [1, 5, 4, 4], [6, 5, 4, 5]];
+  const ARPS = { 4: [[0, 1, 2, 3, 2, 1, 2, 3], [0, 2, 1, 3, 0, 2, 1, 3], [0, 1, 2, 1, 3, 2, 1, 2], [0, 3, 2, 3, 1, 3, 2, 3], [0, 2, 3, 2, 0, 2, 3, 2]], 3: [[0, 1, 2, 3, 2, 1], [0, 2, 1, 3, 1, 2], [0, 1, 3, 2, 1, 2], [0, 3, 1, 2, 3, 1]] };
+  const RHYTHMS = { 4: [[2, 2, 1, 1, 2], [1, 1, 2, 4], [3, 1, 2, 2], [2, 1, 1, 2, 2], [4, 2, 2], [2, 2, 4], [1, 1, 1, 1, 2, 2], [6, 2], [2, 6]], 3: [[2, 2, 2], [4, 2], [2, 4], [1, 1, 2, 2], [3, 3], [2, 1, 1, 2], [6]] };
+  const STYLES = {
+    kingdom: { bpm: 96, keys: ['C', 'F', 'G', 'D'], leads: ['music', 'flute', 'bell', 'harp'], arpInst: 'harp', meter: 4, pad: 0.8, perc: 0.35, vol: 1 },
+    title: { bpm: 84, keys: ['C', 'F'], leads: ['music', 'bell'], arpInst: 'music', meter: 4, pad: 1, perc: 0, vol: 0.8 },
+    garden: { bpm: 104, keys: ['F', 'Bb', 'C'], leads: ['flute', 'music', 'harp'], arpInst: 'harp', meter: 3, pad: 0.9, perc: 0, vol: 0.85 },
+    pond: { bpm: 100, keys: ['G', 'C', 'D'], leads: ['marimba', 'wood', 'music'], arpInst: 'marimba', meter: 4, pad: 0.3, perc: 0.7, vol: 0.85, pentatonic: true },
+    meadow: { bpm: 126, keys: ['D', 'G', 'A'], leads: ['bell', 'music', 'flute'], arpInst: 'harp', meter: 3, pad: 0.9, perc: 0.25, vol: 0.85 },
+    bridge: { bpm: 80, keys: ['A', 'D'], leads: ['harp'], arpInst: 'pad', meter: 4, pad: 1, perc: 0, vol: 0.5, sparse: true },
+  };
+  const music = { timer: null, group: null, style: null, next: 0, step: 0, phrase: null, phraseNo: 0, lastPitch: 72, motif: null, keyIdx: 0, duck: 1 };
+  function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function midi(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  function chordTones(root, degree) { // midi numbers for a triad + octave, degree 1..7
+    const d = degree - 1; const base = root + MAJOR[d];
+    const third = root + MAJOR[(d + 2) % 7] + (d + 2 >= 7 ? 12 : 0); const fifth = root + MAJOR[(d + 4) % 7] + (d + 4 >= 7 ? 12 : 0);
+    return [base, third, fifth, base + 12];
+  }
+  function scaleNear(root, pitch, dir, st) { // move `dir` scale steps from pitch within the key
+    const scale = st.pentatonic ? [0, 2, 4, 7, 9] : MAJOR; const rel = ((pitch - root) % 12 + 12) % 12;
+    let idx = 0; for (let i = 0; i < scale.length; i++) if (scale[i] <= rel) idx = i;
+    let oct = Math.floor((pitch - root) / 12); idx += dir;
+    while (idx < 0) { idx += scale.length; oct--; } while (idx >= scale.length) { idx -= scale.length; oct++; }
+    return root + oct * 12 + scale[idx];
+  }
+  function newPhrase(st) {
+    const prev = music.phrase; music.phraseNo++;
+    if (music.phraseNo % 4 === 0 && st.keys.length > 1) music.keyIdx = (music.keyIdx + 1 + Math.floor(Math.random() * (st.keys.length - 1))) % st.keys.length;
+    const root = KEY_ROOTS[st.keys[music.keyIdx]] - 12; // chords around octave 3/4
+    let prog = rnd(PROGRESSIONS); if (prev && prev.prog === prog) prog = rnd(PROGRESSIONS);
+    const arp = rnd(ARPS[st.meter]);
+    const lead = music.phraseNo % 2 === 0 ? rnd(st.leads) : (prev ? prev.lead : rnd(st.leads));
+    const melodyOn = st.sparse ? Math.random() < 0.35 : music.phraseNo === 1 ? false : Math.random() < 0.82;
+    const arpOn = st.sparse ? false : music.phraseNo === 1 || Math.random() < 0.85;
+    const padOn = Math.random() < st.pad; const percOn = Math.random() < st.perc; const bassOn = !st.sparse && Math.random() < 0.85;
+    // a rhythmic motif for the melody, reused with variation across the phrase
+    const motif = music.motif && Math.random() < 0.6 ? music.motif : rnd(RHYTHMS[st.meter]); music.motif = motif;
+    return { root, prog, arp, lead, melodyOn, arpOn, padOn, percOn, bassOn, motif, bars: prog.length };
+  }
+  function scheduleBar(st, ph, bar, t0, stepDur) {
+    const steps = st.meter * 2; const degree = ph.prog[bar % ph.bars]; const tones = chordTones(ph.root, degree); const g = music.group; const v = st.vol * music.duck;
+    const barDur = steps * stepDur; const hum = () => (Math.random() - 0.5) * 0.012; const dyn = () => 0.85 + Math.random() * 0.3;
+    if (ph.padOn) A.note(midi(tones[0] + 12), { inst: 'pad', when: t0, dur: barDur, vol: 0.05 * v, group: g, bus: 'music' });
+    if (ph.padOn) A.note(midi(tones[2] + 12), { inst: 'pad', when: t0, dur: barDur, vol: 0.035 * v, group: g, bus: 'music' });
+    if (ph.bassOn) { A.note(midi(tones[0] - 12), { inst: 'piano', when: t0, dur: barDur * 0.9, vol: 0.13 * v, group: g, bus: 'music' }); if (st.meter === 4 && Math.random() < 0.5) A.note(midi(tones[2] - 12), { inst: 'piano', when: t0 + stepDur * 4, dur: barDur * 0.4, vol: 0.08 * v, group: g, bus: 'music' }); }
+    if (ph.arpOn) { for (let s = 0; s < steps; s++) { const tone = tones[ph.arp[s % ph.arp.length]] + 12; A.note(midi(tone), { inst: st.arpInst, when: t0 + s * stepDur + hum(), dur: stepDur * 1.6, vol: (s % 2 ? 0.055 : 0.075) * dyn() * v, group: g, bus: 'music' }); } }
+    if (ph.percOn) { for (let s = 0; s < steps; s++) { if (s % 2 === 1) A.note(0, { inst: 'shaker', when: t0 + s * stepDur, vol: 0.05 * v, group: g, bus: 'music' }); if (s === 0) A.note(0, { inst: 'kick', when: t0, vol: 0.12 * v, group: g, bus: 'music' }); if (st.meter === 4 && s === 4) A.note(0, { inst: 'wood', when: t0 + s * stepDur, vol: 0.05 * v, group: g, bus: 'music' }); } }
+    if (ph.melodyOn) {
+      // bars 0 and 2 state the motif, bars 1 and 3 answer with a variation; sometimes a rest bar
+      if (bar % ph.bars === ph.bars - 1 && Math.random() < 0.3) return;
+      let rhythm = ph.motif; if (bar % 2 === 1) rhythm = Math.random() < 0.5 ? rnd(RHYTHMS[st.meter]) : ph.motif;
+      let pos = 0; let pitch = music.lastPitch; const lo = ph.root + 14, hi = ph.root + 31; if (pitch < lo || pitch > hi) pitch = ph.root + 24;
+      rhythm.forEach((len, i) => {
+        if (pos >= steps) return;
+        const strong = pos === 0 || pos === steps / 2 || pos === Math.floor(steps / 2);
+        if (strong || Math.random() < 0.4) { // land on a nearby chord tone (small leaps only)
+          const cands = []; for (let o = 12; o <= 48; o += 12) tones.slice(0, 3).forEach((c) => { const m = c + o - 12; if (m >= lo && m <= hi) cands.push(m); });
+          cands.sort((a, b) => Math.abs(a - pitch) - Math.abs(b - pitch));
+          pitch = cands.length > 1 && Math.random() < 0.3 && Math.abs(cands[1] - pitch) <= 5 ? cands[1] : cands[0];
+        } else { let dir = Math.random() < 0.5 ? -1 : 1; if (pitch - lo < 3) dir = 1; if (hi - pitch < 3) dir = -1; pitch = scaleNear(ph.root, pitch, dir * (Math.random() < 0.8 ? 1 : 2), st); }
+        while (pitch < lo) pitch += 12; while (pitch > hi) pitch -= 12;
+        const dur = len * stepDur; const last = i === rhythm.length - 1;
+        A.note(midi(pitch), { inst: ph.lead, role: 'melody', when: t0 + pos * stepDur + hum(), dur: dur * (last ? 1.1 : 0.9), vol: (ph.lead === 'flute' ? 0.09 : ph.lead === 'bell' ? 0.1 : 0.16) * dyn() * v, group: g, bus: 'music' });
+        pos += len;
+      });
+      music.lastPitch = pitch;
+    }
+  }
+  A.music = {
+    current: () => music.style,
+    play(styleName) {
+      if (!styleName) { this.stop(); return; }
+      if (music.style === styleName && music.timer) return;
+      this.stop(0.8);
+      if (!ctx) { music.pending = styleName; return; }
+      const st = STYLES[styleName]; if (!st) return;
+      music.style = styleName; music.group = A.group(); music.step = 0; music.phraseNo = 0; music.phrase = null; music.keyIdx = 0; music.motif = null; music.lastPitch = KEY_ROOTS[st.keys[0]] + 12;
+      const stepDur = 60 / st.bpm / 2; const steps = st.meter * 2; music.next = ctx.currentTime + 0.15; let bar = 0;
+      music.timer = setInterval(() => {
+        if (!ctx) return;
+        while (music.next < ctx.currentTime + 0.6) {
+          if (!music.phrase || bar >= music.phrase.bars) { music.phrase = newPhrase(st); bar = 0; }
+          scheduleBar(st, music.phrase, bar, music.next, stepDur); bar++;
+          music.next += steps * stepDur;
+          if (music.group.nodes.length > 400) music.group.nodes = music.group.nodes.filter((e) => e.endAt > ctx.currentTime);
+        }
+      }, 80);
+    },
+    stop(fade) {
+      if (music.timer) { clearInterval(music.timer); music.timer = null; }
+      if (music.group) { const grp = music.group; music.group = null; if (fade && ctx) { const now = ctx.currentTime; grp.nodes.forEach(({ nodes }) => nodes.forEach((n) => { try { if (n.gain) { n.gain.cancelScheduledValues(now); n.gain.setValueAtTime(n.gain.value, now); n.gain.linearRampToValueAtTime(0.0001, now + fade); } if (n.stop) n.stop(now + fade + 0.05); } catch (e) { /* stopped */ } })); } else grp.stop(); }
+      music.style = null; music.pending = null;
+    },
+    resume() { if (music.pending && ctx) { const p = music.pending; music.pending = null; this.play(p); } },
+  };
+  // Lower the music while the narrator speaks so the words stay clear.
+  A.duck = function (on) { if (!musicBus) return; const s = FL.Save.data.settings; const target = !s.music ? 0 : on ? 0.3 : 0.8; musicBus.gain.setTargetAtTime(target, ctx.currentTime, on ? 0.08 : 0.5); };
+  // Backwards-compatible aliases.
+  A.startBgm = (style) => A.music.play(style || 'kingdom'); A.stopBgm = () => A.music.stop(0.6); A.bgmPlaying = () => !!music.timer;
 
   // ---- sound effects ------------------------------------------------------
   const SCALE = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5', 'C6'];
@@ -204,32 +308,51 @@
   };
 
   // ---- speech -------------------------------------------------------------
-  let voice = null, voicesTried = false;
-  function pickVoice() {
-    if (!('speechSynthesis' in window)) return null;
-    const voices = speechSynthesis.getVoices();
-    if (!voices.length) return null;
-    if (voice && voices.includes(voice)) return voice;
-    const prefs = ['Samantha', 'Karen', 'Moira', 'Tessa', 'Allison', 'Ava', 'Zoe', 'Google US English', 'Microsoft Aria', 'Microsoft Zira', 'Microsoft Jenny'];
-    for (const p of prefs) { const v = voices.find((v) => v.name.includes(p) && v.lang.startsWith('en')); if (v) { voice = v; return v; } }
-    voice = voices.find((v) => v.lang === 'en-US') || voices.find((v) => v.lang.startsWith('en')) || voices[0];
-    return voice;
+  // Quality depends entirely on the voices installed on the device. Apple's
+  // "Enhanced"/"Premium" voices (downloadable in iPad Settings) sound far more natural
+  // than the compact defaults, so rank those first and let grown-ups pick.
+  const BAD = /compact|eloquence|fred|albert|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|junior|kathy|organ|superstar|trinoids|whisper|wobble|zarvox|ralph|grandma|grandpa|rocko|shelley|flo|sandy|eddy|reed|novelty/i;
+  const PREF = ['Ava', 'Zoe', 'Allison', 'Samantha', 'Nicky', 'Joelle', 'Susan', 'Karen', 'Moira', 'Tessa', 'Serena', 'Kate', 'Fiona', 'Google US English', 'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Zira', 'Microsoft Sonia', 'Google UK English Female'];
+  function voiceScore(v) {
+    if (!v.lang || !/^en/i.test(v.lang)) return -1; if (BAD.test(v.name)) return -1;
+    let s = 1; const n = v.name;
+    if (/premium/i.test(n)) s += 40; else if (/enhanced/i.test(n)) s += 30; else if (/natural|neural|online/i.test(n)) s += 25;
+    if (/siri/i.test(n)) s += 20;
+    const pi = PREF.findIndex((p) => n.includes(p)); if (pi >= 0) s += 15 - pi * 0.5;
+    if (/^en-US/i.test(v.lang)) s += 4; else if (/^en-(GB|AU|IE)/i.test(v.lang)) s += 2;
+    if (v.localService === false) s += 3; // cloud voices are usually the neural ones
+    if (/male|daniel|alex|tom|aaron|arthur|gordon|rishi|david|mark|guy/i.test(n) && !/female/i.test(n)) s -= 6;
+    return s;
   }
-  if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => { voice = null; pickVoice(); }; }
+  A.voices = function () { if (!('speechSynthesis' in window)) return []; return speechSynthesis.getVoices().map((v) => ({ v, s: voiceScore(v) })).filter((x) => x.s >= 0).sort((a, b) => b.s - a.s).map((x) => x.v); };
+  let voice = null;
+  function pickVoice() {
+    const list = A.voices(); if (!list.length) return null;
+    const want = FL.Save.data.settings.voice; if (want) { const m = list.find((v) => v.voiceURI === want || v.name === want); if (m) { voice = m; return m; } }
+    voice = list[0]; return voice;
+  }
+  if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => { voice = null; pickVoice(); }; setTimeout(pickVoice, 300); }
+  A.voiceName = function () { const v = pickVoice(); return v ? v.name.replace(/\(.*?\)/g, '').trim() : 'Default'; };
+  A.setVoice = function (v) { FL.Save.data.settings.voice = v ? v.voiceURI || v.name : null; FL.Save.save(); voice = null; pickVoice(); };
+  let speaking = 0;
   A.say = function (text, o) {
     o = o || {};
     if (!FL.Save.data.settings.speech) return;
     if (!('speechSynthesis' in window)) return;
     try {
-      if (o.interrupt !== false) speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.rate = o.rate || 0.92; u.pitch = o.pitch || 1.15; u.volume = 1; u.lang = 'en-US';
-      const v = pickVoice(); if (v) u.voice = v;
-      if (!voicesTried) { voicesTried = true; }
+      if (o.interrupt !== false) { speechSynthesis.cancel(); speaking = 0; }
+      // Small pauses after punctuation read more naturally; exclamation marks get shouty on some voices.
+      const clean = text.replace(/!+/g, '.').replace(/\.\s*\./g, '.').replace(/,/g, ', ');
+      const u = new SpeechSynthesisUtterance(clean);
+      u.rate = o.rate || 0.97; u.pitch = o.pitch || 1.04; u.volume = 1;
+      const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
+      u.onstart = () => { speaking++; A.duck(true); };
+      const done = () => { speaking = Math.max(0, speaking - 1); if (!speaking) A.duck(false); };
+      u.onend = done; u.onerror = done;
       speechSynthesis.speak(u);
     } catch (e) { /* ignore */ }
   };
-  A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } };
+  A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } speaking = 0; A.duck(false); };
 
   window.FL = window.FL || {};
   FL.Audio = A;
