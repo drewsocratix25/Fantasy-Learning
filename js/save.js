@@ -14,6 +14,11 @@
     settings: { music: true, speech: true, speed: 'slow', voice: null },
     visited: [],
     firstRun: true,
+    items: [],            // 'crown:flower', 'wand:star', 'decor:fountain', 'song:row' ...
+    crown: 'gold',
+    wand: null,
+    regions: 1,           // how many map regions are open
+    newRegion: null,      // region index to celebrate on next kingdom visit
   };
   let data = null;
 
@@ -42,6 +47,8 @@
     addPlay(game) { this.data.plays[game] = (this.data.plays[game] || 0) + 1; save(); },
     addStars(n) { this.data.stars += n; save(); return this.data.stars; },
     setSongBest(id, stars) { const b = this.data.songBest[id] || 0; if (stars > b) { this.data.songBest[id] = stars; save(); } },
+    has(type, id) { return this.data.items.includes(type + ':' + id); },
+    give(type, id) { if (this.has(type, id)) return false; this.data.items.push(type + ':' + id); save(); return true; },
     unlock(emoji) { if (!this.data.unlocked.includes(emoji)) { this.data.unlocked.push(emoji); this.data.companion = emoji; save(); return true; } return false; },
   };
   window.FL = window.FL || {};

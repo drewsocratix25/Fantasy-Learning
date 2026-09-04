@@ -23,7 +23,7 @@
       const spacing = Math.min(240, (g.W - 200) / n); const x0 = g.W / 2 - ((n - 1) * spacing) / 2;
       this.flowers = letters.map((L, i) => ({ L, x: x0 + i * spacing, y: g.H - 150 - (i % 2) * 70, color: COLORS[(i + this.round) % COLORS.length], scale: 0, wob: 0, done: false, seed: Math.random() * 6, delay: i * 0.12 }));
       if (!first) FL.Audio.sfx.whoosh();
-      setTimeout(() => this.repeatPrompt(), first ? 400 : 700);
+      FL.Game.later(() => this.repeatPrompt(), first ? 400 : 700);
     },
     repeatPrompt(queue) {
       const L = this.target; const [word] = WORDS[L]; const o = { interrupt: !queue };
@@ -46,7 +46,7 @@
         FL.Audio.say(`${L}! ${L} is for ${word}!`);
         FL.Audio.note(FL.Audio.SCALE[this.round % 8], { inst: 'music', vol: 0.4 });
         this.round++;
-        setTimeout(() => { this.reveal = null; if (this.round >= this.total) this.finish(); else this.newRound(false); }, 2300);
+        FL.Game.later(() => { this.reveal = null; if (this.round >= this.total) this.finish(); else this.newRound(false); }, 2300);
       } else {
         this.tries++; f.wob = 1; FL.Audio.sfx.wrong();
         FL.Audio.say(`That's the letter ${f.L}. Try again!`); this.repeatPrompt(true);

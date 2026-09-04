@@ -1757,6 +1757,1330 @@
 "827e8b32": {
 "text": "Hmm, not the frog. Listen again!",
 "dur": 2.2
+},
+"809507f7": {
+"text": "Rhyme Tree! Find the word that rhymes!",
+"dur": 2.39
+},
+"41358dc9": {
+"text": "Let's go to the Rhyme Tree!",
+"dur": 1.58
+},
+"cc3a87e7": {
+"text": "Acorn Spelling! Spell the word!",
+"dur": 2.11
+},
+"9531bce1": {
+"text": "Let's go to the Acorn Spelling!",
+"dur": 1.86
+},
+"a96da3ba": {
+"text": "Owl School! Add and take away!",
+"dur": 1.96
+},
+"75f0aa56": {
+"text": "Let's go to the Owl School!",
+"dur": 1.57
+},
+"5bbb6e76": {
+"text": "Echo Cave! Play the owl's song back!",
+"dur": 2.22
+},
+"dbf044ae": {
+"text": "Let's go to the Echo Cave!",
+"dur": 1.64
+},
+"a085bbee": {
+"text": "Cloud Clock! What time is it?",
+"dur": 1.92
+},
+"5484d6b7": {
+"text": "Let's go to the Cloud Clock!",
+"dur": 1.66
+},
+"e2fb9e0a": {
+"text": "Reading Rock! Read the words!",
+"dur": 1.86
+},
+"dd636f0d": {
+"text": "Let's go to the Reading Rock!",
+"dur": 1.61
+},
+"56bea99c": {
+"text": "Crystal Stairs! Find the missing number!",
+"dur": 2.43
+},
+"23d1eb68": {
+"text": "Let's go to the Crystal Stairs!",
+"dur": 1.79
+},
+"cb553f19": {
+"text": "Dragon Drums! Drum the beat back!",
+"dur": 2.25
+},
+"eb666226": {
+"text": "Let's go to the Dragon Drums!",
+"dur": 1.75
+},
+"a08f8874": {
+"text": "Owl will come with you!",
+"dur": 1.33
+},
+"ca876155": {
+"text": "A new friend! Owl wants to play with you!",
+"dur": 2.4
+},
+"f548dee4": {
+"text": "Deer will come with you!",
+"dur": 1.3
+},
+"4e2c8693": {
+"text": "A new friend! Deer wants to play with you!",
+"dur": 2.36
+},
+"d6e5aadd": {
+"text": "Squirrel will come with you!",
+"dur": 1.41
+},
+"19f6b352": {
+"text": "A new friend! Squirrel wants to play with you!",
+"dur": 2.5
+},
+"30ada8a3": {
+"text": "Hedgehog will come with you!",
+"dur": 1.58
+},
+"ff44c7d4": {
+"text": "A new friend! Hedgehog wants to play with you!",
+"dur": 2.67
+},
+"ac9b8550": {
+"text": "Wolf will come with you!",
+"dur": 1.39
+},
+"bae5792b": {
+"text": "A new friend! Wolf wants to play with you!",
+"dur": 2.43
+},
+"97fb157d": {
+"text": "Fairy will come with you!",
+"dur": 1.37
+},
+"a1ec5544": {
+"text": "A new friend! Fairy wants to play with you!",
+"dur": 2.43
+},
+"ad049e4a": {
+"text": "Polar Bear will come with you!",
+"dur": 1.56
+},
+"3f478fa5": {
+"text": "A new friend! Polar Bear wants to play with you!",
+"dur": 2.73
+},
+"a6ca0bfe": {
+"text": "Eagle will come with you!",
+"dur": 1.41
+},
+"51c5f7d3": {
+"text": "A new friend! Eagle wants to play with you!",
+"dur": 2.51
+},
+"a6c7745d": {
+"text": "Goat will come with you!",
+"dur": 1.3
+},
+"c7061d32": {
+"text": "A new friend! Goat wants to play with you!",
+"dur": 2.46
+},
+"5507a3af": {
+"text": "Seal will come with you!",
+"dur": 1.39
+},
+"b6fc7e28": {
+"text": "A new friend! Seal wants to play with you!",
+"dur": 2.43
+},
+"4f2290f3": {
+"text": "Swan will come with you!",
+"dur": 1.37
+},
+"e554013c": {
+"text": "A new friend! Swan wants to play with you!",
+"dur": 2.5
+},
+"47df0571": {
+"text": "Hot Cross Buns! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.5
+},
+"4ef8bbae": {
+"text": "Listen to Hot Cross Buns!",
+"dur": 1.66
+},
+"b772fd57": {
+"text": "Let's learn Hot Cross Buns! Tap the glowing key.",
+"dur": 3.03
+},
+"f0e4ee9c": {
+"text": "Baa Baa Black Sheep! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.65
+},
+"6810fab3": {
+"text": "Listen to Baa Baa Black Sheep!",
+"dur": 1.75
+},
+"6adb41e8": {
+"text": "Let's learn Baa Baa Black Sheep! Tap the glowing key.",
+"dur": 3.18
+},
+"f88d06e5": {
+"text": "Pop! An orange circle!",
+"dur": 1.55
+},
+"22190ee7": {
+"text": "That's an orange circle.",
+"dur": 1.45
+},
+"d958aed2": {
+"text": "Pop! An orange square!",
+"dur": 1.41
+},
+"6be3dac8": {
+"text": "That's an orange square.",
+"dur": 1.37
+},
+"429b4b29": {
+"text": "Pop! An orange triangle!",
+"dur": 1.71
+},
+"24409503": {
+"text": "That's an orange triangle.",
+"dur": 1.57
+},
+"aef5a7d5": {
+"text": "Pop! An orange star!",
+"dur": 1.44
+},
+"70121e83": {
+"text": "That's an orange star.",
+"dur": 1.37
+},
+"8be93057": {
+"text": "Pop! An orange heart!",
+"dur": 1.42
+},
+"f5c2c315": {
+"text": "That's an orange heart.",
+"dur": 1.37
+},
+"67283362": {
+"text": "Pop! An orange rectangle!",
+"dur": 1.75
+},
+"75ccd56c": {
+"text": "That's an orange rectangle.",
+"dur": 1.64
+},
+"7504ddf9": {
+"text": "Pop! An orange oval!",
+"dur": 1.49
+},
+"83958bbf": {
+"text": "That's an orange oval.",
+"dur": 1.43
+},
+"4d06d5f3": {
+"text": "Pop! An orange diamond!",
+"dur": 1.64
+},
+"cb5fd12d": {
+"text": "That's an orange diamond.",
+"dur": 1.59
+},
+"7572a8e2": {
+"text": "Collect all your kingdom friends to open the Enchanted Forest!",
+"dur": 3.31
+},
+"a3476a89": {
+"text": "The Enchanted Forest is open! Let's explore!",
+"dur": 2.9
+},
+"d912ce61": {
+"text": "Collect all your forest friends to open the Crystal Peaks!",
+"dur": 3.35
+},
+"e66d3978": {
+"text": "The Crystal Peaks are open! Let's explore!",
+"dur": 2.52
+},
+"0c8b93a6": {
+"text": "You unlocked a flower crown!",
+"dur": 1.62
+},
+"58e52e71": {
+"text": "You unlocked new dress colours!",
+"dur": 1.75
+},
+"3098e1b5": {
+"text": "You unlocked a magic wand!",
+"dur": 1.69
+},
+"4407bf71": {
+"text": "You unlocked a star crown!",
+"dur": 1.64
+},
+"3896ebc9": {
+"text": "A fountain appeared in the kingdom!",
+"dur": 1.75
+},
+"c065f7d7": {
+"text": "You unlocked a rainbow crown!",
+"dur": 1.76
+},
+"64ae7e19": {
+"text": "You unlocked sparkle dress colours!",
+"dur": 1.98
+},
+"e3d729b7": {
+"text": "You unlocked a moon wand!",
+"dur": 1.53
+},
+"22936805": {
+"text": "A hot air balloon is flying over the kingdom!",
+"dur": 2.57
+},
+"2ab5f125": {
+"text": "You unlocked a leaf crown!",
+"dur": 1.56
+},
+"34758d38": {
+"text": "You unlocked a heart wand!",
+"dur": 1.58
+},
+"e8968298": {
+"text": "You unlocked an ice crown!",
+"dur": 1.58
+},
+"7d9b9a22": {
+"text": "Fireworks will light up the kingdom!",
+"dur": 1.92
+},
+"bfe1b15a": {
+"text": "You unlocked a new song: Row Your Boat!",
+"dur": 2.41
+},
+"e9185052": {
+"text": "You unlocked a new song: London Bridge!",
+"dur": 2.54
+},
+"293e911e": {
+"text": "You unlocked a new song: Itsy Bitsy Spider!",
+"dur": 2.92
+},
+"18e6278c": {
+"text": "You unlocked a new song: Hot Cross Buns!",
+"dur": 2.69
+},
+"378a8649": {
+"text": "You unlocked a new song: Baa Baa Black Sheep!",
+"dur": 2.71
+},
+"6bc9e3b4": {
+"text": "You unlocked a new song: Happy Birthday!",
+"dur": 2.58
+},
+"e0dfbaee": {
+"text": "Your friends are waiting! Tap the gate to see how many more you need.",
+"dur": 3.63
+},
+"e40c292c": {
+"text": "A",
+"dur": 0.64
+},
+"ba65b457": {
+"text": "We need the letter A.",
+"dur": 1.35
+},
+"e70c2de5": {
+"text": "B",
+"dur": 0.67
+},
+"bb65b5ea": {
+"text": "We need the letter B.",
+"dur": 1.31
+},
+"e60c2c52": {
+"text": "C",
+"dur": 0.67
+},
+"bc65b77d": {
+"text": "We need the letter C.",
+"dur": 1.33
+},
+"e10c2473": {
+"text": "D",
+"dur": 0.69
+},
+"b565ac78": {
+"text": "We need the letter D.",
+"dur": 1.31
+},
+"e00c22e0": {
+"text": "E",
+"dur": 0.63
+},
+"b665ae0b": {
+"text": "We need the letter E.",
+"dur": 1.29
+},
+"e30c2799": {
+"text": "F",
+"dur": 0.83
+},
+"b765af9e": {
+"text": "We need the letter F.",
+"dur": 1.59
+},
+"e20c2606": {
+"text": "G",
+"dur": 0.72
+},
+"b865b131": {
+"text": "We need the letter G.",
+"dur": 1.35
+},
+"ed0c3757": {
+"text": "H",
+"dur": 0.69
+},
+"b165a62c": {
+"text": "We need the letter H.",
+"dur": 1.38
+},
+"ec0c35c4": {
+"text": "I",
+"dur": 0.64
+},
+"b265a7bf": {
+"text": "We need the letter I.",
+"dur": 1.35
+},
+"ef0c3a7d": {
+"text": "J",
+"dur": 0.7
+},
+"b365a952": {
+"text": "We need the letter J.",
+"dur": 1.35
+},
+"ee0c38ea": {
+"text": "K",
+"dur": 0.63
+},
+"b465aae5": {
+"text": "We need the letter K.",
+"dur": 1.33
+},
+"e90c310b": {
+"text": "L",
+"dur": 0.6
+},
+"ad659fe0": {
+"text": "We need the letter L.",
+"dur": 1.33
+},
+"e80c2f78": {
+"text": "M",
+"dur": 0.62
+},
+"ae65a173": {
+"text": "We need the letter M.",
+"dur": 1.31
+},
+"eb0c3431": {
+"text": "N",
+"dur": 0.63
+},
+"af65a306": {
+"text": "We need the letter N.",
+"dur": 1.29
+},
+"ea0c329e": {
+"text": "O",
+"dur": 0.62
+},
+"b065a499": {
+"text": "We need the letter O.",
+"dur": 1.29
+},
+"f50c43ef": {
+"text": "P",
+"dur": 0.68
+},
+"c965cbf4": {
+"text": "We need the letter P.",
+"dur": 1.27
+},
+"f40c425c": {
+"text": "Q",
+"dur": 0.67
+},
+"ca65cd87": {
+"text": "We need the letter Q.",
+"dur": 1.31
+},
+"f70c4715": {
+"text": "R",
+"dur": 0.63
+},
+"cb65cf1a": {
+"text": "We need the letter R.",
+"dur": 1.36
+},
+"f60c4582": {
+"text": "S",
+"dur": 0.64
+},
+"cc65d0ad": {
+"text": "We need the letter S.",
+"dur": 1.31
+},
+"f10c3da3": {
+"text": "T",
+"dur": 0.68
+},
+"c565c5a8": {
+"text": "We need the letter T.",
+"dur": 1.37
+},
+"f00c3c10": {
+"text": "U",
+"dur": 0.64
+},
+"c665c73b": {
+"text": "We need the letter U.",
+"dur": 1.29
+},
+"f30c40c9": {
+"text": "V",
+"dur": 0.65
+},
+"c765c8ce": {
+"text": "We need the letter V.",
+"dur": 1.29
+},
+"f20c3f36": {
+"text": "W",
+"dur": 0.85
+},
+"c865ca61": {
+"text": "We need the letter W.",
+"dur": 1.59
+},
+"fd0c5087": {
+"text": "X",
+"dur": 0.65
+},
+"c165bf5c": {
+"text": "We need the letter X.",
+"dur": 1.38
+},
+"fc0c4ef4": {
+"text": "Y",
+"dur": 0.67
+},
+"c265c0ef": {
+"text": "We need the letter Y.",
+"dur": 1.31
+},
+"ff0c53ad": {
+"text": "Z",
+"dur": 0.68
+},
+"c365c282": {
+"text": "We need the letter Z.",
+"dur": 1.31
+},
+"22f9c34a": {
+"text": "Which one rhymes with cat?",
+"dur": 1.57
+},
+"051d927d": {
+"text": "That's a cat.",
+"dur": 1.0
+},
+"48aa5af1": {
+"text": "Yes! hat rhymes with cat!",
+"dur": 1.69
+},
+"e072b994": {
+"text": "That's a hat.",
+"dur": 0.97
+},
+"3805be9f": {
+"text": "Yes! bat rhymes with cat!",
+"dur": 1.79
+},
+"71db131e": {
+"text": "That's a bat.",
+"dur": 0.97
+},
+"cbeea684": {
+"text": "Which one rhymes with dog?",
+"dur": 1.59
+},
+"fc4ec7a3": {
+"text": "That's a dog.",
+"dur": 1.02
+},
+"d7b08454": {
+"text": "Yes! frog rhymes with dog!",
+"dur": 1.94
+},
+"df8ef935": {
+"text": "That's a frog.",
+"dur": 1.04
+},
+"783692f0": {
+"text": "Yes! log rhymes with dog!",
+"dur": 1.96
+},
+"a541389b": {
+"text": "That's a log.",
+"dur": 0.99
+},
+"d47f4c56": {
+"text": "Which one rhymes with star?",
+"dur": 1.55
+},
+"47ea3627": {
+"text": "That's a star.",
+"dur": 1.05
+},
+"9bc47ce6": {
+"text": "Yes! car rhymes with star!",
+"dur": 1.86
+},
+"ff1d890b": {
+"text": "That's a car.",
+"dur": 1.02
+},
+"8948d92a": {
+"text": "Yes! guitar rhymes with star!",
+"dur": 2.0
+},
+"d0882eed": {
+"text": "That's a guitar.",
+"dur": 1.1
+},
+"a70e32ca": {
+"text": "Which one rhymes with bee?",
+"dur": 1.51
+},
+"62e588dd": {
+"text": "That's a bee.",
+"dur": 0.94
+},
+"89465ffc": {
+"text": "Yes! tree rhymes with bee!",
+"dur": 1.81
+},
+"8f819a67": {
+"text": "That's a tree.",
+"dur": 1.04
+},
+"606172a3": {
+"text": "Yes! key rhymes with bee!",
+"dur": 1.71
+},
+"98f1cd52": {
+"text": "That's a key.",
+"dur": 1.0
+},
+"86e6c673": {
+"text": "Which one rhymes with moon?",
+"dur": 1.56
+},
+"26428b62": {
+"text": "That's a moon.",
+"dur": 0.98
+},
+"083d6d8e": {
+"text": "Yes! spoon rhymes with moon!",
+"dur": 1.94
+},
+"4eb4bbb0": {
+"text": "That's a spoon.",
+"dur": 1.05
+},
+"dce0e0f4": {
+"text": "Yes! balloon rhymes with moon!",
+"dur": 1.96
+},
+"84c184ee": {
+"text": "That's a balloon.",
+"dur": 1.07
+},
+"2e367892": {
+"text": "Which one rhymes with cake?",
+"dur": 1.55
+},
+"1590b42f": {
+"text": "That's a cake.",
+"dur": 1.02
+},
+"1fca4fe4": {
+"text": "Yes! snake rhymes with cake!",
+"dur": 1.86
+},
+"b29b34b9": {
+"text": "That's a snake.",
+"dur": 1.05
+},
+"18079eb9": {
+"text": "Yes! lake rhymes with cake!",
+"dur": 1.77
+},
+"61a4af00": {
+"text": "That's a lake.",
+"dur": 0.94
+},
+"d5df299d": {
+"text": "Which one rhymes with mouse?",
+"dur": 1.56
+},
+"b161d14e": {
+"text": "That's a mouse.",
+"dur": 1.02
+},
+"e0cd441f": {
+"text": "Yes! house rhymes with mouse!",
+"dur": 1.9
+},
+"eaab07d5": {
+"text": "That's a house.",
+"dur": 1.0
+},
+"bb4f56e4": {
+"text": "Which one rhymes with bear?",
+"dur": 1.51
+},
+"464d0b59": {
+"text": "That's a bear.",
+"dur": 0.92
+},
+"425d0525": {
+"text": "Yes! chair rhymes with bear!",
+"dur": 1.86
+},
+"16bf4ec4": {
+"text": "That's a chair.",
+"dur": 0.96
+},
+"9f289626": {
+"text": "Yes! pear rhymes with bear!",
+"dur": 1.79
+},
+"b7c3983f": {
+"text": "That's a pear.",
+"dur": 0.97
+},
+"3dae5960": {
+"text": "Which one rhymes with fish?",
+"dur": 1.53
+},
+"69b06e19": {
+"text": "That's a fish.",
+"dur": 1.0
+},
+"735ea7ee": {
+"text": "Yes! dish rhymes with fish!",
+"dur": 1.79
+},
+"f81fc92f": {
+"text": "That's a dish.",
+"dur": 0.98
+},
+"1a5b3081": {
+"text": "Which one rhymes with goat?",
+"dur": 1.55
+},
+"b50cd04c": {
+"text": "That's a goat.",
+"dur": 0.99
+},
+"b7a4ccc1": {
+"text": "Yes! boat rhymes with goat!",
+"dur": 1.9
+},
+"0a0b9e39": {
+"text": "That's a boat.",
+"dur": 0.99
+},
+"72b0113a": {
+"text": "Yes! coat rhymes with goat!",
+"dur": 1.86
+},
+"3b7a23d8": {
+"text": "That's a coat.",
+"dur": 1.03
+},
+"413c88e1": {
+"text": "Which one rhymes with king?",
+"dur": 1.53
+},
+"be0f4168": {
+"text": "That's a king.",
+"dur": 0.99
+},
+"154e4465": {
+"text": "Yes! ring rhymes with king!",
+"dur": 1.79
+},
+"9833c99d": {
+"text": "That's a ring.",
+"dur": 0.97
+},
+"5776772f": {
+"text": "Which one rhymes with duck?",
+"dur": 1.54
+},
+"b8528cfe": {
+"text": "That's a duck.",
+"dur": 0.98
+},
+"09424400": {
+"text": "Yes! truck rhymes with duck!",
+"dur": 1.86
+},
+"da2ef74e": {
+"text": "That's a truck.",
+"dur": 1.01
+},
+"713553f6": {
+"text": "Which one rhymes with sock?",
+"dur": 1.57
+},
+"57fddabb": {
+"text": "That's a sock.",
+"dur": 1.04
+},
+"cbcb468e": {
+"text": "Yes! clock rhymes with sock!",
+"dur": 1.9
+},
+"52296a4f": {
+"text": "That's a clock.",
+"dur": 1.03
+},
+"9e9ed3c3": {
+"text": "Yes! rock rhymes with sock!",
+"dur": 1.86
+},
+"6d662892": {
+"text": "That's a rock.",
+"dur": 1.0
+},
+"b50e2eb3": {
+"text": "Which one rhymes with snail?",
+"dur": 1.59
+},
+"b596bc44": {
+"text": "That's a snail.",
+"dur": 1.04
+},
+"3a0a5ea0": {
+"text": "Yes! whale rhymes with snail!",
+"dur": 1.9
+},
+"da73ba14": {
+"text": "That's a whale.",
+"dur": 0.98
+},
+"be3ee8a6": {
+"text": "Yes! mail rhymes with snail!",
+"dur": 1.94
+},
+"c1e8da64": {
+"text": "That's a mail.",
+"dur": 0.99
+},
+"6d7e07f1": {
+"text": "Which one rhymes with rose?",
+"dur": 1.6
+},
+"8f3dbba8": {
+"text": "That's a rose.",
+"dur": 1.05
+},
+"c417a30e": {
+"text": "Yes! nose rhymes with rose!",
+"dur": 1.9
+},
+"9b5670d4": {
+"text": "That's a nose.",
+"dur": 1.08
+},
+"a0062d84": {
+"text": "Yes! toes rhymes with rose!",
+"dur": 1.9
+},
+"2588517e": {
+"text": "That's a toes.",
+"dur": 1.09
+},
+"9f486f0b": {
+"text": "Which one rhymes with bell?",
+"dur": 1.53
+},
+"62406b7a": {
+"text": "That's a bell.",
+"dur": 0.93
+},
+"4bc7f03f": {
+"text": "Yes! shell rhymes with bell!",
+"dur": 1.88
+},
+"d474189f": {
+"text": "That's a shell.",
+"dur": 0.96
+},
+"51bab117": {
+"text": "Which one rhymes with ball?",
+"dur": 1.57
+},
+"adf3242e": {
+"text": "That's a ball.",
+"dur": 0.98
+},
+"0c293101": {
+"text": "Yes! wall rhymes with ball!",
+"dur": 1.88
+},
+"ab3f83ef": {
+"text": "That's a wall.",
+"dur": 0.99
+},
+"7d34edfd": {
+"text": "Which one rhymes with sheep?",
+"dur": 1.53
+},
+"f28590fa": {
+"text": "That's a sheep.",
+"dur": 1.0
+},
+"dd43f3c3": {
+"text": "Yes! jeep rhymes with sheep!",
+"dur": 1.86
+},
+"cdede9ef": {
+"text": "That's a jeep.",
+"dur": 1.0
+},
+"3e8b1698": {
+"text": "Which one rhymes with corn?",
+"dur": 1.59
+},
+"2759b0b1": {
+"text": "That's a corn.",
+"dur": 1.03
+},
+"24ff16f1": {
+"text": "Yes! horn rhymes with corn!",
+"dur": 1.91
+},
+"755d265a": {
+"text": "That's a horn.",
+"dur": 0.98
+},
+"ef575f6a": {
+"text": "Yes! unicorn rhymes with corn!",
+"dur": 2.13
+},
+"911a4c41": {
+"text": "That's an unicorn.",
+"dur": 1.28
+},
+"0d6d7779": {
+"text": "Which one rhymes with crown?",
+"dur": 1.59
+},
+"c931a476": {
+"text": "That's a crown.",
+"dur": 0.98
+},
+"1acbb126": {
+"text": "Yes! clown rhymes with crown!",
+"dur": 1.98
+},
+"4d5aff3c": {
+"text": "That's a clown.",
+"dur": 0.98
+},
+"3e77eb9c": {
+"text": "Yes! gown rhymes with crown!",
+"dur": 1.96
+},
+"cef4f454": {
+"text": "That's a gown.",
+"dur": 0.96
+},
+"0061c249": {
+"text": "Which one rhymes with hen?",
+"dur": 1.52
+},
+"ea7d56ae": {
+"text": "That's a hen.",
+"dur": 0.98
+},
+"b3802050": {
+"text": "Yes! pen rhymes with hen!",
+"dur": 1.75
+},
+"fe41d906": {
+"text": "That's a pen.",
+"dur": 0.97
+},
+"c055713c": {
+"text": "Yes! ten rhymes with hen!",
+"dur": 1.79
+},
+"d3061402": {
+"text": "That's a ten.",
+"dur": 1.0
+},
+"fddca63f": {
+"text": "Which one rhymes with fox?",
+"dur": 1.64
+},
+"143e3170": {
+"text": "That's a fox.",
+"dur": 1.1
+},
+"899031f8": {
+"text": "Yes! box rhymes with fox!",
+"dur": 2.05
+},
+"69cbfbfc": {
+"text": "That's a box.",
+"dur": 1.08
+},
+"f4e561f0": {
+"text": "Yes! socks rhymes with fox!",
+"dur": 2.09
+},
+"4c9f68d8": {
+"text": "That's a socks.",
+"dur": 1.09
+},
+"c5357174": {
+"text": "Which one rhymes with bug?",
+"dur": 1.55
+},
+"810cc787": {
+"text": "That's a bug.",
+"dur": 0.96
+},
+"d48bf63d": {
+"text": "Yes! mug rhymes with bug!",
+"dur": 1.86
+},
+"08d0b2a6": {
+"text": "That's a mug.",
+"dur": 0.98
+},
+"3e21b6aa": {
+"text": "Yes! hug rhymes with bug!",
+"dur": 1.77
+},
+"c35609d9": {
+"text": "That's a hug.",
+"dur": 0.95
+},
+"4171b39c": {
+"text": "Which one rhymes with train?",
+"dur": 1.59
+},
+"c649fb7b": {
+"text": "That's a train.",
+"dur": 1.08
+},
+"c0624f6c": {
+"text": "Yes! rain rhymes with train!",
+"dur": 1.94
+},
+"f7b4df31": {
+"text": "That's a rain.",
+"dur": 1.0
+},
+"1adc4c0e": {
+"text": "Yes! brain rhymes with train!",
+"dur": 1.92
+},
+"733eb171": {
+"text": "That's a brain.",
+"dur": 1.04
+},
+"ada75c38": {
+"text": "Read the word, then tap its picture!",
+"dur": 2.13
+},
+"8284d3f8": {
+"text": "Can you spell cat?",
+"dur": 1.22
+},
+"e5e02f4f": {
+"text": "cat! You spelled cat!",
+"dur": 1.37
+},
+"9c65b3ef": {
+"text": "Yes! That says cat!",
+"dur": 1.41
+},
+"7b5e12fe": {
+"text": "Can you spell dog?",
+"dur": 1.17
+},
+"b1b98133": {
+"text": "dog! You spelled dog!",
+"dur": 1.51
+},
+"9c31a4e1": {
+"text": "Yes! That says dog!",
+"dur": 1.54
+},
+"bed5c73a": {
+"text": "Can you spell sun?",
+"dur": 1.15
+},
+"ab2608a3": {
+"text": "sun! You spelled sun!",
+"dur": 1.41
+},
+"c8ca15b9": {
+"text": "Yes! That says sun!",
+"dur": 1.37
+},
+"baf73d2b": {
+"text": "That's a sun.",
+"dur": 0.94
+},
+"a9aa15e1": {
+"text": "Can you spell hat?",
+"dur": 1.15
+},
+"956c951b": {
+"text": "hat! You spelled hat!",
+"dur": 1.34
+},
+"dae3707a": {
+"text": "Yes! That says hat!",
+"dur": 1.41
+},
+"7fb82128": {
+"text": "Can you spell pig?",
+"dur": 1.11
+},
+"467ca0bf": {
+"text": "pig! You spelled pig!",
+"dur": 1.34
+},
+"80e5bfe7": {
+"text": "Yes! That says pig!",
+"dur": 1.43
+},
+"274ca6ed": {
+"text": "That's a pig.",
+"dur": 0.98
+},
+"0cd57712": {
+"text": "Can you spell bus?",
+"dur": 1.17
+},
+"40a96c0b": {
+"text": "bus! You spelled bus!",
+"dur": 1.47
+},
+"15c6f841": {
+"text": "Yes! That says bus!",
+"dur": 1.45
+},
+"6d0ca80b": {
+"text": "That's a bus.",
+"dur": 0.99
+},
+"6e5317b0": {
+"text": "Can you spell cup?",
+"dur": 1.1
+},
+"86d1b19f": {
+"text": "cup! You spelled cup!",
+"dur": 1.28
+},
+"b047be57": {
+"text": "Yes! That says cup!",
+"dur": 1.39
+},
+"f8ff6a85": {
+"text": "That's a cup.",
+"dur": 0.92
+},
+"f7acb393": {
+"text": "Can you spell bed?",
+"dur": 1.15
+},
+"5b130537": {
+"text": "bed! You spelled bed!",
+"dur": 1.37
+},
+"269e7094": {
+"text": "Yes! That says bed!",
+"dur": 1.41
+},
+"61e5874a": {
+"text": "That's a bed.",
+"dur": 0.95
+},
+"5b6e9c99": {
+"text": "Can you spell fox?",
+"dur": 1.28
+},
+"f7c78697": {
+"text": "fox! You spelled fox!",
+"dur": 1.64
+},
+"5c6e4316": {
+"text": "Yes! That says fox!",
+"dur": 1.49
+},
+"8fa0f297": {
+"text": "Can you spell hen?",
+"dur": 1.15
+},
+"91cfdf2f": {
+"text": "hen! You spelled hen!",
+"dur": 1.37
+},
+"e0d8ec90": {
+"text": "Yes! That says hen!",
+"dur": 1.45
+},
+"18d589f6": {
+"text": "Can you spell bug?",
+"dur": 1.13
+},
+"8ed84dbb": {
+"text": "bug! You spelled bug!",
+"dur": 1.35
+},
+"09c6e55d": {
+"text": "Yes! That says bug!",
+"dur": 1.43
+},
+"63b3743a": {
+"text": "Can you spell map?",
+"dur": 1.13
+},
+"3d345483": {
+"text": "map! You spelled map!",
+"dur": 1.41
+},
+"a7c8a909": {
+"text": "Yes! That says map!",
+"dur": 1.43
+},
+"23eef23b": {
+"text": "That's a map.",
+"dur": 0.98
+},
+"bc70d55f": {
+"text": "Can you spell net?",
+"dur": 1.13
+},
+"d02a2137": {
+"text": "net! You spelled net!",
+"dur": 1.44
+},
+"eb434eb0": {
+"text": "Yes! That says net!",
+"dur": 1.39
+},
+"bd98592e": {
+"text": "That's a net.",
+"dur": 0.98
+},
+"6eb38937": {
+"text": "Can you spell pot?",
+"dur": 1.17
+},
+"2582707b": {
+"text": "pot! You spelled pot!",
+"dur": 1.41
+},
+"6dd69774": {
+"text": "Yes! That says pot!",
+"dur": 1.45
+},
+"185b99da": {
+"text": "That's a pot.",
+"dur": 0.98
+},
+"068879a2": {
+"text": "Can you spell web?",
+"dur": 1.13
+},
+"f0f8740b": {
+"text": "web! You spelled web!",
+"dur": 1.41
+},
+"0855ac19": {
+"text": "Yes! That says web!",
+"dur": 1.49
+},
+"6119ba73": {
+"text": "That's a web.",
+"dur": 0.97
+},
+"d1cdd146": {
+"text": "Can you spell log?",
+"dur": 1.19
+},
+"b2ea5233": {
+"text": "log! You spelled log!",
+"dur": 1.51
+},
+"0523b119": {
+"text": "Yes! That says log!",
+"dur": 1.47
+},
+"17bbf07d": {
+"text": "Can you spell box?",
+"dur": 1.26
+},
+"5f40ce4f": {
+"text": "box! You spelled box!",
+"dur": 1.58
+},
+"1690dfda": {
+"text": "Yes! That says box!",
+"dur": 1.51
+},
+"9884f69a": {
+"text": "Can you spell cab?",
+"dur": 1.15
+},
+"3e5af093": {
+"text": "cab! You spelled cab!",
+"dur": 1.45
+},
+"8a659799": {
+"text": "Yes! That says cab!",
+"dur": 1.43
+},
+"0f1da23b": {
+"text": "That's a cab.",
+"dur": 0.98
 }
 }
 }

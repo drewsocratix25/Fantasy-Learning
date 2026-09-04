@@ -33,11 +33,33 @@
       for (let n = 1; n <= D_.MAX_COUNT; n++) { add(String(n)); add(`Can you find the number ${n}?`); add(`Yes! ${n} frog${n > 1 ? 's' : ''}!`); add(`Yes! That's ${n}! Let's count ${n} frogs!`); add(`That's ${n}.`); add(`Look for ${n}!`); }
       // shapes & colours
       D_.COLORS.forEach(([c]) => add(`Pop the ${c} balloon!`)); D_.SHAPES.forEach((s) => add(`Pop the ${s}!`));
-      D_.COLORS.forEach(([c]) => D_.SHAPES.forEach((s) => { add(`Pop the ${c} ${s}!`); add(`Pop! A ${c} ${s}!`); add(`That's a ${c} ${s}.`); }));
+      D_.COLORS.forEach(([c]) => D_.SHAPES.forEach((s) => { const ar = FL.Lines.article(c); add(`Pop the ${c} ${s}!`); add(`Pop! ${ar[0].toUpperCase() + ar.slice(1)} ${c} ${s}!`); add(`That's ${ar} ${c} ${s}.`); }));
       // patterns
       add('What comes next?'); D_.CREATURES.forEach((cr) => { add(`Yes! The ${cr.name} comes next!`); add(`Hmm, not the ${cr.name}. Listen again!`); });
+      // progression: regions, gates, rewards, songs
+      D_.REGIONS.forEach((r) => { if (r.gateHint) add(r.gateHint); if (r.openLine) add(r.openLine); });
+      D_.UNLOCKS.forEach((u) => add(u.line));
+      songs.forEach((sg) => { if (sg.unlock) add(`You unlocked a new song: ${sg.title}!`, `You unlocked a new song: ${spell(sg.title)}!`); });
+      add('Your friends are waiting! Tap the gate to see how many more you need.');
+      // bare letter names and "we need" (spelling)
+      Object.keys(D_.LETTER_WORDS).forEach((Lt) => { add(Lt, D_.LETTER_SPOKEN[Lt]); add(`We need the letter ${Lt}.`, `We need the letter ${D_.LETTER_SPOKEN[Lt]}.`); });
+      // rhymes
+      const seenWord = new Set(); const thatsA = (w) => { if (!seenWord.has(w)) { seenWord.add(w); add(`That's ${FL.Lines.article(w)} ${w}.`); } };
+      D_.RHYMES.forEach(([t, te, rs]) => { add(`Which one rhymes with ${t}?`); thatsA(t); rs.forEach(([w]) => { add(`Yes! ${w} rhymes with ${t}!`); thatsA(w); }); });
+      // spelling & reading
+      add('Read the word, then tap its picture!'); D_.WORDS3.forEach(([w]) => { add(`Can you spell ${w}?`); add(`${w}! You spelled ${w}!`); add(`Yes! That says ${w}!`); thatsA(w); });
+      // owl math
+      for (let a = 1; a <= 9; a++) for (let b = 1; a + b <= 10; b++) { add(`What is ${a} plus ${b}?`); add(`Yes! ${a} plus ${b} is ${a + b}!`); }
+      for (let a = 2; a <= 10; a++) for (let b = 1; b < a; b++) { add(`What is ${a} take away ${b}?`); add(`Yes! ${a} take away ${b} is ${a - b}!`); }
+      // simon games
+      Object.values(D_.SIMON).forEach((sm) => add(sm.intro)); add('Your turn!'); add('Yes! Now a longer one!'); add('Not quite. Listen again!'); add('Yes! You did it!');
+      // clock
+      add('What time is it?'); D_.CLOCK_HOURS.forEach((h) => { add(`Yes! It's ${h} o'clock!`); add(`Yes! It's half past ${h}!`); add(`That's ${h} o'clock.`); add(`That's half past ${h}.`); });
+      // number line
+      add('What number is missing?'); for (let n = 1; n <= D_.NUMBERLINE_MAX; n++) { add(`Yes! ${n}!`); if (n > D_.MAX_COUNT) add(`That's ${n}.`); }
       return L;
     },
+    article(w) { return /^[aeiou]/i.test(w) ? 'an' : 'a'; },
     // Stable id for a line: FNV-1a over the normalised text (mirrored in tools/make-voices.py).
     normalize(text) { return String(text).toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim(); },
     id(text) { const s = Lines.normalize(text); let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16).padStart(8, '0'); },

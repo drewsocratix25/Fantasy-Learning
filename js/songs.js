@@ -23,22 +23,32 @@
       words: 'Old Mac-Don-ald had a farm | E I E I O | And on that farm he had a cow | E I E I O | With a moo moo here and a moo moo there | Here a moo there a moo ev-ery-where a moo moo | Old Mac-Don-ald had a farm | E I E I O',
     },
     {
-      id: 'row', title: 'Row Your Boat', emoji: '🚣', bpm: 120, color: '#7dd3fc',
+      id: 'row', unlock: 6, title: 'Row Your Boat', emoji: '🚣', bpm: 120, color: '#7dd3fc',
       notes: 'C4:1.5 C4:1.5 C4:1 D4:0.5 E4:1.5 | E4:1 D4:0.5 E4:1 F4:0.5 G4:3 | C5:0.5 C5:0.5 C5:0.5 G4:0.5 G4:0.5 G4:0.5 E4:0.5 E4:0.5 E4:0.5 C4:0.5 C4:0.5 C4:0.5 | G4:1 F4:0.5 E4:1 D4:0.5 C4:3',
       words: 'Row row row your boat | gent-ly down the stream | mer-ri-ly mer-ri-ly mer-ri-ly mer-ri-ly | life is but a dream',
     },
     {
-      id: 'london', title: 'London Bridge', emoji: '🌉', bpm: 112, color: '#c4b5fd',
+      id: 'london', unlock: 14, title: 'London Bridge', emoji: '🌉', bpm: 112, color: '#c4b5fd',
       notes: 'G4:1.5 A4:0.5 G4:1 F4:1 E4:1 F4:1 G4:2 | D4:1 E4:1 F4:2 | E4:1 F4:1 G4:2 | G4:1.5 A4:0.5 G4:1 F4:1 E4:1 F4:1 G4:2 | D4:2 G4:2 E4:1 C4:3',
       words: 'Lon-don Bridge is fall-ing down | fall-ing down | fall-ing down | Lon-don Bridge is fall-ing down | my fair la-dy',
     },
     {
-      id: 'spider', title: 'Itsy Bitsy Spider', emoji: '🕷️', bpm: 116, color: '#fdba74',
+      id: 'spider', unlock: 24, title: 'Itsy Bitsy Spider', emoji: '🕷️', bpm: 116, color: '#fdba74',
       notes: 'G4:0.5 C4:1 C4:0.5 C4:1 D4:0.5 E4:1.5 E4:1 | E4:1 D4:0.5 C4:1 D4:0.5 E4:1.5 C4:1.5 | E4:1 E4:1 F4:1 G4:3 | G4:1 F4:0.5 E4:1 F4:0.5 G4:1.5 E4:1.5 | C4:1 C4:1 D4:1 E4:3 | E4:1 D4:0.5 C4:1 D4:0.5 E4:1.5 C4:1.5 | G4:0.5 G4:0.5 C4:1 C4:0.5 C4:1 D4:0.5 E4:1.5 E4:1 | E4:1 D4:0.5 C4:1 D4:0.5 E4:1.5 C4:2',
       words: 'The it-sy bit-sy spi-der | went up the wa-ter spout | Down came the rain | and washed the spi-der out | Out came the sun | and dried up all the rain | and the it-sy bit-sy spi-der | went up the spout a-gain',
     },
     {
-      id: 'birthday', title: 'Happy Birthday', emoji: '🎂', bpm: 110, color: '#fca5a5',
+      id: 'hotcross', title: 'Hot Cross Buns', emoji: '🥐', bpm: 100, color: '#fcd34d', unlock: 78,
+      notes: 'E4:1 D4:1 C4:2 | E4:1 D4:1 C4:2 | C4:0.5 C4:0.5 C4:0.5 C4:0.5 D4:0.5 D4:0.5 D4:0.5 D4:0.5 | E4:1 D4:1 C4:2',
+      words: 'Hot cross buns | Hot cross buns | One a pen-ny two a pen-ny | Hot cross buns',
+    },
+    {
+      id: 'baabaa', title: 'Baa Baa Black Sheep', emoji: '🐑', bpm: 104, color: '#e2e8f0', unlock: 95,
+      notes: 'C4:1 C4:1 G4:1 G4:1 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2 | F4:1 F4:1 E4:1 E4:1 D4:1 D4:1 C4:2 | G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:1 F4:1 E4:0.5 E4:0.5 E4:1 D4:2 | G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4:1 E4:0.5 E4:0.5 E4:1 D4:2 | C4:1 C4:1 G4:1 G4:1 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2 | F4:1 F4:1 E4:1 E4:1 D4:1 D4:1 C4:2',
+      words: 'Baa baa black sheep have you an-y wool | Yes sir yes sir three bags full | One for the mas-ter and one for the dame | One for the lit-tle boy who lives down the lane | Baa baa black sheep have you an-y wool | Yes sir yes sir three bags full',
+    },
+    {
+      id: 'birthday', title: 'Happy Birthday', emoji: '🎂', bpm: 110, color: '#fca5a5', unlock: 36,
       notes: 'G4:0.75 G4:0.25 A4:1 G4:1 C5:1 B4:2 | G4:0.75 G4:0.25 A4:1 G4:1 D5:1 C5:2 | G4:0.75 G4:0.25 G5:1 E5:1 C5:1 B4:1 A4:2 | F5:0.75 F5:0.25 E5:1 C5:1 D5:1 C5:2',
       words: 'Hap-py birth-day to you | Hap-py birth-day to you | Hap-py birth-day dear prin-cess | Hap-py birth-day to you',
     },
@@ -68,6 +78,7 @@
   const Songs = {
     list: SONGS,
     byId(id) { return SONGS.find((s) => s.id === id); },
+    unlocked(stars) { return SONGS.filter((s) => (s.unlock || 0) <= stars); },
     parse,
     // Absolute timeline in seconds.
     timeline(song, bpm) {

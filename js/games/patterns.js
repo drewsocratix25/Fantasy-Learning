@@ -16,13 +16,13 @@
       this.choices = [...opts].sort(() => Math.random() - 0.5).map((c, i, arr) => ({ c, x: g.W / 2 + (i - (arr.length - 1) / 2) * 200, y: g.H - 130, wob: 0 }));
       this.tries = 0; this.locked = true; this.lit = -1; this.hopping = false; this.hopStep = -1; this.roundT = 0; this.placed = null;
       if (!first) FL.Audio.sfx.whoosh();
-      setTimeout(() => this.playPattern(true), first ? 500 : 800);
+      FL.Game.later(() => this.playPattern(true), first ? 500 : 800);
     },
     slotX(i) { const g = G(); const w = Math.min(120, (g.W - 200) / this.slots); return g.W / 2 + (i - (this.slots - 1) / 2) * w; },
     playPattern(thenAsk) {
       this.playing = true; const step = 0.5; const t0 = FL.Audio.now() + 0.1;
-      this.seq.forEach((c, i) => { FL.Audio.note(c.note, { inst: c.inst, when: t0 + i * step, vol: 0.5, dur: 0.4 }); setTimeout(() => { this.lit = i; G().fx.burst(this.slotX(i), G().H / 2 - 40, { count: 6, type: 'note', colors: [c.color], speed: 150, life: 0.7, size: 10, gravity: -150, spread: 1 }); }, (i * step + 0.1) * 1000); });
-      setTimeout(() => { this.lit = -1; this.playing = false; this.locked = false; if (thenAsk) FL.Audio.say('What comes next?'); }, (this.seq.length * step + 0.3) * 1000);
+      this.seq.forEach((c, i) => { FL.Audio.note(c.note, { inst: c.inst, when: t0 + i * step, vol: 0.5, dur: 0.4 }); FL.Game.later(() => { this.lit = i; G().fx.burst(this.slotX(i), G().H / 2 - 40, { count: 6, type: 'note', colors: [c.color], speed: 150, life: 0.7, size: 10, gravity: -150, spread: 1 }); }, (i * step + 0.1) * 1000); });
+      FL.Game.later(() => { this.lit = -1; this.playing = false; this.locked = false; if (thenAsk) FL.Audio.say('What comes next?'); }, (this.seq.length * step + 0.3) * 1000);
     },
     repeatPrompt() { if (!this.playing && !this.hopping) { this.locked = true; this.playPattern(true); } },
     down(p) {
@@ -37,8 +37,8 @@
         g.fx.burst(this.slotX(this.slots - 1), g.H / 2 - 40, { count: 30, type: 'star', colors: ['#fde047', '#fff', ch.c.color], speed: 360, life: 0.9, size: 12 });
         FL.Audio.say(`Yes! The ${ch.c.name} comes next!`);
         // play the full pattern as a tune while the princess hops across
-        setTimeout(() => { this.hopping = true; this.hopStep = 0; const all = this.seq.concat([ch.c]); const step = 0.42; const t0 = FL.Audio.now() + 0.05; all.forEach((c, i) => { FL.Audio.note(c.note, { inst: c.inst, when: t0 + i * step, vol: 0.5, dur: 0.4 }); setTimeout(() => { this.hopStep = i; this.lit = i; FL.Audio.sfx.hop(); }, i * step * 1000); }); setTimeout(() => { this.hopping = false; this.lit = -1; this.round++; if (this.round >= this.total) this.finish(); else this.newRound(false); }, (all.length * step + 0.8) * 1000); }, 1300);
-      } else { this.tries++; ch.wob = 1; FL.Audio.sfx.wrong(); FL.Audio.say(`Hmm, not the ${ch.c.name}. Listen again!`); this.locked = true; setTimeout(() => this.playPattern(false), 1600); }
+        FL.Game.later(() => { this.hopping = true; this.hopStep = 0; const all = this.seq.concat([ch.c]); const step = 0.42; const t0 = FL.Audio.now() + 0.05; all.forEach((c, i) => { FL.Audio.note(c.note, { inst: c.inst, when: t0 + i * step, vol: 0.5, dur: 0.4 }); FL.Game.later(() => { this.hopStep = i; this.lit = i; FL.Audio.sfx.hop(); }, i * step * 1000); }); FL.Game.later(() => { this.hopping = false; this.lit = -1; this.round++; if (this.round >= this.total) this.finish(); else this.newRound(false); }, (all.length * step + 0.8) * 1000); }, 1300);
+      } else { this.tries++; ch.wob = 1; FL.Audio.sfx.wrong(); FL.Audio.say(`Hmm, not the ${ch.c.name}. Listen again!`); this.locked = true; FL.Game.later(() => this.playPattern(false), 1600); }
     },
     finish() {
       const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp('patterns');

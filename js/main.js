@@ -31,13 +31,21 @@
     FL.Audio.hush();
     G.transition = { phase: 'out', t: 0, name, params };
   };
+  G._timers = new Set();
+  G.later = function (fn, ms) { const id = setTimeout(() => { G._timers.delete(id); fn(); }, ms); G._timers.add(id); return id; };
+  G.refreshLook = function () {
+    let look = FL.Art.PRINCESSES[FL.Save.data.princess] || FL.Art.PRINCESSES[0];
+    look = Object.assign({}, look, { crownStyle: FL.Save.data.crown || 'gold', wand: FL.Save.data.wand || null });
+    if (FL.Save.data.dress) Object.assign(look, { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] });
+    G.look = look; return look;
+  };
   function switchScene(name, params) {
+    G._timers.forEach((id) => clearTimeout(id)); G._timers.clear();
     if (G.scene && G.scene.exit) G.scene.exit();
     FL.UI.closeOverlay(); G.pointers.clear();
     if (!G.scenes[name]) { console.warn('missing scene', name); name = 'world'; }
     G.scene = G.scenes[name]; G.sceneName = name;
-    G.look = FL.Art.PRINCESSES[FL.Save.data.princess] || FL.Art.PRINCESSES[0];
-    if (FL.Save.data.dress) { G.look = Object.assign({}, G.look, { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] }); }
+    G.refreshLook();
     document.getElementById('nameWrap').hidden = name !== 'title';
     if (G.scene.enter) G.scene.enter(params || {});
     FL.Audio.music.play(G.scene.music || null);

@@ -197,6 +197,9 @@
     pond: { bpm: 100, keys: ['G', 'C', 'D'], leads: ['marimba', 'wood', 'music'], arpInst: 'marimba', meter: 4, pad: 0.3, perc: 0.7, vol: 0.85, pentatonic: true },
     meadow: { bpm: 126, keys: ['D', 'G', 'A'], leads: ['bell', 'music', 'flute'], arpInst: 'harp', meter: 3, pad: 0.9, perc: 0.25, vol: 0.85 },
     bridge: { bpm: 80, keys: ['A', 'D'], leads: ['harp'], arpInst: 'pad', meter: 4, pad: 1, perc: 0, vol: 0.5, sparse: true },
+    forest: { bpm: 86, keys: ['D', 'G', 'A'], leads: ['flute', 'harp', 'music'], arpInst: 'harp', meter: 4, pad: 1, perc: 0.2, vol: 0.85 },
+    peaks: { bpm: 100, keys: ['E', 'A', 'B'], leads: ['bell', 'music', 'flute'], arpInst: 'music', meter: 3, pad: 1, perc: 0, vol: 0.8 },
+    cave: { bpm: 76, keys: ['E', 'A'], leads: ['bell'], arpInst: 'pad', meter: 4, pad: 1, perc: 0, vol: 0.45, sparse: true },
   };
   const music = { timer: null, group: null, style: null, next: 0, step: 0, phrase: null, phraseNo: 0, lastPitch: 72, motif: null, keyIdx: 0, duck: 1 };
   function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }

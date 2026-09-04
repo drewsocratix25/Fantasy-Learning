@@ -14,7 +14,7 @@
     layout() {
       const g = G(); this.buttons = [];
       this.buttons.push(new UI.Button({ x: g.W / 2 - 170, y: g.H - 128, w: 340, h: 104, label: 'PLAY!', emoji: '🎵', color: '#4ade80', size: 48, pulse: true, onTap: () => this.play() }));
-      this.swatches = A.DRESS_COLORS.map((c, i) => new UI.Button({ x: g.W / 2 - (A.DRESS_COLORS.length * 62) / 2 + i * 62 + 4, y: g.H - 205, w: 54, h: 54, color: c[0], round: true, onTap: () => { FL.Save.data.dress = c; FL.Save.save(); G().look = Object.assign({}, A.PRINCESSES[this.sel], { dress: c[0], dressDark: c[1] }); FL.Audio.sfx.sparkle(); } }));
+      const DC = A.dressColors(); this.swatches = DC.map((c, i) => new UI.Button({ x: g.W / 2 - (DC.length * 62) / 2 + i * 62 + 4, y: g.H - 205, w: 54, h: 54, color: c[0], round: true, onTap: () => { FL.Save.data.dress = c; FL.Save.save(); G().refreshLook(); FL.Audio.sfx.sparkle(); } }));
       this.positionInput();
     },
     positionInput() {
@@ -33,7 +33,7 @@
     down(p) { if (UI.pressDown(this.buttons, p)) return; if (UI.pressDown(this.swatches, p)) return; },
     up(p) {
       if (UI.pressUp(this.buttons, p)) return; if (UI.pressUp(this.swatches, p)) return;
-      for (let i = 0; i < A.PRINCESSES.length; i++) { const pos = this.princessAt(i); if (Math.abs(p.x - pos.x) < 80 && p.y > pos.y - 190 && p.y < pos.y + 20) { this.sel = i; FL.Save.data.princess = i; FL.Save.data.dress = null; FL.Save.save(); G().look = A.PRINCESSES[i]; FL.Audio.sfx.sparkle(); FL.Audio.say(`Hi! I'm ${A.PRINCESSES[i].name}!`); return; } }
+      for (let i = 0; i < A.PRINCESSES.length; i++) { const pos = this.princessAt(i); if (Math.abs(p.x - pos.x) < 80 && p.y > pos.y - 190 && p.y < pos.y + 20) { this.sel = i; FL.Save.data.princess = i; FL.Save.data.dress = null; FL.Save.save(); G().refreshLook(); FL.Audio.sfx.sparkle(); FL.Audio.say(`Hi! I'm ${A.PRINCESSES[i].name}!`); return; } }
     },
     key(k) { if (k === 'Enter' || k === ' ') this.play(); },
     update(dt) { this.t += dt; const g = G(); this.notes.forEach((n) => { n.y -= n.v * dt; if (n.y < -40) { n.y = g.H + 40; n.x = Math.random() * g.W; } }); },
@@ -54,7 +54,7 @@
       ctx.restore();
       A.text(ctx, 'Pick your princess!', g.W / 2, g.H / 2 - 100, { size: 38, color: '#fff', stroke: 'rgba(80,20,90,.6)' });
       for (let i = 0; i < A.PRINCESSES.length; i++) {
-        const pos = this.princessAt(i); const look = i === this.sel && FL.Save.data.dress ? Object.assign({}, A.PRINCESSES[i], { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] }) : A.PRINCESSES[i];
+        const pos = this.princessAt(i); const look = i === this.sel ? g.look : A.PRINCESSES[i];
         if (i === this.sel) { ctx.fillStyle = 'rgba(253,224,71,.45)'; A.ellipse(ctx, pos.x, pos.y + 4, 80, 24); ctx.fill(); ctx.strokeStyle = '#fde047'; ctx.lineWidth = 6; A.roundRect(ctx, pos.x - 90, pos.y - 205, 180, 240, 30); ctx.stroke(); }
         A.princess(ctx, pos.x, pos.y, look, { t: t + i, wave: i === this.sel, seed: i }, i === this.sel ? 1.25 : 1.1);
         A.text(ctx, look.name, pos.x, pos.y + 30, { size: 28, color: '#fff', stroke: 'rgba(80,20,90,.6)' });

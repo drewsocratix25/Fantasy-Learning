@@ -20,7 +20,7 @@
         const arr = [...opts].sort(() => Math.random() - 0.5); const sp = 220; arr.forEach((v, i) => this.choices.push({ v, x: cx + (i - (arr.length - 1) / 2) * sp, y: cy + 20, wob: 0 }));
       }
       if (!first) FL.Audio.sfx.whoosh();
-      setTimeout(() => this.repeatPrompt(), first ? 400 : 600);
+      FL.Game.later(() => this.repeatPrompt(), first ? 400 : 600);
     },
     repeatPrompt() {
       if (this.mode === 'count') { if (this.phase === 'count') FL.Audio.say('Tap each frog to count them!'); else FL.Audio.say(`How many frogs did you count? Tap the number.`); }
@@ -29,12 +29,12 @@
     showChoices() {
       const g = G(); const max = Math.min(FL.Data.MAX_COUNT, 4 + this.level * 2); const opts = new Set([this.n]); while (opts.size < 3) opts.add(Math.max(1, Math.min(Math.max(max, this.n + 2), this.n + Math.floor(Math.random() * 5) - 2)));
       const arr = [...opts].sort(() => Math.random() - 0.5); arr.forEach((v, i) => this.choices.push({ v, x: g.W / 2 + (i - 1) * 220, y: g.H - 120, wob: 0 }));
-      this.phase = 'choose'; setTimeout(() => this.repeatPrompt(), 300);
+      this.phase = 'choose'; FL.Game.later(() => this.repeatPrompt(), 300);
     },
     down(p) {
       if (this.locked) return; const g = G();
       if (this.phase === 'count') {
-        for (const f of this.frogs) { if (!f.num && f.scale > 0.9 && Math.hypot(p.x - f.x, p.y - (f.y - 20)) < 60) { this.counted++; f.num = this.counted; f.hop = 1; FL.Audio.sfx.ribbit(); FL.Audio.sfx.count(this.counted - 1); FL.Audio.say(String(this.counted), { rate: 1 }); g.fx.burst(f.x, f.y - 40, { count: 10, colors: ['#bef264', '#fff'], speed: 200, life: 0.6, size: 8 }); if (this.counted === this.n) { this.locked = true; setTimeout(() => { this.locked = false; this.showChoices(); }, 900); } return; } }
+        for (const f of this.frogs) { if (!f.num && f.scale > 0.9 && Math.hypot(p.x - f.x, p.y - (f.y - 20)) < 60) { this.counted++; f.num = this.counted; f.hop = 1; FL.Audio.sfx.ribbit(); FL.Audio.sfx.count(this.counted - 1); FL.Audio.say(String(this.counted), { rate: 1 }); g.fx.burst(f.x, f.y - 40, { count: 10, colors: ['#bef264', '#fff'], speed: 200, life: 0.6, size: 8 }); if (this.counted === this.n) { this.locked = true; FL.Game.later(() => { this.locked = false; this.showChoices(); }, 900); } return; } }
       } else {
         for (const c of this.choices) { if (Math.hypot(p.x - c.x, p.y - c.y) < 70) { this.choose(c); return; } }
       }
@@ -43,11 +43,11 @@
       const g = G();
       if (c.v === this.n) {
         this.locked = true; if (this.tries === 0) this.good++; FL.Audio.sfx.correct(); g.fx.burst(c.x, c.y, { count: 30, type: 'star', colors: ['#fde047', '#fff', '#4ade80'], speed: 380, life: 0.9, size: 12 });
-        if (this.mode === 'count') { FL.Audio.say(`Yes! ${this.n} frog${this.n > 1 ? 's' : ''}!`); this.frogs.forEach((f, i) => setTimeout(() => { f.hop = 1; FL.Audio.sfx.hop(); }, i * 120)); }
-        else { FL.Audio.say(`Yes! That's ${this.n}! Let's count ${this.n} frogs!`); for (let i = 0; i < this.n; i++) setTimeout(() => { this.hopFrogs.push({ x: 120 + i * ((g.W - 240) / Math.max(1, this.n - 1)) * (this.n === 1 ? 0 : 1) + (this.n === 1 ? g.W / 2 - 120 : 0), y: g.H - 110, t: 0, num: i + 1 }); FL.Audio.sfx.count(i); FL.Audio.say(String(i + 1), { rate: 1.05 }); }, 1500 + i * 550); }
+        if (this.mode === 'count') { FL.Audio.say(`Yes! ${this.n} frog${this.n > 1 ? 's' : ''}!`); this.frogs.forEach((f, i) => FL.Game.later(() => { f.hop = 1; FL.Audio.sfx.hop(); }, i * 120)); }
+        else { FL.Audio.say(`Yes! That's ${this.n}! Let's count ${this.n} frogs!`); for (let i = 0; i < this.n; i++) FL.Game.later(() => { this.hopFrogs.push({ x: 120 + i * ((g.W - 240) / Math.max(1, this.n - 1)) * (this.n === 1 ? 0 : 1) + (this.n === 1 ? g.W / 2 - 120 : 0), y: g.H - 110, t: 0, num: i + 1 }); FL.Audio.sfx.count(i); FL.Audio.say(String(i + 1), { rate: 1.05 }); }, 1500 + i * 550); }
         this.round++;
         const wait = this.mode === 'count' ? 2200 : 2200 + this.n * 550;
-        setTimeout(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, wait);
+        FL.Game.later(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, wait);
       } else { this.tries++; c.wob = 1; FL.Audio.sfx.wrong(); FL.Audio.say(`That's ${c.v}.`); FL.Audio.say(this.mode === 'count' ? 'Count the frogs again!' : `Look for ${this.n}!`, { interrupt: false }); }
     },
     finish() {

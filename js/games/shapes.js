@@ -25,7 +25,7 @@
       const spacing = Math.min(230, (g.W - 160) / items.length); const x0 = g.W / 2 - ((items.length - 1) * spacing) / 2;
       this.balloons = items.map((it, i) => ({ ...it, x: x0 + i * spacing, y: g.H + 120 + i * 40, ty: 330 + (i % 2) * 130, vy: 0, seed: Math.random() * 6, pop: 0, wob: 0, popped: false }));
       if (!first) FL.Audio.sfx.whoosh();
-      setTimeout(() => this.repeatPrompt(), first ? 400 : 800);
+      FL.Game.later(() => this.repeatPrompt(), first ? 400 : 800);
     },
     label() { const tg = this.target; return this.kind === 'color' ? `${tg.color[0]} balloon` : this.kind === 'shape' ? tg.shape : `${tg.color[0]} ${tg.shape}`; },
     repeatPrompt(queue) { FL.Audio.say(`Pop the ${this.label()}!`, { interrupt: !queue }); },
@@ -39,9 +39,9 @@
       if (ok) {
         this.locked = true; b.popped = true; if (this.tries === 0) this.good++;
         FL.Audio.sfx.pop(); FL.Audio.sfx.correct(); g.fx.burst(b.x, b.y, { count: 40, type: 'confetti', colors: [b.color[1], '#fff', '#fde047'], speed: 420, life: 1.1, size: 14 });
-        FL.Audio.say(`Pop! A ${b.color[0]} ${b.shape}!`);
-        this.round++; setTimeout(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, 1900);
-      } else { this.tries++; b.wob = 1; FL.Audio.sfx.squeak(); FL.Audio.say(`That's a ${b.color[0]} ${b.shape}.`); this.repeatPrompt(true); }
+        { const ar = FL.Lines.article(b.color[0]); FL.Audio.say(`Pop! ${ar[0].toUpperCase() + ar.slice(1)} ${b.color[0]} ${b.shape}!`); }
+        this.round++; FL.Game.later(() => { if (this.round >= this.total) this.finish(); else this.newRound(false); }, 1900);
+      } else { this.tries++; b.wob = 1; FL.Audio.sfx.squeak(); FL.Audio.say(`That's ${FL.Lines.article(b.color[0])} ${b.color[0]} ${b.shape}.`); this.repeatPrompt(true); }
     },
     finish() {
       const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp('shapes');

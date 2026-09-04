@@ -52,7 +52,7 @@
         if (want === i) {
           this.step++; g.fx.burst(x, this.keyY + 40, { count: 14, type: 'star', colors: ['#fde047', '#fff'], speed: 260, life: 0.7, size: 10 }); this.stepT = 0;
           const prevLine = this.seq[this.step - 1].line; const nextLine = this.step < this.seq.length ? this.seq[this.step].line : -1;
-          if (this.step >= this.seq.length) { this.cheer = 3; FL.Audio.sfx.fanfare(); g.fx.burst(g.W / 2, g.H / 2, { count: 80, type: 'confetti', speed: 600, life: 2 }); FL.Audio.say(`You played the whole song! Beautiful!`); FL.Save.addStars(3); UI.checkUnlocks(); UI.toast('You learned a song! +3 stars', '🌟'); setTimeout(() => { if (G().sceneName === 'piano') this.setMode('teach'); }, 4000); }
+          if (this.step >= this.seq.length) { this.cheer = 3; FL.Audio.sfx.fanfare(); g.fx.burst(g.W / 2, g.H / 2, { count: 80, type: 'confetti', speed: 600, life: 2 }); FL.Audio.say(`You played the whole song! Beautiful!`); FL.Save.addStars(3); UI.checkUnlocks(); UI.toast('You learned a song! +3 stars', '🌟'); FL.Game.later(() => { if (G().sceneName === 'piano') this.setMode('teach'); }, 4000); }
           else if (nextLine !== prevLine) { g.fx.text(g.W / 2, g.H / 2 - 40, ['Great!', 'Lovely!', 'Keep going!', 'Wonderful!'][prevLine % 4], { color: '#fde047', size: 52 }); }
         }
       }
