@@ -42,7 +42,20 @@
   const Save = {
     get data() { return data || load(); },
     save,
-    reset() { data = JSON.parse(JSON.stringify(DEFAULTS)); save(); },
+    reset() {
+      const previous = this.data;
+      data = JSON.parse(JSON.stringify(DEFAULTS));
+      for (const key of ((FL.config || {}).preserveOnReset || [])) {
+        if (previous[key] !== undefined) data[key] = JSON.parse(JSON.stringify(previous[key]));
+      }
+      if (data.dog && data.dog.adopted) {
+        const emoji = data.dog.stage >= 3 ? '🐕' : '🐶';
+        if (!data.unlocked.includes(emoji)) data.unlocked.push(emoji);
+      }
+      save();
+    },
+    defaultDog() { return DEFAULTS.dog ? JSON.parse(JSON.stringify(DEFAULTS.dog)) : null; },
+    resetDog() { if (!DEFAULTS.dog) return; const d = this.data; d.dog = this.defaultDog(); d.unlocked = d.unlocked.filter((e) => e !== '🐶' && e !== '🐕'); if (d.companion === '🐶' || d.companion === '🐕') d.companion = '🐰'; save(); },
     level(game) { return (this.data.levels[game] || 1); },
     levelUp(game) { this.data.levels[game] = Math.min(6, this.level(game) + 1); save(); },
     addPlay(game) { this.data.plays[game] = (this.data.plays[game] || 0) + 1; save(); },

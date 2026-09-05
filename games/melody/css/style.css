@@ -38,3 +38,27 @@ html, body {
   background: #4c1d95; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
 }
 #rotate[hidden] { display: none; }
+
+.world-return { position: fixed; right: 12px; bottom: 12px; z-index: 11; display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 24px; background: #fff; color: #153e43; font: 700 14px system-ui, sans-serif; text-decoration: none; box-shadow: 0 3px 10px #0002; touch-action: manipulation; }
+.world-return:focus-visible { outline: 4px solid #f7c857; outline-offset: 3px; }
+
+#spellWrap[hidden] { display: none; }
+#spellWrap { position: absolute; margin: 0; }
+#spellInput {
+  box-sizing: border-box; width: 400px; height: 72px;
+  font: 700 30px Fredoka, "Arial Rounded MT Bold", system-ui, sans-serif;
+  padding: 8px 20px; border-radius: 36px; border: 5px solid #c4b5fd;
+  background: #fff; color: #5b21b6; outline: none;
+  box-shadow: 0 6px 0 #7c3aed;
+}
+#spellInput::placeholder { color: #a78bfa; font-weight: 500; }
+#spellInput:focus { border-color: #fde68a; }
+#rotate {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: #4c1d95; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
+}
+#rotate[hidden] { display: none; }
+
+#spellWrap small { display:block; font:16px sans-serif; color:#334155; }
+.world-home { position:fixed; bottom:4px; left:8px; z-index:30; padding:8px 12px; border-radius:14px; background:#fff; color:#153e43; font:600 15px sans-serif; text-decoration:none; }

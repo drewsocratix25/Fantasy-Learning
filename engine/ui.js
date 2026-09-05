@@ -37,7 +37,7 @@
   UI.pressDown = function (buttons, p) { for (const b of buttons) { if (b.contains(p.x, p.y)) { b.pressed = true; p.button = b; return b; } } return null; };
   UI.pressUp = function (buttons, p) {
     let fired = null;
-    for (const b of buttons) { if (b.pressed) { b.pressed = false; if (b.contains(p.x, p.y) && b.onTap) { fired = b; } } }
+    for (const b of buttons) { if (b.pressed && p.button === b) { b.pressed = false; if (b.contains(p.x, p.y) && b.onTap) { fired = b; } } }
     if (fired) { FL.Audio.sfx.tap(); fired.onTap(fired); }
     return fired;
   };
@@ -98,9 +98,9 @@
     FL.Save.addStars(o.stars); FL.Audio.sfx.fanfare();
     const bw = 260, bh = 92, gap = 26; const n = 2 + (o.other ? 1 : 0); const total = n * bw + (n - 1) * gap; let bx = G.W / 2 - total / 2; const by = G.H / 2 + 175;
     overlay.buttons = [];
-    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Again!', emoji: '🔁', color: '#4ade80', onTap: () => { UI.closeOverlay(); o.again(); } })); bx += bw + gap;
+    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: o.againLabel || 'Again!', emoji: o.againEmoji || '🔁', color: '#4ade80', onTap: () => { UI.closeOverlay(); o.again(); } })); bx += bw + gap;
     if (o.other) { overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: o.otherLabel || 'More', emoji: o.otherEmoji || '🎵', color: '#fbbf24', onTap: () => { UI.closeOverlay(); o.other(); } })); bx += bw + gap; }
-    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Kingdom', emoji: '🏡', color: '#60a5fa', onTap: () => { UI.closeOverlay(); (o.home || (() => G.go('world')))(); } }));
+    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: (FL.config && FL.config.homeLabel) || 'Kingdom', emoji: (FL.config && FL.config.homeEmoji) || '🏡', color: '#60a5fa', onTap: () => { UI.closeOverlay(); (o.home || (() => G.go('world')))(); } }));
     G.fx.burst(G.W / 2, G.H / 2 - 100, { count: 90, type: 'confetti', speed: 700, life: 2.2, size: 16, gravity: 500 });
     if (UI.hooks.checkUnlocks) UI.hooks.checkUnlocks();
     const name = FL.Save.data.name; const PR = (FL.Data && FL.Data.PRAISE) || ['Wonderful', 'Amazing', 'Fantastic']; const praise = PR[Math.floor(Math.random() * PR.length)]; const tail = `You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`;
@@ -121,7 +121,7 @@
     const voices = FL.Audio.voices(); const vname = FL.Audio.voiceName();
     overlay.buttons.push(new Button({ x: L, y: py + 140, w: W, h: H, label: `Music: ${s.music ? 'On' : 'Off'}`, emoji: '🎵', color: s.music ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.music = !s.music; FL.Save.save(); FL.Audio.applySettings(); refresh(); } }));
     overlay.buttons.push(new Button({ x: R, y: py + 140, w: W, h: H, label: `Voice: ${s.speech ? 'On' : 'Off'}`, emoji: '🗣️', color: s.speech ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.speech = !s.speech; FL.Save.save(); if (!s.speech) FL.Audio.hush(); refresh(); } }));
-    overlay.buttons.push(new Button({ x: L, y: py + 262, w: W - 90, h: H, label: vname.length > 15 ? vname.slice(0, 14) + '…' : vname, emoji: '🎙️', color: '#c084fc', size: 24, onTap: () => { if (!voices.length) { UI.toast('No extra voices on this device', '🎙️', '#475569'); return; } const want = FL.Save.data.settings.voice || ''; const cur = voices.findIndex((v) => v.voiceURI === want || v.name === want); const nxt = voices[(Math.max(0, cur) + 1) % voices.length]; FL.Audio.setVoice(nxt); refresh(); FL.Audio.say(`Hello. I'm ${nxt.name.split(' ')[0]}. Let's play in Melody Kingdom.`, { tts: true }); } }));
+    overlay.buttons.push(new Button({ x: L, y: py + 262, w: W - 90, h: H, label: vname.length > 15 ? vname.slice(0, 14) + '…' : vname, emoji: '🎙️', color: '#c084fc', size: 24, onTap: () => { if (!voices.length) { UI.toast('No extra voices on this device', '🎙️', '#475569'); return; } const want = FL.Save.data.settings.voice || ''; const cur = voices.findIndex((v) => v.voiceURI === want || v.name === want); const nxt = voices[(Math.max(0, cur) + 1) % voices.length]; FL.Audio.setVoice(nxt); refresh(); FL.Audio.say(`Hello. I'm ${nxt.name.split(' ')[0]}. Let's play in ${(FL.config && FL.config.title) || 'Melody Kingdom'}.`, { tts: true }); } }));
     overlay.buttons.push(new Button({ x: L + W - 80, y: py + 262, w: 80, h: H, emoji: '▶️', color: '#fbbf24', emojiSize: 34, onTap: () => { const plain = (FL.config && FL.config.voiceTestLine) || 'Hello. Can you find the letter B? Wonderful. B is for butterfly.'; const named = FL.config && FL.config.voiceTestLineNamed && FL.Save.data.name ? FL.config.voiceTestLineNamed(FL.Save.data.name) : null; FL.Audio.say(named || plain, { alt: [plain] }); } }));
     overlay.buttons.push(new Button({ x: R, y: py + 262, w: W, h: H, label: (FL.config && FL.config.heroLabel) || 'Change hero', emoji: (FL.config && FL.config.heroEmoji) || '🧒', color: '#f472b6', size: 28, onTap: () => { UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } }));
     overlay.buttons.push(new Button({ x: L, y: py + 362, w: W, h: H, label: 'Reset all progress', emoji: '🧹', color: '#f87171', size: 28, onTap: () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } else { overlay.data = Object.assign(overlay.data || {}, { confirm: true }); UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } } }));

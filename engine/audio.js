@@ -309,6 +309,17 @@
     hop() { A.note('E5', { inst: 'wood', dur: 0.1, vol: 0.2 }); A.note('C6', { inst: 'wood', when: A.now() + 0.07, dur: 0.1, vol: 0.15 }); },
     squeak() { if (!ctx) return; const t = ctx.currentTime; const o = osc('square', 900, t); o.frequency.exponentialRampToValueAtTime(1400, t + 0.1); const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.08, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.15); o.connect(g); g.connect(sfxBus); o.start(t); o.stop(t + 0.2); },
     unlock() { const t = A.now(); ['C5', 'D5', 'E5', 'G5', 'C6', 'E6', 'G6'].forEach((n, i) => A.note(n, { inst: 'bell', when: t + i * 0.08, vol: 0.3 })); },
+    bark(stage) {
+      if (!ctx) return; const t = ctx.currentTime;
+      if (stage >= 2) { const o = osc('sawtooth', 200, t); o.frequency.exponentialRampToValueAtTime(140, t + 0.14); const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.35, t + 0.015); g.gain.linearRampToValueAtTime(0.2, t + 0.08); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14); o.connect(lp); lp.connect(g); g.connect(sfxBus); o.start(t); o.stop(t + 0.18); return; }
+      [0, 0.13].forEach((d) => { const o = osc('square', 320, t + d); o.frequency.exponentialRampToValueAtTime(220, t + d + 0.09); const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.linearRampToValueAtTime(0.18, t + d + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.09); o.connect(g); g.connect(sfxBus); o.start(t + d); o.stop(t + d + 0.12); });
+    },
+    whine() { if (!ctx) return; const t = ctx.currentTime; const o = osc('sine', 700, t); o.frequency.exponentialRampToValueAtTime(900, t + 0.35); const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.08, t + 0.06); g.gain.setValueAtTime(0.08, t + 0.24); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35); o.connect(g); g.connect(sfxBus); o.start(t); o.stop(t + 0.4); },
+    munch() { if (!ctx) return; const t = ctx.currentTime; [0, 0.12, 0.24].forEach((d) => A.note('C3', { inst: 'wood', when: t + d, dur: 0.1, vol: 0.3 })); },
+    slurp() { if (!ctx) return; const t = ctx.currentTime; const s = ctx.createBufferSource(); s.buffer = noiseBuf; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.5; bp.frequency.setValueAtTime(2000, t); bp.frequency.exponentialRampToValueAtTime(500, t + 0.25); const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.3, t + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25); s.connect(bp); bp.connect(g); g.connect(sfxBus); s.start(t); s.stop(t + 0.3); },
+    plop() { if (!ctx) return; const t = ctx.currentTime; const o = osc('sine', 300, t); o.frequency.exponentialRampToValueAtTime(80, t + 0.18); const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.35, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.18); o.connect(g); g.connect(sfxBus); o.start(t); o.stop(t + 0.22); },
+    snore() { if (!ctx) return; const t = ctx.currentTime; const o = osc('sine', 90, t); const o2 = osc('triangle', 180, t); const g2 = ctx.createGain(); g2.gain.value = 0.35; const w = ctx.createGain(); w.gain.value = 0.7; const lfo = osc('sine', 6, t); const lg = ctx.createGain(); lg.gain.value = 0.3; const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.12, t + 0.5); g.gain.linearRampToValueAtTime(0.0001, t + 0.8); lfo.connect(lg); lg.connect(w.gain); o.connect(w); o2.connect(g2); g2.connect(w); w.connect(g); g.connect(sfxBus); [o, o2, lfo].forEach((n) => { n.start(t); n.stop(t + 0.85); }); },
+    pant() { if (!ctx) return; const t = ctx.currentTime; [0, 0.22].forEach((d) => { const s = ctx.createBufferSource(); s.buffer = noiseBuf; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 0.8; bp.frequency.value = 1200; const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.linearRampToValueAtTime(0.1, t + d + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.16); s.connect(bp); bp.connect(g); g.connect(sfxBus); s.start(t + d); s.stop(t + d + 0.2); }); },
   };
 
   // ---- speech -------------------------------------------------------------
@@ -381,7 +392,7 @@
   A.say = function (text, o) {
     o = o || {};
     if (!FL.Save.data.settings.speech) return;
-    if (!o.tts && A.voicePack.ready && ctx) {
+    if (!o.tts && !o.onstart && !o.onend && A.voicePack.ready && ctx) {
       const id = clipFor(text) || (o.alt || []).map(clipFor).find(Boolean);
       if (id) { if ('speechSynthesis' in window && o.interrupt !== false) speechSynthesis.cancel(); playClip(id, o); return; }
     }
@@ -393,11 +404,12 @@
       const u = new SpeechSynthesisUtterance(clean);
       u.rate = o.rate || 0.97; u.pitch = o.pitch || 1.04; u.volume = 1;
       const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
-      u.onstart = () => { speaking++; A.duck(true); };
+      u.onstart = () => { speaking++; A.duck(true); if (o.onstart) o.onstart(); };
       const done = () => { speaking = Math.max(0, speaking - 1); if (!speaking) A.duck(false); };
-      let finished = false; const once = () => { if (!finished) { finished = true; done(); } };
+      let finished = false; const once = () => { if (!finished) { finished = true; done(); if (o.onend) o.onend(); } };
       u.onend = once; u.onerror = once; setTimeout(once, 2500 + clean.length * 90); // safety: never leave the music ducked
       speechSynthesis.speak(u);
+      return u;
     } catch (e) { /* ignore */ }
   };
   A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } speaking = 0; stopClips(); A.duck(false); };

@@ -13,12 +13,15 @@
     { id: 'peaks', name: 'Crystal Peaks', x0: 4800, w: 2400, ground: ['#f0f9ff', '#bae6fd'], path: ['#94a3b8', '#e2e8f0'], hub: { x: 6000, y: 960 }, gateHint: 'Collect all your forest friends to open the Crystal Peaks!', openLine: 'The Crystal Peaks are open! Let\'s explore!' },
   ];
   Data.LOCS = [
+    { id: 'puppy', name: 'Puppy Cottage', emoji: '🐶', x: 900, y: 1410, r: 120, scene: 'puppy', hint: 'Care for your puppy!' },
+    { id: 'spell', name: 'Spelling Owl', emoji: '🦉', x: 520, y: 740, r: 100, scene: 'spell', hint: 'Ask how to spell a word!' },
     { id: 'rhythm', name: 'Melody Castle', emoji: '🏰', x: 1200, y: 790, r: 130, scene: 'songs', hint: 'Play songs like a rock star!' },
     { id: 'letters', name: 'Letter Garden', emoji: '🌸', x: 430, y: 620, r: 120, scene: 'letters', hint: 'Find the letters!' },
     { id: 'numbers', name: 'Counting Pond', emoji: '🐸', x: 1980, y: 660, r: 120, scene: 'numbers', hint: 'Count the frogs!' },
     { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
     { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
     { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
+    { id: 'drawing', name: 'Art Studio', emoji: '🎨', x: 1620, y: 700, r: 120, scene: 'drawpick', hint: 'Learn to draw!' },
     // Enchanted Forest (region 1)
     { id: 'rhyme', name: 'Rhyme Tree', emoji: '🌳', x: 3100, y: 600, r: 120, scene: 'rhyme', hint: 'Find the word that rhymes!', region: 1 },
     { id: 'spelling', name: 'Acorn Spelling', emoji: '🐿️', x: 4100, y: 600, r: 120, scene: 'spelling', hint: 'Spell the word!', region: 1 },

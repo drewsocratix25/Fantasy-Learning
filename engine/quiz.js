@@ -2,7 +2,7 @@
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
   FL.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
-  FL.shuffle = (arr) => arr.slice().sort(() => Math.random() - 0.5);
+  FL.shuffle = (arr) => { const out = arr.slice(); for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; } return out; };
   // Backgrounds shared by the forest and peaks games.
   FL.bg = {
     forest(ctx, g, t) {
@@ -47,7 +47,7 @@
       },
       finish() {
         const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp(cfg.id);
-        UI.showResults({ title: `${cfg.title} complete!`, subtitle: `${this.good} of ${this.total} right on the first try`, stars, emoji: cfg.emoji, again: () => G().go(cfg.id), home: () => G().go(cfg.home || 'world', { at: cfg.id }) });
+        UI.showResults({ title: `${cfg.title} complete!`, subtitle: `You explored ${this.total} discoveries!`, stars, emoji: cfg.emoji, again: () => G().go(cfg.id), home: () => G().go(cfg.home || 'world', { at: cfg.id }) });
         if (cfg.onFinish) cfg.onFinish(this);
       },
       update(dt) { this.t += dt; this.roundT += dt; this.cards.forEach((c) => { if (this.roundT > c.delay) c.scale = Math.min(1, c.scale + dt * 4); c.wob = Math.max(0, c.wob - dt * 2); }); },
@@ -75,9 +75,9 @@
   };
   // Number distractors near a target, all distinct, within [lo, hi].
   FL.numberChoices = function (correct, count, lo, hi) {
-    const set = new Set([correct]); let guard = 0;
-    while (set.size < count && guard++ < 200) { const d = Math.floor(Math.random() * 5) - 2; const v = correct + (d === 0 ? 3 : d); if (v >= lo && v <= hi) set.add(v); }
-    while (set.size < count) set.add(lo + Math.floor(Math.random() * (hi - lo + 1)));
-    return FL.shuffle([...set]).map((v) => ({ text: String(v), correct: v === correct, sayWrong: `That's ${v}.` }));
+    if (!Number.isInteger(correct) || !Number.isInteger(lo) || !Number.isInteger(hi) || correct < lo || correct > hi || lo > hi) throw new RangeError('Invalid number choice range');
+    count = Math.max(1, Math.min(Number.isFinite(count) ? Math.floor(count) : 1, hi - lo + 1));
+    const pool = Array.from({ length: hi - lo + 1 }, (_, i) => lo + i).filter(v => v !== correct);
+    return FL.shuffle([correct, ...FL.shuffle(pool).slice(0, count - 1)]).map(v => ({ text: String(v), correct: v === correct, sayWrong: `That's ${v}.` }));
   };
 })();

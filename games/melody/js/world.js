@@ -4,7 +4,7 @@
   const MAP_H = 1700; const REG = D.REGIONS; const LOCS = D.LOCS; const FULL_W = REG[REG.length - 1].x0 + REG[REG.length - 1].w;
   const GATES = REG.slice(1).map((r, i) => ({ x: r.x0, y: 960, region: i + 1, open: 0 }));
   const STATIC_OBS = [
-    { type: 'rect', x: 970, y: 300, w: 460, h: 340 }, { type: 'circle', x: 1980, y: 470, r: 190 }, { type: 'circle', x: 1930, y: 1160, r: 110 },
+    { type: 'rect', x: 970, y: 300, w: 460, h: 340 }, { type: 'circle', x: 1980, y: 470, r: 190 }, { type: 'circle', x: 1930, y: 1160, r: 110 }, { type: 'rect', x: 1505, y: 445, w: 230, h: 120 },
     { type: 'circle', x: 4100, y: 1150, r: 120 }, { type: 'circle', x: 6500, y: 430, r: 110 },
   ];
   function rng(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
@@ -78,6 +78,7 @@
         this.joy.dx = dx; this.joy.dy = dy; if (this.joy.moved) { this.target = null; this.targetLoc = null; }
       }
     },
+    cancel(p) { if (this.joy?.id === p.id) this.joy = null; this.hold = 0; },
     up(p) {
       if (p.button) { UI.pressUp([this.playBtn].concat(this.buttons), p); return; }
       if (p.parent) { if (this.hold >= 1.2) UI.showParent(); else UI.toast('Grown-ups: hold the gear for 2 seconds', '⚙️', '#475569'); p.parent = false; return; }
@@ -179,8 +180,11 @@
       // depth-sorted objects
       const items = []; const vis = (x, y) => x > cx - 200 && x < cx + g.W + 200 && y > cy - 50 && y < cy + g.H + 300;
       this.decor.forEach((d) => { if (!vis(d.x, d.y)) return; if (d.boundary && d.boundary > open) return; if (regionAt(d.x) >= open && !d.boundary) return; items.push({ y: d.y, f: () => { if (d.k === 'tree') A.tree(ctx, d.x, d.y, d.s, d.v, t); else if (d.k === 'bush') A.bush(ctx, d.x, d.y, d.s); else if (d.k === 'pine') A.pine(ctx, d.x, d.y, d.s, false, t); else if (d.k === 'snowpine') A.pine(ctx, d.x, d.y, d.s, true, t); else if (d.k === 'mushroom') A.mushroom(ctx, d.x, d.y, d.s, d.c, t); else if (d.k === 'crystal') A.crystal(ctx, d.x, d.y, d.s, d.c, t); else if (d.k === 'emoji') { ctx.fillStyle = 'rgba(0,0,0,.12)'; A.ellipse(ctx, d.x, d.y, d.s * 0.4, d.s * 0.14); ctx.fill(); A.emoji(ctx, d.e, d.x, d.y - d.s * 0.45, d.s); } } }); });
+      items.push({ y: 1330, f: () => A.cottage(ctx, 900, 1330, 0.7, t, { name: FL.Save.data.dog?.name || null }) });
+      items.push({ y: 1400, f: () => A.doghouse(ctx, 1080, 1400, 0.7, FL.Save.data.dog?.name || null) });
       items.push({ y: 640, f: () => A.castle(ctx, 1200, 640, 1.05, t) });
       items.push({ y: 1160, f: () => A.gazebo(ctx, 1930, 1160, 1, t) });
+      items.push({ y: 562, f: () => A.studio(ctx, 1620, 560, 1, t) });
       if (FL.Save.has('decor', 'fountain')) items.push({ y: 962, f: () => A.fountain(ctx, 1200, 962, 0.9, t) });
       GATES.forEach((gt) => { if (gt.region > open) return; items.push({ y: gt.y, f: () => { A.gate(ctx, gt.x, gt.y, gt.open, t); if (this.gateLocked(gt)) { const need = D.FRIENDS.filter((f) => f[3] === gt.region - 1); const have = need.filter((f) => FL.Save.data.unlocked.includes(f[0])).length; const b = Math.abs(Math.sin(t * 3)) * 6; ctx.fillStyle = 'rgba(255,255,255,.92)'; A.roundRect(ctx, gt.x - 150, gt.y - 330 - b, 300, 70, 30); ctx.fill(); ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 4; ctx.stroke(); A.text(ctx, `${REG[gt.region].name}`, gt.x, gt.y - 310 - b, { size: 22, color: '#7c2d12' }); A.text(ctx, `${have} / ${need.length} friends`, gt.x, gt.y - 282 - b, { size: 22, color: '#b45309' }); need.forEach((f, i) => A.emoji(ctx, f[0], gt.x - (need.length - 1) * 16 + i * 32, gt.y - 245, 26, { alpha: FL.Save.data.unlocked.includes(f[0]) ? 1 : 0.25 })); } } }); });
       this.openLocs().forEach((l) => { if (!vis(l.x, l.y)) return; const isNear = this.near === l; const hint = this.hintLoc === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0; if (l.region > 0) items.push({ y: l.y - 140, f: () => this.drawLandmark(ctx, l, t) }); items.push({ y: l.y, f: () => A.sign(ctx, l.x, l.y, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 1 }) }); if (isNear || hint) items.push({ y: l.y - 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, l.x, l.y + 30, l.r, l.r * 0.45); ctx.stroke(); ctx.setLineDash([]); } }); });
