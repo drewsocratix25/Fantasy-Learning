@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pre-render every narrator line to MP3 with the open-source Kokoro-82M voice.
 
-Usage:  python3 tools/make-voices.py [--voice af_heart] [--name Ava] [--speed 0.93] [--out voice]
+Usage:  python3 tools/make-voices.py --game melody [--voice af_heart] [--name Ava] [--speed 0.93]
 
 Setup (once):  pip install kokoro-onnx lameenc numpy
 The Kokoro model is taken from the `expo-kokoro` npm package (it bundles the Apache-2.0
@@ -14,8 +14,8 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ap = argparse.ArgumentParser()
-ap.add_argument('--voice', default='af_heart'); ap.add_argument('--name', default=''); ap.add_argument('--speed', type=float, default=0.93)
-ap.add_argument('--out', default=os.path.join(ROOT, 'voice')); ap.add_argument('--cache', default=os.path.join(ROOT, '.kokoro-cache'))
+ap.add_argument('--game', default='melody'); ap.add_argument('--voice', default='af_heart'); ap.add_argument('--name', default=''); ap.add_argument('--speed', type=float, default=0.93)
+ap.add_argument('--out', default=''); ap.add_argument('--cache', default=os.path.join(ROOT, '.kokoro-cache'))
 ap.add_argument('--model', default=''); ap.add_argument('--voices', default=''); ap.add_argument('--bitrate', type=int, default=48)
 args = ap.parse_args()
 
@@ -44,7 +44,8 @@ def line_id(text):
     return f'{h:08x}'
 
 def main():
-    lines = json.loads(subprocess.check_output(['node', os.path.join(ROOT, 'tools', 'dump-lines.cjs'), args.name]))
+    if not args.out: args.out = os.path.join(ROOT, 'games', args.game, 'voice')
+    lines = json.loads(subprocess.check_output(['node', os.path.join(ROOT, 'tools', 'dump-lines.cjs'), args.game, args.name]))
     for l in lines: assert l['id'] == line_id(l['text']), ('id mismatch', l)
     os.makedirs(args.out, exist_ok=True)
     mpath = os.path.join(args.out, 'manifest.json')

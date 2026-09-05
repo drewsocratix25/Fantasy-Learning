@@ -1,14 +1,14 @@
 // Progress + settings, stored in localStorage on the device.
 (function () {
-  const KEY = 'melodyKingdom.v1';
+  const KEY = (window.FL && FL.config && FL.config.storageKey) || 'littleWonders.game.v1';
   const DEFAULTS = {
     name: '',
-    princess: 0,          // index into Art.PRINCESSES
+    princess: 0,          // index into the game's hero list
     dress: null,          // optional dress colour override
     companion: '🐰',
     unlocked: ['🐰'],
     stars: 0,
-    levels: { letters: 1, numbers: 1, shapes: 1, patterns: 1, piano: 1 },
+    levels: {},
     plays: {},            // gameId -> count
     songBest: {},         // songId -> best stars
     settings: { music: true, speech: true, speed: 'slow', voice: null },

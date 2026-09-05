@@ -46,7 +46,7 @@
     if (!G.scenes[name]) { console.warn('missing scene', name); name = 'world'; }
     G.scene = G.scenes[name]; G.sceneName = name;
     G.refreshLook();
-    document.getElementById('nameWrap').hidden = name !== 'title';
+    const nw = document.getElementById('nameWrap'); if (nw) nw.hidden = name !== ((FL.config && FL.config.startScene) || 'title');
     if (G.scene.enter) G.scene.enter(params || {});
     FL.Audio.music.play(G.scene.music || null);
   }
@@ -124,7 +124,7 @@
   G.fx = new FL.Art.Particles();
   FL.Audio.loadVoicePack();
   resize();
-  switchScene('title', {});
+  switchScene((FL.config && FL.config.startScene) || 'title', {});
   requestAnimationFrame(frame);
   if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !/localhost|127\.0\.0\.1/.test(location.hostname)) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));

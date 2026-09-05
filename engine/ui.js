@@ -102,53 +102,18 @@
     if (o.other) { overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: o.otherLabel || 'More', emoji: o.otherEmoji || '🎵', color: '#fbbf24', onTap: () => { UI.closeOverlay(); o.other(); } })); bx += bw + gap; }
     overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Kingdom', emoji: '🏡', color: '#60a5fa', onTap: () => { UI.closeOverlay(); (o.home || (() => G.go('world')))(); } }));
     G.fx.burst(G.W / 2, G.H / 2 - 100, { count: 90, type: 'confetti', speed: 700, life: 2.2, size: 16, gravity: 500 });
-    UI.checkUnlocks();
-    const name = FL.Save.data.name; const praise = FL.Data.PRAISE[Math.floor(Math.random() * FL.Data.PRAISE.length)]; const tail = `You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`;
+    if (UI.hooks.checkUnlocks) UI.hooks.checkUnlocks();
+    const name = FL.Save.data.name; const PR = (FL.Data && FL.Data.PRAISE) || ['Wonderful', 'Amazing', 'Fantastic']; const praise = PR[Math.floor(Math.random() * PR.length)]; const tail = `You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`;
     setTimeout(() => FL.Audio.say(name ? `${praise}, ${name}! ${tail}` : `${praise}! ${tail}`, { alt: [`${praise}! ${tail}`] }), 600);
   };
-  UI.showFriends = function () {
-    const G = FL.Game; overlay.kind = 'friends'; overlay.t = 0; overlay.buttons = []; overlay.data = { labels: [] };
-    const pw = 920, ph = 620; const px = G.W / 2 - pw / 2, py = G.H / 2 - ph / 2; const un = FL.Save.data.unlocked;
-    const size = 74, gap = 10;
-    overlay.data.labels.push({ text: 'Friends (they follow you around)', x: px + 40, y: py + 100 });
-    FL.Data.FRIENDS.forEach(([e, name, need], i) => {
-      const row = Math.floor(i / 10), col = i % 10; const x = px + 40 + col * (size + gap), y = py + 118 + row * (size + gap); const has = un.includes(e);
-      overlay.buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need}⭐`, size: 14, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 44 : 22, enabled: has, r: 18, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${name} will come with you!`); UI.showFriends(); } }));
-    });
-    const crowns = [['gold', '👑', 0], ['flower', '🌸', 8], ['star', '⭐', 35], ['rainbow', '🌈', 62], ['leaf', '🍃', 150], ['ice', '❄️', 200]];
-    overlay.data.labels.push({ text: 'Crowns', x: px + 40, y: py + 312 });
-    crowns.forEach(([id, e, need], i) => { const has = id === 'gold' || FL.Save.has('crown', id); overlay.buttons.push(new Button({ x: px + 40 + i * (size + gap), y: py + 330, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need}⭐`, size: 14, color: !has ? '#cbd5e1' : FL.Save.data.crown === id ? '#fde047' : '#e9d5ff', emojiSize: has ? 40 : 22, enabled: has, r: 18, onTap: () => { FL.Save.data.crown = id; FL.Save.save(); G.refreshLook(); FL.Audio.sfx.sparkle(); UI.showFriends(); } })); });
-    const wands = [[null, '✋', 0], ['star', '🪄', 25], ['moon', '🌙', 110], ['heart', '💖', 172]];
-    overlay.data.labels.push({ text: 'Wands', x: px + 40 + 7 * (size + gap), y: py + 312 });
-    wands.forEach(([id, e, need], i) => { const has = !id || FL.Save.has('wand', id); overlay.buttons.push(new Button({ x: px + 40 + (7 + i) * (size + gap) - (i >= 3 ? 0 : 0), y: py + 330, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need}⭐`, size: 14, color: !has ? '#cbd5e1' : (FL.Save.data.wand || null) === id ? '#fde047' : '#bae6fd', emojiSize: has ? 40 : 22, enabled: has, r: 18, onTap: () => { FL.Save.data.wand = id; FL.Save.save(); G.refreshLook(); FL.Audio.sfx.sparkle(); UI.showFriends(); } })); });
-    // region progress
-    const R = FL.Data.REGIONS; const open = FL.Save.data.regions || 1; overlay.data.regionText = [];
-    for (let r = 1; r < R.length; r++) { const need = FL.Data.FRIENDS.filter((f) => f[3] === r - 1); const have = need.filter((f) => un.includes(f[0])).length; overlay.data.regionText.push(open > r ? `${R[r].name}: open! 🗺️` : `${R[r].name}: ${have} / ${need.length} ${R[r - 1].id} friends`); }
+  UI.hooks = {};   // games set: checkUnlocks(), nextUnlock() -> {stars, emoji, name}, prevThreshold()
+  // Generic "collection" panel (friends, badges, treasures...). Games build the buttons and labels.
+  UI.showCollection = function (o) {
+    overlay.kind = 'collection'; overlay.t = 0; overlay.buttons = o.buttons || []; overlay.data = { title: o.title, labels: o.labels || [], lines: o.lines || [] };
+    const G = FL.Game; const pw = 920, ph = 620; const py = G.H / 2 - ph / 2;
     overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: py + ph - 96, w: 240, h: 76, label: 'Done', emoji: '✅', color: '#4ade80', onTap: () => UI.closeOverlay() }));
   };
-  UI.FRIENDS = FL.Data.FRIENDS;
-  UI.friendName = (e) => (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1];
-  // The next reward of any kind (friend, crown, wand, decoration, song, region).
-  UI.nextUnlock = function () {
-    const s = FL.Save.data.stars; const c = [];
-    FL.Data.FRIENDS.forEach(([e, name, need]) => { if (!FL.Save.data.unlocked.includes(e)) c.push({ stars: need, emoji: e, name }); });
-    FL.Data.UNLOCKS.forEach((u) => { if (!FL.Save.has(u.type, u.id)) c.push({ stars: u.stars, emoji: u.emoji, name: u.name }); });
-    FL.Songs.list.forEach((sg) => { if (sg.unlock && !FL.Save.has('song', sg.id)) c.push({ stars: sg.unlock, emoji: sg.emoji, name: sg.title }); });
-    c.sort((a, b) => a.stars - b.stars); return c.find((x) => x.stars > s) || c[0] || null;
-  };
-  UI.prevThreshold = function () { const s = FL.Save.data.stars; let p = 0; FL.Data.FRIENDS.forEach((f) => { if (f[2] <= s) p = Math.max(p, f[2]); }); FL.Data.UNLOCKS.forEach((u) => { if (u.stars <= s) p = Math.max(p, u.stars); }); FL.Songs.list.forEach((sg) => { if (sg.unlock && sg.unlock <= s) p = Math.max(p, sg.unlock); }); return p; };
-  UI.checkUnlocks = function () {
-    const s = FL.Save.data.stars; const events = [];
-    FL.Data.FRIENDS.forEach(([e, name, need]) => { if (s >= need && FL.Save.unlock(e)) events.push({ emoji: e, text: `New friend: ${name}!`, say: `A new friend! ${name} wants to play with you!`, color: '#db2777' }); });
-    FL.Data.UNLOCKS.forEach((u) => { if (s >= u.stars && FL.Save.give(u.type, u.id)) { if (u.type === 'crown') FL.Save.data.crown = u.id; if (u.type === 'wand') FL.Save.data.wand = u.id; FL.Save.save(); events.push({ emoji: u.emoji, text: `${u.name}!`, say: u.line, color: '#7c3aed' }); } });
-    FL.Songs.list.forEach((sg) => { if (sg.unlock && s >= sg.unlock && FL.Save.give('song', sg.id)) events.push({ emoji: sg.emoji, text: `New song: ${sg.title}!`, say: `You unlocked a new song: ${sg.title}!`, color: '#b45309' }); });
-    const R = FL.Data.REGIONS;
-    for (let r = 1; r < R.length; r++) {
-      if ((FL.Save.data.regions || 1) <= r) { const need = FL.Data.FRIENDS.filter((f) => f[3] === r - 1); if (need.every((f) => FL.Save.data.unlocked.includes(f[0]))) { FL.Save.data.regions = r + 1; FL.Save.data.newRegion = r; FL.Save.save(); events.push({ emoji: '🗺️', text: `${R[r].name} is open!`, say: R[r].openLine, color: '#166534' }); } }
-    }
-    events.forEach((ev, i) => setTimeout(() => { UI.toast(ev.text, ev.emoji, ev.color); FL.Audio.sfx.unlock(); FL.Audio.say(ev.say, { interrupt: false }); if (FL.Game.refreshLook) FL.Game.refreshLook(); }, 2500 + i * 3400));
-    return events.length;
-  };
+  UI.panelOrigin = function () { const G = FL.Game; return { px: G.W / 2 - 460, py: G.H / 2 - 310 }; };
   UI.showParent = function () {
     const G = FL.Game; overlay.kind = 'parent'; overlay.t = 0; overlay.buttons = []; const s = FL.Save.data.settings;
     const py = G.H / 2 - 280; const L = G.W / 2 - 410, R = G.W / 2 + 20, W = 390, H = 78;
@@ -157,9 +122,9 @@
     overlay.buttons.push(new Button({ x: L, y: py + 140, w: W, h: H, label: `Music: ${s.music ? 'On' : 'Off'}`, emoji: '🎵', color: s.music ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.music = !s.music; FL.Save.save(); FL.Audio.applySettings(); refresh(); } }));
     overlay.buttons.push(new Button({ x: R, y: py + 140, w: W, h: H, label: `Voice: ${s.speech ? 'On' : 'Off'}`, emoji: '🗣️', color: s.speech ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.speech = !s.speech; FL.Save.save(); if (!s.speech) FL.Audio.hush(); refresh(); } }));
     overlay.buttons.push(new Button({ x: L, y: py + 262, w: W - 90, h: H, label: vname.length > 15 ? vname.slice(0, 14) + '…' : vname, emoji: '🎙️', color: '#c084fc', size: 24, onTap: () => { if (!voices.length) { UI.toast('No extra voices on this device', '🎙️', '#475569'); return; } const want = FL.Save.data.settings.voice || ''; const cur = voices.findIndex((v) => v.voiceURI === want || v.name === want); const nxt = voices[(Math.max(0, cur) + 1) % voices.length]; FL.Audio.setVoice(nxt); refresh(); FL.Audio.say(`Hello. I'm ${nxt.name.split(' ')[0]}. Let's play in Melody Kingdom.`, { tts: true }); } }));
-    overlay.buttons.push(new Button({ x: L + W - 80, y: py + 262, w: 80, h: H, emoji: '▶️', color: '#fbbf24', emojiSize: 34, onTap: () => { const plain = 'Hello. Can you find the letter B? Wonderful. B is for butterfly.'; FL.Audio.say(FL.Save.data.name ? `Hello Princess ${FL.Save.data.name}. Can you find the letter B? Wonderful. B is for butterfly.` : plain, { alt: [plain] }); } }));
-    overlay.buttons.push(new Button({ x: R, y: py + 262, w: W, h: H, label: 'Change princess', emoji: '👸', color: '#f472b6', size: 28, onTap: () => { UI.closeOverlay(); G.go('title'); } }));
-    overlay.buttons.push(new Button({ x: L, y: py + 362, w: W, h: H, label: 'Reset all progress', emoji: '🧹', color: '#f87171', size: 28, onTap: () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go('title'); } else { overlay.data = Object.assign(overlay.data || {}, { confirm: true }); UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } } }));
+    overlay.buttons.push(new Button({ x: L + W - 80, y: py + 262, w: 80, h: H, emoji: '▶️', color: '#fbbf24', emojiSize: 34, onTap: () => { const plain = (FL.config && FL.config.voiceTestLine) || 'Hello. Can you find the letter B? Wonderful. B is for butterfly.'; const named = FL.config && FL.config.voiceTestLineNamed && FL.Save.data.name ? FL.config.voiceTestLineNamed(FL.Save.data.name) : null; FL.Audio.say(named || plain, { alt: [plain] }); } }));
+    overlay.buttons.push(new Button({ x: R, y: py + 262, w: W, h: H, label: (FL.config && FL.config.heroLabel) || 'Change hero', emoji: (FL.config && FL.config.heroEmoji) || '🧒', color: '#f472b6', size: 28, onTap: () => { UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } }));
+    overlay.buttons.push(new Button({ x: L, y: py + 362, w: W, h: H, label: 'Reset all progress', emoji: '🧹', color: '#f87171', size: 28, onTap: () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } else { overlay.data = Object.assign(overlay.data || {}, { confirm: true }); UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } } }));
     overlay.buttons.push(new Button({ x: R, y: py + 362, w: W, h: H, label: 'Close', emoji: '✅', color: '#60a5fa', size: 28, onTap: () => UI.closeOverlay() }));
     overlay.data = Object.assign(overlay.data || {}, { voiceCount: voices.length });
   };
@@ -169,7 +134,7 @@
     if (!overlay.kind) return; const A = Art(); const G = FL.Game; const t = overlay.t;
     ctx.fillStyle = 'rgba(46,16,101,.6)'; ctx.fillRect(0, 0, G.W, G.H);
     const k = Math.min(1, t / 0.35); const ease = 1 - Math.pow(1 - k, 3);
-    const pw = overlay.kind === 'friends' ? 920 : 860, ph = overlay.kind === 'friends' ? 620 : 560; const px = G.W / 2 - pw / 2, py = G.H / 2 - ph / 2 + (1 - ease) * 60;
+    const pw = overlay.kind === 'collection' ? 920 : 860, ph = overlay.kind === 'collection' ? 620 : 560; const px = G.W / 2 - pw / 2, py = G.H / 2 - ph / 2 + (1 - ease) * 60;
     ctx.save(); ctx.globalAlpha = ease;
     ctx.fillStyle = 'rgba(0,0,0,.25)'; A.roundRect(ctx, px, py + 10, pw, ph, 40); ctx.fill();
     ctx.fillStyle = '#fff7ed'; A.roundRect(ctx, px, py, pw, ph, 40); ctx.fill(); ctx.strokeStyle = '#f9a8d4'; ctx.lineWidth = 8; ctx.stroke();
@@ -188,16 +153,18 @@
         A.starPath(ctx, sx, sy - (i === 1 ? 20 : 0), s, s * 0.48, 5); ctx.fill(); ctx.stroke();
       }
       A.text(ctx, `+${d.stars} ⭐`, G.W / 2, py + 360, { size: 40, color: '#b45309' });
-      const nu = UI.nextUnlock(); if (nu) A.text(ctx, `${Math.max(0, nu.stars - FL.Save.data.stars)} more ⭐ until ${nu.emoji} ${nu.name}!`, G.W / 2, py + 405, { size: 24, color: '#6b7280' });
-    } else if (overlay.kind === 'friends') {
-      A.text(ctx, 'My Things', G.W / 2, py + 48, { size: 44, color: '#7c3aed' });
-      (overlay.data.labels || []).forEach((l) => A.text(ctx, l.text, l.x, l.y + (py - (G.H / 2 - ph / 2)), { size: 20, color: '#9d174d', align: 'left' }));
-      (overlay.data.regionText || []).forEach((tx, i) => A.text(ctx, tx, G.W / 2 + (i - 0.5) * 300, py + 445, { size: 20, color: '#166534' }));
-      const nu = UI.nextUnlock(); if (nu) A.text(ctx, `Next: ${nu.emoji} ${nu.name} in ${Math.max(0, nu.stars - FL.Save.data.stars)} ⭐`, G.W / 2, py + 485, { size: 22, color: '#6b7280' });
+      const nu = UI.hooks.nextUnlock ? UI.hooks.nextUnlock() : null; if (nu) A.text(ctx, `${Math.max(0, nu.stars - FL.Save.data.stars)} more ⭐ until ${nu.emoji} ${nu.name}!`, G.W / 2, py + 405, { size: 24, color: '#6b7280' });
+    } else if (overlay.kind === 'collection') {
+      const d = overlay.data || {};
+      A.text(ctx, d.title || 'My Things', G.W / 2, py + 48, { size: 44, color: '#7c3aed' });
+      const dy = py - (G.H / 2 - ph / 2);
+      (d.labels || []).forEach((l) => A.text(ctx, l.text, l.x, l.y + dy, { size: 20, color: '#9d174d', align: 'left' }));
+      (d.lines || []).forEach((l) => A.text(ctx, l.text, l.x != null ? l.x : G.W / 2, l.y + dy, { size: l.size || 22, color: l.color || '#166534' }));
     } else if (overlay.kind === 'parent') {
       A.text(ctx, 'Grown-up Corner', G.W / 2, py + 60, { size: 46, color: '#7c3aed' });
       const p = FL.Save.data.plays; const played = Object.keys(p).reduce((a, k) => a + p[k], 0);
-      A.text(ctx, `${FL.Save.data.stars} stars · ${played} games played · levels: letters ${FL.Save.level('letters')}, numbers ${FL.Save.level('numbers')}, shapes ${FL.Save.level('shapes')}, patterns ${FL.Save.level('patterns')}`, G.W / 2, py + 108, { size: 20, color: '#6b7280' });
+      const lv = Object.keys(FL.Save.data.levels).map((k) => `${k} ${FL.Save.data.levels[k]}`).join(', ');
+      A.text(ctx, `${FL.Save.data.stars} stars · ${played} games played${lv ? ' · levels: ' + lv : ''}`, G.W / 2, py + 108, { size: A.fitSize(ctx, `${FL.Save.data.stars} stars · ${played} games played${lv ? ' · levels: ' + lv : ''}`, pw - 40, 20), color: '#6b7280' });
       const vp = FL.Audio.voicePack; A.text(ctx, vp.ready ? `Narrator: ${vp.name} (built in) · fallback voice below · ▶ to hear` : `Narrator voice · ${(overlay.data && overlay.data.voiceCount) || 0} on this device · tap to change, ▶ to hear`, G.W / 2 - 410, py + 248, { size: 17, color: '#6b7280', align: 'left' });
       const h1 = vp.ready ? 'The narrator is a built-in studio voice, so it sounds the same on every device. The fallback voice is only used' : 'For a much more natural voice on iPad: Settings › Accessibility › Spoken Content › Voices › English,'; const h2 = vp.ready ? 'for lines that include a custom name (see README to bake a name into the voice pack).' : 'download "Ava (Premium)" or "Samantha (Enhanced)", restart the game, then pick it above.';
       A.text(ctx, h1, G.W / 2, py + ph - 70, { size: A.fitSize(ctx, h1, pw - 60, 17), color: '#6b7280' });

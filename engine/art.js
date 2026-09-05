@@ -6,8 +6,8 @@
   Art.FONT = FONT;
   Art.font = (size, weight) => `${weight || 700} ${size}px ${FONT}`;
 
-  Art.PRINCESSES = FL.Data.PRINCESSES;
-  Art.dressColors = function () { const D = FL.Data.DRESS_SETS; let list = D.set1.slice(); if (FL.Save.has('dress', 'set2')) list = list.concat(D.set2); if (FL.Save.has('dress', 'set3')) list = list.concat(D.set3); return list; };
+  Art.PRINCESSES = (FL.Data && FL.Data.PRINCESSES) || [];
+  Art.dressColors = function () { const D = FL.Data && FL.Data.DRESS_SETS; if (!D) return []; let list = D.set1.slice(); if (FL.Save.has('dress', 'set2')) list = list.concat(D.set2); if (FL.Save.has('dress', 'set3')) list = list.concat(D.set3); return list; };
 
   // ---------- primitives ----------
   Art.roundRect = function (ctx, x, y, w, h, r) {

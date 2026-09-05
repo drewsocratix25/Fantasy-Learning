@@ -60,10 +60,6 @@
       return L;
     },
     article(w) { return /^[aeiou]/i.test(w) ? 'an' : 'a'; },
-    // Stable id for a line: FNV-1a over the normalised text (mirrored in tools/make-voices.py).
-    normalize(text) { return String(text).toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim(); },
-    id(text) { const s = Lines.normalize(text); let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16).padStart(8, '0'); },
   };
-  window.FL = window.FL || {};
-  FL.Lines = Lines;
+  FL.Lines.all = Lines.all;
 })();
