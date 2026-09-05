@@ -72,7 +72,7 @@ js/art.js             cartoon drawing library (princess, castle, trees, particle
 js/ui.js              buttons, HUD, results / friends / grown-up overlays
 js/title.js           choose a princess
 js/world.js           the explorable kingdom
-js/games/*.js         the six mini-games
+js/games/*.js         the mini-games (letters, numbers, shapes, piano, patterns, rhythm)
 js/games/puppysim.js  Puppy Cottage rules: needs, care chart, growth (pure, no canvas)
 js/games/puppy.js     Puppy Cottage scene: adoption, feeding, walks, fetch, tricks
 manifest.webmanifest  installable web app

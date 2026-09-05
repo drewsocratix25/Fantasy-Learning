@@ -1,7 +1,7 @@
 {
   "name": "Melody Kingdom",
   "short_name": "Melody Kingdom",
-  "description": "A princess music adventure that teaches kindergarten letters, numbers, shapes, colors and rhythm, and raise a puppy.",
+  "description": "A princess music adventure that teaches kindergarten letters, numbers, shapes, colors and rhythm, with a puppy to raise.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "fullscreen",

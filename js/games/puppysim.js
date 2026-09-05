@@ -8,7 +8,10 @@
   P.JOBS = ['fed', 'water', 'potty', 'clean', 'play'];          // chart order; icons 🍖 💧 🌳 🧻 🎾
   P.NEEDS = ['food', 'water', 'play', 'potty'];                 // icons 🍖 💧 🎾 🌳
   P.RATES = { food: 1.2, water: 1.5, play: 1.5, potty: 1.0 };   // per real minute while the scene is open
-  const AWAY_RATE = 0.3, AWAY_CAP = 480, AWAY_FLOOR = 30, AWAY_POTTY = 70, LIVE_FLOOR = 10, DAY_CAP = 10, CROWN = 50, MAX_MESS = 2;
+  const AWAY_RATE = 0.3, AWAY_CAP = 480, AWAY_FLOOR = 30, AWAY_POTTY = 70, LIVE_FLOOR = 10, DAY_CAP = 10, CROWN = 50, MAX_MESS = 2, HOLD = 95, DANCE = 90;
+  P.CROWN = CROWN;                // care points for the Royal Pup crown (stage 3)
+  P.FETCH_PER_STAMP = 3;          // ball returns in a round that earn the play stamp
+  P.PARTY_EVERY = 10;             // stage 3: a puppy party every N care points
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const toDate = (now) => now == null ? new Date() : now.getTime ? now : new Date(now);
   const pad = (n) => (n < 10 ? '0' : '') + n;
@@ -31,26 +34,31 @@
   };
 
   // ---- needs ----
+  // after two accidents in a day the bladder holds at 95 ("{name} is holding it") so the room can never fill with mess (§6.3)
+  P.pottyPaused = (dog, now) => { const a = dog.accidentsToday; return !!a && a.n >= 2 && a.key === P.todayKey(now); };
+  P.accidentDue = (dog) => dog.needs.potty >= 100;
   P.tick = (dog, dt, now) => {
     const n = dog.needs, m = (dt || 0) / 60;
     for (const k of ['food', 'water', 'play']) n[k] = clamp(n[k] - P.RATES[k] * m, Math.min(LIVE_FLOOR, n[k]), 100);
-    const a = dog.accidentsToday, paused = !!a && a.n >= 2 && a.key === P.todayKey(now), before = n.potty;
+    const paused = P.pottyPaused(dog, now), before = n.potty;
     n.potty = clamp(n.potty + P.RATES.potty * m, 0, 100);
-    if (paused && n.potty > 95) n.potty = Math.max(95, Math.min(before, 100));
+    if (paused && n.potty > HOLD) n.potty = Math.max(HOLD, Math.min(before, 100));
+    dog.dancing = P.needState(dog, 'potty') === 'needs';   // the potty dance is a live rule; saved so applyAway knows the dog was dancing when she left
     return n;
   };
   P.applyAway = (dog, now) => {
     const n = dog.needs, ms = toDate(now).getTime();
     const el = dog.lastSeen ? clamp((ms - dog.lastSeen) / 60000, 0, AWAY_CAP) : 0;   // negative (clock moved back) -> 0; cap 8 h
-    let accident = false;
+    let accident = false; dog.messes = dog.messes || [];
     if (el > 0) {
+      const p0 = n.potty;
       n.food = Math.max(AWAY_FLOOR, n.food - P.RATES.food * AWAY_RATE * el);
       n.water = Math.max(AWAY_FLOOR, n.water - P.RATES.water * AWAY_RATE * el);
       n.play = Math.max(AWAY_FLOOR, n.play - P.RATES.play * AWAY_RATE * el);
       n.potty = Math.min(AWAY_POTTY, n.potty + P.RATES.potty * AWAY_RATE * el);
       if (el >= 90) n.potty = Math.max(n.potty, AWAY_POTTY);                       // first job on return is a walk
-      dog.messes = dog.messes || [];
-      if (dog.dancing && !dog.messes.length) { dog.messes.push({ x: 0.45, y: 0.85, inside: true }); n.potty = 0; dog.dancing = false; accident = true; }
+      // at most one waiting accident, and only if she left mid potty-dance (bladder >= 90) and it would have overflowed at the live rate (§3, §6.3)
+      if (dog.dancing && !dog.messes.length && p0 >= DANCE && p0 + P.RATES.potty * el >= 100) { dog.messes.push({ x: 0.45, y: 0.85, inside: true }); n.potty = 0; dog.dancing = false; accident = true; }
     }
     dog.awayMin = el;
     return { elapsedMin: el, accident };
@@ -60,7 +68,9 @@
   const RANK = { fine: 0, low: 1, needs: 2 }, PRIORITY = ['potty', 'food', 'water', 'play'];
   P.worst = (dog) => { let w = null; for (const k of PRIORITY) { const s = P.needState(dog, k); if (s !== 'fine' && (!w || RANK[s] > RANK[w.state])) w = { need: k, state: s }; } return w; };
   P.mood = (dog) => { const w = P.worst(dog); return !w ? 'happy' : w.state === 'low' ? 'neutral' : 'pout'; };
-  P.project = (dog, now) => { const c = JSON.parse(JSON.stringify(dog)); P.applyAway(c, now); const w = P.worst(c); return w && w.state === 'needs' ? w.need : null; };
+  // what the puppy would need right now if she walked in (offline formula on a COPY; never mutates): {need, state} or null
+  P.projectWorst = (dog, now) => { const c = JSON.parse(JSON.stringify(dog)); P.applyAway(c, now); return P.worst(c); };
+  P.project = (dog, now) => { const w = P.projectWorst(dog, now); return w && w.state === 'needs' ? w.need : null; };
 
   // ---- care chart ----
   P.syncRound = (dog, now) => { const k = P.roundKey(now); if (dog.chart && dog.chart.key === k) return false; dog.chart = emptyChart(k); dog.fetchCount = 0; return true; };
@@ -85,7 +95,12 @@
   P.shouldCeremony = (dog, now) => { const tk = P.todayKey(now); return (!!dog.pendingGrow && dog.pendingGrow !== tk) || (!dog.pendingGrow && P.canGrow(dog, now)); };
   P.grow = (dog) => { dog.stage = Math.min(3, dog.stage + 1); dog.pendingGrow = ''; return dog.stage; };
   P.boneFraction = (dog) => { const s = clamp(dog.stage, 0, 3), a = P.STAGES[s].points, b = s >= 3 ? CROWN : P.STAGES[s + 1].points; return clamp((dog.points - a) / (b - a), 0, 1); };
-  P.greetingKind = (dog, now) => { if (!dog.visits) return 'first'; if (!dog.lastRoundDay) return 'gap'; const d = P.dayDiff(dog.lastRoundDay, P.todayKey(now)); return d >= 0 && d <= 1 ? 'recent' : 'gap'; };
+  // 'recent' = a round was completed today or yesterday (or, before the first round, adoption was recent / she was only away a short while)
+  P.greetingKind = (dog, now) => {
+    if (!dog.lastRoundDay) return P.age(dog, now) <= 1 || (dog.awayMin != null && dog.awayMin < 60) ? 'recent' : 'gap';
+    const d = P.dayDiff(dog.lastRoundDay, P.todayKey(now)); return d >= 0 && d <= 1 ? 'recent' : 'gap';
+  };
+  P.partyDue = (dog) => { if (dog.stage < 3) return false; const due = Math.floor((dog.points || 0) / P.PARTY_EVERY); if (due > (dog.parties || 0)) { dog.parties = due; return true; } return false; };
 
   // ---- tricks ----
   P.trickState = (dog, id) => { const tr = P.TRICKS.find((t) => t.id === id), count = clamp((dog.tricks && dog.tricks[id]) || 0, 0, 3); return { unlocked: !!tr && dog.stage >= tr.stage, count, learned: count >= 3 }; };
@@ -97,8 +112,9 @@
 
   // ---- actions ----
   P.addPlay = (dog, n) => { dog.needs.play = Math.min(100, dog.needs.play + n); return dog.needs.play; };
-  P.feed = (dog) => { const n = dog.needs; if (n.food > 80) return false; n.food = 100; n.potty = Math.min(100, n.potty + 30); return true; };
-  P.water = (dog) => { const n = dog.needs; if (n.water > 80) return false; n.water = 100; n.potty = Math.min(100, n.potty + 20); return true; };
+  const bladderCap = (dog, now) => (P.pottyPaused(dog, now) ? HOLD : 100);
+  P.feed = (dog, now) => { const n = dog.needs; if (n.food > 80) return false; n.food = 100; n.potty = Math.min(bladderCap(dog, now), n.potty + 30); return true; };
+  P.water = (dog, now) => { const n = dog.needs; if (n.water > 80) return false; n.water = 100; n.potty = Math.min(bladderCap(dog, now), n.potty + 20); return true; };
   P.canPotty = (dog) => dog.needs.potty >= 35;
   P.pottyOutside = (dog, x, y) => { dog.needs.potty = 0; dog.dancing = false; dog.messes = dog.messes || []; if (dog.messes.length < MAX_MESS) dog.messes.push({ x, y, inside: false }); return true; };
   P.accident = (dog, x, y, now) => {
@@ -120,7 +136,13 @@
     needWater: '{name} is thirsty. Pour some water in {his} bowl.',
     needPotty: '{name} needs to go potty! Tap the door.',
     needPlay: '{name} wants to play. Throw the ball!',
+    fineFood: "{name}'s tummy is full right now.",
+    fineWater: '{name} has plenty of water.',
+    finePotty: "{name} doesn't need to go right now.",
+    finePlay: '{name} is happy to play any time!',
     happy: '{name} is happy! You can throw the ball or teach {him} a trick.',
+    busyBed: '{name} is busy right now. Try the bed in a moment.',
+    alreadyWalking: '{name} is already going outside!',
     lowFood: "{name}'s tummy is getting a little empty.",
     lowWater: '{name} could use a drink.',
     lowPotty: '{name} is sniffing around. {He} might need to go outside soon.',
@@ -182,13 +204,13 @@
     sweet: 'Sweet dreams.',
     morning: 'Good morning, {name}!',
   };
-  const JOB_WORDS = { fed: 'fed', water: 'water', potty: 'potty walk', clean: 'clean-up', play: 'play' };
+  const JOB_WORDS = { fed: ['Fed', '{meal}'], water: ['Water', 'water'], potty: ['Potty walk', 'a potty walk'], clean: ['Clean-up', 'clean-up'], play: ['Play', 'play'] };   // [done form, to-do form]
   const listWords = (a) => a.length <= 1 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
   P.posterLine = (dog, now) => {
     const c = dog.chart && dog.chart.key === P.roundKey(now) ? dog.chart : {};
     const done = P.JOBS.filter((j) => c[j]), todo = P.JOBS.filter((j) => !c[j]);
-    let s = P.LINES.poster + ' ' + done.map((j) => JOB_WORDS[j][0].toUpperCase() + JOB_WORDS[j].slice(1) + ', check!').join(' ');
-    s += todo.length ? (done.length ? ' ' : '') + 'Still to do: ' + listWords(todo.map((j) => JOB_WORDS[j])) + '.' : ' Every job is done!';
+    let s = P.LINES.poster + ' ' + done.map((j) => JOB_WORDS[j][0] + ', check!').join(' ');
+    s += todo.length ? (done.length ? ' ' : '') + 'Still to do: ' + listWords(todo.map((j) => JOB_WORDS[j][1])) + '.' : ' Every job is done!';
     return P.L(dog, s, now);
   };
   P.boneLine = (dog, now) => {

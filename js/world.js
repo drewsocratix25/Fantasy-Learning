@@ -9,11 +9,12 @@
     { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
     { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
     { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
-    { id: 'puppy', name: 'Puppy Cottage', emoji: '🐶', x: 400, y: 990, r: 130, scene: 'puppy', hint: () => { const d = FL.Save.data.dog; return d && d.adopted ? `${d.name} is waiting for you!` : 'A puppy is waiting for you!'; } },
+    // the cottage sits west of the x 430-470 corridor between Letter Garden and Rainbow Meadow so the obstacle never blocks a straight walk; its Play! button pops up beside the sign (playDx/playDy) so the cottage stays visible
+    { id: 'puppy', name: 'Puppy Cottage', emoji: '🐶', x: 300, y: 1060, r: 130, scene: 'puppy', playDx: 250, playDy: -200, hint: () => { const d = FL.Save.data.dog; return d && d.adopted ? `${d.name} is waiting for you!` : 'A puppy is waiting for you!'; } },
   ];
   const hintOf = (l) => (typeof l.hint === 'function' ? l.hint() : l.hint);
   // Puppy Cottage prop + the kingdom-map nudge lines (FL.Puppy loads after this file: guard every read at call time)
-  const COTTAGE = { x: 400, y: 860, houseX: 555, houseY: 880, dogX: 635, dogY: 905 }; // kennel sits just right of the sign board so its door stays visible
+  const COTTAGE = { x: 300, y: 860, dogX: 235, dogY: 905 }; // the dog waits on the doorstep, left of the door
   const NEED_ICON = { food: '🍖', water: '💧', play: '🎾', potty: '🌳' };
   const NUDGE = { food: 'I think {name} is hungry.', water: 'I think {name} is thirsty.', play: 'I think {name} wants to play.', potty: 'I think {name} needs a potty walk!' };
   const puppy = () => { const d = FL.Save.data.dog; return FL.Puppy && d && d.adopted ? d : null; };
@@ -21,7 +22,7 @@
     { type: 'rect', x: 970, y: 300, w: 460, h: 340 },        // castle body
     { type: 'circle', x: 1980, y: 470, r: 190 },               // pond
     { type: 'circle', x: 1930, y: 1160, r: 110 },              // gazebo
-    { type: 'rect', x: 300, y: 730, w: 260, h: 130 },          // puppy cottage
+    { type: 'rect', x: 195, y: 730, w: 210, h: 130 },          // puppy cottage walls (collide() pads 20 px: keeps x >= 430 free)
     { type: 'rect', x: 0, y: 0, w: MAP_W, h: 90 }, { type: 'rect', x: 0, y: MAP_H - 70, w: MAP_W, h: 70 }, { type: 'rect', x: 0, y: 0, w: 80, h: MAP_H }, { type: 'rect', x: MAP_W - 80, y: 0, w: 80, h: MAP_H },
   ];
   function rng(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
@@ -32,7 +33,7 @@
     hud: { home: false },
     init() {
       const r = rng(7); this.decor = []; this.flowers = []; this.butterflies = []; this.clouds = [];
-      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200 && Math.hypot(400 - x, 860 - y) > 230;
+      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200 && Math.hypot(COTTAGE.x - x, COTTAGE.y - y) > 230;
       // border trees
       for (let i = 0; i < 26; i++) { const x = 120 + (i / 25) * (MAP_W - 240); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: 120 + r() * 50, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: MAP_H - 30 - r() * 40, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
       for (let i = 0; i < 16; i++) { const y = 180 + (i / 15) * (MAP_H - 360); this.decor.push({ k: 'tree', x: 110 + r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: MAP_W - 110 - r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
@@ -95,12 +96,13 @@
       }
     },
     key(k) { this.idle = 0; if ((k === 'Enter' || k === ' ') && this.near) this.enterLoc(this.near); if (k === 'f') UI.showFriends(); },
-    collide(nx, ny) {
+    collide(nx, ny) { return !!this.blocker(nx, ny); },
+    blocker(nx, ny) {
       for (const o of OBSTACLES) {
-        if (o.type === 'rect') { if (nx > o.x - 20 && nx < o.x + o.w + 20 && ny > o.y && ny < o.y + o.h + 10) return true; }
-        else if (Math.hypot(o.x - nx, o.y - ny) < o.r + 14) return true;
+        if (o.type === 'rect') { if (nx > o.x - 20 && nx < o.x + o.w + 20 && ny > o.y && ny < o.y + o.h + 10) return o; }
+        else if (Math.hypot(o.x - nx, o.y - ny) < o.r + 14) return o;
       }
-      return false;
+      return null;
     },
     update(dt) {
       const g = G(); this.t += dt; this.idle += dt;
@@ -113,8 +115,16 @@
       this.walking = m > 0.05;
       if (this.walking) {
         const speed = 300; const nx = this.px + vx * speed * dt, ny = this.py + vy * speed * dt;
-        if (!this.collide(nx, this.py)) this.px = nx; else if (this.target) this.target = null;
-        if (!this.collide(this.px, ny)) this.py = ny; else if (this.target) this.target = null;
+        const bx = this.blocker(nx, this.py), by = this.blocker(this.px, ny);
+        if (!bx) this.px = nx; if (!by) this.py = ny;
+        if (this.target && (bx || by)) {
+          // a tap-to-walk that runs into a building slides around it along the nearer edge instead of stopping dead
+          const o = by || bx;
+          if (bx && by) this.target = null;
+          else if (o.type !== 'rect') this.target = null;
+          else if (by && Math.abs(vx) < 0.3) { const side = this.px < o.x + o.w / 2 ? -1 : 1; const sx = this.px + side * speed * dt; if (!this.collide(sx, this.py)) this.px = sx; else this.target = null; }
+          else if (bx && Math.abs(vy) < 0.3) { const side = this.py < o.y + o.h / 2 ? -1 : 1; const sy = this.py + side * speed * dt; if (!this.collide(this.px, sy)) this.py = sy; else this.target = null; }
+        }
         if (Math.abs(vx) > 0.1) this.facing = vx > 0 ? 1 : -1;
         if (Math.random() < dt * 3) this.fx.burst(this.px - this.facing * 10, this.py, { count: 1, colors: ['rgba(255,255,255,.7)'], speed: 30, life: 0.5, size: 8, gravity: -20 });
       }
@@ -125,7 +135,7 @@
       // near a location
       const prev = this.near; this.near = LOCS.find((l) => Math.hypot(l.x - this.px, l.y - this.py) < l.r) || null;
       if (this.near && this.near !== prev) { FL.Audio.sfx.sparkle(); FL.Audio.say(`${this.near.name}! ${hintOf(this.near)}`); }
-      if (this.near) { this.playBtn.x = this.near.x - this.cam.x - 115; this.playBtn.y = this.near.y - this.cam.y - 260; }
+      if (this.near) { this.playBtn.x = this.near.x - this.cam.x - 115 + (this.near.playDx || 0); this.playBtn.y = this.near.y - this.cam.y + (this.near.playDy != null ? this.near.playDy : -260); }
       // parent hold
       for (const p of g.pointers.values()) if (p.parent) this.hold += dt;
       // ambient
@@ -133,10 +143,11 @@
       this.clouds.forEach((c) => { c.x += 14 * dt; if (c.x > MAP_W + 200) c.x = -200; });
       this.fx.update(dt);
       // what the puppy needs right now (projected from the save once a second; the cottage nudge and the thought bubble read it)
-      this.needT -= dt; if (this.needT <= 0) { this.needT = 1; const d = puppy(); this.dogNeed = d ? FL.Puppy.project(d) : null; }
+      this.needT -= dt; if (this.needT <= 0) { this.needT = 1; const d = puppy(); this.dogNeed = d ? FL.Puppy.projectWorst(d) : null; }   // {need, state} or null
       if (this.idle > 14) {
-        this.idle = 0; const d = puppy(); let l = null, line = null;
-        if (d && this.dogNeed) { l = LOCS.find((x) => x.id === 'puppy'); line = FL.Puppy.L(d, NUDGE[this.dogNeed] + " Let's visit the Puppy Cottage!"); }
+        this.idle = 0; const d = puppy(); let l = null, line = null; const atCottage = this.near && this.near.id === 'puppy';
+        if (d && this.dogNeed && !atCottage) { l = LOCS.find((x) => x.id === 'puppy'); line = FL.Puppy.L(d, NUDGE[this.dogNeed.need] + " Let's visit the Puppy Cottage!"); }
+        else if (d && atCottage) { l = this.near; line = FL.Puppy.L(d, 'Tap Play to see {name}!'); }
         if (!l) { l = LOCS.find((x) => !FL.Save.data.visited.includes(x.id)) || LOCS[Math.floor(Math.random() * LOCS.length)]; line = `Let's go to the ${l.name}!`; }
         this.hintLoc = l; this.hintT = 4; FL.Audio.say(line);
       }
@@ -158,7 +169,7 @@
       ctx.fillStyle = '#fde68a'; A.starPath(ctx, 1200, 960, 46, 20, 5); ctx.fill(); ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 4; ctx.stroke();
       // pond + rainbow + garden beds
       A.pond(ctx, 1980, 470, 190, 120, t);
-      A.rainbow(ctx, 470, 1140, 200, 16, 0.8);
+      A.rainbow(ctx, 600, 1150, 120, 14, 0.8);
       // letter garden beds
       ctx.fillStyle = '#a16207'; A.roundRect(ctx, 250, 380, 360, 130, 30); ctx.fill(); ctx.fillStyle = '#ca8a04'; A.roundRect(ctx, 262, 392, 336, 106, 24); ctx.fill();
       'ABCDEF'.split('').forEach((ch, i) => { A.bigFlower(ctx, 300 + i * 56, 440 + Math.sin(t * 2 + i) * 4, 26, ['#f472b6', '#60a5fa', '#facc15', '#c084fc', '#fb923c', '#f87171'][i]); A.text(ctx, ch, 300 + i * 56, 441 + Math.sin(t * 2 + i) * 4, { size: 22, color: '#7c2d12' }); });
@@ -174,15 +185,17 @@
       this.decor.forEach((d) => { if (d.x > cx - 150 && d.x < cx + g.W + 150 && d.y > cy - 50 && d.y < cy + g.H + 200) items.push({ y: d.y, f: () => (d.k === 'tree' ? A.tree(ctx, d.x, d.y, d.s, d.v, t) : A.bush(ctx, d.x, d.y, d.s)) }); });
       items.push({ y: 640, f: () => A.castle(ctx, 1200, 640, 1.05, t) });
       items.push({ y: 1160, f: () => A.gazebo(ctx, 1930, 1160, 1, t) });
-      // puppy cottage + doghouse; the dog waits by its house unless it is out walking with the princess
+      // puppy cottage; the dog waits on the doorstep unless it is out walking with the princess (only drawn when the camera can see it)
       const dog = puppy(); const comp = FL.Save.data.companion; const dogIsComp = comp === '🐶' || comp === '🐕';
-      items.push({ y: COTTAGE.y, f: () => A.cottage(ctx, COTTAGE.x, COTTAGE.y, 1, t, { name: dog ? dog.name : null }) });
-      items.push({ y: COTTAGE.houseY, f: () => A.doghouse(ctx, COTTAGE.houseX, COTTAGE.houseY, 1, dog ? dog.name : null) });
-      if (dog && !dogIsComp) {
+      const cotVis = COTTAGE.x + 200 > cx && COTTAGE.x - 200 < cx + g.W && COTTAGE.y + 80 > cy && COTTAGE.y - 260 < cy + g.H;
+      if (cotVis) items.push({ y: COTTAGE.y, f: () => A.cottage(ctx, COTTAGE.x, COTTAGE.y, 1, t, { name: dog ? dog.name : null }) });
+      const need = this.dogNeed; const urgent = need && need.state === 'needs';
+      if (dog && !dogIsComp && cotVis) {
         const near = Math.hypot(this.px - COTTAGE.dogX, this.py - COTTAGE.dogY) < 250;
-        items.push({ y: COTTAGE.dogY, f: () => A.dog(ctx, COTTAGE.dogX, COTTAGE.dogY, { coat: dog.coat, stage: dog.stage, mood: this.dogNeed ? 'pout' : 'happy', mud: 0, bandana: g.look && g.look.dress, crown: dog.crown }, { t, facing: this.px < COTTAGE.dogX ? -1 : 1, pose: 'sit', poseT: t, wag: near ? 1 : 0.15, seed: 3 }, 0.8) });
+        items.push({ y: COTTAGE.dogY, f: () => A.dog(ctx, COTTAGE.dogX, COTTAGE.dogY, { coat: dog.coat, stage: dog.stage, mood: urgent ? 'pout' : need ? 'neutral' : 'happy', mud: 0, bandana: g.look && g.look.dress, crown: dog.crown }, { t, facing: 1, pose: 'sit', poseT: t, wag: near ? 1 : 0.15, seed: 3 }, 0.8) });
       }
-      if (dog && this.dogNeed) items.push({ y: 99999, f: () => A.bubble(ctx, COTTAGE.dogX + 60, COTTAGE.dogY - 95 - Math.abs(Math.sin(t * 4)) * 10, NEED_ICON[this.dogNeed], 34) });
+      // the thought bubble floats over wherever the dog actually is: beside the princess when it is the companion, else on the doorstep
+      if (dog && urgent && (dogIsComp || cotVis)) { const bx = dogIsComp ? this.companion.x + 40 : COTTAGE.dogX + 50, by = dogIsComp ? this.companion.y - 95 : COTTAGE.dogY - 95; items.push({ y: 99999, f: () => A.bubble(ctx, bx, by - Math.abs(Math.sin(t * 4)) * 10, NEED_ICON[need.need], 34) }); }
       LOCS.forEach((l) => { const isNear = this.near === l; const hint = this.hintLoc === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0; items.push({ y: l.y, f: () => A.sign(ctx, l.x, l.y, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 1 }) }); if (isNear || hint) items.push({ y: l.y - 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, l.x, l.y + 30, l.r, l.r * 0.45); ctx.stroke(); ctx.setLineDash([]); } }); });
       items.push({ y: this.py, f: () => A.princess(ctx, this.px, this.py, g.look, { t, walking: this.walking, facing: this.facing, wave: !this.walking && this.idle > 3 && this.idle < 5 }, 1) });
       items.push({ y: this.companion.y, f: () => { const hop = dogIsComp ? 0 : Math.abs(Math.sin(t * 8)) * (this.walking ? 14 : 3); ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, this.companion.x, this.companion.y, 22, 8); ctx.fill(); A.emoji(ctx, comp, this.companion.x, this.companion.y - 28 - hop, 56, { flip: this.facing < 0, rot: dogIsComp ? Math.sin(t * 12) * 0.08 : 0 }); } });

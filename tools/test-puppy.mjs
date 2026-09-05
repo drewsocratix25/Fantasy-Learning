@@ -15,18 +15,11 @@ for (const f of ['js/save.js', 'js/games/puppysim.js']) vm.runInThisContext(read
 const FL = globalThis.FL, P = FL.Puppy;
 assert.ok(P, 'FL.Puppy registered');
 
-// Contract §1 save shape (used for every test dog; injected into the save when save.js does not have it yet).
-const CONTRACT_DOG = {
-  adopted: false, name: '', pron: 0, coat: 0, born: '', stage: 0, points: 0, pendingGrow: '', rounds: 0,
-  pointsDay: { key: '', n: 0 }, needs: { food: 70, water: 70, play: 60, potty: 20 }, lastSeen: 0, dancing: false, mud: 0, messes: [],
-  chart: { key: '', fed: false, water: false, potty: false, clean: false, play: false, done: false },
-  fetchCount: 0, lastRoundDay: '', week: [], tricks: { sit: 0, spin: 0, five: 0, roll: 0 }, assist: { bag: 0, ball: 0 },
-  tutorialDone: false, crown: false, parties: 0, visits: 0, accidentsToday: { key: '', n: 0 },
-};
+// The save shape comes from js/save.js (single source of truth); the key list below is the contract §1 shape the scene relies on.
 const clone = (o) => JSON.parse(JSON.stringify(o));
-if (!FL.Save.data.dog) { FL.Save.data.dog = clone(CONTRACT_DOG); console.log('note: save.js has no DEFAULTS.dog yet; injected the contract shape'); }
-else for (const k of Object.keys(CONTRACT_DOG)) if (!(k in FL.Save.data.dog)) console.warn('warning: save.js DEFAULTS.dog is missing key', k);
-if (typeof FL.Save.defaultDog === 'function') assert.equal(FL.Save.defaultDog().adopted, false, 'Save.defaultDog() returns an unadopted dog');
+const CONTRACT_DOG = FL.Save.defaultDog();
+assert.deepEqual(Object.keys(CONTRACT_DOG).sort(), 'adopted name pron coat born stage points pendingGrow rounds pointsDay needs lastSeen dancing mud messes chart fetchCount lastRoundDay week tricks assist tutorialDone crown parties visits accidentsToday bag'.split(' ').sort(), 'DEFAULTS.dog keys');
+assert.equal(CONTRACT_DOG.adopted, false, 'Save.defaultDog() returns an unadopted dog');
 
 let n = 0;
 const test = (name, fn) => { try { fn(); n++; } catch (e) { console.error('FAIL', name); throw e; } };
@@ -103,6 +96,19 @@ test('applyAway accident rule', () => {
   const d2 = mk({ lastSeen: now - 10 * 60e3, dancing: true, needs: { potty: 92 }, messes: [{ x: 0.5, y: 0.5, inside: false }] }); r = P.applyAway(d2, now);
   assert.equal(r.accident, false); assert.equal(d2.messes.length, 1); assert.equal(d2.needs.potty, 70); assert.equal(d2.dancing, true);
   const d3 = mk({ lastSeen: now - 10 * 60e3, dancing: false, needs: { potty: 92 } }); r = P.applyAway(d3, now); assert.equal(r.accident, false); assert.equal(d3.messes.length, 0); assert.equal(d3.needs.potty, 70);
+  // a dance that had only just started (bladder 70) is never punished, and a short absence cannot overflow a 92 bladder at 1/min
+  const d4 = mk({ lastSeen: now - 60e3, dancing: true, needs: { potty: 70 } }); r = P.applyAway(d4, now); assert.equal(r.accident, false); assert.equal(d4.messes.length, 0); assert.equal(d4.dancing, true); near(d4.needs.potty, 70);
+  const d5 = mk({ lastSeen: now - 5 * 60e3, dancing: true, needs: { potty: 92 } }); r = P.applyAway(d5, now); assert.equal(r.accident, false); assert.equal(d5.messes.length, 0); assert.equal(d5.needs.potty, 70);
+  const d6 = mk({ lastSeen: now - 480 * 60e3, dancing: true, needs: { potty: 90 } }); r = P.applyAway(d6, now); assert.equal(r.accident, true);
+  const d7 = mk({ lastSeen: now - 480 * 60e3, dancing: true, needs: { potty: 89 } }); r = P.applyAway(d7, now); assert.equal(r.accident, false);
+});
+test('tick owns the dancing flag; pottyPaused / accidentDue', () => {
+  const now = D(2026, 9, 5, 12);
+  const dog = mk({ needs: { potty: 69 } }); P.tick(dog, 0, now); assert.equal(dog.dancing, false); dog.needs.potty = 70; P.tick(dog, 0, now); assert.equal(dog.dancing, true);
+  assert.equal(P.accidentDue(mk({ needs: { potty: 99.9 } })), false); assert.equal(P.accidentDue(mk({ needs: { potty: 100 } })), true);
+  assert.equal(P.pottyPaused(mk({ accidentsToday: { key: P.todayKey(now), n: 2 } }), now), true);
+  assert.equal(P.pottyPaused(mk({ accidentsToday: { key: P.todayKey(now), n: 1 } }), now), false);
+  assert.equal(P.pottyPaused(mk({ accidentsToday: { key: '2026-09-04', n: 2 } }), now), false);
 });
 test('touch', () => { const dog = mk(); P.touch(dog, D(2026, 9, 5, 12)); assert.equal(dog.lastSeen, D(2026, 9, 5, 12).getTime()); P.touch(dog); assert.ok(Date.now() - dog.lastSeen < 1000); });
 test('needState / worst / mood', () => {
@@ -123,6 +129,9 @@ test('project is pure and applies the offline formula to a copy', () => {
   assert.equal(P.project(mk({ lastSeen: now - 5 * 60e3, needs: { food: 100, water: 100, play: 100, potty: 10 } }), now), null);
   const hungry = mk({ lastSeen: 0, needs: { food: 12 } }); const s2 = JSON.stringify(hungry); assert.equal(P.project(hungry, now), 'food'); assert.equal(JSON.stringify(hungry), s2);
   assert.equal(P.project(mk({ lastSeen: now - 480 * 60e3, dancing: true, needs: { potty: 95 } }), now), null);   // accident on the copy drains potty; original untouched
+  assert.deepEqual(P.projectWorst(mk({ lastSeen: now - 120 * 60e3, needs: { food: 100, water: 100, play: 100, potty: 10 } }), now), { need: 'potty', state: 'needs' });
+  assert.deepEqual(P.projectWorst(mk({ lastSeen: now - 30 * 60e3, needs: { food: 62, water: 100, play: 100, potty: 10 } }), now), { need: 'food', state: 'low' });   // the map nudge also mentions merely-low needs
+  assert.equal(P.projectWorst(mk({ lastSeen: now - 60e3, needs: { food: 100, water: 100, play: 100, potty: 10 } }), now), null);
 });
 test('syncRound resets the chart on a new round', () => {
   const dog = mk(); const am = D(2026, 9, 5, 9), pm = D(2026, 9, 5, 16);
@@ -172,12 +181,16 @@ test('boneFraction / greetingKind / dogEmoji', () => {
   assert.equal(P.boneFraction(mk({ stage: 0, points: 2 })), 0.4); assert.equal(P.boneFraction(mk({ stage: 1, points: 10 })), 0.5); assert.equal(P.boneFraction(mk({ stage: 2, points: 40 })), 1);
   assert.equal(P.boneFraction(mk({ stage: 3, points: 40 })), 0.5); assert.equal(P.boneFraction(mk({ stage: 3, points: 50 })), 1); assert.equal(P.boneFraction(mk({ stage: 3, points: 70 })), 1);
   const today = D(2026, 9, 5, 9);
-  assert.equal(P.greetingKind(mk({ visits: 0 }), today), 'first');
   assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '2026-09-05' }), today), 'recent');
   assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '2026-09-04' }), today), 'recent');
   assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '2026-09-03' }), today), 'gap');
-  assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '' }), today), 'gap');
+  assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '' }), today), 'gap');                          // adopted days ago, never finished a round
+  assert.equal(P.greetingKind(mk({ visits: 1, lastRoundDay: '', born: '2026-09-05' }), today), 'recent');   // adoption day: popping back in is not a reunion
+  assert.equal(P.greetingKind(mk({ visits: 3, lastRoundDay: '', awayMin: 30 }), today), 'recent');
   assert.equal(P.dogEmoji(mk({ stage: 2 })), '🐶'); assert.equal(P.dogEmoji(mk({ stage: 3 })), '🐕');
+  const party = mk({ stage: 3, points: 30, parties: 3 }); assert.equal(P.partyDue(party), false); party.points = 40; assert.equal(P.partyDue(party), true); assert.equal(party.parties, 4); assert.equal(P.partyDue(party), false);
+  assert.equal(P.partyDue(mk({ stage: 2, points: 40, parties: 0 })), false);
+  assert.equal(P.CROWN, 50); assert.equal(P.FETCH_PER_STAMP, 3); assert.equal(P.PARTY_EVERY, 10);
 });
 test('tricks', () => {
   const pup = mk({ stage: 0 }); assert.deepEqual(P.trickState(pup, 'sit'), { unlocked: false, count: 0, learned: false });
@@ -195,6 +208,8 @@ test('feed / water / play / potty / messes', () => {
   dog.needs.food = 80; dog.needs.water = 80; assert.equal(P.feed(dog), true); assert.equal(dog.needs.food, 100); assert.equal(dog.needs.potty, 50);
   assert.equal(P.water(dog), true); assert.equal(dog.needs.water, 100); assert.equal(dog.needs.potty, 70);
   dog.needs.potty = 95; dog.needs.water = 50; P.water(dog); assert.equal(dog.needs.potty, 100);
+  const now0 = D(2026, 9, 5, 12); const held = mk({ needs: { food: 50, water: 50, potty: 90 }, accidentsToday: { key: P.todayKey(now0), n: 2 } });
+  P.feed(held, now0); assert.equal(held.needs.potty, 95); held.needs.potty = 90; P.water(held, now0); assert.equal(held.needs.potty, 95);   // a meal cannot break the "holding it" cap
   assert.equal(P.addPlay(dog, 25), 85); assert.equal(P.addPlay(dog, 25), 100);
   assert.equal(P.canPotty(mk({ needs: { potty: 34 } })), false); assert.equal(P.canPotty(mk({ needs: { potty: 35 } })), true);
   dog.dancing = true; assert.equal(P.pottyOutside(dog, 0.8, 0.8), true); assert.equal(dog.needs.potty, 0); assert.equal(dog.dancing, false); assert.deepEqual(dog.messes, [{ x: 0.8, y: 0.8, inside: false }]);
@@ -212,10 +227,10 @@ test('LINES catalogue, posterLine, boneLine', () => {
   assert.equal(P.L(mk({ pron: 1, name: 'Rosie' }), P.LINES.fetched), 'Good girl! She brought it back!');
   assert.equal(P.L(mk(), P.LINES.fed, D(2026, 9, 5, 8)), 'Yum! Biscuit loves his breakfast.');
   const am = D(2026, 9, 5, 9), dog = mk();
-  assert.equal(P.posterLine(dog, am), "Today's morning jobs: Still to do: fed, water, potty walk, clean-up and play.");
+  assert.equal(P.posterLine(dog, am), "Today's morning jobs: Still to do: breakfast, water, a potty walk, clean-up and play.");
   P.stamp(dog, 'fed', am); P.stamp(dog, 'water', am);
-  assert.equal(P.posterLine(dog, am), "Today's morning jobs: Fed, check! Water, check! Still to do: potty walk, clean-up and play.");
-  assert.equal(P.posterLine(dog, D(2026, 9, 5, 16)), "Today's evening jobs: Still to do: fed, water, potty walk, clean-up and play.");   // stale chart reads as unstamped
+  assert.equal(P.posterLine(dog, am), "Today's morning jobs: Fed, check! Water, check! Still to do: a potty walk, clean-up and play.");
+  assert.equal(P.posterLine(dog, D(2026, 9, 5, 16)), "Today's evening jobs: Still to do: dinner, water, a potty walk, clean-up and play.");   // stale chart reads as unstamped
   for (const j of P.JOBS) P.stamp(dog, j, am); assert.equal(P.posterLine(dog, am), "Today's morning jobs: Fed, check! Water, check! Potty walk, check! Clean-up, check! Play, check! Every job is done!");
   assert.equal(P.boneLine(mk({ stage: 0, points: 2 }), am), "Keep taking care of him and he'll grow big and strong.");
   assert.equal(P.boneLine(mk({ stage: 0, points: 3 }), am), 'Biscuit is almost ready to grow!');
@@ -227,6 +242,17 @@ test('constants match the contract', () => {
   assert.deepEqual(P.STAGES.map((s) => [s.points, s.age]), [[0, 0], [5, 1], [15, 3], [30, 6]]);
   assert.deepEqual(P.TRICKS.map((t) => t.id), ['sit', 'spin', 'five', 'roll']); assert.deepEqual(P.JOBS, ['fed', 'water', 'potty', 'clean', 'play']); assert.deepEqual(P.NEEDS, ['food', 'water', 'play', 'potty']);
   assert.deepEqual(P.RATES, { food: 1.2, water: 1.5, play: 1.5, potty: 1.0 });
-  for (const f of 'todayKey roundKey isMorning dayDiff age L tick applyAway touch needState worst mood project syncRound stamp completeRound canGrow checkGrow shouldCeremony grow boneFraction greetingKind trickState performTrick addPlay feed water canPotty pottyOutside accident removeMess dogEmoji posterLine boneLine'.split(' ')) assert.equal(typeof P[f], 'function', 'P.' + f);
+  for (const f of 'todayKey roundKey isMorning dayDiff age L tick applyAway touch needState worst mood project projectWorst syncRound stamp completeRound canGrow checkGrow shouldCeremony grow boneFraction greetingKind partyDue trickState performTrick addPlay feed water canPotty pottyOutside accident removeMess dogEmoji posterLine boneLine pottyPaused accidentDue'.split(' ')) assert.equal(typeof P[f], 'function', 'P.' + f);
+  for (const k of ['fineFood', 'fineWater', 'finePotty', 'finePlay', 'busyBed', 'alreadyWalking']) assert.equal(typeof P.LINES[k], 'string', 'LINES.' + k);
+});
+test('save.js reset semantics: the puppy survives "Reset all progress" and only "Start puppy over" removes it', () => {
+  const S = FL.Save; S.reset(); const d = S.data; d.dog.adopted = true; d.dog.name = 'Biscuit'; d.dog.stage = 1; S.unlock('🐶'); S.unlock('🦄'); S.addStars(20); d.name = 'Emma';
+  S.reset(); assert.equal(S.data.stars, 0); assert.equal(S.data.name, ''); assert.equal(S.data.dog.adopted, true); assert.equal(S.data.dog.name, 'Biscuit');
+  assert.ok(S.data.unlocked.includes('🐶'), 'puppy still in the Friends grid'); assert.ok(!S.data.unlocked.includes('🦄')); assert.equal(S.data.companion, '🐶');
+  S.data.dog.stage = 3; S.reset(); assert.ok(S.data.unlocked.includes('🐕')); assert.equal(S.data.companion, '🐕');
+  S.resetDog(); assert.equal(S.data.dog.adopted, false); assert.ok(!S.data.unlocked.includes('🐶') && !S.data.unlocked.includes('🐕')); assert.equal(S.data.companion, '🐰');
+  assert.equal(S.data.dog.bag, null); assert.equal(P.age(S.data.dog), 0);                                   // old-save shape: unadopted dog with born ''
+  const noMess = mk(); delete noMess.messes; P.applyAway(noMess, D(2026, 9, 5)); assert.deepEqual(noMess.messes, []);   // missing messes key is tolerated
+  S.reset();
 });
 console.log(`puppysim: ${n} test groups passed (TZ=${process.env.TZ})`);

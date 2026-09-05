@@ -26,6 +26,7 @@
       tricks: { sit: 0, spin: 0, five: 0, roll: 0 },
       assist: { bag: 0, ball: 0 },
       tutorialDone: false, crown: false, parties: 0, visits: 0, accidentsToday: { key: '', n: 0 },
+      bag: null,                     // a tied-up poop bag left on the floor: {x, y} fractions of W/H, or null
     },
   };
   let data = null;
@@ -49,7 +50,11 @@
   const Save = {
     get data() { return data || load(); },
     save,
-    reset() { const dog = JSON.parse(JSON.stringify((data || load()).dog || DEFAULTS.dog)); data = JSON.parse(JSON.stringify(DEFAULTS)); data.dog = dog; save(); }, // the puppy survives a reset
+    reset() { // the puppy survives a reset: keep its data, its Friends entry and its place beside the princess
+      const dog = JSON.parse(JSON.stringify((data || load()).dog || DEFAULTS.dog)); data = JSON.parse(JSON.stringify(DEFAULTS)); data.dog = dog;
+      if (dog.adopted) { const e = dog.stage >= 3 ? '🐕' : '🐶'; if (!data.unlocked.includes(e)) data.unlocked.push(e); data.companion = e; }
+      save();
+    },
     defaultDog() { return JSON.parse(JSON.stringify(DEFAULTS.dog)); },
     resetDog() { const d = this.data; d.dog = this.defaultDog(); d.unlocked = d.unlocked.filter((e) => e !== '🐶' && e !== '🐕'); if (d.companion === '🐶' || d.companion === '🐕') d.companion = '🐰'; save(); },
     level(game) { return (this.data.levels[game] || 1); },

@@ -104,7 +104,7 @@
     G.fx.burst(G.W / 2, G.H / 2 - 100, { count: 90, type: 'confetti', speed: 700, life: 2.2, size: 16, gravity: 500 });
     UI.checkUnlocks();
     const name = FL.Save.data.name; const praise = ['Wonderful', 'Amazing', 'Beautiful', 'Fantastic', 'Bravo'][Math.floor(Math.random() * 5)];
-    setTimeout(() => FL.Audio.say(`${praise}${name ? ', ' + name : ''}! You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`), 600);
+    setTimeout(() => FL.Audio.say(`${praise}${name ? ', ' + name : ''}! You earned ${o.stars} star${o.stars > 1 ? 's' : ''}!`, { interrupt: false }), 600);   // queue behind the scene's own line, never cut it off
   };
   UI.showFriends = function () {
     const G = FL.Game; overlay.kind = 'friends'; overlay.t = 0; overlay.buttons = [];
@@ -113,7 +113,7 @@
       const row = Math.floor(i / perRow), col = i % perRow; const x = G.W / 2 - total / 2 + col * (size + gap), y = G.H / 2 - 150 + row * (size + gap);
       const e = e0 === '🐶' && FL.Puppy && dog && dog.adopted ? FL.Puppy.dogEmoji(dog) : e0; // the puppy grows into 🐕
       const has = un.includes(e);
-      overlay.buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : need < 0 ? '🏠 Cottage' : `${need} ⭐`, size: need < 0 ? 16 : 20, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 80 : 34, enabled: has, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${UI.friendName(e)} will come with you!`); UI.closeOverlay(); } }));
+      overlay.buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : need < 0 ? 'Cottage' : `${need} ⭐`, size: need < 0 ? 16 : 20, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 80 : need < 0 ? 26 : 34, enabled: has, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${UI.friendName(e)} will come with you!`); UI.closeOverlay(); } }));
     });
     overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: G.H / 2 + 182, w: 240, h: 84, label: 'Done', emoji: '✅', color: '#4ade80', onTap: () => UI.closeOverlay() }));
   };

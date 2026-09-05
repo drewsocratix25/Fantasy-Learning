@@ -1,7 +1,7 @@
 // Puppy Cottage: adopt a puppy, name it and raise it — feed, water, potty walks, clean-ups and fetch fill the daily care chart.
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
-  let P = FL.Puppy;
+  const P = FL.Puppy;   // js/games/puppysim.js loads first (index.html)
   const ITEMS = ['food', 'water', 'ball', 'brush', 'bag'];
   const ITEM_EMOJI = { food: '🥣', water: '💧', ball: '🎾', brush: '🧽', bag: '🧻' };
   const NEED_ICON = { food: '🍖', water: '💧', play: '🎾', potty: '🌳' };
@@ -9,6 +9,8 @@
   const JOB_ICON = { fed: '🍖', water: '💧', potty: '🌳', clean: '🧻', play: '🎾' };
   const NEED_LINE = { food: 'needFood', water: 'needWater', potty: 'needPotty', play: 'needPlay' };
   const LOW_LINE = { food: 'lowFood', water: 'lowWater', potty: 'lowPotty', play: 'lowPlay' };
+  const FINE_LINE = { food: 'fineFood', water: 'fineWater', potty: 'finePotty', play: 'finePlay' };
+  const stateLine = (need) => { const st = P.needState(dog, need); return st === 'needs' ? NEED_LINE[need] : st === 'low' ? LOW_LINE[need] : FINE_LINE[need]; };
   const ALREADY = { fed: 'alreadyFed', water: 'alreadyWater', potty: 'alreadyPotty', clean: 'alreadyClean', play: 'alreadyPlay' };
   const JOB_ITEM = { fed: 'food', water: 'water', potty: 'door', clean: 'bag', play: 'ball' };
   const NEED_ITEM = { food: 'food', water: 'water', potty: 'door', play: 'ball' };
@@ -18,7 +20,6 @@
   const rnd = (a, b) => a + Math.random() * (b - a);
   const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
   const inRect = (r, x, y, pad) => { pad = pad || 0; return x >= r.x - pad && x <= r.x + r.w + pad && y >= r.y - pad && y <= r.y + r.h + pad; };
-  const DEFAULT_DOG = () => ({ adopted: false, name: '', pron: 0, coat: 0, born: '', stage: 0, points: 0, pendingGrow: '', rounds: 0, pointsDay: { key: '', n: 0 }, needs: { food: 70, water: 70, play: 60, potty: 20 }, lastSeen: 0, dancing: false, mud: 0, messes: [], chart: { key: '', fed: false, water: false, potty: false, clean: false, play: false, done: false }, fetchCount: 0, lastRoundDay: '', week: [], tricks: { sit: 0, spin: 0, five: 0, roll: 0 }, assist: { bag: 0, ball: 0 }, tutorialDone: false, crown: false, parties: 0, visits: 0, accidentsToday: { key: '', n: 0 } });
 
   // ---------- layout (§9) ----------
   let L = null, tricksBtn = null;
@@ -29,11 +30,11 @@
     const matRect = { x: S - 400, y: 625, w: 300, h: 105 };
     L = {
       W, H, S, poster, bed, matRect,
-      win: { x: bed.x, y: 320, w: 200, h: 140 },
+      win: { x: Math.max(bed.x, 180), y: 320, w: 200, h: 140 },   // never over the need-icon column (W = 1200 on 4:3 iPads)
       bowls: { food: { x: matRect.x + 75, y: matRect.y + 55 }, water: { x: matRect.x + 225, y: matRect.y + 55 } },
       door: { x: S - 90, y: 280, w: 180, h: 360 },
       doorway: { x: S - 40, y: 300, w: 40, h: 260 },
-      doorSpot: { x: S - 130, y: 640 },
+      doorSpot: { x: S - 60, y: 700 },      // where a big dog sits to ask for the door (beside the mat, not on it)
       bin: { x: S + 120, y: 600, r: 100 },
       patch: { x: S + Math.round(0.45 * (W - S)), y: 720, rx: 110, ry: 40 },
       items: ITEMS.map((item, i) => ({ item, x: Math.round(S / 2 + (i - 2) * 130), y: 800, w: 110, h: 90 })),
@@ -47,7 +48,7 @@
       room: { x0: 200, x1: S - 90, y0: 600, y1: 745 },
       yard: { x0: S + 60, x1: W - 80, y0: 600, y1: 800 },
     };
-    tricksBtn = new UI.Button({ x: W - 110, y: 790, w: 90, h: 90, emoji: '🦴', color: '#c084fc', round: true, emojiSize: 50, onTap: toggleArc });
+    tricksBtn = new UI.Button(Object.assign({ emoji: '🦴', color: '#c084fc', round: true, emojiSize: 50, onTap: toggleArc }, L.tricksBtn));
     if (adopt) layoutAdopt();
     return L;
   }
@@ -56,7 +57,7 @@
 
   // ---------- state ----------
   let dog = null, t = 0, phase = 'play', tutorial = false;
-  const d = { x: 0, y: 0, facing: 1, pose: 'idle', poseT: 0, walking: false, wag: 0, rot: 0, alpha: 1, seed: 0, busy: 0, target: null, carry: false, roamT: 3, zoomT: 25, sniffT: 8, tumbleT: 12, trickT: 40, outsideT: 0, sitDoor: false, mood: 'happy', spin: 0, spinT: 0, pawT: 0, pout: 0, onWalk: false, accT: 0, holdSaid: false };
+  const d = { x: -999, y: -999, facing: 1, pose: 'idle', poseT: 0, walking: false, wag: 0, rot: 0, alpha: 1, seed: 0, busy: 0, target: null, carry: false, roamT: 3, zoomT: 25, sniffT: 8, tumbleT: 12, trickT: 40, outsideT: 0, sitDoor: false, mood: 'happy', spinT: 0, pawT: 0, pout: 0, onWalk: false, accT: 0, holdSaid: false };
   let held = null, lifted = null, bag = null, ball = null, fetch = null, spring = null;
   let doorAngle = 0, doorOpen = 0, binLid = 0, foodLevel = 0, waterLevel = 0;
   let kibble = [], drops = [], stamps = [], zzz = [], glow = {}, timers = [];
@@ -64,16 +65,20 @@
   const speech = { last: -99, idleT: 0 };
   let needStates = {}, petCount = 0, petT = 0, petMinute = { t: 0, n: 0 }, lastBark = -99, lastSparkle = -99, lastBrushLine = -99;
   let saveAcc = 0, roundAcc = 0, wave = 0, resultsOpen = false, afterResults = null, stroke = { x: 0, y: 0, dist: 0 };
+  let ballTaps = 0, walkId = 0, wall = 0, night = false, morning = true, weekKeys = [];   // ball tap-then-tap assist (per visit), potty-walk token, wall clock for sleep detection, once-a-second date cache
   function resetState() {
     held = null; lifted = null; bag = { stage: 'empty', x: 0, y: 0, ground: false, t: -99 }; ball = { state: 'box', x: 0, y: 0, vx: 0, vy: 0, gy: 0, bounced: false, t: 0 }; fetch = { state: 'none', t: 0 }; spring = null;
     doorAngle = 0; doorOpen = 0; binLid = 0; foodLevel = 0; waterLevel = 0; kibble = []; drops = []; stamps = []; zzz = []; glow = {}; timers = [];
-    treat = null; arc = null; trick = null; nap = null; grow = null; adopt = null; party = null;
+    treat = null; arc = null; trick = null; nap = null; grow = null; adopt = null; party = null; ballTaps = 0; walkId++;
     speech.last = -99; speech.idleT = 0; needStates = {}; petCount = 0; petT = 0; petMinute = { t: 0, n: 0 }; lastBark = -99; lastSparkle = -99; lastBrushLine = -99;
     saveAcc = 0; roundAcc = 0; wave = 0; resultsOpen = false; afterResults = null; stroke = { x: 0, y: 0, dist: 0 };
-    Object.assign(d, { facing: 1, pose: 'idle', poseT: 0, walking: false, wag: 0, rot: 0, alpha: 1, seed: Math.random() * 10, busy: 0, target: null, carry: false, roamT: 3, zoomT: rnd(20, 35), sniffT: 8, tumbleT: rnd(12, 25), trickT: 40, outsideT: 0, sitDoor: false, mood: 'happy', spin: 0, spinT: 0, pawT: 0, pout: 0, onWalk: false, accT: 0, holdSaid: false });
+    Object.assign(d, { x: -999, y: -999, facing: 1, pose: 'idle', poseT: 0, walking: false, wag: 0, rot: 0, alpha: 1, seed: Math.random() * 10, busy: 0, target: null, carry: false, roamT: 3, zoomT: rnd(20, 35), sniffT: 8, tumbleT: rnd(12, 25), trickT: 40, outsideT: 0, sitDoor: false, mood: 'happy', spinT: 0, pawT: 0, pout: 0, onWalk: false, accT: 0, holdSaid: false });
   }
   const after = (s, fn) => timers.push({ t: s, fn });
-  const save = () => { P.touch(dog); FL.Save.save(); };
+  // a tied-up bag that has not reached the bin yet is saved with the dog so leaving mid clean-up never loses the job
+  const syncBag = () => { if (!dog || !L || !bag) return; dog.bag = bag.stage === 'full' ? { x: (bag.ground ? bag.x : held && held.item === 'bag' ? held.x : itemBox('bag').x) / L.W, y: (bag.ground ? bag.y : 700) / L.H } : null; };
+  const save = () => { syncBag(); P.touch(dog); FL.Save.save(); };
+  function refreshDay() { const h = new Date().getHours(); night = h >= 19 || h < 6; morning = P.isMorning(); weekKeys = [6, 5, 4, 3, 2, 1, 0].map((n) => { const dd = new Date(); dd.setDate(dd.getDate() - n); return P.todayKey(dd); }); }
   const inside = () => d.x < L.S;
   const look = () => ({ coat: dog.coat, stage: dog.stage, mood: d.pout > 0 ? 'pout' : d.mood, mud: dog.mud || 0, bandana: dog.stage >= 3 ? G().look.dress : null, crown: !!dog.crown });
   const metrics = () => A.dogMetrics(look(), 1);
@@ -83,17 +88,19 @@
   const isBusy = () => !!(d.target || d.busy > 0 || d.onWalk || fetch.state !== 'none' || nap || trick || party);
 
   // ---------- speech hygiene (§9): 2 = action feedback, 1 = cue (no interrupt), 0 = idle reminder ----------
-  function line(id, extra) { let s = P.LINES[id] != null ? P.LINES[id] : id; if (extra) for (const k in extra) s = s.split('{' + k + '}').join(extra[k]); return P.L(dog, s); }
+  function line(id, extra) { return P.L(dog, P.LINES[id] != null ? P.LINES[id] : id, null, extra); }
   function speak(id, pri, extra) {
     if (pri == null) pri = 2;
     if (pri === 0 && (t - speech.last < 6 || held || trick || nap || UI.overlayActive())) return null;
     const s = line(id, extra); FL.Audio.say(s, { interrupt: pri >= 2 }); speech.last = t; speech.idleT = 0; return s;
   }
   function sayRaw(s, pri) { FL.Audio.say(s, { interrupt: pri == null || pri >= 2 }); speech.last = t; speech.idleT = 0; }
-  const tutorialStep = () => (tutorial ? P.JOBS.find((j) => !dog.chart[j]) || null : null);
+  // the tutorial only ever points at a job whose action would succeed right now (no "drag the food" while the bowl says "already full")
+  const gated = (j) => (j === 'fed' && dog.needs.food > 80) || (j === 'water' && dog.needs.water > 80) || (j === 'potty' && !P.canPotty(dog)) || (j === 'clean' && !dog.messes.length);
+  const tutorialStep = () => (tutorial ? P.JOBS.find((j) => !dog.chart[j] && !gated(j)) || null : null);
   function topNeedId() {
     const ts = tutorialStep();
-    if (ts) return ts === 'clean' ? (dog.messes.length ? 'useBag' : 'needPotty') : NEED_LINE[{ fed: 'food', water: 'water', potty: 'potty', play: 'play' }[ts]];
+    if (ts) return ts === 'clean' ? 'useBag' : NEED_LINE[{ fed: 'food', water: 'water', potty: 'potty', play: 'play' }[ts]];
     const w = P.worst(dog); return w ? NEED_LINE[w.need] : 'happy';
   }
   function topNeed(pri) { speak(topNeedId(), pri == null ? 1 : pri); }
@@ -168,7 +175,9 @@
     save();
     after(0.5, () => { setPose('stretch', 1); speak('growUp'); });
     after(1.5, () => { setPose('hop', 0.5); goTo(L.idle.x, L.idle.y, () => idleAt()); });
-    after(2.6, () => { phase = 'play'; grow = null; if (stage >= 3) speak('grownUp', 1); showResults({ title: line('{name} grew!'), subtitle: P.STAGES[stage].name, stars: 3, emoji: '🎂' }, () => topNeed(1)); });
+    // let "Look how big..." finish (and, at Grown-up, the best-friend line) before the results praise queues behind it
+    if (stage >= 3) after(4.2, () => speak('grownUp'));
+    after(stage >= 3 ? 4.4 : 4.2, () => { phase = 'play'; grow = null; showResults({ title: line('{name} grew!'), subtitle: P.STAGES[stage].name, stars: 3, emoji: '🎂' }, () => topNeed(1)); });
   }
   function showResults(o, then) {
     resultsOpen = true; afterResults = then || null; arc = null; treat = null;
@@ -184,8 +193,8 @@
     if (r.complete) { P.completeRound(dog); after(1.2, completeRound); }
     if (r.grewPending) after(r.complete ? 9 : 3, () => speak('growTonight', 1));
     if (tutorial && r.remaining === 0) { tutorial = false; dog.tutorialDone = true; }
-    if (dog.stage >= 3 && dog.points >= 50 && !dog.crown) { dog.crown = true; after(4, () => { UI.toast(dog.name + ' is a Royal Pup!', '👑', '#b45309'); FL.Audio.sfx.unlock(); speak('crown', 1); hearts(8); }); }
-    if (dog.stage >= 3 && Math.floor(dog.points / 10) > (dog.parties || 0)) { dog.parties = Math.floor(dog.points / 10); after(r.complete ? 14 : 3, startParty); }
+    if (dog.stage >= 3 && dog.points >= P.CROWN && !dog.crown) { dog.crown = true; after(4, () => { UI.toast(dog.name + ' is a Royal Pup!', '👑', '#b45309'); FL.Audio.sfx.unlock(); speak('crown', 1); hearts(8); }); }
+    if (P.partyDue(dog)) after(r.complete ? 14 : 3, startParty);
     save(); return r;
   }
   function completeRound() {
@@ -196,42 +205,49 @@
   function startParty() {
     if (party || phase !== 'play') return; if (UI.overlayActive() || isBusy()) { after(3, startParty); return; }
     const friends = FL.Save.data.unlocked.filter((e) => e !== '🐶' && e !== '🐕'); const learned = P.TRICKS.filter((tr) => P.trickState(dog, tr.id).learned).map((tr) => tr.id);
-    party = { t: 0, friends, tricks: learned, i: 0, next: 1.5, balloons: [0, 1, 2, 3, 4].map((i) => ({ x: L.S + 80 + i * ((L.W - L.S - 160) / 4), c: ['#f472b6', '#fde047', '#60a5fa', '#4ade80', '#c084fc'][i], seed: i })) };
+    party = { t: 0, friends, tricks: learned, i: 0, next: Infinity, balloons: [0, 1, 2, 3, 4].map((i) => ({ x: L.S + 80 + i * ((L.W - L.S - 160) / 4), c: ['#f472b6', '#fde047', '#60a5fa', '#4ade80', '#c084fc'][i], seed: i })) };
     speak('party'); FL.Audio.sfx.unlock(); arc = null;
-    goTo(L.S + 0.35 * (L.W - L.S), 700, () => { d.facing = -1; });
+    goTo(L.S + 0.35 * (L.W - L.S), 700, () => { d.facing = -1; party.next = 1.5; });   // the show starts once he is on the lawn
   }
 
   // ---------- feed / water (§5.1, §5.2) ----------
   function feed() {
     if (!P.feed(dog)) { speak('fullTummy'); setPose('sniff', 0.8); after(0.8, () => { const sp = roamSpot(); goTo(sp.x, sp.y); }); return false; }
+    if (nap) wake();
     const b = L.bowls.food; for (let i = 0; i < 14; i++) kibble.push({ x: b.x + rnd(-26, 26), y: b.y - 150 - rnd(0, 60), vy: rnd(0, 80), ty: b.y - 6 - rnd(0, 10), r: rnd(4, 7) });
     after(0.6, () => { foodLevel = 1; });
-    cancelFetch(); d.onWalk = false;
+    cancelFetch(); cancelWalk();
     goTo(b.x - 46, b.y + 12, () => { d.facing = 1; setPose('eat', 3); [0, 0.8, 1.6].forEach((s) => after(s, () => FL.Audio.sfx.munch())); after(3, () => { idleAt(); d.mood = P.mood(dog); }); });
-    const r = stamp('fed'); speak(r.already ? ALREADY.fed : 'fed'); save(); return true;
+    const r = stamp('fed'); speak(r.already ? ALREADY.fed : 'fed'); return true;
   }
   function water() {
     if (!P.water(dog)) { speak('notThirsty'); setPose('sniff', 0.8); return false; }
-    const b = L.bowls.water; waterLevel = 1; FL.Audio.sfx.slurp(); cancelFetch(); d.onWalk = false;
+    if (nap) wake();
+    const b = L.bowls.water; waterLevel = 1; FL.Audio.sfx.slurp(); cancelFetch(); cancelWalk();
     goTo(b.x - 46, b.y + 12, () => { d.facing = 1; setPose('drink', 2.5); after(1.2, () => FL.Audio.sfx.slurp()); after(2.5, () => { idleAt(); d.mood = P.mood(dog); }); });
-    const r = stamp('water'); speak(r.already ? ALREADY.water : 'watered'); save(); return true;
+    const r = stamp('water'); speak(r.already ? ALREADY.water : 'watered'); return true;
   }
 
   // ---------- potty walk (§6.2) ----------
+  // anything that pre-empts a walk (a trick, a thrown ball, a meal) cancels it so the door never goes dead; the token stops the old walk's timers
+  function cancelWalk() { if (d.onWalk) { d.onWalk = false; doorOpen = 0; } walkId++; }
   function walk() {
-    if (d.onWalk || phase !== 'play') return;
+    if (phase !== 'play') return;
+    if (d.onWalk) { speak('alreadyWalking', 1); return; }
     if (nap) wake();
-    cancelFetch(); d.onWalk = true; d.sitDoor = false; d.spin = 0; doorOpen = 1; FL.Audio.sfx.whoosh(); glow.door = 0;
+    cancelFetch(); d.onWalk = true; d.sitDoor = false; doorOpen = 1; FL.Audio.sfx.whoosh(); glow.door = 0; const tok = ++walkId;
     const px = L.patch.x - 30, py = L.patch.y + 12;
     goTo(px, py, () => {
-      d.facing = 1; setPose('sniff', 1);
+      if (tok !== walkId) return; d.facing = 1; setPose('sniff', 1);
       after(1, () => {
+        if (tok !== walkId) return;
         if (P.canPotty(dog)) {
           setPose('squat', 1.5);
           after(1.5, () => {
+            if (tok !== walkId) return;
             P.pottyOutside(dog, (d.x - 52 * d.facing) / L.W, (d.y + 2) / L.H); FL.Audio.sfx.plop(); d.mood = P.mood(dog);
             setPose('kick', 0.6); after(0.3, () => FL.Audio.sfx.bark(dog.stage));
-            const r = stamp('potty'); speak(r.already ? ALREADY.potty : 'pottyDone'); d.onWalk = false; d.outsideT = 20; save();
+            const r = stamp('potty'); speak(r.already ? ALREADY.potty : 'pottyDone'); d.onWalk = false; d.outsideT = 20;
             after(0.7, () => goTo(clamp(d.x + 80 * d.facing, L.yard.x0, L.yard.x1), d.y, () => idleAt()));
           });
         } else { speak('noPotty'); after(0.6, () => { d.onWalk = false; goHome(); }); }
@@ -243,27 +259,30 @@
   // ---------- clean-up (§6.4) ----------
   function nearMess(x, y, r) { let best = -1, bd = r || 90; dog.messes.forEach((m, i) => { const p = messPos(m); const dd = Math.hypot(p.x - x, p.y - y); if (dd < bd) { bd = dd; best = i; } }); return best; }
   function bagMess(i) {
+    if (nap) wake();
     const p = messPos(dog.messes[i]); P.removeMess(dog, i); bag.stage = 'full'; bag.x = p.x; bag.y = p.y; bag.ground = false; bag.t = t; FL.Audio.sfx.pop();
     G().fx.burst(p.x, p.y, { count: 10, colors: ['#fff', '#fde68a'], speed: 160, life: 0.5, size: 8 }); speak('bagged'); if (!dog.messes.length) d.mood = P.mood(dog); save();
   }
   function binBag() {
     bag.stage = 'empty'; bag.ground = false; binLid = 1; FL.Audio.sfx.pop(); FL.Audio.sfx.correct();
     G().fx.burst(L.bin.x, L.bin.y - 60, { count: 20, type: 'confetti', speed: 320, life: 1, size: 12 });
-    const r = stamp('clean'); speak(r.already ? ALREADY.clean : 'cleaned'); save();
+    const r = stamp('clean'); speak(r.already ? ALREADY.clean : 'cleaned');
   }
   const nearBin = (x, y) => Math.hypot(x - L.bin.x, y - L.bin.y) < L.bin.r;
 
   // ---------- ball + fetch (§5.5) ----------
   function throwBall(fx, fy, tx, ty) {
-    tx = clamp(tx, 200, L.W - 80); ty = clamp(ty, 600, 790); if (tx > L.S - 60 && tx < L.S + 60) tx = tx < L.S ? L.S - 60 : L.S + 60;
+    tx = clamp(tx, 200, L.W - 80); if (tx > L.S - 60 && tx < L.S + 60) tx = tx < L.S ? L.S - 60 : L.S + 60;
+    ty = clamp(ty, 600, tx < L.S ? 745 : 790);   // indoors the ball stays above the item strip
     const T = 0.5, g = 1400; tx -= Math.sign(tx - fx) * Math.min(70, Math.abs(tx - fx) * 0.3);   // the bounce + roll carry it the rest of the way
     ball = { state: 'air', x: fx, y: fy, vx: (tx - fx) / T, vy: (ty - fy) / T - 0.5 * g * T, gy: ty, bounced: false, t: 0, g };
-    fetch = { state: 'thrown', t: 0 }; speak(pick(['throw1', 'throw2'])); FL.Audio.sfx.whoosh(); d.wag = 1; if (d.pose === 'sit') d.pose = 'idle';
+    fetch = { state: 'thrown', t: 0 }; ballTaps = 0; speak(pick(['throw1', 'throw2'])); FL.Audio.sfx.whoosh(); d.wag = 1; if (d.pose === 'sit') d.pose = 'idle';
   }
   function ballLanded() {
     fetch.state = 'landed';
     if (dog.messes.length) { speak('cleanFirst'); after(2, () => { if (fetch.state === 'landed') cancelFetch(); }); return; }
     if (nap) wake();
+    cancelWalk();
     fetch.state = 'toBall'; goTo(ball.x - 30 * (ball.x < d.x ? -1 : 1), ball.y, () => { if (fetch.state === 'toBall') reachBall(); }, dog.stage === 0 ? 110 : Math.max(dogSpeed(), 200));
   }
   function reachBall() {
@@ -281,7 +300,7 @@
   }
   function fetchDone(lineId) {
     FL.Audio.sfx.bark(dog.stage); dog.fetchCount = (dog.fetchCount || 0) + 1; d.wag = 1; d.mood = P.mood(dog); fetch = { state: 'none', t: 0 }; speak(lineId);
-    if (dog.fetchCount >= 3) { const r = stamp('play'); if (r.already && dog.fetchCount === 3) after(2, () => speak(ALREADY.play, 1)); }
+    if (dog.fetchCount >= P.FETCH_PER_STAMP) { const r = stamp('play'); if (r.already && dog.fetchCount === P.FETCH_PER_STAMP) after(2, () => speak(ALREADY.play, 1)); }
     setPose('idle', 1); after(1, () => { if (ball.state === 'ground') ball.state = 'box'; }); save();
   }
   function cancelFetch() { if (fetch.state === 'none' && ball.state === 'box') return; d.carry = false; fetch = { state: 'none', t: 0 }; if (ball.state !== 'box' && held && held.item === 'ball') return; ball.state = 'box'; }
@@ -300,7 +319,7 @@
     } else if (t - lastBrushLine > 3) { lastBrushLine = t; hearts(2); speak('brushed', 1); d.pose = 'idle'; }
   }
   function napStart() {
-    if (isBusy()) { if (nap) { hearts(1); speak('sweet', 1); } return; }
+    if (isBusy()) { if (nap) { hearts(1); speak('sweet', 1); } else speak('busyBed', 1); return; }
     goTo(L.bed.x + L.bed.w / 2, L.bed.y + L.bed.h - 14, () => { nap = { t: 8, snoreT: 0 }; setPose('sleep', 999); d.facing = 1; speak('nap'); });
   }
   function wake() { if (!nap) return; nap = null; setPose('stretch', 1); speak('morning'); after(1, () => { idleAt(); d.roamT = 1; }); }
@@ -314,9 +333,9 @@
     arc = P.TRICKS.map((tr, i) => { const st = P.trickState(dog, tr.id); return new UI.Button({ x: 0, y: 0, w: 96, h: 96, emoji: st.unlocked ? tr.emoji : '🔒', color: st.unlocked ? (st.learned ? '#fde047' : '#c084fc') : '#cbd5e1', round: true, emojiSize: 48, angle: (-60 + i * 40) * Math.PI / 180, onTap: () => { if (!st.unlocked) { speak('lockedTrick', 2, { trick: tr.name }); return; } doTrick(tr.id); } }); });
     placeArc();
   }
-  function placeArc() { if (!arc) return; const m = metrics(); const cx = clamp(d.x, 300, L.W - 300), cy = Math.max(330, d.y + m.cy); arc.forEach((b) => { b.x = cx + Math.sin(b.angle) * 150 - 48; b.y = cy - Math.cos(b.angle) * 150 - 48; }); }
+  function placeArc() { if (!arc) return; const m = metrics(); const cx = clamp(d.x, 330, L.W - 190), cy = Math.max(330, d.y + m.cy); arc.forEach((b) => { b.x = cx + Math.sin(b.angle) * 150 - 48; b.y = cy - Math.cos(b.angle) * 150 - 48; }); }   // buttons stay inside the canvas and off the need icons
   function doTrick(id) {
-    arc = null; treat = null; speak('trickCmd_' + id); if (nap) wake(); cancelFetch(); d.target = null;
+    arc = null; treat = null; speak('trickCmd_' + id); if (nap) wake(); cancelFetch(); cancelWalk(); d.target = null;
     after(0.8, () => {
       const r = P.performTrick(dog, id); const tr = P.TRICKS.find((x) => x.id === id);
       trick = { id, t: 0, wobbly: r.wobbly }; setPose(id, 2);
@@ -341,32 +360,34 @@
   function down(p) {
     if (phase === 'adopt') {
       if (adopt.step === 2 && UI.pressDown([adopt.confirm].concat(adopt.names), p)) return;
-      if (adopt.step === 1) adopt.pupPos.forEach((pp, i) => { if (Math.hypot(p.x - pp.x, p.y - (pp.y - 60)) < 110) pickPup(i); });
+      if (adopt.step === 1) {   // a tap on any puppy, or anywhere on the basket, picks the nearest one
+        let best = -1, bd = 1e9; adopt.pupPos.forEach((pp, i) => { const dd = Math.hypot(p.x - pp.x, p.y - (pp.y - 60)); if (dd < bd) { bd = dd; best = i; } });
+        const bk = adopt.basket; if (best >= 0 && (bd < 110 || (Math.abs(p.x - bk.x) < bk.w / 2 && p.y > bk.y - bk.h / 2 - 80 && p.y < bk.y + bk.h / 2))) { pickPup(best); return; }
+      }
+      if (t - speech.last > 4) speak(adopt.step === 1 ? 'adopt1' : 'adopt2');   // no silent taps
       return;
     }
-    if (phase === 'grow') { if (inRect(L.bed, p.x, p.y, 40)) ceremony(); return; }
+    if (phase === 'grow') { if (inRect(L.bed, p.x, p.y, 40)) ceremony(); else if (t - speech.last > 4) speak('growSleep'); return; }
     if (party) return;
     if (arc) { if (UI.pressDown(arc, p)) return; arc = null; if (tricksBtn.contains(p.x, p.y)) { p.consumed = true; return; } }
-    if (treat && p.x >= treat.x && p.x <= treat.x + 84 && p.y >= treat.y && p.y <= treat.y + 84) { giveTreat(); return; }
-    for (const b of L.items) { if (boxHit(b, p.x, p.y)) { if (b.item === 'bag' && bag.stage === 'full' && !bag.ground) { liftItem('bag', p); return; } if (b.item === 'bag' && bag.stage === 'full') { speak('bagBin'); return; } if (b.item === 'ball' && ball.state !== 'box') { speak('throwAnywhere'); return; } liftItem(b.item, p); return; } }
+    if (treat && treatBtn.contains(p.x, p.y)) { giveTreat(); return; }
+    if (nap && !inRect(L.bed, p.x, p.y, 20)) wake();   // picking anything up wakes him first
+    // things lying on the floor come before the item strip, so a bag or ball resting on a box can always be picked up again
     if (bag.stage === 'full' && bag.ground && Math.hypot(p.x - bag.x, p.y - bag.y) < 60) { liftItem('bag', p); bag.ground = false; return; }
-    if (nap && !inRect(L.bed, p.x, p.y, 20)) { wake(); }
-    for (const n of L.needIcons) { if (Math.hypot(p.x - n.x, p.y - n.y) < n.r + 6) { FL.Audio.sfx.tap(); speak(NEED_LINE[n.need]); glow[NEED_ITEM[n.need]] = t + 3; p.consumed = true; return; } }
+    if (ball.state === 'ground' && Math.hypot(p.x - ball.x, p.y - ball.y) < 70) { liftItem('ball', p, { fromGround: true }); ball.state = 'held'; cancelFetchKeepBall(); return; }
+    for (const b of L.items) { if (boxHit(b, p.x, p.y)) { if (b.item === 'bag' && bag.stage === 'full' && !bag.ground) { liftItem('bag', p); return; } if (b.item === 'bag' && bag.stage === 'full') { speak('bagBin'); return; } if (b.item === 'ball' && ball.state !== 'box') { speak('throwAnywhere'); return; } liftItem(b.item, p); return; } }
+    for (const n of L.needIcons) { if (Math.hypot(p.x - n.x, p.y - n.y) < n.r + 6) { FL.Audio.sfx.tap(); speak(stateLine(n.need)); if (P.needState(dog, n.need) !== 'fine') glow[NEED_ITEM[n.need]] = t + 3; p.consumed = true; return; } }
     if (inRect(L.poster, p.x, p.y)) { FL.Audio.sfx.tap(); sayRaw(P.posterLine(dog)); FL.Audio.say(P.boneLine(dog), { interrupt: false }); p.consumed = true; return; }
     if (UI.pressDown([tricksBtn], p)) return;
     const mi = nearMess(p.x, p.y, 60);
-    if (mi >= 0) {
-      if (lifted === 'bag' && bag.stage === 'empty') { bagMess(mi); p.consumed = true; return; }
-      if (!held && !lifted) { dog.assist.bag = (dog.assist.bag || 0) + 1; if (dog.assist.bag > 2) { bagMess(mi); bag.ground = true; } else speak('useBag'); save(); p.consumed = true; return; }
-    }
-    if (lifted === 'bag' && bag.stage === 'full' && nearBin(p.x, p.y)) { lifted = null; binBag(); p.consumed = true; return; }
-    if (lifted) return; // second tap of tap-then-tap resolves in up()
+    if (mi >= 0 && !held && !lifted) { dog.assist.bag = (dog.assist.bag || 0) + 1; if (dog.assist.bag > 2) { bagMess(mi); bag.ground = true; } else speak('useBag'); save(); p.consumed = true; return; }
+    if (lifted) return; // second tap of tap-then-tap resolves in up() -> dropTarget() -> drop(), same as a drag
     if (inRect(L.door, p.x, p.y)) { FL.Audio.sfx.tap(); walk(); return; }
     if (inRect(L.bed, p.x, p.y, 10)) { napStart(); return; }
     if (dogHit(p.x, p.y)) { if (nap) { hearts(1); speak('sweet', 1); } else if (!trick && !party) pet(); return; }
     if (nearBin(p.x, p.y)) { speak('bagBin'); return; }
-    for (const k in L.bowls) { const b = L.bowls[k]; if (Math.hypot(p.x - b.x, p.y - b.y) < 60) { speak(NEED_LINE[k]); glow[k] = t + 3; return; } }
-    if (ball.state === 'ground' && Math.hypot(p.x - ball.x, p.y - ball.y) < 70) { liftItem('ball', p, { fromGround: true }); ball.state = 'held'; cancelFetchKeepBall(); return; }
+    for (const k in L.bowls) { const b = L.bowls[k]; if (Math.hypot(p.x - b.x, p.y - b.y) < 60) { speak(stateLine(k)); if (P.needState(dog, k) !== 'fine') glow[k] = t + 3; return; } }
+    if (t - speech.last >= 6) topNeed(1);   // a tap on nothing still gets an answer (§5.0)
   }
   function cancelFetchKeepBall() { d.carry = false; fetch = { state: 'none', t: 0 }; }
   function move(p) {
@@ -375,7 +396,7 @@
     if (held.item === 'brush' && held.moved && dogHit(p.x, p.y)) { stroke.dist += Math.hypot(p.x - stroke.x, p.y - stroke.y); while (stroke.dist >= 40) { stroke.dist -= 40; scrub(); } }
     stroke.x = p.x; stroke.y = p.y;
     if (held.item === 'bag' && bag.stage === 'empty' && held.moved) { const mi = nearMess(p.x, p.y, 90); if (mi >= 0) bagMess(mi); }
-    if ((held.item === 'food' || held.item === 'water') && held.moved && !isBusy()) { const b = L.bowls[held.item]; if (!d.target && Math.hypot(d.x - (b.x - 46), d.y - (b.y + 12)) > 20) goTo(b.x - 46, b.y + 12, () => { d.facing = 1; setPose('beg', 999); }); }
+    if ((held.item === 'food' || held.item === 'water') && held.moved && !isBusy()) { const b = L.bowls[held.item]; if (!d.target && Math.hypot(d.x - (b.x - 46), d.y - (b.y + 12)) > 20) goTo(b.x - 46, b.y + 12, () => { d.facing = 1; if (held && (held.item === 'food' || held.item === 'water')) setPose('beg', 6); else idleAt(); }); }   // only beg while the bowl is still in her hand
     if (held.item === 'ball' && held.moved && !isBusy()) { d.facing = p.x >= d.x ? 1 : -1; d.wag = 1; }
   }
   function up(p) {
@@ -386,15 +407,16 @@
     if (held && held.id === p.id) {
       const h = held; held = null; if (d.pose === 'beg') { d.busy = 0; idleAt(); }
       if (!h.moved && !h.fromGround) {
-        if (lifted === h.item) { lifted = null; FL.Audio.sfx.tap(); return; }
+        if (lifted === h.item) { lifted = null; FL.Audio.sfx.tap(); if (h.item === 'ball') ballTaps++; return; }
         lifted = h.item; FL.Audio.sfx.tap();
-        if (h.item === 'ball') { dog.assist.ball = (dog.assist.ball || 0) + 1; if (dog.assist.ball >= 2 && (dog.assist.ball % 2 === 0)) { lifted = null; const b = itemBox('ball'); throwBall(b.x, b.y - 40, rnd(L.yard.x0, L.yard.x1), rnd(L.yard.y0, L.yard.y1)); return; } speak('throwAnywhere'); return; }
+        // ball assist (§5.5): after two lifts in this visit that never turned into a throw, tapping the box throws for her
+        if (h.item === 'ball') { if (ballTaps >= 2) { lifted = null; const b = itemBox('ball'); throwBall(b.x, b.y - 40, rnd(L.yard.x0, L.yard.x1), rnd(L.yard.y0, L.yard.y1)); return; } speak('throwAnywhere'); return; }
         speak(h.item === 'bag' && bag.stage === 'full' ? 'tapBin' : TAP_HINT[h.item]); return;
       }
       lifted = null; drop(h.item, p.x, p.y, h); return;
     }
     if (p.consumed) return;
-    if (lifted) { const it = lifted; if (dropTarget(it, p.x, p.y)) { lifted = null; drop(it, p.x, p.y, { tap: true }); } else { lifted = null; FL.Audio.sfx.tap(); } }
+    if (lifted) { const it = lifted; if (dropTarget(it, p.x, p.y)) { lifted = null; drop(it, p.x, p.y, { tap: true }); } else { lifted = null; FL.Audio.sfx.tap(); if (it === 'ball') ballTaps++; } }
   }
   function dropTarget(item, x, y) {
     if (item === 'food' || item === 'water') return inRect(L.matRect, x, y, 60);
@@ -404,11 +426,14 @@
     return false;
   }
   function drop(item, x, y, h) {
-    if (item === 'food' || item === 'water') { if (inRect(L.matRect, x, y, 60) && (item === 'food' ? feed() : water())) return; return springBack(item, x, y, item === 'food' ? 'needFood' : 'needWater'); }
+    if (item === 'food' || item === 'water') {
+      if (inRect(L.matRect, x, y, 60)) { if (item === 'food' ? feed() : water()) return; return springBack(item, x, y, null); }   // feed()/water() already explained why not
+      return springBack(item, x, y, item === 'food' ? 'needFood' : 'needWater');
+    }
     if (item === 'ball') { if (y >= 560 && y <= 820) { if (h && h.fromGround) ball.state = 'ground'; const b = itemBox('ball'); throwBall(h && h.fromGround ? x : b.x, h && h.fromGround ? y : b.y - 40, x, y); return; } if (h && h.fromGround) { ball.state = 'ground'; return; } return springBack(item, x, y, 'throwAnywhere'); }
     if (item === 'brush') { if (dogHit(x, y)) { if (h && h.tap) { scrub(); scrub(); scrub(); } return; } return springBack(item, x, y, 'tapBrush'); }
     if (item === 'bag') {
-      if (bag.stage === 'full') { if (nearBin(x, y)) return binBag(); if (y < 570) { bag.ground = false; return springBack(item, x, y, 'bagBin'); } bag.x = x; bag.y = y; bag.ground = true; if (t - bag.t > 2) speak('bagBin', 1); return; }
+      if (bag.stage === 'full') { if (nearBin(x, y)) return binBag(); if (y < 570) { bag.ground = false; return springBack(item, x, y, 'bagBin'); } bag.x = x; bag.y = x < L.S ? Math.min(y, 745) : y; bag.ground = true; if (t - bag.t > 2) speak('bagBin', 1); return; }   // never inside the item strip
       const mi = nearMess(x, y, 90); if (mi >= 0) { bagMess(mi); bag.x = x; bag.y = y; bag.ground = true; return; }
       return springBack(item, x, y, dog.messes.length ? 'useBag' : 'needPotty');
     }
@@ -426,14 +451,13 @@
       else { const step = Math.min(dist, sp * dt); d.x += (dx / dist) * step; d.y += (dy / dist) * step; if (Math.abs(dx) > 2) d.facing = dx > 0 ? 1 : -1; d.walking = true; if (d.pose !== 'walk' && d.busy <= 0) { d.pose = 'walk'; d.poseT = 0; } }
     } else d.walking = false;
     if (d.busy > 0) { d.busy -= dt; if (d.busy <= 0) { d.busy = 0; if (!d.target) idleAt(); } }
-    d.rot = dog.stage === 0 && d.walking ? Math.sin(t * 14) * 0.06 : d.spin > 0 ? d.rot + 4 * dt : d.rot * Math.max(0, 1 - dt * 8);
-    if (d.spin > 0) d.spin -= dt;
+    d.rot = dog.stage === 0 && d.walking ? Math.sin(t * 14) * 0.06 : d.rot * Math.max(0, 1 - dt * 8);
     if (phase !== 'play' || nap || party) return;
     const free = !isBusy() && !held && !arc;
     const pst = P.needState(dog, 'potty');
-    // potty cue (§6.1)
+    // potty cue (§6.1): little ones spin in place every few seconds, big ones sit by the door
     if (pst === 'needs' && inside() && !d.onWalk) {
-      if (dog.stage <= 1) { d.spinT -= dt; if (d.spinT <= 0 && free) { d.spinT = 4; d.spin = 1; } }
+      if (dog.stage <= 1) { d.spinT -= dt; if (d.spinT <= 0 && free) { d.spinT = 4; setPose('spin', 1); } }
       else if (free && !d.sitDoor) { goTo(L.doorSpot.x, L.doorSpot.y, () => { d.facing = 1; d.pose = 'sit'; d.poseT = 0; }); d.sitDoor = true; }
       else if (d.sitDoor && !d.target) { d.pawT -= dt; if (d.pawT <= 0) { d.pawT = 4; setPose('five', 0.5); after(0.5, () => { if (d.sitDoor) { d.pose = 'sit'; d.poseT = 0; } }); } }
     } else if (pst === 'low' && inside() && free) { d.sniffT -= dt; if (d.sniffT <= 0) { d.sniffT = 8; if (dog.stage >= 2 && !d.sitDoor) { goTo(L.doorSpot.x, L.doorSpot.y, () => { d.facing = 1; d.pose = 'sit'; d.poseT = 0; }); d.sitDoor = true; } else setPose('sniff', 1); } }
@@ -467,21 +491,31 @@
         if (n === 'potty' && st === 'needs') d.spinT = 0;
       }
     }
-    dog.dancing = P.needState(dog, 'potty') === 'needs';   // tracked every tick (not only on a transition) so a dog that is already dancing at enter() is saved as dancing for the offline accident rule + door glow
-    if (dog.needs.potty >= 100 && inside() && !nap && !d.onWalk && !dog.messes.some((m) => m.inside)) {
+    // the rules (bladder full -> accident; two accidents -> "holding it") live in FL.Puppy; the scene only animates and speaks
+    if (P.accidentDue(dog) && inside() && !nap && !d.onWalk && !dog.messes.some((m) => m.inside)) {
       d.accT -= dt; if (d.accT <= 0) { d.accT = 1; if (P.accident(dog, clamp(d.x - 52 * d.facing, 160, L.S - 60) / L.W, (d.y + 2) / L.H)) { FL.Audio.sfx.plop(); d.pout = 10; goTo(d.x + 56 * d.facing, d.y, () => { setPose('sit', 10); }); speak('accident'); d.holdSaid = false; save(); } }
     }
-    if (dog.needs.potty >= 95 && dog.accidentsToday && dog.accidentsToday.n >= 2 && dog.accidentsToday.key === P.todayKey() && !d.holdSaid) { d.holdSaid = true; speak('holding', 1); }
+    if (dog.needs.potty >= 95 && P.pottyPaused(dog) && !d.holdSaid) { d.holdSaid = true; speak('holding', 1); }
   }
   function updateParty(dt) {
     party.t += dt; party.next -= dt;
     if (party.next <= 0 && !trick) {
       if (party.i < party.tricks.length) { const id = party.tricks[party.i++]; trick = { id, t: 0, wobbly: false, free: true }; setPose(id, 2); FL.Audio.sfx.correct(); G().fx.burst(d.x, d.y - 60, { count: 12, type: 'confetti', speed: 300, life: 1, size: 12 }); party.next = 2.6; }
-      else { const p = party; party = null; idleAt(); FL.Save.addStars(0); showResults({ title: 'Puppy Party!', subtitle: line('All your friends came to see {name}!'), stars: 2, emoji: '🎈' }, () => topNeed(1)); p.done = true; }
+      else { const p = party; party = null; idleAt(); showResults({ title: 'Puppy Party!', subtitle: line('All your friends came to see {name}!'), stars: 2, emoji: '🎈' }, () => topNeed(1)); p.done = true; }
     }
+  }
+  // The iPad went to sleep (or the app was backgrounded) with the cottage open: frames stop, so a wall-clock gap between two frames
+  // is the same as leaving and coming back. Run the return logic (offline rule, greeting, grow ceremony) instead of silently continuing.
+  function resume() {
+    timers = []; held = null; lifted = null; spring = null; arc = null; treat = null; trick = null; nap = null; party = null; fetch = { state: 'none', t: 0 }; if (ball.state !== 'ground') ball.state = 'box';
+    d.target = null; d.busy = 0; d.carry = false; d.alpha = 1; d.pout = 0; cancelWalk(); if (grow) { grow = null; phase = 'play'; }
+    P.syncRound(dog); const away = P.applyAway(dog); dog.visits = (dog.visits || 0) + 1; placeDog(); refreshDay();
+    if (P.shouldCeremony(dog)) startGrow(); else greet(away);
+    save();
   }
   function update(dt) {
     t += dt; const g = G();
+    const nowMs = Date.now(); if (wall && nowMs - wall > 60e3 && dog && dog.adopted && phase !== 'adopt' && !UI.overlayActive()) resume(); wall = nowMs;
     for (let i = timers.length - 1; i >= 0; i--) { const tm = timers[i]; tm.t -= dt; if (tm.t <= 0) { timers.splice(i, 1); tm.fn(); } }
     doorAngle += ((doorOpen ? 1.15 : 0) - doorAngle) * Math.min(1, dt * 8); binLid = Math.max(0, binLid - dt * 1.6); wave = Math.max(0, wave - dt);
     if (spring) { spring.t += dt; if (spring.t >= 0.3) spring = null; }
@@ -494,12 +528,13 @@
     if (phase === 'adopt') { adopt.pups.forEach((p) => { p.poseT += dt; if (p.pose === 'hop' && p.poseT > 0.5) { p.pose = 'idle'; p.poseT = 0; } }); return; }
     if (phase === 'grow') { grow.snoreT -= dt; if (grow.snoreT <= 0) { grow.snoreT = 2; FL.Audio.sfx.snore(); zzz.push({ x: d.x + 20, y: d.y - 60, t: 0 }); } if (grow.done) grow.lift = Math.min(1, grow.lift + dt * 2); }
     zzz.forEach((z) => { z.t += dt; }); zzz = zzz.filter((z) => z.t < 2);
-    updateDog(dt); updateBall(dt); if (arc) placeArc(); if (treat) { const m = metrics(); treat.x = d.x + 120 - 42; treat.y = d.y + m.cy - 42; if (t > treat.until) treat = null; }
+    updateDog(dt); updateBall(dt); if (arc) placeArc();
+    if (treat) { const m = metrics(); const side = d.x + 162 > L.W ? -1 : 1; treat.x = clamp(d.x + side * 120 - 42, 8, L.W - 92); treat.y = Math.min(d.y + m.cy - 42, 700); if (t > treat.until) treat = null; }   // always on screen
     if (party) updateParty(dt);
     if (phase !== 'play' || UI.overlayActive()) return;
     if (nap) { nap.t -= dt; nap.snoreT -= dt; if (nap.snoreT <= 0) { nap.snoreT = 2; FL.Audio.sfx.snore(); zzz.push({ x: d.x + 20, y: d.y - 60, t: 0 }); } if (nap.t <= 0) wake(); }
     else updateNeeds(dt);
-    roundAcc += dt; if (roundAcc >= 1) { roundAcc = 0; P.syncRound(dog); }
+    roundAcc += dt; if (roundAcc >= 1) { roundAcc = 0; P.syncRound(dog); refreshDay(); }
     saveAcc += dt; if (saveAcc >= 5) { saveAcc = 0; save(); }
     speech.idleT += dt;
     if (speech.idleT >= 20 && t - speech.last >= 6 && !held && !lifted && !trick && !nap && !party) {
@@ -510,10 +545,8 @@
   }
 
   // ---------- draw ----------
-  const isNight = () => { const h = new Date().getHours(); return h >= 19 || h < 6; };
-  const keyBack = (n) => { const dd = new Date(); dd.setDate(dd.getDate() - n); return P.todayKey(dd); };
   function drawRoom(ctx) {
-    const { W, H, S } = L; const night = isNight();
+    const { W, H, S } = L;
     ctx.fillStyle = '#fdf2f8'; ctx.fillRect(0, 0, S, 560);
     ctx.fillStyle = 'rgba(244,114,182,.16)'; for (let y = 40; y < 540; y += 70) for (let x = 30 + ((y / 70) % 2) * 35; x < S - 50; x += 70) { A.circle(ctx, x, y, 9); ctx.fill(); }
     ctx.fillStyle = '#f5d0a9'; ctx.fillRect(0, 560, S, H - 560); ctx.fillStyle = 'rgba(120,53,15,.12)'; ctx.fillRect(0, 560, S, 8);
@@ -546,9 +579,9 @@
     ctx.fillStyle = 'rgba(0,0,0,.12)'; A.roundRect(ctx, x + 4, y + 8, w, h, 14); ctx.fill();
     ctx.fillStyle = '#fef3c7'; A.roundRect(ctx, x, y, w, h, 14); ctx.fill(); ctx.strokeStyle = '#d97706'; ctx.lineWidth = 5; ctx.stroke();
     ctx.fillStyle = '#ef4444'; A.circle(ctx, x + 16, y + 14, 7); ctx.fill(); A.circle(ctx, x + w - 16, y + 14, 7); ctx.fill();
-    for (let i = 0; i < 7; i++) A.pawPrint(ctx, x + 30 + i * 28, y + 26, 9, (dog.week || []).includes(keyBack(6 - i)) ? '#f59e0b' : '#d6d3d1');
+    for (let i = 0; i < 7; i++) A.pawPrint(ctx, x + 30 + i * 28, y + 26, 9, (dog.week || []).includes(weekKeys[i]) ? '#f59e0b' : '#d6d3d1');
     const title = dog.name + "'s chart"; A.text(ctx, title, x + 216 + (w - 270) / 2, y + 26, { size: A.fitSize(ctx, title, w - 290, 22), color: '#92400e' });
-    A.emoji(ctx, P.isMorning() ? '☀️' : '🌙', x + w - 34, y + 26, 30);
+    A.emoji(ctx, morning ? '☀️' : '🌙', x + w - 34, y + 26, 30);
     P.JOBS.forEach((job, i) => {
       const cx = x + 30 + (i + 0.5) * (w - 60) / 5, cy = y + 92, done = !!dog.chart[job];
       ctx.fillStyle = done ? '#fde047' : '#fff'; ctx.strokeStyle = done ? '#f59e0b' : '#e7e5e4'; ctx.lineWidth = 3; A.circle(ctx, cx, cy, 30); ctx.fill(); ctx.stroke();
@@ -572,7 +605,7 @@
     });
   }
   function drawWindow(ctx) {
-    const w = L.win, night = isNight();
+    const w = L.win;
     ctx.fillStyle = '#fff'; A.roundRect(ctx, w.x - 10, w.y - 10, w.w + 20, w.h + 20, 14); ctx.fill(); ctx.strokeStyle = '#f9a8d4'; ctx.lineWidth = 3; ctx.stroke();
     const g = ctx.createLinearGradient(0, w.y, 0, w.y + w.h); g.addColorStop(0, night ? '#1e1b4b' : '#7dd3fc'); g.addColorStop(1, night ? '#4c1d95' : '#e0f2fe'); ctx.fillStyle = g; ctx.fillRect(w.x, w.y, w.w, w.h);
     ctx.save(); ctx.beginPath(); ctx.rect(w.x, w.y, w.w, w.h); ctx.clip();
@@ -641,18 +674,19 @@
     const wob = trick && trick.wobbly; const anim = { t, facing: d.facing, pose: d.carry ? 'grab' : d.pose, poseT: d.poseT, walking: d.walking, wag: Math.min(1, d.wag + (petT > 0 ? 1 : 0) + (d.mood === 'happy' ? 0.3 : 0)), seed: d.seed, rot: d.rot + (wob ? Math.sin(t * 30) * 0.12 : 0), alpha: d.alpha };
     A.dog(ctx, d.x, d.y, look(), anim, wob ? 0.92 : 1);
   }
+  const groundShadow = (ctx, x, y, rx) => { ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, x, y, rx, rx * 0.35); ctx.fill(); };   // cheaper than a blurred canvas shadow on an iPad
   function drawBall(ctx) {
     if (ball.state === 'box' || ball.state === 'mouth') return;
-    if (ball.state === 'air') { ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, ball.x, ball.gy, 18, 6); ctx.fill(); }
-    A.emoji(ctx, '🎾', ball.x, ball.y - 16, ball.state === 'held' ? 52 : 40, { rot: ball.x * 0.04, shadow: true });
+    groundShadow(ctx, ball.x, ball.state === 'air' ? ball.gy : ball.y + 6, 18);
+    A.emoji(ctx, '🎾', ball.x, ball.y - 16, ball.state === 'held' ? 52 : 40, { rot: ball.x * 0.04 });
   }
   function drawScene(ctx) {
     const g = G(), S = L.S;
     const items = [];
-    items.push({ y: d.y, f: () => drawDog(ctx) });
+    if (phase !== 'adopt') items.push({ y: d.y, f: () => drawDog(ctx) });   // the three basket puppies are the only dogs on the adoption screen
     items.push({ y: L.princess.y, f: () => A.princess(ctx, L.princess.x, L.princess.y, g.look, { t, facing: d.x < L.princess.x ? -1 : 1, wave: wave > 0, dance: party ? 1 : 0 }, 0.9) });
     const comp = FL.Save.data.companion; if (comp !== '🐶' && comp !== '🐕' && !party) items.push({ y: L.perch.y, f: () => { const hop = fetch.state !== 'none' ? Math.abs(Math.sin(t * 8)) * 14 : Math.sin(t * 2) * 2; A.emoji(ctx, comp, L.perch.x, L.perch.y - 22 - hop, 56); } });
-    if (party) party.friends.forEach((e, i) => items.push({ y: L.perch.y, f: () => A.emoji(ctx, e, S + 120 + i * 68, L.perch.y - 22 - Math.abs(Math.sin(t * 6 + i)) * 10, 52) }));
+    if (party) { const gap = Math.min(68, (L.W - S - 200) / Math.max(1, party.friends.length - 1)); party.friends.forEach((e, i) => items.push({ y: L.perch.y, f: () => A.emoji(ctx, e, S + 100 + i * gap, L.perch.y - 22 - Math.abs(Math.sin(t * 6 + i)) * 10, 52) })); }   // everyone fits on the fence
     items.sort((a, b) => a.y - b.y).forEach((i) => i.f());
     zzz.forEach((z) => A.emoji(ctx, '💤', z.x + Math.sin(z.t * 3) * 10, z.y - z.t * 40, 26 + z.t * 12, { alpha: Math.max(0, 1 - z.t / 2) }));
     drops.forEach((p) => { ctx.fillStyle = p.kind === 'drop' ? '#7dd3fc' : 'rgba(255,255,255,.85)'; A.circle(ctx, p.x, p.y, p.r); ctx.fill(); if (p.kind !== 'drop') { ctx.strokeStyle = '#bae6fd'; ctx.lineWidth = 1.5; ctx.stroke(); } });
@@ -660,17 +694,18 @@
   function draw(ctx) {
     const g = G(), S = L.S;
     drawRoom(ctx); drawWall(ctx);
-    if (phase !== 'adopt') { drawPoster(ctx); drawNeeds(ctx); }
+    if (phase !== 'adopt') drawPoster(ctx);
+    if (phase === 'play') drawNeeds(ctx);
     drawWindow(ctx); drawBed(ctx); drawMat(ctx);
-    if (phase !== 'adopt') drawStrip(ctx);
+    if (phase === 'play') drawStrip(ctx);   // no tappable-looking props while she adopts or wakes the sleeping dog
     drawBin(ctx); drawYardProps(ctx); drawMesses(ctx);   // messes after the patch, or the 💩 on the patch is painted over
     drawScene(ctx);
     if (nap) { ctx.fillStyle = 'rgba(30,20,80,.3)'; ctx.fillRect(0, 0, S, g.H); }
     drawBall(ctx);
-    if (bag.stage === 'full' && bag.ground) A.emoji(ctx, '🛍️', bag.x, bag.y - 14, 44, { scale: 1 + Math.sin(t * 5) * 0.06, shadow: true });
+    if (bag.stage === 'full' && bag.ground) { groundShadow(ctx, bag.x, bag.y + 8, 22); A.emoji(ctx, '🛍️', bag.x, bag.y - 14, 44, { scale: 1 + Math.sin(t * 5) * 0.06 }); }
     if (spring) { const k = spring.t / 0.3, e = 1 - Math.pow(1 - k, 2); A.emoji(ctx, ITEM_EMOJI[spring.item], spring.x + (spring.tx - spring.x) * e, spring.y + (spring.ty - spring.y) * e, 68 - 16 * e); }
-    if (held) A.emoji(ctx, held.item === 'bag' && bag.stage === 'full' ? '🛍️' : held.item === 'ball' ? '' : ITEM_EMOJI[held.item], held.x, held.y - 12, 68, { rot: Math.sin(t * 10) * 0.08, shadow: true });
-    if (phase === 'play' && !nap && !party && !trick) { const w = P.worst(dog); const icon = dog.dancing ? '🌳' : w && w.state === 'needs' ? NEED_ICON[w.need] : null; if (icon) { const m = metrics(); A.bubble(ctx, d.x + 56 * d.facing, d.y + m.top - 40 + Math.sin(t * 3) * 4, icon, 40); } }
+    if (held && !(held.item === 'ball' && ball.state === 'held')) { groundShadow(ctx, held.x, held.y + 30, 24); A.emoji(ctx, held.item === 'bag' && bag.stage === 'full' ? '🛍️' : ITEM_EMOJI[held.item], held.x, held.y - 12, 68, { rot: Math.sin(t * 10) * 0.08 }); }   // a ball lifted from the strip is drawn here too; only a ground ball follows the finger via drawBall
+    if (phase === 'play' && !nap && !party && !trick && !arc) { const w = P.worst(dog); const icon = dog.dancing ? '🌳' : w && w.state === 'needs' ? NEED_ICON[w.need] : null; if (icon) { const m = metrics(); A.bubble(ctx, clamp(d.x + 56 * d.facing, 190, L.W - 44), d.y + m.top - 40 + Math.sin(t * 3) * 4, icon, 40); } }
     if (treat) { treatBtn.x = treat.x; treatBtn.y = treat.y; treatBtn.draw(ctx, t); }
     if (arc) arc.forEach((b) => b.draw(ctx, t));
     if (phase === 'play') tricksBtn.draw(ctx, t);
@@ -702,17 +737,24 @@
   const scene = {
     hud: { home: true, repeat: true },
     enter() {
-      P = FL.Puppy; if (!FL.Save.data.dog) FL.Save.data.dog = FL.Save.defaultDog ? FL.Save.defaultDog() : DEFAULT_DOG();
-      dog = FL.Save.data.dog; const def = DEFAULT_DOG(); for (const k in def) if (dog[k] == null) dog[k] = def[k];
-      t = 0; phase = 'play'; tutorial = false; resetState(); layout();
+      if (!FL.Save.data.dog) FL.Save.data.dog = FL.Save.defaultDog();   // a save from before the cottage existed (deepMerge normally fills this in)
+      dog = FL.Save.data.dog;
+      t = 0; phase = 'play'; tutorial = false; resetState(); layout(); refreshDay(); wall = Date.now();
       treatBtn = new UI.Button({ x: 0, y: 0, w: 84, h: 84, emoji: '🦴', color: '#fbbf24', round: true, emojiSize: 44, pulse: true });
       if (!dog.adopted) { startAdopt(); return; }
+      const e = P.dogEmoji(dog); if (!FL.Save.data.unlocked.includes(e)) FL.Save.data.unlocked.push(e);   // an adopted dog is always in the Friends grid
+      if (dog.bag) { bag = { stage: 'full', ground: true, x: dog.bag.x * L.W, y: dog.bag.y * L.H, t: -99 }; }   // the tied bag she left on the floor last time
       P.syncRound(dog); const away = P.applyAway(dog); dog.visits = (dog.visits || 0) + 1; tutorial = !dog.tutorialDone; placeDog();
       if (P.shouldCeremony(dog)) startGrow(); else greet(away);
       save();
     },
-    exit() { if (dog && dog.adopted) save(); timers = []; arc = null; held = null; lifted = null; treat = null; },
-    resize() { if (L) layout(); },
+    exit() { if (dog && dog.adopted) save(); timers = []; arc = null; held = null; lifted = null; treat = null; wall = 0; },
+    resize() {
+      if (!L) return; layout();
+      if (grow || nap) { d.x = L.bed.x + L.bed.w / 2; d.y = L.bed.y + L.bed.h - 14; }   // the bed moved with the wall; keep the sleeper in it
+      if (d.x > -900) d.x = clamp(d.x, L.room.x0, L.yard.x1);
+      if (bag.ground) bag.x = clamp(bag.x, 120, L.W - 60); if (ball.state === 'ground') ball.x = clamp(ball.x, 120, L.W - 60);
+    },
     repeatPrompt() { if (!dog) return; if (phase === 'adopt') speak(adopt.step === 1 ? 'adopt1' : 'adopt2'); else if (phase === 'grow') speak('growSleep'); else topNeed(2); },
     down, move, up, key, update, draw,
     layoutInfo() {
