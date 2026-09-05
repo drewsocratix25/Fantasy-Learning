@@ -260,6 +260,7 @@
     }
   }
   A.music = {
+    styles: STYLES,
     current: () => music.style,
     play(styleName) {
       if (!styleName) { this.stop(); return; }

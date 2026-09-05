@@ -1,3 +1,30 @@
+# ✨ Little Wonders
+
+Simple, ad-free learning games for ages 3 to 6, made by a dad and his daughter. Plain web pages, so they run on any iPad, phone or computer with nothing to install. The root `index.html` is the hub that lists the games; each game lives in `games/<id>/` on a shared engine in `engine/` (see `GAMES.md` to add one).
+
+| Game | Folder | What it is |
+| --- | --- | --- |
+| 👸 Melody Kingdom | `games/melody/` | A princess music adventure: letters, numbers, shapes, rhythm, songs, and an expanding world. |
+| 🦸 Germ Patrol | `games/germs/` | A germ-busting hero game: handwashing, brushing, sneezes, food safety, how germs work, and how the body fights them. |
+| 🏰 Castle Quest | `games/castle/` | Castle exploration with science (in progress). |
+
+## 🦸 Germ Patrol
+
+Pick a hero, then explore Sunnyville and visit six stations. Everything is scientifically accurate, cartoon, and never scary: the germs are mischievous little characters, and one of them (Lacto) is a helper germ.
+
+| Station | What she learns | How it plays |
+| --- | --- | --- |
+| 🧼 **Wash Station** | Water, soap, 20 seconds (Happy Birthday twice), rinse, dry. Palms, backs, between fingers, thumbs, nails. | Scrub two big hands with a finger while the song plays; a sparkle check shows leftover germs. |
+| 🦷 **Toothbrush Time** | "Sugar bugs" are bacteria that eat sugar and make acid. Brush morning and night. | Scrub every tooth clean, then rinse and spit. |
+| 🤧 **Sneeze Catcher** | Sneeze into your elbow; germs travel far; wash hands after. | Tap a friend before they sneeze so they catch it in their elbow. |
+| 🔬 **Microscope Lab** | Bacteria, viruses, fungi, helper germs; which is smallest; where germs hide. | Look through the microscope and tap the right germ or picture. |
+| 🛡️ **Body Base** | White blood cells are the body's guards; fever, rest, water, food, and what a vaccine does. | Tap germs so guards catch them; power-ups explain each idea as they're used. |
+| 🍎 **Kitchen Clean-Up** | Wash produce, cook meat, keep food cold, throw away food that sat out or fell. | Pick the right action for each food. |
+
+Stars unlock sidekicks, cape colours, goggles and town decorations, and each station awards a Patrol Badge after three plays. After every game the narrator shares a "Did you know?" fact.
+
+---
+
 # 👑 Melody Kingdom
 
 A cartoon princess music adventure that teaches kindergarten skills. Built for an iPad in the browser, no app store needed.

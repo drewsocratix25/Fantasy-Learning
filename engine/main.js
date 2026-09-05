@@ -34,6 +34,7 @@
   G._timers = new Set();
   G.later = function (fn, ms) { const id = setTimeout(() => { G._timers.delete(id); fn(); }, ms); G._timers.add(id); return id; };
   G.refreshLook = function () {
+    if (FL.heroRefresh) return FL.heroRefresh();
     let look = FL.Art.PRINCESSES[FL.Save.data.princess] || FL.Art.PRINCESSES[0];
     look = Object.assign({}, look, { crownStyle: FL.Save.data.crown || 'gold', wand: FL.Save.data.wand || null });
     if (FL.Save.data.dress) Object.assign(look, { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] });

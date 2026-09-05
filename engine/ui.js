@@ -9,7 +9,7 @@
     }
     contains(px, py) { return this.visible && this.enabled && px >= this.x && px <= this.x + this.w && py >= this.y && py <= this.y + this.h; }
     draw(ctx, t) {
-      if (!this.visible) return; const A = Art();
+      if (!this.visible) return; const A = Art(); if (this.custom) { this.custom(ctx, this, t); return; }
       ctx.save();
       const cx = this.x + this.w / 2, cy = this.y + this.h / 2;
       let sc = this.pressed ? 0.94 : 1; if (this.pulse) sc *= 1 + Math.sin((t || 0) * 5) * 0.03;

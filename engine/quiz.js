@@ -47,7 +47,8 @@
       },
       finish() {
         const stars = UI.starsFor(this.good, this.total); if (stars === 3) FL.Save.levelUp(cfg.id);
-        UI.showResults({ title: `${cfg.title} complete!`, subtitle: `${this.good} of ${this.total} right on the first try`, stars, emoji: cfg.emoji, again: () => G().go(cfg.id), home: () => G().go('world', { at: cfg.id }) });
+        UI.showResults({ title: `${cfg.title} complete!`, subtitle: `${this.good} of ${this.total} right on the first try`, stars, emoji: cfg.emoji, again: () => G().go(cfg.id), home: () => G().go(cfg.home || 'world', { at: cfg.id }) });
+        if (cfg.onFinish) cfg.onFinish(this);
       },
       update(dt) { this.t += dt; this.roundT += dt; this.cards.forEach((c) => { if (this.roundT > c.delay) c.scale = Math.min(1, c.scale + dt * 4); c.wob = Math.max(0, c.wob - dt * 2); }); },
       draw(ctx) {
@@ -61,11 +62,12 @@
           const hint = !this.locked && this.tries >= 2 && c.correct; if (hint) { ctx.shadowColor = '#fde047'; ctx.shadowBlur = 30 + Math.sin(t * 8) * 15; }
           ctx.fillStyle = 'rgba(0,0,0,.15)'; A.roundRect(ctx, -c.w / 2, -c.h / 2 + 8, c.w, c.h, 32); ctx.fill();
           ctx.fillStyle = c.done ? '#fef9c3' : '#fff'; ctx.strokeStyle = cfg.cardColor || '#f472b6'; ctx.lineWidth = 8; A.roundRect(ctx, -c.w / 2, -c.h / 2, c.w, c.h, 32); ctx.fill(); ctx.stroke(); ctx.shadowBlur = 0;
-          if (c.emoji) { A.emoji(ctx, c.emoji, 0, c.label ? -14 : 0, c.w * (c.label ? 0.48 : 0.56)); if (c.label) A.text(ctx, c.label, 0, c.h / 2 - 30, { size: 26, color: '#57534e' }); }
+          if (c.draw) { c.draw(ctx, c, t); if (c.label) A.text(ctx, c.label, 0, c.h / 2 - 26, { size: 24, color: '#57534e' }); }
+          else if (c.emoji) { A.emoji(ctx, c.emoji, 0, c.label ? -14 : 0, c.w * (c.label ? 0.48 : 0.56)); if (c.label) A.text(ctx, c.label, 0, c.h / 2 - 30, { size: A.fitSize(ctx, c.label, c.w - 16, 26), color: '#57534e' }); }
           else if (c.text) A.text(ctx, c.text, 0, 0, { size: A.fitSize(ctx, c.text, c.w - 24, c.text.length <= 2 ? 84 : 44), color: '#7c3aed' });
           ctx.restore();
         });
-        A.princess(ctx, 120, g.H - 40, g.look, { t, facing: 1, wave: this.locked }, 0.95);
+        (cfg.drawHero || ((c2, gg, tt, sc) => { A.princess(c2, 120, gg.H - 40, gg.look, { t: tt, facing: 1, wave: sc.locked }, 0.95); }))(ctx, g, t, this);
         A.emoji(ctx, FL.Save.data.companion, 210, g.H - 60 - Math.abs(Math.sin(t * 5)) * 8, 52);
       },
     };
