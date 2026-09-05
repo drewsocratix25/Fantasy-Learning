@@ -1,0 +1,746 @@
+{
+"engine": "Kokoro-82M (open source, Apache-2.0)",
+"voice": "af_heart",
+"clips": {
+"5ee86cec": {
+"text": "Welcome to Germ Patrol! Let's keep the germs away!",
+"dur": 3.14
+},
+"eb4858ab": {
+"text": "Hi! I'm Max!",
+"dur": 1.3
+},
+"f477c88f": {
+"text": "Hi! I'm Zara!",
+"dur": 1.37
+},
+"4d203885": {
+"text": "Hi! I'm Leo!",
+"dur": 1.28
+},
+"0234f528": {
+"text": "Hi! I'm Mia!",
+"dur": 1.13
+},
+"6a870883": {
+"text": "Tap a place to go there. Let's start at the Wash Station!",
+"dur": 3.29
+},
+"43c8e6fa": {
+"text": "Wash Station! Wash the germs away!",
+"dur": 2.41
+},
+"e435a31b": {
+"text": "Let's go to the Wash Station!",
+"dur": 1.65
+},
+"709fd06a": {
+"text": "Toothbrush Time! Brush away the sugar bugs!",
+"dur": 2.65
+},
+"7f5abcdb": {
+"text": "Let's go to the Toothbrush Time!",
+"dur": 1.77
+},
+"5096baaa": {
+"text": "Kitchen Clean-Up! Keep the food safe!",
+"dur": 2.27
+},
+"79a808e6": {
+"text": "Let's go to the Kitchen Clean-Up!",
+"dur": 1.72
+},
+"d557dcf1": {
+"text": "Microscope Lab! Look at germs up close!",
+"dur": 2.65
+},
+"9325660f": {
+"text": "Let's go to the Microscope Lab!",
+"dur": 1.9
+},
+"142c7738": {
+"text": "Sneeze Catcher! Catch the sneezes!",
+"dur": 2.22
+},
+"3de1cade": {
+"text": "Let's go to the Sneeze Catcher!",
+"dur": 1.75
+},
+"6d002366": {
+"text": "Body Base! Help your body guards!",
+"dur": 2.05
+},
+"85e0c741": {
+"text": "Let's go to the Body Base!",
+"dur": 1.59
+},
+"7fd09eee": {
+"text": "Wonderful! You earned 1 star!",
+"dur": 1.9
+},
+"5386c336": {
+"text": "Wonderful! You earned 2 stars!",
+"dur": 1.83
+},
+"a2313945": {
+"text": "Wonderful! You earned 3 stars!",
+"dur": 1.92
+},
+"67a3f4bf": {
+"text": "Amazing! You earned 1 star!",
+"dur": 1.92
+},
+"f3483741": {
+"text": "Amazing! You earned 2 stars!",
+"dur": 1.9
+},
+"28c629c2": {
+"text": "Amazing! You earned 3 stars!",
+"dur": 1.96
+},
+"50c1355f": {
+"text": "Super! You earned 1 star!",
+"dur": 1.69
+},
+"c75d4061": {
+"text": "Super! You earned 2 stars!",
+"dur": 1.75
+},
+"8309d562": {
+"text": "Super! You earned 3 stars!",
+"dur": 1.81
+},
+"6258fb89": {
+"text": "Fantastic! You earned 1 star!",
+"dur": 2.15
+},
+"7ef74dff": {
+"text": "Fantastic! You earned 2 stars!",
+"dur": 2.03
+},
+"0c63d840": {
+"text": "Fantastic! You earned 3 stars!",
+"dur": 2.18
+},
+"e5c614c6": {
+"text": "Way to go! You earned 1 star!",
+"dur": 1.96
+},
+"e86ca93e": {
+"text": "Way to go! You earned 2 stars!",
+"dur": 1.96
+},
+"0448330d": {
+"text": "Way to go! You earned 3 stars!",
+"dur": 2.03
+},
+"4b34b8db": {
+"text": "Bubbles will come with you!",
+"dur": 1.47
+},
+"1db0e45c": {
+"text": "A new sidekick! Bubbles joins the patrol!",
+"dur": 2.73
+},
+"53d04ffa": {
+"text": "Ducky will come with you!",
+"dur": 1.39
+},
+"24aec57d": {
+"text": "A new sidekick! Ducky joins the patrol!",
+"dur": 2.67
+},
+"27d21496": {
+"text": "Sponge will come with you!",
+"dur": 1.39
+},
+"d3345e41": {
+"text": "A new sidekick! Sponge joins the patrol!",
+"dur": 2.84
+},
+"5d6ead39": {
+"text": "Lacto will come with you!",
+"dur": 1.41
+},
+"f2c97336": {
+"text": "A new sidekick! Lacto joins the patrol!",
+"dur": 2.79
+},
+"250208a1": {
+"text": "Pup will come with you!",
+"dur": 1.26
+},
+"fdfa12be": {
+"text": "A new sidekick! Pup joins the patrol!",
+"dur": 2.58
+},
+"0be9513d": {
+"text": "Brushy will come with you!",
+"dur": 1.41
+},
+"d0c58732": {
+"text": "A new sidekick! Brushy joins the patrol!",
+"dur": 2.73
+},
+"255a11a4": {
+"text": "Doc will come with you!",
+"dur": 1.3
+},
+"7c9139fb": {
+"text": "A new sidekick! Doc joins the patrol!",
+"dur": 2.58
+},
+"9680e504": {
+"text": "Guardy will come with you!",
+"dur": 1.47
+},
+"d5dab76b": {
+"text": "A new sidekick! Guardy joins the patrol!",
+"dur": 2.71
+},
+"0f445f14": {
+"text": "Whiskers will come with you!",
+"dur": 1.51
+},
+"1e81c7db": {
+"text": "A new sidekick! Whiskers joins the patrol!",
+"dur": 2.73
+},
+"8bf8718c": {
+"text": "Scrub-Bot will come with you!",
+"dur": 1.58
+},
+"08e7d603": {
+"text": "A new sidekick! Scrub-Bot joins the patrol!",
+"dur": 2.9
+},
+"06db057f": {
+"text": "You unlocked new cape colours!",
+"dur": 1.73
+},
+"92b9994f": {
+"text": "You unlocked star goggles!",
+"dur": 1.66
+},
+"a83f17d8": {
+"text": "You unlocked shiny cape colours!",
+"dur": 1.9
+},
+"f194dd86": {
+"text": "A Germ Patrol flag now flies over town!",
+"dur": 2.79
+},
+"59e33707": {
+"text": "You unlocked rainbow goggles!",
+"dur": 1.79
+},
+"2a73fc91": {
+"text": "The town built a statue of you!",
+"dur": 1.82
+},
+"c03b2d54": {
+"text": "Fireworks over Germ Patrol town!",
+"dur": 2.14
+},
+"f390a029": {
+"text": "You earned the Handwashing Hero badge!",
+"dur": 2.07
+},
+"c9d19793": {
+"text": "You earned the Tooth Titan badge!",
+"dur": 1.75
+},
+"daf48e1d": {
+"text": "You earned the Sneeze Catcher badge!",
+"dur": 1.79
+},
+"904e0dce": {
+"text": "You earned the Lab Scientist badge!",
+"dur": 1.91
+},
+"7dea318e": {
+"text": "You earned the Body Guard badge!",
+"dur": 1.72
+},
+"31922cfb": {
+"text": "You earned the Kitchen Captain badge!",
+"dur": 1.9
+},
+"69aaae9e": {
+"text": "Hello, Patrol! Soap grabs the germs and water washes them down the drain.",
+"dur": 4.82
+},
+"82573cc6": {
+"text": "Soap grabs the germs and water washes them down the drain.",
+"dur": 3.63
+},
+"053151d8": {
+"text": "Twenty seconds of scrubbing is the magic number. That is Happy Birthday twice!",
+"dur": 4.54
+},
+"cf08ad5c": {
+"text": "Germs love to hide between fingers and under nails.",
+"dur": 3.15
+},
+"d240dd9e": {
+"text": "Wash your hands before eating and after using the bathroom.",
+"dur": 3.26
+},
+"d91e4834": {
+"text": "Sugar bugs are bacteria that eat sugar and make acid that hurts your teeth.",
+"dur": 4.45
+},
+"5f719780": {
+"text": "Brush in the morning and at night, for two whole minutes.",
+"dur": 2.88
+},
+"ac0f59fd": {
+"text": "Brush the fronts, the backs, and the tops of your teeth.",
+"dur": 2.8
+},
+"2f415190": {
+"text": "A little toothpaste is enough. About the size of a pea!",
+"dur": 3.29
+},
+"b4206a47": {
+"text": "A sneeze can send germs six feet away. That is as far as a tall grown-up lying down!",
+"dur": 5.46
+},
+"c67daf5e": {
+"text": "Sneeze or cough into your elbow, not your hands.",
+"dur": 2.9
+},
+"67349364": {
+"text": "If you use a tissue, throw it away and wash your hands.",
+"dur": 3.01
+},
+"ccf6db10": {
+"text": "When you are sick, stay home and rest so your friends stay well.",
+"dur": 3.33
+},
+"32d796b6": {
+"text": "Germs are so tiny that you need a microscope to see them.",
+"dur": 3.61
+},
+"b366e95d": {
+"text": "Most germs are harmless, and some even help us.",
+"dur": 2.7
+},
+"2d5a10d7": {
+"text": "Viruses are much smaller than bacteria.",
+"dur": 2.39
+},
+"4a7341c8": {
+"text": "Germs travel on hands, in sneezes, and on food.",
+"dur": 3.26
+},
+"fc6f696b": {
+"text": "White blood cells are your body's guards. They catch germs.",
+"dur": 3.39
+},
+"4a5ca0af": {
+"text": "A fever means your body is turning up the heat to fight germs.",
+"dur": 3.46
+},
+"0a6f6481": {
+"text": "Vaccines show your guards a picture of a germ, so they know it next time.",
+"dur": 4.16
+},
+"8a564f87": {
+"text": "Sleep, water and healthy food help your guards stay strong.",
+"dur": 3.5
+},
+"555c9cfc": {
+"text": "Wash fruits and vegetables before you eat them.",
+"dur": 2.65
+},
+"6c4e2c3c": {
+"text": "Cooking makes food hot enough to kill germs.",
+"dur": 2.41
+},
+"e7e7f115": {
+"text": "Cold keeps germs from growing, so leftovers go in the fridge.",
+"dur": 3.65
+},
+"927bab23": {
+"text": "Food that fell on the floor has germs on it, even after one second.",
+"dur": 4.07
+},
+"0d1c98aa": {
+"text": "Viruses are the tiniest germs. They can only grow inside your body's cells.",
+"dur": 4.67
+},
+"e6aab543": {
+"text": "Bacteria are tiny living things. Some make you sick, and some are helpers.",
+"dur": 4.48
+},
+"825c7484": {
+"text": "Fungi are germs like the fuzzy mold on old bread.",
+"dur": 3.05
+},
+"bda4b2fd": {
+"text": "Helper bacteria live in yogurt and in your tummy, and they help you digest food.",
+"dur": 4.61
+},
+"f7a57254": {
+"text": "Did you know?",
+"dur": 0.89
+},
+"b4582dd6": {
+"text": "First, turn on the water. Tap the tap!",
+"dur": 2.37
+},
+"249bfc85": {
+"text": "Now get some soap. Tap the soap!",
+"dur": 2.13
+},
+"cf14fc3a": {
+"text": "Scrub scrub scrub! Rub the hands until the song ends!",
+"dur": 3.24
+},
+"019fe93e": {
+"text": "Scrub the palms!",
+"dur": 1.19
+},
+"5b68cf88": {
+"text": "Now the backs of the hands!",
+"dur": 1.5
+},
+"842b0c52": {
+"text": "Between the fingers!",
+"dur": 1.27
+},
+"b6472b46": {
+"text": "Don't forget the thumbs!",
+"dur": 1.37
+},
+"c25c77f6": {
+"text": "Fingertips and nails!",
+"dur": 1.43
+},
+"93a3e73f": {
+"text": "Time to rinse! Tap the tap!",
+"dur": 1.85
+},
+"c031f6de": {
+"text": "Dry your hands. Tap the towel!",
+"dur": 2.07
+},
+"8e6a9877": {
+"text": "Sparkle check! Let's look for leftover germs.",
+"dur": 2.77
+},
+"2ea25f47": {
+"text": "All clean! The germs went down the drain!",
+"dur": 2.5
+},
+"3d5b9c16": {
+"text": "Almost! A few germs are hiding. Next time scrub a little longer.",
+"dur": 3.95
+},
+"caf6165d": {
+"text": "Keep scrubbing!",
+"dur": 0.99
+},
+"1da56c5c": {
+"text": "Sugar bugs are hiding on the teeth! Grab the toothbrush and scrub!",
+"dur": 4.05
+},
+"02fd58ad": {
+"text": "Brush the top teeth!",
+"dur": 1.3
+},
+"1d518d79": {
+"text": "Now the bottom teeth!",
+"dur": 1.37
+},
+"95c797d4": {
+"text": "Brush the fronts!",
+"dur": 1.15
+},
+"aa750250": {
+"text": "Brush the backs!",
+"dur": 1.11
+},
+"273ae0c1": {
+"text": "Rinse and spit! Tap the cup!",
+"dur": 1.96
+},
+"1a91993e": {
+"text": "Sparkly clean teeth!",
+"dur": 1.41
+},
+"2af647f1": {
+"text": "A few sugar bugs are still hiding. Keep brushing!",
+"dur": 3.09
+},
+"dd0932c7": {
+"text": "Squeeze a pea of toothpaste. Tap the toothpaste!",
+"dur": 2.84
+},
+"93e44633": {
+"text": "When a friend is about to sneeze, tap them fast so they catch it in their elbow!",
+"dur": 4.27
+},
+"014c8599": {
+"text": "Caught it in the elbow!",
+"dur": 1.28
+},
+"cadac673": {
+"text": "Oops! The sneeze got away. Germs can fly far!",
+"dur": 3.14
+},
+"9b6ce00c": {
+"text": "Great catching! Now everybody wash your hands!",
+"dur": 2.77
+},
+"73d7b601": {
+"text": "Here comes another one!",
+"dur": 1.41
+},
+"0c6ec6bd": {
+"text": "Achoo!",
+"dur": 0.8
+},
+"3a8e68a4": {
+"text": "Which one is a virus?",
+"dur": 1.37
+},
+"2cc4401d": {
+"text": "Which one is bacteria?",
+"dur": 1.49
+},
+"17fe7f59": {
+"text": "Which one is a fungus?",
+"dur": 1.41
+},
+"f2580fda": {
+"text": "Which germ is a helper?",
+"dur": 1.45
+},
+"9d53c30a": {
+"text": "Which one is the smallest?",
+"dur": 1.51
+},
+"21f81d2e": {
+"text": "Where do germs love to hide?",
+"dur": 1.77
+},
+"b3a4ecac": {
+"text": "Which one does NOT have germs on it?",
+"dur": 1.84
+},
+"91b49107": {
+"text": "Yes! Sniffle is a virus.",
+"dur": 1.88
+},
+"c156426c": {
+"text": "That's Sniffle. Sniffle is a virus.",
+"dur": 2.33
+},
+"8fbb17d7": {
+"text": "Yes! Dotty is bacteria.",
+"dur": 1.81
+},
+"990c7f9d": {
+"text": "That's Dotty. Dotty is bacteria.",
+"dur": 2.23
+},
+"6fea2e44": {
+"text": "Yes! Bumpy is bacteria.",
+"dur": 1.83
+},
+"7a13de49": {
+"text": "That's Bumpy. Bumpy is bacteria.",
+"dur": 2.26
+},
+"6f2509fa": {
+"text": "Yes! Fuzz is a fungus.",
+"dur": 1.71
+},
+"6655d6d3": {
+"text": "That's Fuzz. Fuzz is a fungus.",
+"dur": 2.06
+},
+"05731121": {
+"text": "Yes! Lacto is a helper germ.",
+"dur": 2.13
+},
+"569b9544": {
+"text": "That's Lacto. Lacto is a helper germ.",
+"dur": 2.77
+},
+"4fb030d4": {
+"text": "Yes! A virus is the smallest. Even smaller than bacteria!",
+"dur": 3.95
+},
+"50e79d5f": {
+"text": "Yes! Germs love dirty hands, sneezes and food left out.",
+"dur": 3.88
+},
+"03c81472": {
+"text": "Yes! Soap and clean towels help get rid of germs.",
+"dur": 2.99
+},
+"c3a1d295": {
+"text": "Yes! Germs hide on dirty hands.",
+"dur": 2.15
+},
+"ee2aa35a": {
+"text": "Yes! Germs hide on a sneeze.",
+"dur": 1.96
+},
+"6574b972": {
+"text": "Yes! Germs hide on food left out.",
+"dur": 2.3
+},
+"3da5a000": {
+"text": "Yes! Germs hide on a doorknob.",
+"dur": 2.05
+},
+"76225307": {
+"text": "Yes! Germs hide on a runny nose.",
+"dur": 2.15
+},
+"7f60f108": {
+"text": "That's soap. That helps get rid of germs!",
+"dur": 2.35
+},
+"fe7da656": {
+"text": "That's a clean towel. That helps get rid of germs!",
+"dur": 2.88
+},
+"bbf5343d": {
+"text": "That's a bar of soap. That helps get rid of germs!",
+"dur": 2.88
+},
+"e3eea466": {
+"text": "Germs are sneaking in! Tap them and your body guards will catch them!",
+"dur": 3.97
+},
+"2cd62e4a": {
+"text": "Rest helps your body fight! The germs slow down.",
+"dur": 2.94
+},
+"992f6228": {
+"text": "Water! Your guards feel great!",
+"dur": 1.87
+},
+"1a0b9311": {
+"text": "Healthy food! An extra guard joins the team!",
+"dur": 2.86
+},
+"5d81dff2": {
+"text": "A vaccine card! Now your guards know that germ and will catch it fast!",
+"dur": 4.1
+},
+"e924578b": {
+"text": "A fever! Your body turned up the heat to fight the germs.",
+"dur": 3.18
+},
+"d9adcb42": {
+"text": "You kept the body safe!",
+"dur": 1.42
+},
+"67db0462": {
+"text": "Some germs got through, but your guards caught most of them!",
+"dur": 3.26
+},
+"7f5c00ae": {
+"text": "What should we do with strawberries?",
+"dur": 1.69
+},
+"ba58318a": {
+"text": "What should we do with chicken?",
+"dur": 1.49
+},
+"29e80708": {
+"text": "What should we do with milk?",
+"dur": 1.37
+},
+"fc5286bd": {
+"text": "What should we do with carrots?",
+"dur": 1.51
+},
+"bd2010d5": {
+"text": "What should we do with eggs?",
+"dur": 1.39
+},
+"4005cec8": {
+"text": "What should we do with ice cream?",
+"dur": 1.62
+},
+"7350b49c": {
+"text": "What should we do with an apple?",
+"dur": 1.54
+},
+"2ede9e1b": {
+"text": "What should we do with leftover pasta?",
+"dur": 1.98
+},
+"a3d7e335": {
+"text": "What should we do with fish?",
+"dur": 1.42
+},
+"1cb4561f": {
+"text": "What should we do with grapes?",
+"dur": 1.5
+},
+"6db53ef5": {
+"text": "What should we do with a sandwich that sat out all day?",
+"dur": 2.73
+},
+"e2487152": {
+"text": "What should we do with a cookie that fell on the floor?",
+"dur": 2.5
+},
+"50263009": {
+"text": "What should we do with yogurt?",
+"dur": 1.54
+},
+"1911c8ec": {
+"text": "What should we do with broccoli?",
+"dur": 1.6
+},
+"bef4f7c2": {
+"text": "What should we do with cheese?",
+"dur": 1.45
+},
+"1543d71b": {
+"text": "What should we do with a burger?",
+"dur": 1.49
+},
+"46e42d1e": {
+"text": "Yes! Wash it first to rinse the germs off!",
+"dur": 2.39
+},
+"2aa9642b": {
+"text": "Yes! Cooking makes food hot enough to kill germs!",
+"dur": 2.82
+},
+"4f869363": {
+"text": "Yes! Cold keeps germs from growing!",
+"dur": 2.2
+},
+"dda8cbe1": {
+"text": "Yes! Food that sat out or fell on the floor goes in the trash!",
+"dur": 3.69
+},
+"1a2bbe2c": {
+"text": "Hmm, not that one. Try again!",
+"dur": 1.86
+},
+"9fd85e02": {
+"text": "Before we eat, what do we do?",
+"dur": 1.67
+},
+"2570572f": {
+"text": "Yes! Wash your hands before eating!",
+"dur": 2.13
+},
+"e37e503e": {
+"text": "What should we do with bacon?",
+"dur": 1.54
+}
+}
+}

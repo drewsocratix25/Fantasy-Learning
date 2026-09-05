@@ -21,6 +21,7 @@ for (const a of actions) {
   else if (k === 'key') await page.keyboard.press(v);
   else if (k === 'hold') { const [key, ms] = v.split(','); await page.keyboard.down(key); await page.waitForTimeout(Number(ms)); await page.keyboard.up(key); }
   else if (k === 'wait') await page.waitForTimeout(Number(v));
+  else if (k === 'reload') { await page.reload({ waitUntil: 'networkidle' }); await page.waitForTimeout(800); }
   else if (k === 'eval') { const r = await page.evaluate(v); if (r !== undefined) console.log('eval =>', JSON.stringify(r)); }
   else if (k === 'shot') await page.screenshot({ path: v });
 }
