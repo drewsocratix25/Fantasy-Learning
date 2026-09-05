@@ -6,7 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Little Wonders: simple, ad-free learning games for children aged 3 to 6. Made by a dad and his daughter. Plays on any iPad, phone or computer.">
 <meta name="theme-color" content="#6d28d9">
+<meta property="og:title" content="Little Wonders · ad-free learning games for ages 3–6">
+<meta property="og:description" content="Simple, genuinely educational games with no ads and no tracking. Plays on any iPad, phone or computer.">
+<meta property="og:type" content="website">
 <link rel="icon" href="games/melody/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="games/melody/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="hub.css">
@@ -19,7 +23,8 @@
 
 <main>
   <h1>Pick a game to play!</h1>
-  <section class="games">
+  <!-- Cards are rendered from games.json by platform/hub.js. This static copy is the no-JavaScript fallback. -->
+  <section class="games" id="games">
     <a class="card melody" href="games/melody/">
       <div class="art">👸🎵</div>
       <h2>Melody Kingdom</h2>
@@ -45,8 +50,41 @@
     <p>Little Wonders started at our kitchen table. My daughter loved music games, but everything we found was stuffed with ads, locked to one app store, or only pretending to be educational. So we made our own, together. She picked the princesses and the songs; I did the typing.</p>
     <p>Now we're sharing it. Every game here is simple, genuinely educational, and built for small hands and short attention spans. There are no ads, ever. We don't sell your data or collect anything about your child. And because it runs in the browser, it plays on whatever you have handy: an iPad, a phone, a laptop, or Grandma's computer. When one device dies, just open it on the next one.</p>
     <p>If you'd like to support the project, it's <strong>$1 a month or $10 a year</strong>. That helps us pay for the servers and keep making new games. Think of us as a very small dad-and-daughter business.</p>
+    <div class="support" id="support" hidden>
+      <a class="btn month" id="supportMonth" href="#">💖 $1 a month</a>
+      <a class="btn year" id="supportYear" href="#">🌟 $10 a year</a>
+      <p class="fine">Cancel any time. Supporting never unlocks anything a child would miss: every game stays free for everyone.</p>
+    </div>
+    <p class="thanks" id="thanks" hidden>💖 Thank you for supporting Little Wonders! Your family code is on its way by email (check spam if it hasn't arrived in a minute).</p>
+  </section>
+
+  <section class="family" id="family" hidden>
+    <h2>Play on every device</h2>
+    <p>A <strong>family code</strong> keeps stars, friends and unlocked games in sync between the iPad, a phone and Grandma's computer. Grown-ups set it up once; children never type anything. We only keep the grown-up's email so the code can be sent back if it is lost.</p>
+    <div id="familyNone">
+      <form class="row" id="createForm">
+        <label for="createEmail">Create a family code</label>
+        <input id="createEmail" type="email" required placeholder="grown-up@example.com" autocomplete="email">
+        <button type="submit">Create code</button>
+      </form>
+      <form class="row" id="joinForm">
+        <label for="joinCode">Already have one?</label>
+        <input id="joinCode" type="text" required placeholder="ABCD-EFGH" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="9">
+        <button type="submit">Use this code</button>
+      </form>
+      <p class="fine">Lost your code? <a href="#" id="recoverLink">Email it to me</a>.</p>
+    </div>
+    <div id="familyHas" hidden>
+      <p class="code">Your family code: <strong id="familyCode">ABCD-EFGH</strong> <span class="badge" id="supporterBadge" hidden>💖 Supporter</span></p>
+      <p class="fine">Open <span class="url" id="siteUrl">this page</span> on another device, tap <em>Already have one?</em> and type the code. Inside a game, the grown-up corner (hold ⚙️) shows the same code.</p>
+      <p class="fine"><a href="#" id="portalLink" hidden>Manage or cancel support</a> <a href="#" id="leaveLink">Forget this code on this device</a></p>
+    </div>
+    <p class="msg" id="familyMsg" role="status"></p>
   </section>
 </main>
-<footer>Made with love by a dad and his daughter. <a href="https://github.com/drewsocratix25/Fantasy-Learning">Source</a></footer>
+<footer>Made with love by a dad and his daughter. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/drewsocratix25/Fantasy-Learning">Source</a></footer>
+<script src="platform/config.js"></script>
+<script src="platform/platform.js"></script>
+<script src="platform/hub.js"></script>
 </body>
 </html>

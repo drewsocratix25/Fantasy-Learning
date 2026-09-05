@@ -23,3 +23,33 @@ h1 { text-align: center; font-size: clamp(32px, 5vw, 54px); margin: 10px 0 24px;
 footer { text-align: center; padding: 20px; color: #6d28d9; }
 footer a { color: inherit; }
 @media (max-width: 600px) { .brand { font-size: 24px; } .top { padding: 14px 16px; } }
+/* ---- platform: cards from games.json, support buttons, family code ---- */
+[hidden] { display: none !important; }
+.card.soon { opacity: .85; cursor: default; }
+.card.soon:hover, .card.soon:focus { transform: none; }
+.card .play.soon { background: linear-gradient(#fcd34d, #f59e0b); box-shadow: 0 6px 0 #b45309; }
+.card .ages { font-size: 15px; color: #6d28d9; background: #ede9fe; border-radius: 999px; padding: 4px 12px; margin-bottom: 12px; }
+.support { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center; margin-top: 18px; }
+.support .btn { display: inline-block; text-decoration: none; color: #fff; font-weight: 700; font-size: 22px; border-radius: 999px; padding: 12px 26px; box-shadow: 0 6px 0 rgba(0,0,0,.18); }
+.support .btn.month { background: linear-gradient(#f472b6, #db2777); }
+.support .btn.year { background: linear-gradient(#a78bfa, #7c3aed); }
+.support .fine, .family .fine { flex-basis: 100%; }
+.fine { font-size: 15px !important; color: #6b7280 !important; line-height: 1.4 !important; margin: 6px 0 !important; }
+.thanks { background: #fdf2f8; border-radius: 16px; padding: 14px 18px; }
+.family { margin: 30px auto 0; max-width: 760px; background: #fff; border-radius: 30px; padding: 28px 32px; box-shadow: 0 10px 30px rgba(76,29,149,.1); }
+.family h2 { margin-top: 0; color: #6d28d9; }
+.family p { font-size: 19px; line-height: 1.5; }
+.family .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0; }
+.family label { flex-basis: 100%; font-weight: 700; color: #4c1d95; }
+.family input { flex: 1 1 220px; font: inherit; font-size: 20px; padding: 10px 14px; border-radius: 14px; border: 3px solid #ddd6fe; min-width: 0; }
+.family input:focus { outline: none; border-color: #a78bfa; }
+.family button { font: inherit; font-size: 20px; font-weight: 700; color: #fff; background: linear-gradient(#4ade80, #16a34a); border: 0; border-radius: 999px; padding: 10px 24px; box-shadow: 0 5px 0 #15803d; cursor: pointer; }
+.family button[disabled] { opacity: .6; cursor: wait; }
+.family .code strong { font-size: 30px; letter-spacing: 2px; color: #6d28d9; }
+.badge { display: inline-block; font-size: 16px; background: #fdf2f8; color: #be185d; border-radius: 999px; padding: 4px 12px; margin-left: 8px; vertical-align: middle; }
+.msg { min-height: 1.4em; color: #166534; }
+.msg.err { color: #b91c1c; }
+.legal { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 30px; padding: 28px 32px; box-shadow: 0 10px 30px rgba(76,29,149,.1); }
+.legal h1 { text-align: left; font-size: 38px; }
+.legal h2 { color: #6d28d9; margin-top: 28px; }
+.legal p, .legal li { font-size: 18px; line-height: 1.5; }

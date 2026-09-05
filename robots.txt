@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /games/_template/
+Disallow: /supabase/
+Disallow: /tools/
+Sitemap: https://drewsocratix25.github.io/Fantasy-Learning/sitemap.xml

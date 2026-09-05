@@ -116,7 +116,7 @@
   UI.panelOrigin = function () { const G = FL.Game; return { px: G.W / 2 - 460, py: G.H / 2 - 310 }; };
   UI.showParent = function () {
     const G = FL.Game; overlay.kind = 'parent'; overlay.t = 0; overlay.buttons = []; const s = FL.Save.data.settings;
-    const py = G.H / 2 - 280; const L = G.W / 2 - 410, R = G.W / 2 + 20, W = 390, H = 78;
+    const py = G.H / 2 - 310; const L = G.W / 2 - 410, R = G.W / 2 + 20, W = 390, H = 78;
     const refresh = () => UI.showParent();
     const voices = FL.Audio.voices(); const vname = FL.Audio.voiceName();
     overlay.buttons.push(new Button({ x: L, y: py + 140, w: W, h: H, label: `Music: ${s.music ? 'On' : 'Off'}`, emoji: '🎵', color: s.music ? '#4ade80' : '#94a3b8', size: 28, onTap: () => { s.music = !s.music; FL.Save.save(); FL.Audio.applySettings(); refresh(); } }));
@@ -126,6 +126,17 @@
     overlay.buttons.push(new Button({ x: R, y: py + 262, w: W, h: H, label: (FL.config && FL.config.heroLabel) || 'Change hero', emoji: (FL.config && FL.config.heroEmoji) || '🧒', color: '#f472b6', size: 28, onTap: () => { UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } }));
     overlay.buttons.push(new Button({ x: L, y: py + 362, w: W, h: H, label: 'Reset all progress', emoji: '🧹', color: '#f87171', size: 28, onTap: () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go((FL.config && FL.config.startScene) || 'title'); } else { overlay.data = Object.assign(overlay.data || {}, { confirm: true }); UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } } }));
     overlay.buttons.push(new Button({ x: R, y: py + 362, w: W, h: H, label: 'Close', emoji: '✅', color: '#60a5fa', size: 28, onTap: () => UI.closeOverlay() }));
+    // Family code (progress sync across devices), provided by platform/platform.js when a server is configured.
+    if (window.LW && LW.enabled) {
+      const code = LW.family.code();
+      overlay.buttons.push(new Button({ x: L, y: py + 452, w: W, h: 64, label: code ? `Family: ${code}` : 'Enter a family code', emoji: LW.supporter.active() ? '💖' : '👨‍👩‍👧', color: code ? '#a78bfa' : '#c4b5fd', size: 24, onTap: () => {
+        const typed = window.prompt(code ? 'Family code. Clear it to stop syncing on this device.' : 'Type the family code from the Little Wonders home page (looks like ABCD-EFGH).', code || '');
+        if (typed === null) return;
+        if (!typed.trim()) { if (code) { LW.family.leave(); UI.toast('Family code removed', '👋', '#475569'); } refresh(); return; }
+        LW.family.join(typed).then(() => { UI.toast('Family code saved. Progress will sync.', '☁️', '#2563eb'); FL.Save.onChange = null; LW.attachGame(); refresh(); }).catch((e) => UI.toast(e.message || 'That code did not work', '⚠️', '#b91c1c'));
+      } }));
+      overlay.buttons.push(new Button({ x: R, y: py + 452, w: W, h: 64, label: 'Little Wonders home', emoji: '✨', color: '#60a5fa', size: 24, onTap: () => { window.location.href = '../../'; } }));
+    }
     overlay.data = Object.assign(overlay.data || {}, { voiceCount: voices.length });
   };
 
@@ -134,7 +145,7 @@
     if (!overlay.kind) return; const A = Art(); const G = FL.Game; const t = overlay.t;
     ctx.fillStyle = 'rgba(46,16,101,.6)'; ctx.fillRect(0, 0, G.W, G.H);
     const k = Math.min(1, t / 0.35); const ease = 1 - Math.pow(1 - k, 3);
-    const pw = overlay.kind === 'collection' ? 920 : 860, ph = overlay.kind === 'collection' ? 620 : 560; const px = G.W / 2 - pw / 2, py = G.H / 2 - ph / 2 + (1 - ease) * 60;
+    const pw = overlay.kind === 'collection' ? 920 : 860, ph = overlay.kind === 'collection' ? 620 : overlay.kind === 'parent' ? 620 : 560; const px = G.W / 2 - pw / 2, py = G.H / 2 - ph / 2 + (1 - ease) * 60;
     ctx.save(); ctx.globalAlpha = ease;
     ctx.fillStyle = 'rgba(0,0,0,.25)'; A.roundRect(ctx, px, py + 10, pw, ph, 40); ctx.fill();
     ctx.fillStyle = '#fff7ed'; A.roundRect(ctx, px, py, pw, ph, 40); ctx.fill(); ctx.strokeStyle = '#f9a8d4'; ctx.lineWidth = 8; ctx.stroke();

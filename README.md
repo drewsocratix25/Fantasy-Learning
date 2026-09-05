@@ -1,3 +1,18 @@
+# ✨ Little Wonders
+
+Simple, ad-free learning games for ages 3–6, made by a dad and his daughter. A static site (no build step)
+with a games hub, a shared engine, and a small platform layer for family progress sync and supporters.
+
+| | |
+| --- | --- |
+| The hub and every game | `index.html`, `games.json`, `games/<id>/` |
+| Shared engine | `engine/` (audio, art, UI, quiz scaffold, save/merge, main loop) |
+| Platform (family codes, sync, supporters, play counts) | `platform/`, `supabase/`, and the runbook in [`docs/PLATFORM.md`](docs/PLATFORM.md) |
+| Adding a game | [`docs/ADDING-A-GAME.md`](docs/ADDING-A-GAME.md) and the `games/_template` folder |
+| Checks | `npm install && npm run verify` (registry check, save-merge unit test, browser smoke test); the same runs in CI on every pull request |
+
+The first game is below.
+
 # 👑 Melody Kingdom
 
 A cartoon princess music adventure that teaches kindergarten skills. Built for an iPad in the browser, no app store needed.
@@ -96,19 +111,23 @@ npx http-server -p 8080 .
 ## Project layout
 
 ```
-index.html            page shell
-css/style.css
-js/save.js            progress + settings (localStorage)
-js/audio.js           Web Audio synth: instruments, song scheduler, background music, sound effects, speech
-js/songs.js           nursery songs with syllable-aligned lyrics
-js/art.js             cartoon drawing library (princess, castle, trees, particles)
-js/ui.js              buttons, HUD, results / friends / grown-up overlays
-js/title.js           choose a princess
-js/world.js           the explorable kingdom
-js/games/*.js         the six mini-games
-manifest.webmanifest  installable web app
-sw.js                 offline cache
-.github/workflows     GitHub Pages deploy
+index.html, hub.css       the Little Wonders hub (cards rendered from games.json)
+games.json                registry of games: id, path, status (live | soon | template)
+privacy.html, terms.html  legal pages
+platform/config.js        public platform config (Supabase URL + anon key, Stripe links); empty = local mode
+platform/platform.js      family codes, progress sync, supporter status, play counts (loaded by hub + games)
+platform/hub.js           hub behaviour
+engine/save.js            progress + settings (localStorage) and the cross-device merge rules
+engine/audio.js           Web Audio synth: instruments, song scheduler, background music, sound effects, speech
+engine/art.js             cartoon drawing library (princess, castle, trees, particles)
+engine/ui.js              buttons, HUD, results / collection / grown-up overlays
+engine/quiz.js            "prompt + tap the right card" scaffold
+engine/main.js            canvas scaling, input, scene manager, main loop
+games/melody/             Melody Kingdom (its own css, icons, songs, voice pack, scenes, mini-games, sw.js)
+games/_template/          starting point for a new game
+supabase/                 schema migration + edge functions (family API, Stripe webhook)
+tools/                    check.mjs, smoke.mjs, test-save.mjs, screenshot + voice-pack helpers
+.github/workflows         Checks (CI) and the GitHub Pages deploy
 ```
 
 All artwork is drawn in code or uses emoji, and all music is synthesized, so the whole game is a few hundred kilobytes and needs no asset downloads.

@@ -1,1 +1,4 @@
 .kokoro-cache/
+node_modules/
+tools/out/
+deno.lock

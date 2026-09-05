@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy · Little Wonders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="games/melody/icons/icon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hub.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="./" style="text-decoration:none;color:inherit"><span class="logo">✨</span><span>Little Wonders</span></a><div class="promise">No ads · No tracking</div></header>
+<main class="legal">
+  <h1>Privacy</h1>
+  <p>Little Wonders is made for young children, so we keep this short and we keep the data tiny. Last updated 5 September 2026.</p>
+
+  <h2>What we collect about your child</h2>
+  <p><strong>Nothing.</strong> The games never ask a child for a name that leaves the device, a photo, a location, or anything else. There are no ads, no advertising identifiers, no analytics scripts, and no third-party trackers on any page.</p>
+
+  <h2>What stays on your device</h2>
+  <p>Stars, unlocked friends, the chosen hero and the grown-up settings are saved in your browser's local storage on that device only. Clearing the browser's site data, or tapping <em>Reset all progress</em> in the grown-up corner, deletes it.</p>
+
+  <h2>Family codes (optional)</h2>
+  <p>A grown-up can create a <strong>family code</strong> on the home page so progress follows the child from one device to another. When you do, we store:</p>
+  <ul>
+    <li>the grown-up's email address, so we can send the code back if it is lost;</li>
+    <li>the family code itself, and the dates it was created and last used;</li>
+    <li>the game progress that syncs: star counts, unlocked items, difficulty levels, the hero's name if one was typed, and the grown-up settings.</li>
+  </ul>
+  <p>Anyone who knows a family code can see and change that family's game progress, so treat it like a house key. You can stop syncing on a device with <em>Forget this code on this device</em>, and you can ask us to delete a family entirely (see below).</p>
+
+  <h2>Supporting the project (optional)</h2>
+  <p>Payments are handled by <a href="https://stripe.com/privacy">Stripe</a>. We never see or store card numbers. Stripe tells us the email address and the subscription status, which we attach to your family code so the supporter badge shows up. You can cancel at any time from the <em>Manage or cancel support</em> link on the home page.</p>
+
+  <h2>Play counts</h2>
+  <p>To know whether anyone is playing, each game sends one anonymous "played today" tick per device per day. The message contains only the game's name and the date. It has no identifier, no family code and no IP address is kept. We may publish totals ("Melody Kingdom was played 1,204 times in June").</p>
+
+  <h2>Email</h2>
+  <p>We only email the address on a family code, and only to send that code back, confirm support, or answer a question you sent us. No newsletters unless you ask for one.</p>
+
+  <h2>Where data lives</h2>
+  <p>Family data is stored with <a href="https://supabase.com/privacy">Supabase</a> in the United States and the pages are served by GitHub Pages. Fonts load from Google Fonts, which sees the request like any web server does.</p>
+
+  <h2>Children's privacy (COPPA)</h2>
+  <p>We do not knowingly collect personal information from children under 13. Every account-like feature (family codes, payments) is designed to be operated by a parent or guardian and only ever holds the grown-up's email. If you believe a child has given us personal information, contact us and we will delete it.</p>
+
+  <h2>Your choices and deleting data</h2>
+  <p>Email <span class="contact">the address in the footer</span> from the address on your family code and ask us to delete the family. We will remove the family, its progress and the subscription link within 30 days, and confirm by email.</p>
+
+  <h2>Changes</h2>
+  <p>If this page changes in a way that matters, we will note it here with a new date.</p>
+</main>
+<footer id="foot">Made with love by a dad and his daughter. <a href="./">Home</a> · <a href="terms.html">Terms</a></footer>
+<script src="platform/config.js"></script>
+<script>(function(){var e=(window.LW_CONFIG||{}).supportEmail;if(!e)return;document.querySelectorAll('.contact').forEach(function(n){n.innerHTML='<a href="mailto:'+e+'">'+e+'</a>';});document.getElementById('foot').insertAdjacentHTML('beforeend',' · <a href="mailto:'+e+'">'+e+'</a>');})();</script>
+</body>
+</html>

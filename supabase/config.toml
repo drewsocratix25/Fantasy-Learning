@@ -1,0 +1,9 @@
+# Supabase CLI config for the Little Wonders backend. `supabase link --project-ref <ref>` fills in the
+# real project; everything not listed here uses the CLI defaults.
+project_id = "little-wonders"
+
+[functions.family]
+verify_jwt = true      # called from the browser with the public anon key
+
+[functions.stripe-webhook]
+verify_jwt = false     # Stripe signs its requests itself; see supabase/functions/stripe-webhook/index.ts

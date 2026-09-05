@@ -1,0 +1,15 @@
+{
+  "name": "little-wonders",
+  "private": true,
+  "description": "Little Wonders: simple, ad-free learning games for ages 3–6. Static site, no build step; these scripts are the checks.",
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "test": "node tools/test-save.mjs",
+    "smoke": "node tools/smoke.mjs",
+    "serve": "npx http-server -p 8080 -c-1 .",
+    "verify": "npm run check && npm test && npm run smoke"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Template Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#6d28d9">
+<link rel="icon" href="../melody/icons/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../melody/css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" aria-label="Template game"></canvas>
+  <!-- Optional: a title scene can show a name box like Melody Kingdom does (see games/melody/js/title.js):
+       <div id="nameWrap" hidden><label for="nameInput">Name</label><input id="nameInput" type="text" maxlength="14"></div> -->
+</div>
+<div id="rotate" hidden><div>📱 ➡️ 🔄<br>Please turn sideways!</div></div>
+
+<!-- Load order matters: game config, platform, then the engine, then your scenes, then engine/main.js last. -->
+<script src="js/config.js"></script>
+<script src="../../platform/config.js"></script>
+<script src="../../platform/platform.js"></script>
+<script src="../../engine/save.js"></script>
+<script src="../../engine/audio.js"></script>
+<script src="../../engine/lines.js"></script>
+<script src="../../engine/art.js"></script>
+<script src="../../engine/ui.js"></script>
+<script src="../../engine/quiz.js"></script>
+<script src="js/game.js"></script>
+<script src="../../engine/main.js"></script>
+</body>
+</html>

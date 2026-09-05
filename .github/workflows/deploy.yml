@@ -1,6 +1,6 @@
-# Publishes the game to GitHub Pages every time main changes.
+# Publishes Little Wonders (the hub and every game) to GitHub Pages every time main changes.
 # One-time setup: repo Settings -> Pages -> "Build and deployment" -> Source: "GitHub Actions".
-name: Deploy Melody Kingdom to GitHub Pages
+name: Deploy Little Wonders to GitHub Pages
 
 on:
   push:
@@ -24,6 +24,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/check.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

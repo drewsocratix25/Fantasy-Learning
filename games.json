@@ -1,0 +1,54 @@
+{
+  "$comment": "Single source of truth for the games on Little Wonders. The hub renders its cards from this, CI smoke-tests every entry, and tools/check.mjs validates it. status: live | soon | template. A 'soon' game shows a Coming soon card that is not clickable; 'template' entries are tested but never listed.",
+  "site": {
+    "name": "Little Wonders",
+    "tagline": "Simple, ad-free learning games for ages 3–6",
+    "url": "https://drewsocratix25.github.io/Fantasy-Learning/"
+  },
+  "games": [
+    {
+      "id": "melody",
+      "title": "Melody Kingdom",
+      "path": "games/melody/",
+      "status": "live",
+      "emoji": "👸🎵",
+      "theme": "melody",
+      "tagline": "A princess music adventure. Letters, numbers, shapes, rhythm and songs.",
+      "ages": "3–6",
+      "skills": ["letters", "phonics", "counting", "shapes", "colours", "rhythm", "patterns", "rhyming", "spelling", "adding", "time", "reading"]
+    },
+    {
+      "id": "germs",
+      "title": "Germ Patrol",
+      "path": "games/germs/",
+      "status": "soon",
+      "emoji": "🦸🧼",
+      "theme": "germs",
+      "tagline": "Be a germ-busting hero. Handwashing, sneezes, teeth, and how your body fights germs.",
+      "ages": "3–6",
+      "skills": ["hygiene", "health", "body"]
+    },
+    {
+      "id": "castle",
+      "title": "Castle Quest",
+      "path": "games/castle/",
+      "status": "soon",
+      "emoji": "🏰🔭",
+      "theme": "castle",
+      "tagline": "Explore a castle full of treasures and discover how the world works.",
+      "ages": "4–6",
+      "skills": ["science", "curiosity", "problem solving"]
+    },
+    {
+      "id": "_template",
+      "title": "Template Game",
+      "path": "games/_template/",
+      "status": "template",
+      "emoji": "🧩",
+      "theme": "melody",
+      "tagline": "Copy this folder to start a new game.",
+      "ages": "3–6",
+      "skills": []
+    }
+  ]
+}

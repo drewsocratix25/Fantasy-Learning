@@ -125,6 +125,7 @@
   FL.Audio.loadVoicePack();
   resize();
   switchScene((FL.config && FL.config.startScene) || 'title', {});
+  if (window.LW && LW.attachGame) { try { LW.attachGame(); } catch (e) { /* platform is optional */ } }
   requestAnimationFrame(frame);
   if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !/localhost|127\.0\.0\.1/.test(location.hostname)) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
