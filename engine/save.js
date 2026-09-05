@@ -20,6 +20,7 @@
     regions: 1,           // how many map regions are open
     newRegion: null,      // region index to celebrate on next kingdom visit
   };
+  if (window.FL && FL.config && FL.config.defaults) Object.assign(DEFAULTS, JSON.parse(JSON.stringify(FL.config.defaults)));
   let data = null;
 
   function load() {
