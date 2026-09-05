@@ -12,8 +12,11 @@ Explore a kingdom with your princess and a companion who hops along behind you. 
 | 🌈 **Rainbow Meadow** | Colours and shapes | Pop the balloon that matches: "the blue star", "the triangle", "the purple heart". |
 | 🎹 **Piano Pavilion** | Notes, melody, following a tune | A rainbow piano with four instruments. Free play, Listen (keys light up), and Teach me (follow the glowing key through a whole song). |
 | 🐻 **Pattern Bridge** | AB / AAB / ABC patterns | Musical creatures play a pattern; pick what comes next and hop across the stones. |
+| 🦉 **Spelling Owl** | Spelling, letter names, sounding out words | Not a game but a helper: tap the microphone and ask "How do you spell dinosaur?" (or type any word or sentence) and it appears in big letter tiles. The owl spells it out letter by letter, then says the word. Tap any letter to hear its name, tap a word to hear the word, or 📖 to hear a whole sentence. ABC / abc switches between capital and small letters. |
 
 Everything is read aloud, every game gives stars, and stars unlock new companions (unicorn, dragon, butterfly, chick, penguin, fox, dolphin). Difficulty grows on its own as she earns three-star rounds. Progress is saved on the device.
+
+The Spelling Owl listens through the microphone using the browser's built-in speech recognition (Safari on iPad, Chrome on a computer). The first time, the iPad asks to allow the microphone. If the microphone is not available, typing works just as well: tap the box, type the word, and press *Go* on the keyboard.
 
 There is a small **grown-up corner** (hold the ⚙️ in the top-left corner of the kingdom for two seconds) to mute music, turn the voice off, change princess, or reset progress.
 
@@ -69,7 +72,7 @@ js/art.js             cartoon drawing library (princess, castle, trees, particle
 js/ui.js              buttons, HUD, results / friends / grown-up overlays
 js/title.js           choose a princess
 js/world.js           the explorable kingdom
-js/games/*.js         the six mini-games
+js/games/*.js         the six mini-games and the Spelling Owl helper
 manifest.webmanifest  installable web app
 sw.js                 offline cache
 .github/workflows     GitHub Pages deploy

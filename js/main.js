@@ -39,6 +39,7 @@
     G.look = FL.Art.PRINCESSES[FL.Save.data.princess] || FL.Art.PRINCESSES[0];
     if (FL.Save.data.dress) { G.look = Object.assign({}, G.look, { dress: FL.Save.data.dress[0], dressDark: FL.Save.data.dress[1] }); }
     document.getElementById('nameWrap').hidden = name !== 'title';
+    document.getElementById('spellWrap').hidden = name !== 'spell';
     if (G.scene.enter) G.scene.enter(params || {});
   }
 

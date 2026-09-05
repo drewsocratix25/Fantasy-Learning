@@ -1,10 +1,10 @@
 // Melody Kingdom service worker: caches the game so it loads fast and works offline on the iPad.
-const CACHE = 'melody-kingdom-v1';
+const CACHE = 'melody-kingdom-v2';
 const ASSETS = [
   './', './index.html', './css/style.css', './manifest.webmanifest',
   './js/save.js', './js/audio.js', './js/songs.js', './js/art.js', './js/ui.js', './js/title.js', './js/world.js',
   './js/games/songselect.js', './js/games/rhythm.js', './js/games/letters.js', './js/games/numbers.js',
-  './js/games/shapes.js', './js/games/piano.js', './js/games/patterns.js', './js/main.js',
+  './js/games/shapes.js', './js/games/piano.js', './js/games/patterns.js', './js/games/spell.js', './js/main.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'
 ];
 self.addEventListener('install', (e) => {

@@ -9,6 +9,7 @@
     { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
     { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
     { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
+    { id: 'spell', name: 'Spelling Owl', emoji: '🦉', x: 300, y: 850, r: 110, scene: 'spell', hint: 'Ask me how to spell anything!' },
   ];
   const OBSTACLES = [
     { type: 'rect', x: 970, y: 300, w: 460, h: 340 },        // castle body
@@ -159,6 +160,7 @@
       this.decor.forEach((d) => { if (d.x > cx - 150 && d.x < cx + g.W + 150 && d.y > cy - 50 && d.y < cy + g.H + 200) items.push({ y: d.y, f: () => (d.k === 'tree' ? A.tree(ctx, d.x, d.y, d.s, d.v, t) : A.bush(ctx, d.x, d.y, d.s)) }); });
       items.push({ y: 640, f: () => A.castle(ctx, 1200, 640, 1.05, t) });
       items.push({ y: 1160, f: () => A.gazebo(ctx, 1930, 1160, 1, t) });
+      items.push({ y: 830, f: () => { A.tree(ctx, 470, 830, 1.5, 2, t); A.emoji(ctx, '🦉', 485, 688 + Math.sin(t * 2) * 3, 46); } }); // the owl's tree beside the Spelling Owl sign
       LOCS.forEach((l) => { const isNear = this.near === l; const hint = this.hintLoc === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0; items.push({ y: l.y, f: () => A.sign(ctx, l.x, l.y, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 1 }) }); if (isNear || hint) items.push({ y: l.y - 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, l.x, l.y + 30, l.r, l.r * 0.45); ctx.stroke(); ctx.setLineDash([]); } }); });
       items.push({ y: this.py, f: () => A.princess(ctx, this.px, this.py, g.look, { t, walking: this.walking, facing: this.facing, wave: !this.walking && this.idle > 3 && this.idle < 5 }, 1) });
       items.push({ y: this.companion.y, f: () => { const hop = Math.abs(Math.sin(t * 8)) * (this.walking ? 14 : 3); ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, this.companion.x, this.companion.y, 22, 8); ctx.fill(); A.emoji(ctx, FL.Save.data.companion, this.companion.x, this.companion.y - 28 - hop, 56, { flip: this.facing < 0 }); } });

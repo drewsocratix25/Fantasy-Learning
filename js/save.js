@@ -11,7 +11,7 @@
     levels: { letters: 1, numbers: 1, shapes: 1, patterns: 1, piano: 1 },
     plays: {},            // gameId -> count
     songBest: {},         // songId -> best stars
-    settings: { music: true, speech: true, speed: 'slow' },
+    settings: { music: true, speech: true, speed: 'slow', spellUpper: true },
     visited: [],
     firstRun: true,
   };

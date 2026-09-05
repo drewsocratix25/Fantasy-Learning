@@ -217,17 +217,21 @@
   }
   if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => { voice = null; pickVoice(); }; }
   A.say = function (text, o) {
+    // o: {interrupt (default true), rate, pitch, onstart, onend}. Returns the utterance, or null if nothing was spoken.
     o = o || {};
-    if (!FL.Save.data.settings.speech) return;
-    if (!('speechSynthesis' in window)) return;
+    if (!FL.Save.data.settings.speech) return null;
+    if (!('speechSynthesis' in window)) return null;
     try {
       if (o.interrupt !== false) speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
       u.rate = o.rate || 0.92; u.pitch = o.pitch || 1.15; u.volume = 1; u.lang = 'en-US';
       const v = pickVoice(); if (v) u.voice = v;
       if (!voicesTried) { voicesTried = true; }
+      if (o.onstart) u.onstart = o.onstart;
+      if (o.onend) { u.onend = o.onend; u.onerror = o.onend; } // a cancelled utterance ends with an error event
       speechSynthesis.speak(u);
-    } catch (e) { /* ignore */ }
+      return u;
+    } catch (e) { return null; }
   };
   A.hush = function () { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ } };
 
