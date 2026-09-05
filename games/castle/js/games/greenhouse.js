@@ -31,7 +31,7 @@
     void h;
   }
   FL.makeQuiz({
-    id: 'greenhouse', title: 'Royal Greenhouse', emoji: '🌱', music: 'garden', cardColor: '#22c55e', bg: FL.bg.greenhouse, total: 12,
+    id: 'greenhouse', drawHero: FL.drawExplorer, title: 'Royal Greenhouse', emoji: '🌱', music: 'garden', cardColor: '#22c55e', bg: FL.bg.greenhouse, total: 12,
     newRound(s) {
       if (s.round === 0) s.seed = Math.floor(Math.random() * D.PLANTS.length);
       const pi = Math.floor(s.round / 4), stage = s.round % 4; const plant = D.PLANTS[(s.seed + pi) % D.PLANTS.length]; const need = D.PLANT_NEEDS[stage % 2]; const other = D.PLANT_NEEDS[(stage + 1) % 2];

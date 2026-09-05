@@ -31,7 +31,7 @@
     ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx - r, cy); ctx.lineTo(cx + r, cy); ctx.moveTo(cx, cy - r); ctx.lineTo(cx, cy + r); ctx.stroke();
   }
   FL.makeQuiz({
-    id: 'tower', title: 'Sky Tower', emoji: '🔭', music: 'peaks', cardColor: '#3b82f6', bg: FL.bg.tower,
+    id: 'tower', drawHero: FL.drawExplorer, title: 'Sky Tower', emoji: '🔭', music: 'peaks', cardColor: '#3b82f6', bg: FL.bg.tower,
     newRound(s) {
       const types = ['daynight', 'wear', 'what']; if (s.level >= 2) types.push('season'); if (s.level >= 3) types.push('season');
       let type; do { type = FL.rnd(types); } while (type === s.lastType && Math.random() < 0.7); s.lastType = type;

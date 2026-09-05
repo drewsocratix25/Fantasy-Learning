@@ -52,10 +52,9 @@ corner), `FL.makeQuiz` (prompt plus tap-the-right-card scaffold with adaptive le
 
 Things the engine assumes are princess-shaped, and how Castle Quest handles them:
 
-- **The hero.** `engine/quiz.js` draws `FL.Art.princess` in the corner of every quiz. Castle Quest
-  installs its own explorer drawer over that function at load time (`js/hero.js`), so every engine
-  scene shows the explorer. Suggested engine follow-up for whoever touches `engine/` next: rename the
-  call sites to `FL.Art.hero` with `Art.hero = Art.princess` as the default. Not required to ship.
+- **The hero.** `engine/quiz.js` draws the princess in the corner of every quiz unless the room passes
+  `drawHero`. Every Castle Quest room passes `FL.drawExplorer` (defined in `js/hero.js`), so the
+  explorer appears instead.
 - **The "Kingdom" button** on the results overlay is hard-coded in `engine/ui.js`. This branch adds
   `FL.config.homeLabel` / `FL.config.homeEmoji` (default "Kingdom" / 🏡) so Castle Quest can say
   "Castle" / 🏰. One line; Germ Patrol will want the same.

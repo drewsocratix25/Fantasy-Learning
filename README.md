@@ -6,7 +6,7 @@ Simple, ad-free learning games for ages 3 to 6, made by a dad and his daughter. 
 | --- | --- | --- |
 | 👸 Melody Kingdom | `games/melody/` | A princess music adventure: letters, numbers, shapes, rhythm, songs, and an expanding world. |
 | 🦸 Germ Patrol | `games/germs/` | A germ-busting hero game: handwashing, brushing, sneezes, food safety, how germs work, and how the body fights them. |
-| 🏰 Castle Quest | `games/castle/` | Castle exploration with science (in progress). |
+| 🏰 Castle Quest | `games/castle/` | Explore a castle and discover how the world works: weather, plants, sink or float, animals, heavy and light. |
 
 ## 🦸 Germ Patrol
 
@@ -22,6 +22,20 @@ Pick a hero, then explore Sunnyville and visit six stations. Everything is scien
 | 🍎 **Kitchen Clean-Up** | Wash produce, cook meat, keep food cold, throw away food that sat out or fell. | Pick the right action for each food. |
 
 Stars unlock sidekicks, cape colours, goggles and town decorations, and each station awards a Patrol Badge after three plays. After every game the narrator shares a "Did you know?" fact.
+
+## 🏰 Castle Quest
+
+Pick an explorer and walk through a castle: a great hall, a treasure vault, a glass greenhouse, a menagerie, a dungeon lab and a sky tower, joined by corridors and stairs. Tap anywhere to walk, or press and drag for a joystick. Walk up to a sign and tap **Play!**
+
+| Room | What she learns | How it plays |
+| --- | --- | --- |
+| 🔭 **Sky Tower** | Day and night, weather and what to wear, things in the sky, seasons | Look through the telescope and tap the right picture. |
+| 🌱 **Royal Greenhouse** | What plants need to grow | Give three plants water and sunshine in turn and watch them grow from seed to fruit. |
+| 🧪 **Wizard's Lab** | Sink or float | Guess, then watch the wizard drop it in the pool. |
+| 🐾 **Royal Menagerie** | Where animals live, what they eat, what they say, eggs, babies, animal groups | Tap the right card at the animal stall. |
+| ⚖️ **Treasure Vault** | Heavier and lighter, bigger and smaller, more and fewer | The royal scales tip when she answers. |
+
+Stars unlock companions and treasures that appear in the castle. Reaching level 2 in every room hatches the dragon egg. Plan and design notes: `games/castle/PLAN.md`.
 
 ---
 

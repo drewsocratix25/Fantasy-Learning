@@ -62,8 +62,8 @@
     ctx.save(); ctx.translate(16, -128); ctx.rotate(-0.5 + Math.sin(t * 2) * 0.06); ctx.fillStyle = '#f87171'; ctx.strokeStyle = 'rgba(120,20,20,.5)'; ctx.lineWidth = 1.5; A.ellipse(ctx, 0, -14, 6, 16); ctx.fill(); ctx.stroke(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -28); ctx.stroke(); ctx.restore();
     ctx.restore();
   };
-  // Engine scenes call FL.Art.princess for the hero; in Castle Quest the hero is the explorer.
-  A.princess = A.explorer;
+  // The quiz scaffold draws the hero through cfg.drawHero; every Castle Quest room passes this.
+  FL.drawExplorer = (ctx, g, t, sc) => A.explorer(ctx, 120, g.H - 40, g.look, { t, facing: 1, wave: sc.locked }, 0.95);
   // First run: the castle mouse is the starting companion instead of the engine's default bunny.
   const d = FL.Save.data;
   if (d.firstRun) { d.firstRun = false; d.companion = FL.Data.FRIENDS[0][0]; d.unlocked = [d.companion]; FL.Save.save(); }

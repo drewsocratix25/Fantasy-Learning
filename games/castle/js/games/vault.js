@@ -19,7 +19,7 @@
   }
   function pick2(min) { let a, b; let guard = 0; do { a = FL.rnd(D.THINGS); b = FL.rnd(D.THINGS); } while ((a === b || Math.abs(a[min] - b[min]) < 2) && guard++ < 100); return [a, b]; }
   FL.makeQuiz({
-    id: 'vault', title: 'Treasure Vault', emoji: '⚖️', music: 'kingdom', cardColor: '#f59e0b', bg: FL.bg.vault,
+    id: 'vault', drawHero: FL.drawExplorer, title: 'Treasure Vault', emoji: '⚖️', music: 'kingdom', cardColor: '#f59e0b', bg: FL.bg.vault,
     newRound(s) {
       const types = ['heavier', 'bigger', 'coins']; if (s.level >= 2) types.push('lighter', 'smaller'); if (s.level >= 3) types.push('biggest', 'heaviest');
       let type; do { type = FL.rnd(types); } while (type === s.lastType && Math.random() < 0.7); s.lastType = type;

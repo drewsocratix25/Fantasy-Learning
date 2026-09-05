@@ -19,7 +19,7 @@
     if (sub) A.text(ctx, sub, cx, 420, { size: subSize || 34, color: '#fff', stroke: '#7c2d12', strokeWidth: 6 });
   }
   FL.makeQuiz({
-    id: 'menagerie', title: 'Royal Menagerie', emoji: '🐾', music: 'pond', cardColor: '#f97316', bg: FL.bg.menagerie,
+    id: 'menagerie', drawHero: FL.drawExplorer, title: 'Royal Menagerie', emoji: '🐾', music: 'pond', cardColor: '#f97316', bg: FL.bg.menagerie,
     newRound(s) {
       const types = ['home', 'food', 'sound']; if (s.level >= 2) types.push('egg', 'baby'); if (s.level >= 3) types.push('group');
       let type; do { type = FL.rnd(types); } while (type === s.lastType && Math.random() < 0.7); s.lastType = type;
