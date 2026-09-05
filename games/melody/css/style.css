@@ -38,3 +38,6 @@ html, body {
   background: #4c1d95; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
 }
 #rotate[hidden] { display: none; }
+
+.world-return { position: fixed; right: 12px; bottom: 12px; z-index: 11; display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 24px; background: #fff; color: #153e43; font: 700 14px system-ui, sans-serif; text-decoration: none; box-shadow: 0 3px 10px #0002; touch-action: manipulation; }
+.world-return:focus-visible { outline: 4px solid #f7c857; outline-offset: 3px; }

@@ -78,7 +78,7 @@
     if (G.scene && G.scene.up) G.scene.up(p);
   }
   canvas.addEventListener('pointerdown', onDown); canvas.addEventListener('pointermove', onMove);
-  canvas.addEventListener('pointerup', onUp); canvas.addEventListener('pointercancel', onUp);
+  canvas.addEventListener('pointerup', onUp); canvas.addEventListener('pointercancel', (e) => { const p = G.pointers.get(e.pointerId); if (p && p.button) p.button.pressed = false; G.pointers.delete(e.pointerId); });
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   // iOS Safari: block pinch-zoom and double-tap zoom gestures over the game.
   document.addEventListener('gesturestart', (e) => e.preventDefault());

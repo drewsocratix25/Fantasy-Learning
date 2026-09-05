@@ -37,7 +37,7 @@
   UI.pressDown = function (buttons, p) { for (const b of buttons) { if (b.contains(p.x, p.y)) { b.pressed = true; p.button = b; return b; } } return null; };
   UI.pressUp = function (buttons, p) {
     let fired = null;
-    for (const b of buttons) { if (b.pressed) { b.pressed = false; if (b.contains(p.x, p.y) && b.onTap) { fired = b; } } }
+    for (const b of buttons) { if (b.pressed && p.button === b) { b.pressed = false; if (b.contains(p.x, p.y) && b.onTap) { fired = b; } } }
     if (fired) { FL.Audio.sfx.tap(); fired.onTap(fired); }
     return fired;
   };
