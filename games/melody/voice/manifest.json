@@ -1,0 +1,4530 @@
+{
+"engine": "Kokoro-82M (open source, Apache-2.0)",
+"voice": "af_heart",
+"clips": {
+"1921ee7f": {
+"text": "Welcome to Melody Kingdom! Let's go explore!",
+"dur": 2.84
+},
+"117d4d03": {
+"text": "Hi! I'm Rosie!",
+"dur": 1.37
+},
+"2d37b358": {
+"text": "Hi! I'm Violet!",
+"dur": 1.32
+},
+"5438328a": {
+"text": "Hi! I'm Sunny!",
+"dur": 1.17
+},
+"4b287bc8": {
+"text": "Hi! I'm Coral!",
+"dur": 1.26
+},
+"a1e88305": {
+"text": "Tap anywhere to walk. Walk to a sign and tap Play!",
+"dur": 2.94
+},
+"39a764e8": {
+"text": "Melody Castle! Play songs like a rock star!",
+"dur": 2.79
+},
+"30e48ed8": {
+"text": "Let's go to the Melody Castle!",
+"dur": 1.77
+},
+"d48441bf": {
+"text": "Letter Garden! Find the letters!",
+"dur": 2.02
+},
+"b37b7ee9": {
+"text": "Let's go to the Letter Garden!",
+"dur": 1.69
+},
+"14fd9500": {
+"text": "Counting Pond! Count the frogs!",
+"dur": 2.15
+},
+"d6b032e8": {
+"text": "Let's go to the Counting Pond!",
+"dur": 1.71
+},
+"a756fef4": {
+"text": "Rainbow Meadow! Pop the shapes!",
+"dur": 2.01
+},
+"13ec4c4f": {
+"text": "Let's go to the Rainbow Meadow!",
+"dur": 1.73
+},
+"8521f8d2": {
+"text": "Piano Pavilion! Play the piano!",
+"dur": 2.2
+},
+"091534bf": {
+"text": "Let's go to the Piano Pavilion!",
+"dur": 1.86
+},
+"560d151e": {
+"text": "Pattern Bridge! What comes next?",
+"dur": 1.92
+},
+"90bbd277": {
+"text": "Let's go to the Pattern Bridge!",
+"dur": 1.69
+},
+"7fd09eee": {
+"text": "Wonderful! You earned 1 star!",
+"dur": 1.9
+},
+"5386c336": {
+"text": "Wonderful! You earned 2 stars!",
+"dur": 1.83
+},
+"a2313945": {
+"text": "Wonderful! You earned 3 stars!",
+"dur": 1.92
+},
+"67a3f4bf": {
+"text": "Amazing! You earned 1 star!",
+"dur": 1.92
+},
+"f3483741": {
+"text": "Amazing! You earned 2 stars!",
+"dur": 1.9
+},
+"28c629c2": {
+"text": "Amazing! You earned 3 stars!",
+"dur": 1.96
+},
+"63f8035f": {
+"text": "Beautiful! You earned 1 star!",
+"dur": 1.88
+},
+"06a38a61": {
+"text": "Beautiful! You earned 2 stars!",
+"dur": 1.82
+},
+"c2501f62": {
+"text": "Beautiful! You earned 3 stars!",
+"dur": 1.93
+},
+"6258fb89": {
+"text": "Fantastic! You earned 1 star!",
+"dur": 2.15
+},
+"7ef74dff": {
+"text": "Fantastic! You earned 2 stars!",
+"dur": 2.03
+},
+"0c63d840": {
+"text": "Fantastic! You earned 3 stars!",
+"dur": 2.18
+},
+"2fe358e0": {
+"text": "Bravo! You earned 1 star!",
+"dur": 1.69
+},
+"73185f4c": {
+"text": "Bravo! You earned 2 stars!",
+"dur": 1.78
+},
+"28e7022b": {
+"text": "Bravo! You earned 3 stars!",
+"dur": 1.8
+},
+"fc36ee2e": {
+"text": "Bunny will come with you!",
+"dur": 1.37
+},
+"b66de957": {
+"text": "A new friend! Bunny wants to play with you!",
+"dur": 2.47
+},
+"71834ea6": {
+"text": "Unicorn will come with you!",
+"dur": 1.54
+},
+"3af49f57": {
+"text": "A new friend! Unicorn wants to play with you!",
+"dur": 2.67
+},
+"f884459d": {
+"text": "Dragon will come with you!",
+"dur": 1.44
+},
+"946e180a": {
+"text": "A new friend! Dragon wants to play with you!",
+"dur": 2.58
+},
+"ba7e936b": {
+"text": "Butterfly will come with you!",
+"dur": 1.62
+},
+"e8e154a2": {
+"text": "A new friend! Butterfly wants to play with you!",
+"dur": 2.71
+},
+"f41f9882": {
+"text": "Chick will come with you!",
+"dur": 1.33
+},
+"e00221eb": {
+"text": "A new friend! Chick wants to play with you!",
+"dur": 2.37
+},
+"6d660a4e": {
+"text": "Penguin will come with you!",
+"dur": 1.43
+},
+"2c88d6c7": {
+"text": "A new friend! Penguin wants to play with you!",
+"dur": 2.58
+},
+"7ce963cd": {
+"text": "Fox will come with you!",
+"dur": 1.38
+},
+"4b7193fc": {
+"text": "A new friend! Fox wants to play with you!",
+"dur": 2.45
+},
+"6b643cee": {
+"text": "Dolphin will come with you!",
+"dur": 1.49
+},
+"37157597": {
+"text": "A new friend! Dolphin wants to play with you!",
+"dur": 2.62
+},
+"025f9694": {
+"text": "Hello. Can you find the letter B? Wonderful. B is for butterfly.",
+"dur": 4.18
+},
+"c2d3e2f9": {
+"text": "Pick a song to play!",
+"dur": 1.28
+},
+"b7975043": {
+"text": "Tap the gems when they reach the sparkly pads!",
+"dur": 2.65
+},
+"b2ebbbf0": {
+"text": "Twinkle Twinkle! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.25
+},
+"67969c37": {
+"text": "Listen to Twinkle Twinkle!",
+"dur": 1.73
+},
+"bf088c28": {
+"text": "Let's learn Twinkle Twinkle! Tap the glowing key.",
+"dur": 2.92
+},
+"d43ccc22": {
+"text": "The ABC Song! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.61
+},
+"2f00c895": {
+"text": "Listen to The ABC Song!",
+"dur": 1.81
+},
+"6634bd48": {
+"text": "Let's learn The ABC Song! Tap the glowing key.",
+"dur": 3.09
+},
+"c576c657": {
+"text": "Mary Had a Little Lamb! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.63
+},
+"e6f431b0": {
+"text": "Listen to Mary Had a Little Lamb!",
+"dur": 1.96
+},
+"1756c431": {
+"text": "Let's learn Mary Had a Little Lamb! Tap the glowing key.",
+"dur": 3.14
+},
+"1e83f002": {
+"text": "Old MacDonald! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.5
+},
+"0d6c13f5": {
+"text": "Listen to Old MacDonald!",
+"dur": 1.69
+},
+"5e3ca916": {
+"text": "Let's learn Old MacDonald! Tap the glowing key.",
+"dur": 3.09
+},
+"6978a7d7": {
+"text": "Row Your Boat! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.27
+},
+"3320cf30": {
+"text": "Listen to Row Your Boat!",
+"dur": 1.47
+},
+"77ec4c6b": {
+"text": "Let's learn Row Your Boat! Tap the glowing key.",
+"dur": 2.79
+},
+"c218062f": {
+"text": "London Bridge! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.39
+},
+"7fd84708": {
+"text": "Listen to London Bridge!",
+"dur": 1.54
+},
+"ebbd47cb": {
+"text": "Let's learn London Bridge! Tap the glowing key.",
+"dur": 2.86
+},
+"dbb0a2b3": {
+"text": "Itsy Bitsy Spider! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.76
+},
+"c524cf1c": {
+"text": "Listen to Itsy Bitsy Spider!",
+"dur": 1.92
+},
+"ae770e5f": {
+"text": "Let's learn Itsy Bitsy Spider! Tap the glowing key.",
+"dur": 3.24
+},
+"9b9fed15": {
+"text": "Happy Birthday! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.2
+},
+"6b33f422": {
+"text": "Listen to Happy Birthday!",
+"dur": 1.58
+},
+"34815513": {
+"text": "Let's learn Happy Birthday! Tap the glowing key.",
+"dur": 2.79
+},
+"2dc856ef": {
+"text": "Welcome to the Piano Pavilion! Tap the colourful keys to make music!",
+"dur": 4.29
+},
+"23f5d510": {
+"text": "Free play! Make up your own song!",
+"dur": 1.94
+},
+"ec257d17": {
+"text": "You played the whole song! Beautiful!",
+"dur": 2.1
+},
+"b0517b29": {
+"text": "Now you try! Tap Teach me.",
+"dur": 1.94
+},
+"858cbd95": {
+"text": "Can you find the letter A?",
+"dur": 1.47
+},
+"c83c849d": {
+"text": "Which letter does apple start with?",
+"dur": 1.86
+},
+"9afa7002": {
+"text": "A! A is for apple!",
+"dur": 1.46
+},
+"2a7783b5": {
+"text": "That's the letter A. Try again!",
+"dur": 1.98
+},
+"828cb8dc": {
+"text": "Can you find the letter B?",
+"dur": 1.49
+},
+"71a6c81c": {
+"text": "Which letter does butterfly start with?",
+"dur": 2.13
+},
+"7b4f7609": {
+"text": "B! B is for butterfly!",
+"dur": 1.86
+},
+"1afdea7c": {
+"text": "That's the letter B. Try again!",
+"dur": 2.11
+},
+"838cba6f": {
+"text": "Can you find the letter C?",
+"dur": 1.51
+},
+"51ed1cdd": {
+"text": "Which letter does cat start with?",
+"dur": 1.75
+},
+"5d027a7a": {
+"text": "C! C is for cat!",
+"dur": 1.49
+},
+"4c73db17": {
+"text": "That's the letter C. Try again!",
+"dur": 2.01
+},
+"808cb5b6": {
+"text": "Can you find the letter D?",
+"dur": 1.49
+},
+"275096ff": {
+"text": "Which letter does dog start with?",
+"dur": 1.79
+},
+"5a8ef23c": {
+"text": "D! D is for dog!",
+"dur": 1.49
+},
+"64c7d94e": {
+"text": "That's the letter D. Try again!",
+"dur": 2.11
+},
+"818cb749": {
+"text": "Can you find the letter E?",
+"dur": 1.49
+},
+"1fed126c": {
+"text": "Which letter does elephant start with?",
+"dur": 1.96
+},
+"4f0b815f": {
+"text": "E! E is for elephant!",
+"dur": 1.64
+},
+"88b48e81": {
+"text": "That's the letter E. Try again!",
+"dur": 1.96
+},
+"7e8cb290": {
+"text": "Can you find the letter F?",
+"dur": 1.78
+},
+"ba00c335": {
+"text": "Which letter does frog start with?",
+"dur": 1.78
+},
+"fd6f89ac": {
+"text": "F! F is for frog!",
+"dur": 2.13
+},
+"70e80c68": {
+"text": "That's the letter F. Try again!",
+"dur": 2.41
+},
+"7f8cb423": {
+"text": "Can you find the letter G?",
+"dur": 1.54
+},
+"3532bb2f": {
+"text": "Which letter does grapes start with?",
+"dur": 1.83
+},
+"442e7be2": {
+"text": "G! G is for grapes!",
+"dur": 1.71
+},
+"6a0b9ff3": {
+"text": "That's the letter G. Try again!",
+"dur": 2.11
+},
+"8c8cc89a": {
+"text": "Can you find the letter H?",
+"dur": 1.52
+},
+"b4eab259": {
+"text": "Which letter does house start with?",
+"dur": 1.78
+},
+"1cee65ae": {
+"text": "H! H is for house!",
+"dur": 1.55
+},
+"07aa221a": {
+"text": "That's the letter H. Try again!",
+"dur": 1.83
+},
+"8d8cca2d": {
+"text": "Can you find the letter I?",
+"dur": 1.47
+},
+"43e6569e": {
+"text": "Which letter does ice cream start with?",
+"dur": 2.05
+},
+"70b3b65b": {
+"text": "I! I is for ice cream!",
+"dur": 1.73
+},
+"d347063d": {
+"text": "That's the letter I. Try again!",
+"dur": 1.98
+},
+"8a8cc574": {
+"text": "Can you find the letter J?",
+"dur": 1.51
+},
+"da4cab57": {
+"text": "Which letter does jellyfish start with?",
+"dur": 1.99
+},
+"46931fe0": {
+"text": "J! J is for jellyfish!",
+"dur": 1.87
+},
+"9088b3c4": {
+"text": "That's the letter J. Try again!",
+"dur": 2.11
+},
+"8b8cc707": {
+"text": "Can you find the letter K?",
+"dur": 1.44
+},
+"588d6d36": {
+"text": "Which letter does kite start with?",
+"dur": 1.77
+},
+"67a02e6d": {
+"text": "K! K is for kite!",
+"dur": 1.54
+},
+"8ec1597f": {
+"text": "That's the letter K. Try again!",
+"dur": 2.01
+},
+"888cc24e": {
+"text": "Can you find the letter L?",
+"dur": 1.47
+},
+"38892cdd": {
+"text": "Which letter does lion start with?",
+"dur": 1.86
+},
+"84f53a28": {
+"text": "L! L is for lion!",
+"dur": 1.46
+},
+"87c1bab6": {
+"text": "That's the letter L. Try again!",
+"dur": 2.07
+},
+"898cc3e1": {
+"text": "Can you find the letter M?",
+"dur": 1.49
+},
+"5a41d2f8": {
+"text": "Which letter does moon start with?",
+"dur": 1.79
+},
+"ecd15793": {
+"text": "M! M is for moon!",
+"dur": 1.6
+},
+"660fad09": {
+"text": "That's the letter M. Try again!",
+"dur": 2.09
+},
+"868cbf28": {
+"text": "Can you find the letter N?",
+"dur": 1.45
+},
+"76055ad1": {
+"text": "Which letter does nest start with?",
+"dur": 1.73
+},
+"ff199440": {
+"text": "N! N is for nest!",
+"dur": 1.5
+},
+"01a47410": {
+"text": "That's the letter N. Try again!",
+"dur": 2.07
+},
+"878cc0bb": {
+"text": "Can you find the letter O?",
+"dur": 1.49
+},
+"aaa76916": {
+"text": "Which letter does octopus start with?",
+"dur": 1.94
+},
+"a104b383": {
+"text": "O! O is for octopus!",
+"dur": 1.77
+},
+"8bde857b": {
+"text": "That's the letter O. Try again!",
+"dur": 2.03
+},
+"748ca2d2": {
+"text": "Can you find the letter P?",
+"dur": 1.45
+},
+"2a14f055": {
+"text": "Which letter does pig start with?",
+"dur": 1.73
+},
+"01cf74da": {
+"text": "P! P is for pig!",
+"dur": 1.45
+},
+"86407362": {
+"text": "That's the letter P. Try again!",
+"dur": 2.01
+},
+"758ca465": {
+"text": "Can you find the letter Q?",
+"dur": 1.49
+},
+"7ef4ac67": {
+"text": "Which letter does queen start with?",
+"dur": 1.77
+},
+"63d28d20": {
+"text": "Q! Q is for queen!",
+"dur": 1.51
+},
+"3140a8a5": {
+"text": "That's the letter Q. Try again!",
+"dur": 2.09
+},
+"728c9fac": {
+"text": "Can you find the letter R?",
+"dur": 1.49
+},
+"f72edcdf": {
+"text": "Which letter does rainbow start with?",
+"dur": 1.98
+},
+"e11fc100": {
+"text": "R! R is for rainbow!",
+"dur": 1.64
+},
+"ce2808ac": {
+"text": "That's the letter R. Try again!",
+"dur": 1.92
+},
+"738ca13f": {
+"text": "Can you find the letter S?",
+"dur": 1.47
+},
+"c6cd33bf": {
+"text": "Which letter does star start with?",
+"dur": 1.85
+},
+"1124e946": {
+"text": "S! S is for star!",
+"dur": 1.48
+},
+"0d9c0747": {
+"text": "That's the letter S. Try again!",
+"dur": 2.0
+},
+"708c9c86": {
+"text": "Can you find the letter T?",
+"dur": 1.54
+},
+"ca1927ad": {
+"text": "Which letter does turtle start with?",
+"dur": 1.88
+},
+"c979d3ec": {
+"text": "T! T is for turtle!",
+"dur": 1.56
+},
+"d8f539be": {
+"text": "That's the letter T. Try again!",
+"dur": 2.09
+},
+"718c9e19": {
+"text": "Can you find the letter U?",
+"dur": 1.41
+},
+"e51adf7b": {
+"text": "Which letter does umbrella start with?",
+"dur": 2.03
+},
+"b6defb62": {
+"text": "U! U is for umbrella!",
+"dur": 1.64
+},
+"168fd1b1": {
+"text": "That's the letter U. Try again!",
+"dur": 2.04
+},
+"6e8c9960": {
+"text": "Can you find the letter V?",
+"dur": 1.47
+},
+"75e93608": {
+"text": "Which letter does violin start with?",
+"dur": 1.94
+},
+"568aa507": {
+"text": "V! V is for violin!",
+"dur": 1.74
+},
+"9ca8d598": {
+"text": "That's the letter V. Try again!",
+"dur": 2.07
+},
+"6f8c9af3": {
+"text": "Can you find the letter W?",
+"dur": 1.75
+},
+"c171d626": {
+"text": "Which letter does whale start with?",
+"dur": 1.81
+},
+"9d20bdb3": {
+"text": "W! W is for whale!",
+"dur": 2.12
+},
+"5b0b1723": {
+"text": "That's the letter W. Try again!",
+"dur": 2.34
+},
+"7c8caf6a": {
+"text": "Can you find the letter X?",
+"dur": 1.54
+},
+"7bee0b23": {
+"text": "Which letter does xylophone start with?",
+"dur": 2.06
+},
+"6abc7624": {
+"text": "X! X is for xylophone!",
+"dur": 1.92
+},
+"aeb1714a": {
+"text": "That's the letter X. Try again!",
+"dur": 2.07
+},
+"7d8cb0fd": {
+"text": "Can you find the letter Y?",
+"dur": 1.47
+},
+"1a8f82d9": {
+"text": "Which letter does yo-yo start with?",
+"dur": 1.81
+},
+"41de905a": {
+"text": "Y! Y is for yo-yo!",
+"dur": 1.71
+},
+"fb3a972d": {
+"text": "That's the letter Y. Try again!",
+"dur": 2.07
+},
+"7a8cac44": {
+"text": "Can you find the letter Z?",
+"dur": 1.54
+},
+"db696165": {
+"text": "Which letter does zebra start with?",
+"dur": 1.94
+},
+"a08ed10e": {
+"text": "Z! Z is for zebra!",
+"dur": 1.67
+},
+"37b02b34": {
+"text": "That's the letter Z. Try again!",
+"dur": 2.11
+},
+"568e87eb": {
+"text": "Tap each frog to count them!",
+"dur": 1.65
+},
+"fcfa1831": {
+"text": "How many frogs did you count? Tap the number.",
+"dur": 2.71
+},
+"11984cc0": {
+"text": "Count the frogs again!",
+"dur": 1.36
+},
+"340ca71c": {
+"text": "1",
+"dur": 0.65
+},
+"a9957330": {
+"text": "Can you find the number 1?",
+"dur": 1.48
+},
+"5eb523a3": {
+"text": "Yes! 1 frog!",
+"dur": 1.28
+},
+"f713ed44": {
+"text": "Yes! That's 1! Let's count 1 frogs!",
+"dur": 2.47
+},
+"ec0395d9": {
+"text": "That's 1.",
+"dur": 0.84
+},
+"c34e5956": {
+"text": "Look for 1!",
+"dur": 0.98
+},
+"370cabd5": {
+"text": "2",
+"dur": 0.7
+},
+"ac9577e9": {
+"text": "Can you find the number 2?",
+"dur": 1.5
+},
+"9feef441": {
+"text": "Yes! 2 frogs!",
+"dur": 1.34
+},
+"a5ed61f8": {
+"text": "Yes! That's 2! Let's count 2 frogs!",
+"dur": 2.43
+},
+"e9039120": {
+"text": "That's 2.",
+"dur": 0.9
+},
+"c24e57c3": {
+"text": "Look for 2!",
+"dur": 1.02
+},
+"360caa42": {
+"text": "3",
+"dur": 0.71
+},
+"ab957656": {
+"text": "Can you find the number 3?",
+"dur": 1.51
+},
+"42a1bf02": {
+"text": "Yes! 3 frogs!",
+"dur": 1.32
+},
+"73da3550": {
+"text": "Yes! That's 3! Let's count 3 frogs!",
+"dur": 2.6
+},
+"ea0392b3": {
+"text": "That's 3.",
+"dur": 0.89
+},
+"c14e5630": {
+"text": "Look for 3!",
+"dur": 1.05
+},
+"310ca263": {
+"text": "4",
+"dur": 0.69
+},
+"ae957b0f": {
+"text": "Can you find the number 4?",
+"dur": 1.56
+},
+"7b0e0ebb": {
+"text": "Yes! 4 frogs!",
+"dur": 1.41
+},
+"61aa897c": {
+"text": "Yes! That's 4! Let's count 4 frogs!",
+"dur": 2.56
+},
+"ef039a92": {
+"text": "That's 4.",
+"dur": 0.9
+},
+"c84e6135": {
+"text": "Look for 4!",
+"dur": 1.05
+},
+"300ca0d0": {
+"text": "5",
+"dur": 0.75
+},
+"ad95797c": {
+"text": "Can you find the number 5?",
+"dur": 1.51
+},
+"ac68a404": {
+"text": "Yes! 5 frogs!",
+"dur": 1.43
+},
+"3e44625c": {
+"text": "Yes! That's 5! Let's count 5 frogs!",
+"dur": 2.71
+},
+"f0039c25": {
+"text": "That's 5.",
+"dur": 0.97
+},
+"c74e5fa2": {
+"text": "Look for 5!",
+"dur": 1.09
+},
+"330ca589": {
+"text": "6",
+"dur": 0.72
+},
+"b0957e35": {
+"text": "Can you find the number 6?",
+"dur": 1.59
+},
+"45300575": {
+"text": "Yes! 6 frogs!",
+"dur": 1.41
+},
+"12f56c58": {
+"text": "Yes! That's 6! Let's count 6 frogs!",
+"dur": 2.62
+},
+"ed03976c": {
+"text": "That's 6.",
+"dur": 0.96
+},
+"c64e5e0f": {
+"text": "Look for 6!",
+"dur": 1.1
+},
+"320ca3f6": {
+"text": "7",
+"dur": 0.75
+},
+"af957ca2": {
+"text": "Can you find the number 7?",
+"dur": 1.58
+},
+"9b9bfca6": {
+"text": "Yes! 7 frogs!",
+"dur": 1.58
+},
+"951abf30": {
+"text": "Yes! That's 7! Let's count 7 frogs!",
+"dur": 2.82
+},
+"ee0398ff": {
+"text": "That's 7.",
+"dur": 0.95
+},
+"c54e5c7c": {
+"text": "Look for 7!",
+"dur": 1.09
+},
+"3d0cb547": {
+"text": "8",
+"dur": 0.64
+},
+"b295815b": {
+"text": "Can you find the number 8?",
+"dur": 1.51
+},
+"bfe1c80f": {
+"text": "Yes! 8 frogs!",
+"dur": 1.41
+},
+"5ffd8274": {
+"text": "Yes! That's 8! Let's count 8 frogs!",
+"dur": 2.52
+},
+"f303a0de": {
+"text": "That's 8.",
+"dur": 0.91
+},
+"cc4e6781": {
+"text": "Look for 8!",
+"dur": 1.06
+},
+"3c0cb3b4": {
+"text": "9",
+"dur": 0.72
+},
+"b1957fc8": {
+"text": "Can you find the number 9?",
+"dur": 1.51
+},
+"8fb1fcd8": {
+"text": "Yes! 9 frogs!",
+"dur": 1.41
+},
+"613c5e54": {
+"text": "Yes! That's 9! Let's count 9 frogs!",
+"dur": 2.71
+},
+"f403a271": {
+"text": "That's 9.",
+"dur": 0.9
+},
+"cb4e65ee": {
+"text": "Look for 9!",
+"dur": 1.08
+},
+"1beb2a44": {
+"text": "10",
+"dur": 0.65
+},
+"f6440900": {
+"text": "Can you find the number 10?",
+"dur": 1.54
+},
+"4a7fb262": {
+"text": "Yes! 10 frogs!",
+"dur": 1.37
+},
+"0ad0a9de": {
+"text": "Yes! That's 10! Let's count 10 frogs!",
+"dur": 2.58
+},
+"72a4fdcb": {
+"text": "That's 10.",
+"dur": 0.91
+},
+"da56bb92": {
+"text": "Look for 10!",
+"dur": 1.07
+},
+"e0d3c527": {
+"text": "Pop the red balloon!",
+"dur": 1.34
+},
+"38131e5c": {
+"text": "Pop the orange balloon!",
+"dur": 1.41
+},
+"e486f99a": {
+"text": "Pop the yellow balloon!",
+"dur": 1.41
+},
+"35c9a6a7": {
+"text": "Pop the green balloon!",
+"dur": 1.41
+},
+"7ef98716": {
+"text": "Pop the blue balloon!",
+"dur": 1.3
+},
+"aefc19a0": {
+"text": "Pop the purple balloon!",
+"dur": 1.47
+},
+"b1bab346": {
+"text": "Pop the pink balloon!",
+"dur": 1.4
+},
+"5c8ff175": {
+"text": "Pop the circle!",
+"dur": 1.15
+},
+"d33c6302": {
+"text": "Pop the square!",
+"dur": 1.03
+},
+"67b10c59": {
+"text": "Pop the triangle!",
+"dur": 1.22
+},
+"28080e65": {
+"text": "Pop the star!",
+"dur": 1.07
+},
+"5b0658e7": {
+"text": "Pop the heart!",
+"dur": 1.06
+},
+"90a1e3f2": {
+"text": "Pop the rectangle!",
+"dur": 1.27
+},
+"8ad2f109": {
+"text": "Pop the oval!",
+"dur": 1.02
+},
+"31495543": {
+"text": "Pop the diamond!",
+"dur": 1.17
+},
+"b8317214": {
+"text": "Pop the red circle!",
+"dur": 1.35
+},
+"3bfe61fc": {
+"text": "Pop! A red circle!",
+"dur": 1.49
+},
+"9eea2b56": {
+"text": "That's a red circle.",
+"dur": 1.29
+},
+"f00b1f0f": {
+"text": "Pop the red square!",
+"dur": 1.28
+},
+"ceed18f7": {
+"text": "Pop! A red square!",
+"dur": 1.37
+},
+"3ad51d7d": {
+"text": "That's a red square.",
+"dur": 1.22
+},
+"54819d64": {
+"text": "Pop the red triangle!",
+"dur": 1.48
+},
+"b239ce9c": {
+"text": "Pop! A red triangle!",
+"dur": 1.63
+},
+"0df2304e": {
+"text": "That's a red triangle.",
+"dur": 1.37
+},
+"587f7a50": {
+"text": "Pop the red star!",
+"dur": 1.26
+},
+"b11ba8f8": {
+"text": "Pop! A red star!",
+"dur": 1.32
+},
+"566eb89e": {
+"text": "That's a red star.",
+"dur": 1.19
+},
+"0dfac3cc": {
+"text": "Pop the red heart!",
+"dur": 1.24
+},
+"c07225d4": {
+"text": "Pop! A red heart!",
+"dur": 1.3
+},
+"828e739a": {
+"text": "That's a red heart.",
+"dur": 1.24
+},
+"7d355e95": {
+"text": "Pop the red rectangle!",
+"dur": 1.48
+},
+"953e3d4d": {
+"text": "Pop! A red rectangle!",
+"dur": 1.59
+},
+"3b996267": {
+"text": "That's a red rectangle.",
+"dur": 1.44
+},
+"86548fa4": {
+"text": "Pop the red oval!",
+"dur": 1.26
+},
+"0036830c": {
+"text": "Pop! A red oval!",
+"dur": 1.37
+},
+"3099afe2": {
+"text": "That's a red oval.",
+"dur": 1.25
+},
+"1b004d7c": {
+"text": "Pop the red diamond!",
+"dur": 1.44
+},
+"43b48594": {
+"text": "Pop! A red diamond!",
+"dur": 1.53
+},
+"ad9a600e": {
+"text": "That's a red diamond.",
+"dur": 1.37
+},
+"468156c9": {
+"text": "Pop the orange circle!",
+"dur": 1.44
+},
+"1b564286": {
+"text": "Pop the orange square!",
+"dur": 1.35
+},
+"34b42cc5": {
+"text": "Pop the orange triangle!",
+"dur": 1.6
+},
+"143e0bb1": {
+"text": "Pop the orange star!",
+"dur": 1.35
+},
+"94304423": {
+"text": "Pop the orange heart!",
+"dur": 1.38
+},
+"ee1074ce": {
+"text": "Pop the orange rectangle!",
+"dur": 1.64
+},
+"8875ed95": {
+"text": "Pop the orange oval!",
+"dur": 1.38
+},
+"fcdb8ae7": {
+"text": "Pop the orange diamond!",
+"dur": 1.63
+},
+"0e475e4f": {
+"text": "Pop the yellow circle!",
+"dur": 1.47
+},
+"986e5ce7": {
+"text": "Pop! A yellow circle!",
+"dur": 1.56
+},
+"2f3e0011": {
+"text": "That's a yellow circle.",
+"dur": 1.41
+},
+"c1f5fa10": {
+"text": "Pop the yellow square!",
+"dur": 1.37
+},
+"e23928c8": {
+"text": "Pop! A yellow square!",
+"dur": 1.41
+},
+"a99e066e": {
+"text": "That's a yellow square.",
+"dur": 1.34
+},
+"34dcd37b": {
+"text": "Pop the yellow triangle!",
+"dur": 1.54
+},
+"f0699303": {
+"text": "Pop! A yellow triangle!",
+"dur": 1.73
+},
+"16f6b57d": {
+"text": "That's a yellow triangle.",
+"dur": 1.48
+},
+"219b476b": {
+"text": "Pop the yellow star!",
+"dur": 1.34
+},
+"9a873c83": {
+"text": "Pop! A yellow star!",
+"dur": 1.44
+},
+"ba8b0019": {
+"text": "That's a yellow star.",
+"dur": 1.28
+},
+"e5739a7d": {
+"text": "Pop the yellow heart!",
+"dur": 1.4
+},
+"cc20fd15": {
+"text": "Pop! A yellow heart!",
+"dur": 1.44
+},
+"0ede61eb": {
+"text": "That's a yellow heart.",
+"dur": 1.36
+},
+"abfc5884": {
+"text": "Pop the yellow rectangle!",
+"dur": 1.58
+},
+"da54af6c": {
+"text": "Pop! A yellow rectangle!",
+"dur": 1.66
+},
+"1de8e5a6": {
+"text": "That's a yellow rectangle.",
+"dur": 1.55
+},
+"783fb107": {
+"text": "Pop the yellow oval!",
+"dur": 1.36
+},
+"ae0aa9bf": {
+"text": "Pop! A yellow oval!",
+"dur": 1.47
+},
+"b963159d": {
+"text": "That's a yellow oval.",
+"dur": 1.34
+},
+"ef9ea385": {
+"text": "Pop the yellow diamond!",
+"dur": 1.51
+},
+"13a99b2d": {
+"text": "Pop! A yellow diamond!",
+"dur": 1.62
+},
+"2ef7721f": {
+"text": "That's a yellow diamond.",
+"dur": 1.44
+},
+"62f6fa94": {
+"text": "Pop the green circle!",
+"dur": 1.42
+},
+"3a722c0c": {
+"text": "Pop! A green circle!",
+"dur": 1.54
+},
+"32b37186": {
+"text": "That's a green circle.",
+"dur": 1.34
+},
+"9ad0a78f": {
+"text": "Pop the green square!",
+"dur": 1.34
+},
+"fde09f27": {
+"text": "Pop! A green square!",
+"dur": 1.37
+},
+"04e4f30d": {
+"text": "That's a green square.",
+"dur": 1.26
+},
+"939399e4": {
+"text": "Pop the green triangle!",
+"dur": 1.51
+},
+"f7ea334c": {
+"text": "Pop! A green triangle!",
+"dur": 1.64
+},
+"9d0da81e": {
+"text": "That's a green triangle.",
+"dur": 1.44
+},
+"b872aed0": {
+"text": "Pop the green star!",
+"dur": 1.3
+},
+"c4f87408": {
+"text": "Pop! A green star!",
+"dur": 1.3
+},
+"94b84d8e": {
+"text": "That's a green star.",
+"dur": 1.26
+},
+"99d6694c": {
+"text": "Pop the green heart!",
+"dur": 1.34
+},
+"55d82c24": {
+"text": "Pop! A green heart!",
+"dur": 1.39
+},
+"6c29368a": {
+"text": "That's a green heart.",
+"dur": 1.28
+},
+"4685dc15": {
+"text": "Pop the green rectangle!",
+"dur": 1.51
+},
+"5943b8dd": {
+"text": "Pop! A green rectangle!",
+"dur": 1.58
+},
+"2787e417": {
+"text": "That's a green rectangle.",
+"dur": 1.5
+},
+"e647c424": {
+"text": "Pop the green oval!",
+"dur": 1.3
+},
+"b43fcc9c": {
+"text": "Pop! A green oval!",
+"dur": 1.38
+},
+"ce176292": {
+"text": "That's a green oval.",
+"dur": 1.28
+},
+"6ff62efc": {
+"text": "Pop the green diamond!",
+"dur": 1.5
+},
+"8b061e64": {
+"text": "Pop! A green diamond!",
+"dur": 1.54
+},
+"fb1db37e": {
+"text": "That's a green diamond.",
+"dur": 1.44
+},
+"05de917b": {
+"text": "Pop the blue circle!",
+"dur": 1.42
+},
+"050fefc3": {
+"text": "Pop! A blue circle!",
+"dur": 1.49
+},
+"ca45f7e1": {
+"text": "That's a blue circle.",
+"dur": 1.28
+},
+"402dd57c": {
+"text": "Pop the blue square!",
+"dur": 1.29
+},
+"e5d80e24": {
+"text": "Pop! A blue square!",
+"dur": 1.3
+},
+"d07df4de": {
+"text": "That's a blue square.",
+"dur": 1.23
+},
+"4c0622af": {
+"text": "Pop the blue triangle!",
+"dur": 1.45
+},
+"eb8f0607": {
+"text": "Pop! A blue triangle!",
+"dur": 1.56
+},
+"0e82016d": {
+"text": "That's a blue triangle.",
+"dur": 1.38
+},
+"6750220f": {
+"text": "Pop the blue star!",
+"dur": 1.25
+},
+"aaf175f7": {
+"text": "Pop! A blue star!",
+"dur": 1.26
+},
+"496d58e9": {
+"text": "That's a blue star.",
+"dur": 1.22
+},
+"da129cd1": {
+"text": "Pop the blue heart!",
+"dur": 1.25
+},
+"cb4cfe99": {
+"text": "Pop! A blue heart!",
+"dur": 1.29
+},
+"07a1a2fb": {
+"text": "That's a blue heart.",
+"dur": 1.19
+},
+"ff72aff8": {
+"text": "Pop the blue rectangle!",
+"dur": 1.44
+},
+"4096c990": {
+"text": "Pop! A blue rectangle!",
+"dur": 1.56
+},
+"fcba0d76": {
+"text": "That's a blue rectangle.",
+"dur": 1.39
+},
+"8aac54cb": {
+"text": "Pop the blue oval!",
+"dur": 1.23
+},
+"0bf85c33": {
+"text": "Pop! A blue oval!",
+"dur": 1.33
+},
+"fe4dcfed": {
+"text": "That's a blue oval.",
+"dur": 1.15
+},
+"87311c81": {
+"text": "Pop the blue diamond!",
+"dur": 1.44
+},
+"f8aca8d9": {
+"text": "Pop! A blue diamond!",
+"dur": 1.49
+},
+"2919cf6f": {
+"text": "That's a blue diamond.",
+"dur": 1.3
+},
+"2a4fe3dd": {
+"text": "Pop the purple circle!",
+"dur": 1.48
+},
+"5fabc3c5": {
+"text": "Pop! A purple circle!",
+"dur": 1.6
+},
+"e6b07f03": {
+"text": "That's a purple circle.",
+"dur": 1.39
+},
+"4548e5aa": {
+"text": "Pop the purple square!",
+"dur": 1.44
+},
+"03864cb2": {
+"text": "Pop! A purple square!",
+"dur": 1.44
+},
+"1db4de64": {
+"text": "That's a purple square.",
+"dur": 1.3
+},
+"cf175551": {
+"text": "Pop the purple triangle!",
+"dur": 1.63
+},
+"49814309": {
+"text": "Pop! A purple triangle!",
+"dur": 1.72
+},
+"85e99d47": {
+"text": "That's a purple triangle.",
+"dur": 1.49
+},
+"88f8412d": {
+"text": "Pop the purple star!",
+"dur": 1.4
+},
+"4beeb3b5": {
+"text": "Pop! A purple star!",
+"dur": 1.44
+},
+"6284b437": {
+"text": "That's a purple star.",
+"dur": 1.3
+},
+"50f7d18f": {
+"text": "Pop the purple heart!",
+"dur": 1.38
+},
+"9bb835b7": {
+"text": "Pop! A purple heart!",
+"dur": 1.5
+},
+"9b0b22d9": {
+"text": "That's a purple heart.",
+"dur": 1.33
+},
+"8dd529aa": {
+"text": "Pop the purple rectangle!",
+"dur": 1.61
+},
+"60b364c2": {
+"text": "Pop! A purple rectangle!",
+"dur": 1.72
+},
+"7c554fd0": {
+"text": "That's a purple rectangle.",
+"dur": 1.54
+},
+"54868cd1": {
+"text": "Pop the purple oval!",
+"dur": 1.4
+},
+"0f8513d9": {
+"text": "Pop! A purple oval!",
+"dur": 1.5
+},
+"aa3d5273": {
+"text": "That's a purple oval.",
+"dur": 1.3
+},
+"387c717b": {
+"text": "Pop the purple diamond!",
+"dur": 1.56
+},
+"ff15d353": {
+"text": "Pop! A purple diamond!",
+"dur": 1.67
+},
+"5a725319": {
+"text": "That's a purple diamond.",
+"dur": 1.47
+},
+"209e236b": {
+"text": "Pop the pink circle!",
+"dur": 1.38
+},
+"4e6b37f3": {
+"text": "Pop! A pink circle!",
+"dur": 1.4
+},
+"5e891cb5": {
+"text": "That's a pink circle.",
+"dur": 1.32
+},
+"9be7598c": {
+"text": "Pop the pink square!",
+"dur": 1.29
+},
+"cf29d174": {
+"text": "Pop! A pink square!",
+"dur": 1.3
+},
+"5a2e6f42": {
+"text": "That's a pink square.",
+"dur": 1.24
+},
+"a55ec63f": {
+"text": "Pop the pink triangle!",
+"dur": 1.5
+},
+"c0763b57": {
+"text": "Pop! A pink triangle!",
+"dur": 1.54
+},
+"89e7f899": {
+"text": "That's a pink triangle.",
+"dur": 1.41
+},
+"601e31bf": {
+"text": "Pop the pink star!",
+"dur": 1.31
+},
+"4a5e36a7": {
+"text": "Pop! A pink star!",
+"dur": 1.31
+},
+"a7c28da5": {
+"text": "That's a pink star.",
+"dur": 1.26
+},
+"60b35601": {
+"text": "Pop the pink heart!",
+"dur": 1.25
+},
+"4c02d109": {
+"text": "Pop! A pink heart!",
+"dur": 1.29
+},
+"57608927": {
+"text": "That's a pink heart.",
+"dur": 1.24
+},
+"b8f35ae8": {
+"text": "Pop the pink rectangle!",
+"dur": 1.51
+},
+"c7560e00": {
+"text": "Pop! A pink rectangle!",
+"dur": 1.6
+},
+"9f7a6432": {
+"text": "That's a pink rectangle.",
+"dur": 1.49
+},
+"0d7267bb": {
+"text": "Pop the pink oval!",
+"dur": 1.29
+},
+"341feba3": {
+"text": "Pop! A pink oval!",
+"dur": 1.37
+},
+"0a8bdd49": {
+"text": "That's a pink oval.",
+"dur": 1.26
+},
+"58426171": {
+"text": "Pop the pink diamond!",
+"dur": 1.44
+},
+"68173cc9": {
+"text": "Pop! A pink diamond!",
+"dur": 1.51
+},
+"9d448683": {
+"text": "That's a pink diamond.",
+"dur": 1.43
+},
+"f0d3bd57": {
+"text": "What comes next?",
+"dur": 1.15
+},
+"cf585f6f": {
+"text": "Yes! The bear comes next!",
+"dur": 1.71
+},
+"be6a4796": {
+"text": "Hmm, not the bear. Listen again!",
+"dur": 2.09
+},
+"ef5f4bcb": {
+"text": "Yes! The bunny comes next!",
+"dur": 1.75
+},
+"42d5504a": {
+"text": "Hmm, not the bunny. Listen again!",
+"dur": 2.13
+},
+"1f036a00": {
+"text": "Yes! The fox comes next!",
+"dur": 1.79
+},
+"144a604d": {
+"text": "Hmm, not the fox. Listen again!",
+"dur": 2.22
+},
+"516cfb2b": {
+"text": "Yes! The frog comes next!",
+"dur": 1.77
+},
+"827e8b32": {
+"text": "Hmm, not the frog. Listen again!",
+"dur": 2.2
+},
+"809507f7": {
+"text": "Rhyme Tree! Find the word that rhymes!",
+"dur": 2.39
+},
+"41358dc9": {
+"text": "Let's go to the Rhyme Tree!",
+"dur": 1.58
+},
+"cc3a87e7": {
+"text": "Acorn Spelling! Spell the word!",
+"dur": 2.11
+},
+"9531bce1": {
+"text": "Let's go to the Acorn Spelling!",
+"dur": 1.86
+},
+"a96da3ba": {
+"text": "Owl School! Add and take away!",
+"dur": 1.96
+},
+"75f0aa56": {
+"text": "Let's go to the Owl School!",
+"dur": 1.57
+},
+"5bbb6e76": {
+"text": "Echo Cave! Play the owl's song back!",
+"dur": 2.22
+},
+"dbf044ae": {
+"text": "Let's go to the Echo Cave!",
+"dur": 1.64
+},
+"a085bbee": {
+"text": "Cloud Clock! What time is it?",
+"dur": 1.92
+},
+"5484d6b7": {
+"text": "Let's go to the Cloud Clock!",
+"dur": 1.66
+},
+"e2fb9e0a": {
+"text": "Reading Rock! Read the words!",
+"dur": 1.86
+},
+"dd636f0d": {
+"text": "Let's go to the Reading Rock!",
+"dur": 1.61
+},
+"56bea99c": {
+"text": "Crystal Stairs! Find the missing number!",
+"dur": 2.43
+},
+"23d1eb68": {
+"text": "Let's go to the Crystal Stairs!",
+"dur": 1.79
+},
+"cb553f19": {
+"text": "Dragon Drums! Drum the beat back!",
+"dur": 2.25
+},
+"eb666226": {
+"text": "Let's go to the Dragon Drums!",
+"dur": 1.75
+},
+"a08f8874": {
+"text": "Owl will come with you!",
+"dur": 1.33
+},
+"ca876155": {
+"text": "A new friend! Owl wants to play with you!",
+"dur": 2.4
+},
+"f548dee4": {
+"text": "Deer will come with you!",
+"dur": 1.3
+},
+"4e2c8693": {
+"text": "A new friend! Deer wants to play with you!",
+"dur": 2.36
+},
+"d6e5aadd": {
+"text": "Squirrel will come with you!",
+"dur": 1.41
+},
+"19f6b352": {
+"text": "A new friend! Squirrel wants to play with you!",
+"dur": 2.5
+},
+"30ada8a3": {
+"text": "Hedgehog will come with you!",
+"dur": 1.58
+},
+"ff44c7d4": {
+"text": "A new friend! Hedgehog wants to play with you!",
+"dur": 2.67
+},
+"ac9b8550": {
+"text": "Wolf will come with you!",
+"dur": 1.39
+},
+"bae5792b": {
+"text": "A new friend! Wolf wants to play with you!",
+"dur": 2.43
+},
+"97fb157d": {
+"text": "Fairy will come with you!",
+"dur": 1.37
+},
+"a1ec5544": {
+"text": "A new friend! Fairy wants to play with you!",
+"dur": 2.43
+},
+"ad049e4a": {
+"text": "Polar Bear will come with you!",
+"dur": 1.56
+},
+"3f478fa5": {
+"text": "A new friend! Polar Bear wants to play with you!",
+"dur": 2.73
+},
+"a6ca0bfe": {
+"text": "Eagle will come with you!",
+"dur": 1.41
+},
+"51c5f7d3": {
+"text": "A new friend! Eagle wants to play with you!",
+"dur": 2.51
+},
+"a6c7745d": {
+"text": "Goat will come with you!",
+"dur": 1.3
+},
+"c7061d32": {
+"text": "A new friend! Goat wants to play with you!",
+"dur": 2.46
+},
+"5507a3af": {
+"text": "Seal will come with you!",
+"dur": 1.39
+},
+"b6fc7e28": {
+"text": "A new friend! Seal wants to play with you!",
+"dur": 2.43
+},
+"4f2290f3": {
+"text": "Swan will come with you!",
+"dur": 1.37
+},
+"e554013c": {
+"text": "A new friend! Swan wants to play with you!",
+"dur": 2.5
+},
+"47df0571": {
+"text": "Hot Cross Buns! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.5
+},
+"4ef8bbae": {
+"text": "Listen to Hot Cross Buns!",
+"dur": 1.66
+},
+"b772fd57": {
+"text": "Let's learn Hot Cross Buns! Tap the glowing key.",
+"dur": 3.03
+},
+"f0e4ee9c": {
+"text": "Baa Baa Black Sheep! Tap the gems when they reach the sparkly pads. Ready?",
+"dur": 4.65
+},
+"6810fab3": {
+"text": "Listen to Baa Baa Black Sheep!",
+"dur": 1.75
+},
+"6adb41e8": {
+"text": "Let's learn Baa Baa Black Sheep! Tap the glowing key.",
+"dur": 3.18
+},
+"f88d06e5": {
+"text": "Pop! An orange circle!",
+"dur": 1.55
+},
+"22190ee7": {
+"text": "That's an orange circle.",
+"dur": 1.45
+},
+"d958aed2": {
+"text": "Pop! An orange square!",
+"dur": 1.41
+},
+"6be3dac8": {
+"text": "That's an orange square.",
+"dur": 1.37
+},
+"429b4b29": {
+"text": "Pop! An orange triangle!",
+"dur": 1.71
+},
+"24409503": {
+"text": "That's an orange triangle.",
+"dur": 1.57
+},
+"aef5a7d5": {
+"text": "Pop! An orange star!",
+"dur": 1.44
+},
+"70121e83": {
+"text": "That's an orange star.",
+"dur": 1.37
+},
+"8be93057": {
+"text": "Pop! An orange heart!",
+"dur": 1.42
+},
+"f5c2c315": {
+"text": "That's an orange heart.",
+"dur": 1.37
+},
+"67283362": {
+"text": "Pop! An orange rectangle!",
+"dur": 1.75
+},
+"75ccd56c": {
+"text": "That's an orange rectangle.",
+"dur": 1.64
+},
+"7504ddf9": {
+"text": "Pop! An orange oval!",
+"dur": 1.49
+},
+"83958bbf": {
+"text": "That's an orange oval.",
+"dur": 1.43
+},
+"4d06d5f3": {
+"text": "Pop! An orange diamond!",
+"dur": 1.64
+},
+"cb5fd12d": {
+"text": "That's an orange diamond.",
+"dur": 1.59
+},
+"7572a8e2": {
+"text": "Collect all your kingdom friends to open the Enchanted Forest!",
+"dur": 3.31
+},
+"a3476a89": {
+"text": "The Enchanted Forest is open! Let's explore!",
+"dur": 2.9
+},
+"d912ce61": {
+"text": "Collect all your forest friends to open the Crystal Peaks!",
+"dur": 3.35
+},
+"e66d3978": {
+"text": "The Crystal Peaks are open! Let's explore!",
+"dur": 2.52
+},
+"0c8b93a6": {
+"text": "You unlocked a flower crown!",
+"dur": 1.62
+},
+"58e52e71": {
+"text": "You unlocked new dress colours!",
+"dur": 1.75
+},
+"3098e1b5": {
+"text": "You unlocked a magic wand!",
+"dur": 1.69
+},
+"4407bf71": {
+"text": "You unlocked a star crown!",
+"dur": 1.64
+},
+"3896ebc9": {
+"text": "A fountain appeared in the kingdom!",
+"dur": 1.75
+},
+"c065f7d7": {
+"text": "You unlocked a rainbow crown!",
+"dur": 1.76
+},
+"64ae7e19": {
+"text": "You unlocked sparkle dress colours!",
+"dur": 1.98
+},
+"e3d729b7": {
+"text": "You unlocked a moon wand!",
+"dur": 1.53
+},
+"22936805": {
+"text": "A hot air balloon is flying over the kingdom!",
+"dur": 2.57
+},
+"2ab5f125": {
+"text": "You unlocked a leaf crown!",
+"dur": 1.56
+},
+"34758d38": {
+"text": "You unlocked a heart wand!",
+"dur": 1.58
+},
+"e8968298": {
+"text": "You unlocked an ice crown!",
+"dur": 1.58
+},
+"7d9b9a22": {
+"text": "Fireworks will light up the kingdom!",
+"dur": 1.92
+},
+"bfe1b15a": {
+"text": "You unlocked a new song: Row Your Boat!",
+"dur": 2.41
+},
+"e9185052": {
+"text": "You unlocked a new song: London Bridge!",
+"dur": 2.54
+},
+"293e911e": {
+"text": "You unlocked a new song: Itsy Bitsy Spider!",
+"dur": 2.92
+},
+"18e6278c": {
+"text": "You unlocked a new song: Hot Cross Buns!",
+"dur": 2.69
+},
+"378a8649": {
+"text": "You unlocked a new song: Baa Baa Black Sheep!",
+"dur": 2.71
+},
+"6bc9e3b4": {
+"text": "You unlocked a new song: Happy Birthday!",
+"dur": 2.58
+},
+"e0dfbaee": {
+"text": "Your friends are waiting! Tap the gate to see how many more you need.",
+"dur": 3.63
+},
+"e40c292c": {
+"text": "A",
+"dur": 0.64
+},
+"ba65b457": {
+"text": "We need the letter A.",
+"dur": 1.35
+},
+"e70c2de5": {
+"text": "B",
+"dur": 0.67
+},
+"bb65b5ea": {
+"text": "We need the letter B.",
+"dur": 1.31
+},
+"e60c2c52": {
+"text": "C",
+"dur": 0.67
+},
+"bc65b77d": {
+"text": "We need the letter C.",
+"dur": 1.33
+},
+"e10c2473": {
+"text": "D",
+"dur": 0.69
+},
+"b565ac78": {
+"text": "We need the letter D.",
+"dur": 1.31
+},
+"e00c22e0": {
+"text": "E",
+"dur": 0.63
+},
+"b665ae0b": {
+"text": "We need the letter E.",
+"dur": 1.29
+},
+"e30c2799": {
+"text": "F",
+"dur": 0.83
+},
+"b765af9e": {
+"text": "We need the letter F.",
+"dur": 1.59
+},
+"e20c2606": {
+"text": "G",
+"dur": 0.72
+},
+"b865b131": {
+"text": "We need the letter G.",
+"dur": 1.35
+},
+"ed0c3757": {
+"text": "H",
+"dur": 0.69
+},
+"b165a62c": {
+"text": "We need the letter H.",
+"dur": 1.38
+},
+"ec0c35c4": {
+"text": "I",
+"dur": 0.64
+},
+"b265a7bf": {
+"text": "We need the letter I.",
+"dur": 1.35
+},
+"ef0c3a7d": {
+"text": "J",
+"dur": 0.7
+},
+"b365a952": {
+"text": "We need the letter J.",
+"dur": 1.35
+},
+"ee0c38ea": {
+"text": "K",
+"dur": 0.63
+},
+"b465aae5": {
+"text": "We need the letter K.",
+"dur": 1.33
+},
+"e90c310b": {
+"text": "L",
+"dur": 0.6
+},
+"ad659fe0": {
+"text": "We need the letter L.",
+"dur": 1.33
+},
+"e80c2f78": {
+"text": "M",
+"dur": 0.62
+},
+"ae65a173": {
+"text": "We need the letter M.",
+"dur": 1.31
+},
+"eb0c3431": {
+"text": "N",
+"dur": 0.63
+},
+"af65a306": {
+"text": "We need the letter N.",
+"dur": 1.29
+},
+"ea0c329e": {
+"text": "O",
+"dur": 0.62
+},
+"b065a499": {
+"text": "We need the letter O.",
+"dur": 1.29
+},
+"f50c43ef": {
+"text": "P",
+"dur": 0.68
+},
+"c965cbf4": {
+"text": "We need the letter P.",
+"dur": 1.27
+},
+"f40c425c": {
+"text": "Q",
+"dur": 0.67
+},
+"ca65cd87": {
+"text": "We need the letter Q.",
+"dur": 1.31
+},
+"f70c4715": {
+"text": "R",
+"dur": 0.63
+},
+"cb65cf1a": {
+"text": "We need the letter R.",
+"dur": 1.36
+},
+"f60c4582": {
+"text": "S",
+"dur": 0.64
+},
+"cc65d0ad": {
+"text": "We need the letter S.",
+"dur": 1.31
+},
+"f10c3da3": {
+"text": "T",
+"dur": 0.68
+},
+"c565c5a8": {
+"text": "We need the letter T.",
+"dur": 1.37
+},
+"f00c3c10": {
+"text": "U",
+"dur": 0.64
+},
+"c665c73b": {
+"text": "We need the letter U.",
+"dur": 1.29
+},
+"f30c40c9": {
+"text": "V",
+"dur": 0.65
+},
+"c765c8ce": {
+"text": "We need the letter V.",
+"dur": 1.29
+},
+"f20c3f36": {
+"text": "W",
+"dur": 0.85
+},
+"c865ca61": {
+"text": "We need the letter W.",
+"dur": 1.59
+},
+"fd0c5087": {
+"text": "X",
+"dur": 0.65
+},
+"c165bf5c": {
+"text": "We need the letter X.",
+"dur": 1.38
+},
+"fc0c4ef4": {
+"text": "Y",
+"dur": 0.67
+},
+"c265c0ef": {
+"text": "We need the letter Y.",
+"dur": 1.31
+},
+"ff0c53ad": {
+"text": "Z",
+"dur": 0.68
+},
+"c365c282": {
+"text": "We need the letter Z.",
+"dur": 1.31
+},
+"22f9c34a": {
+"text": "Which one rhymes with cat?",
+"dur": 1.57
+},
+"051d927d": {
+"text": "That's a cat.",
+"dur": 1.0
+},
+"48aa5af1": {
+"text": "Yes! hat rhymes with cat!",
+"dur": 1.69
+},
+"e072b994": {
+"text": "That's a hat.",
+"dur": 0.97
+},
+"3805be9f": {
+"text": "Yes! bat rhymes with cat!",
+"dur": 1.79
+},
+"71db131e": {
+"text": "That's a bat.",
+"dur": 0.97
+},
+"cbeea684": {
+"text": "Which one rhymes with dog?",
+"dur": 1.59
+},
+"fc4ec7a3": {
+"text": "That's a dog.",
+"dur": 1.02
+},
+"d7b08454": {
+"text": "Yes! frog rhymes with dog!",
+"dur": 1.94
+},
+"df8ef935": {
+"text": "That's a frog.",
+"dur": 1.04
+},
+"783692f0": {
+"text": "Yes! log rhymes with dog!",
+"dur": 1.96
+},
+"a541389b": {
+"text": "That's a log.",
+"dur": 0.99
+},
+"d47f4c56": {
+"text": "Which one rhymes with star?",
+"dur": 1.55
+},
+"47ea3627": {
+"text": "That's a star.",
+"dur": 1.05
+},
+"9bc47ce6": {
+"text": "Yes! car rhymes with star!",
+"dur": 1.86
+},
+"ff1d890b": {
+"text": "That's a car.",
+"dur": 1.02
+},
+"8948d92a": {
+"text": "Yes! guitar rhymes with star!",
+"dur": 2.0
+},
+"d0882eed": {
+"text": "That's a guitar.",
+"dur": 1.1
+},
+"a70e32ca": {
+"text": "Which one rhymes with bee?",
+"dur": 1.51
+},
+"62e588dd": {
+"text": "That's a bee.",
+"dur": 0.94
+},
+"89465ffc": {
+"text": "Yes! tree rhymes with bee!",
+"dur": 1.81
+},
+"8f819a67": {
+"text": "That's a tree.",
+"dur": 1.04
+},
+"606172a3": {
+"text": "Yes! key rhymes with bee!",
+"dur": 1.71
+},
+"98f1cd52": {
+"text": "That's a key.",
+"dur": 1.0
+},
+"86e6c673": {
+"text": "Which one rhymes with moon?",
+"dur": 1.56
+},
+"26428b62": {
+"text": "That's a moon.",
+"dur": 0.98
+},
+"083d6d8e": {
+"text": "Yes! spoon rhymes with moon!",
+"dur": 1.94
+},
+"4eb4bbb0": {
+"text": "That's a spoon.",
+"dur": 1.05
+},
+"dce0e0f4": {
+"text": "Yes! balloon rhymes with moon!",
+"dur": 1.96
+},
+"84c184ee": {
+"text": "That's a balloon.",
+"dur": 1.07
+},
+"2e367892": {
+"text": "Which one rhymes with cake?",
+"dur": 1.55
+},
+"1590b42f": {
+"text": "That's a cake.",
+"dur": 1.02
+},
+"1fca4fe4": {
+"text": "Yes! snake rhymes with cake!",
+"dur": 1.86
+},
+"b29b34b9": {
+"text": "That's a snake.",
+"dur": 1.05
+},
+"18079eb9": {
+"text": "Yes! lake rhymes with cake!",
+"dur": 1.77
+},
+"61a4af00": {
+"text": "That's a lake.",
+"dur": 0.94
+},
+"d5df299d": {
+"text": "Which one rhymes with mouse?",
+"dur": 1.56
+},
+"b161d14e": {
+"text": "That's a mouse.",
+"dur": 1.02
+},
+"e0cd441f": {
+"text": "Yes! house rhymes with mouse!",
+"dur": 1.9
+},
+"eaab07d5": {
+"text": "That's a house.",
+"dur": 1.0
+},
+"bb4f56e4": {
+"text": "Which one rhymes with bear?",
+"dur": 1.51
+},
+"464d0b59": {
+"text": "That's a bear.",
+"dur": 0.92
+},
+"425d0525": {
+"text": "Yes! chair rhymes with bear!",
+"dur": 1.86
+},
+"16bf4ec4": {
+"text": "That's a chair.",
+"dur": 0.96
+},
+"9f289626": {
+"text": "Yes! pear rhymes with bear!",
+"dur": 1.79
+},
+"b7c3983f": {
+"text": "That's a pear.",
+"dur": 0.97
+},
+"3dae5960": {
+"text": "Which one rhymes with fish?",
+"dur": 1.53
+},
+"69b06e19": {
+"text": "That's a fish.",
+"dur": 1.0
+},
+"735ea7ee": {
+"text": "Yes! dish rhymes with fish!",
+"dur": 1.79
+},
+"f81fc92f": {
+"text": "That's a dish.",
+"dur": 0.98
+},
+"1a5b3081": {
+"text": "Which one rhymes with goat?",
+"dur": 1.55
+},
+"b50cd04c": {
+"text": "That's a goat.",
+"dur": 0.99
+},
+"b7a4ccc1": {
+"text": "Yes! boat rhymes with goat!",
+"dur": 1.9
+},
+"0a0b9e39": {
+"text": "That's a boat.",
+"dur": 0.99
+},
+"72b0113a": {
+"text": "Yes! coat rhymes with goat!",
+"dur": 1.86
+},
+"3b7a23d8": {
+"text": "That's a coat.",
+"dur": 1.03
+},
+"413c88e1": {
+"text": "Which one rhymes with king?",
+"dur": 1.53
+},
+"be0f4168": {
+"text": "That's a king.",
+"dur": 0.99
+},
+"154e4465": {
+"text": "Yes! ring rhymes with king!",
+"dur": 1.79
+},
+"9833c99d": {
+"text": "That's a ring.",
+"dur": 0.97
+},
+"5776772f": {
+"text": "Which one rhymes with duck?",
+"dur": 1.54
+},
+"b8528cfe": {
+"text": "That's a duck.",
+"dur": 0.98
+},
+"09424400": {
+"text": "Yes! truck rhymes with duck!",
+"dur": 1.86
+},
+"da2ef74e": {
+"text": "That's a truck.",
+"dur": 1.01
+},
+"713553f6": {
+"text": "Which one rhymes with sock?",
+"dur": 1.57
+},
+"57fddabb": {
+"text": "That's a sock.",
+"dur": 1.04
+},
+"cbcb468e": {
+"text": "Yes! clock rhymes with sock!",
+"dur": 1.9
+},
+"52296a4f": {
+"text": "That's a clock.",
+"dur": 1.03
+},
+"9e9ed3c3": {
+"text": "Yes! rock rhymes with sock!",
+"dur": 1.86
+},
+"6d662892": {
+"text": "That's a rock.",
+"dur": 1.0
+},
+"b50e2eb3": {
+"text": "Which one rhymes with snail?",
+"dur": 1.59
+},
+"b596bc44": {
+"text": "That's a snail.",
+"dur": 1.04
+},
+"3a0a5ea0": {
+"text": "Yes! whale rhymes with snail!",
+"dur": 1.9
+},
+"da73ba14": {
+"text": "That's a whale.",
+"dur": 0.98
+},
+"be3ee8a6": {
+"text": "Yes! mail rhymes with snail!",
+"dur": 1.94
+},
+"c1e8da64": {
+"text": "That's a mail.",
+"dur": 0.99
+},
+"6d7e07f1": {
+"text": "Which one rhymes with rose?",
+"dur": 1.6
+},
+"8f3dbba8": {
+"text": "That's a rose.",
+"dur": 1.05
+},
+"c417a30e": {
+"text": "Yes! nose rhymes with rose!",
+"dur": 1.9
+},
+"9b5670d4": {
+"text": "That's a nose.",
+"dur": 1.08
+},
+"a0062d84": {
+"text": "Yes! toes rhymes with rose!",
+"dur": 1.9
+},
+"2588517e": {
+"text": "That's a toes.",
+"dur": 1.09
+},
+"9f486f0b": {
+"text": "Which one rhymes with bell?",
+"dur": 1.53
+},
+"62406b7a": {
+"text": "That's a bell.",
+"dur": 0.93
+},
+"4bc7f03f": {
+"text": "Yes! shell rhymes with bell!",
+"dur": 1.88
+},
+"d474189f": {
+"text": "That's a shell.",
+"dur": 0.96
+},
+"51bab117": {
+"text": "Which one rhymes with ball?",
+"dur": 1.57
+},
+"adf3242e": {
+"text": "That's a ball.",
+"dur": 0.98
+},
+"0c293101": {
+"text": "Yes! wall rhymes with ball!",
+"dur": 1.88
+},
+"ab3f83ef": {
+"text": "That's a wall.",
+"dur": 0.99
+},
+"7d34edfd": {
+"text": "Which one rhymes with sheep?",
+"dur": 1.53
+},
+"f28590fa": {
+"text": "That's a sheep.",
+"dur": 1.0
+},
+"dd43f3c3": {
+"text": "Yes! jeep rhymes with sheep!",
+"dur": 1.86
+},
+"cdede9ef": {
+"text": "That's a jeep.",
+"dur": 1.0
+},
+"3e8b1698": {
+"text": "Which one rhymes with corn?",
+"dur": 1.59
+},
+"2759b0b1": {
+"text": "That's a corn.",
+"dur": 1.03
+},
+"24ff16f1": {
+"text": "Yes! horn rhymes with corn!",
+"dur": 1.91
+},
+"755d265a": {
+"text": "That's a horn.",
+"dur": 0.98
+},
+"ef575f6a": {
+"text": "Yes! unicorn rhymes with corn!",
+"dur": 2.13
+},
+"911a4c41": {
+"text": "That's an unicorn.",
+"dur": 1.28
+},
+"0d6d7779": {
+"text": "Which one rhymes with crown?",
+"dur": 1.59
+},
+"c931a476": {
+"text": "That's a crown.",
+"dur": 0.98
+},
+"1acbb126": {
+"text": "Yes! clown rhymes with crown!",
+"dur": 1.98
+},
+"4d5aff3c": {
+"text": "That's a clown.",
+"dur": 0.98
+},
+"3e77eb9c": {
+"text": "Yes! gown rhymes with crown!",
+"dur": 1.96
+},
+"cef4f454": {
+"text": "That's a gown.",
+"dur": 0.96
+},
+"0061c249": {
+"text": "Which one rhymes with hen?",
+"dur": 1.52
+},
+"ea7d56ae": {
+"text": "That's a hen.",
+"dur": 0.98
+},
+"b3802050": {
+"text": "Yes! pen rhymes with hen!",
+"dur": 1.75
+},
+"fe41d906": {
+"text": "That's a pen.",
+"dur": 0.97
+},
+"c055713c": {
+"text": "Yes! ten rhymes with hen!",
+"dur": 1.79
+},
+"d3061402": {
+"text": "That's a ten.",
+"dur": 1.0
+},
+"fddca63f": {
+"text": "Which one rhymes with fox?",
+"dur": 1.64
+},
+"143e3170": {
+"text": "That's a fox.",
+"dur": 1.1
+},
+"899031f8": {
+"text": "Yes! box rhymes with fox!",
+"dur": 2.05
+},
+"69cbfbfc": {
+"text": "That's a box.",
+"dur": 1.08
+},
+"f4e561f0": {
+"text": "Yes! socks rhymes with fox!",
+"dur": 2.09
+},
+"4c9f68d8": {
+"text": "That's a socks.",
+"dur": 1.09
+},
+"c5357174": {
+"text": "Which one rhymes with bug?",
+"dur": 1.55
+},
+"810cc787": {
+"text": "That's a bug.",
+"dur": 0.96
+},
+"d48bf63d": {
+"text": "Yes! mug rhymes with bug!",
+"dur": 1.86
+},
+"08d0b2a6": {
+"text": "That's a mug.",
+"dur": 0.98
+},
+"3e21b6aa": {
+"text": "Yes! hug rhymes with bug!",
+"dur": 1.77
+},
+"c35609d9": {
+"text": "That's a hug.",
+"dur": 0.95
+},
+"4171b39c": {
+"text": "Which one rhymes with train?",
+"dur": 1.59
+},
+"c649fb7b": {
+"text": "That's a train.",
+"dur": 1.08
+},
+"c0624f6c": {
+"text": "Yes! rain rhymes with train!",
+"dur": 1.94
+},
+"f7b4df31": {
+"text": "That's a rain.",
+"dur": 1.0
+},
+"1adc4c0e": {
+"text": "Yes! brain rhymes with train!",
+"dur": 1.92
+},
+"733eb171": {
+"text": "That's a brain.",
+"dur": 1.04
+},
+"ada75c38": {
+"text": "Read the word, then tap its picture!",
+"dur": 2.13
+},
+"8284d3f8": {
+"text": "Can you spell cat?",
+"dur": 1.22
+},
+"e5e02f4f": {
+"text": "cat! You spelled cat!",
+"dur": 1.37
+},
+"9c65b3ef": {
+"text": "Yes! That says cat!",
+"dur": 1.41
+},
+"7b5e12fe": {
+"text": "Can you spell dog?",
+"dur": 1.17
+},
+"b1b98133": {
+"text": "dog! You spelled dog!",
+"dur": 1.51
+},
+"9c31a4e1": {
+"text": "Yes! That says dog!",
+"dur": 1.54
+},
+"bed5c73a": {
+"text": "Can you spell sun?",
+"dur": 1.15
+},
+"ab2608a3": {
+"text": "sun! You spelled sun!",
+"dur": 1.41
+},
+"c8ca15b9": {
+"text": "Yes! That says sun!",
+"dur": 1.37
+},
+"baf73d2b": {
+"text": "That's a sun.",
+"dur": 0.94
+},
+"a9aa15e1": {
+"text": "Can you spell hat?",
+"dur": 1.15
+},
+"956c951b": {
+"text": "hat! You spelled hat!",
+"dur": 1.34
+},
+"dae3707a": {
+"text": "Yes! That says hat!",
+"dur": 1.41
+},
+"7fb82128": {
+"text": "Can you spell pig?",
+"dur": 1.11
+},
+"467ca0bf": {
+"text": "pig! You spelled pig!",
+"dur": 1.34
+},
+"80e5bfe7": {
+"text": "Yes! That says pig!",
+"dur": 1.43
+},
+"274ca6ed": {
+"text": "That's a pig.",
+"dur": 0.98
+},
+"0cd57712": {
+"text": "Can you spell bus?",
+"dur": 1.17
+},
+"40a96c0b": {
+"text": "bus! You spelled bus!",
+"dur": 1.47
+},
+"15c6f841": {
+"text": "Yes! That says bus!",
+"dur": 1.45
+},
+"6d0ca80b": {
+"text": "That's a bus.",
+"dur": 0.99
+},
+"6e5317b0": {
+"text": "Can you spell cup?",
+"dur": 1.1
+},
+"86d1b19f": {
+"text": "cup! You spelled cup!",
+"dur": 1.28
+},
+"b047be57": {
+"text": "Yes! That says cup!",
+"dur": 1.39
+},
+"f8ff6a85": {
+"text": "That's a cup.",
+"dur": 0.92
+},
+"f7acb393": {
+"text": "Can you spell bed?",
+"dur": 1.15
+},
+"5b130537": {
+"text": "bed! You spelled bed!",
+"dur": 1.37
+},
+"269e7094": {
+"text": "Yes! That says bed!",
+"dur": 1.41
+},
+"61e5874a": {
+"text": "That's a bed.",
+"dur": 0.95
+},
+"5b6e9c99": {
+"text": "Can you spell fox?",
+"dur": 1.28
+},
+"f7c78697": {
+"text": "fox! You spelled fox!",
+"dur": 1.64
+},
+"5c6e4316": {
+"text": "Yes! That says fox!",
+"dur": 1.49
+},
+"8fa0f297": {
+"text": "Can you spell hen?",
+"dur": 1.15
+},
+"91cfdf2f": {
+"text": "hen! You spelled hen!",
+"dur": 1.37
+},
+"e0d8ec90": {
+"text": "Yes! That says hen!",
+"dur": 1.45
+},
+"18d589f6": {
+"text": "Can you spell bug?",
+"dur": 1.13
+},
+"8ed84dbb": {
+"text": "bug! You spelled bug!",
+"dur": 1.35
+},
+"09c6e55d": {
+"text": "Yes! That says bug!",
+"dur": 1.43
+},
+"63b3743a": {
+"text": "Can you spell map?",
+"dur": 1.13
+},
+"3d345483": {
+"text": "map! You spelled map!",
+"dur": 1.41
+},
+"a7c8a909": {
+"text": "Yes! That says map!",
+"dur": 1.43
+},
+"23eef23b": {
+"text": "That's a map.",
+"dur": 0.98
+},
+"bc70d55f": {
+"text": "Can you spell net?",
+"dur": 1.13
+},
+"d02a2137": {
+"text": "net! You spelled net!",
+"dur": 1.44
+},
+"eb434eb0": {
+"text": "Yes! That says net!",
+"dur": 1.39
+},
+"bd98592e": {
+"text": "That's a net.",
+"dur": 0.98
+},
+"6eb38937": {
+"text": "Can you spell pot?",
+"dur": 1.17
+},
+"2582707b": {
+"text": "pot! You spelled pot!",
+"dur": 1.41
+},
+"6dd69774": {
+"text": "Yes! That says pot!",
+"dur": 1.45
+},
+"185b99da": {
+"text": "That's a pot.",
+"dur": 0.98
+},
+"068879a2": {
+"text": "Can you spell web?",
+"dur": 1.13
+},
+"f0f8740b": {
+"text": "web! You spelled web!",
+"dur": 1.41
+},
+"0855ac19": {
+"text": "Yes! That says web!",
+"dur": 1.49
+},
+"6119ba73": {
+"text": "That's a web.",
+"dur": 0.97
+},
+"d1cdd146": {
+"text": "Can you spell log?",
+"dur": 1.19
+},
+"b2ea5233": {
+"text": "log! You spelled log!",
+"dur": 1.51
+},
+"0523b119": {
+"text": "Yes! That says log!",
+"dur": 1.47
+},
+"17bbf07d": {
+"text": "Can you spell box?",
+"dur": 1.26
+},
+"5f40ce4f": {
+"text": "box! You spelled box!",
+"dur": 1.58
+},
+"1690dfda": {
+"text": "Yes! That says box!",
+"dur": 1.51
+},
+"9884f69a": {
+"text": "Can you spell cab?",
+"dur": 1.15
+},
+"3e5af093": {
+"text": "cab! You spelled cab!",
+"dur": 1.45
+},
+"8a659799": {
+"text": "Yes! That says cab!",
+"dur": 1.43
+},
+"0f1da23b": {
+"text": "That's a cab.",
+"dur": 0.98
+},
+"9f35dce5": {
+"text": "Can you spell ant?",
+"dur": 1.11
+},
+"c39cd2bf": {
+"text": "ant! You spelled ant!",
+"dur": 1.32
+},
+"d544088e": {
+"text": "Yes! That says ant!",
+"dur": 1.39
+},
+"a33975f8": {
+"text": "That's an ant.",
+"dur": 1.04
+},
+"e78318b1": {
+"text": "Can you spell egg?",
+"dur": 1.13
+},
+"13e03c77": {
+"text": "egg! You spelled egg!",
+"dur": 1.35
+},
+"2f6d3b6e": {
+"text": "Yes! That says egg!",
+"dur": 1.43
+},
+"e3de78c4": {
+"text": "That's an egg.",
+"dur": 0.99
+},
+"22f48e0a": {
+"text": "Can you spell owl?",
+"dur": 1.15
+},
+"b5b15c13": {
+"text": "owl! You spelled owl!",
+"dur": 1.39
+},
+"9cbfbbcd": {
+"text": "Yes! That says owl!",
+"dur": 1.41
+},
+"9893f9ab": {
+"text": "That's an owl.",
+"dur": 1.01
+},
+"17a3eb97": {
+"text": "Can you spell bat?",
+"dur": 1.15
+},
+"03d2214f": {
+"text": "bat! You spelled bat!",
+"dur": 1.35
+},
+"06a8cb90": {
+"text": "Yes! That says bat!",
+"dur": 1.39
+},
+"8593e33b": {
+"text": "Can you spell cow?",
+"dur": 1.19
+},
+"3385ea3b": {
+"text": "cow! You spelled cow!",
+"dur": 1.43
+},
+"ad56c428": {
+"text": "Yes! That says cow!",
+"dur": 1.43
+},
+"f218f766": {
+"text": "That's a cow.",
+"dur": 1.0
+},
+"f6acb200": {
+"text": "Can you spell bee?",
+"dur": 1.15
+},
+"438232bf": {
+"text": "bee! You spelled bee!",
+"dur": 1.37
+},
+"279e7227": {
+"text": "Yes! That says bee!",
+"dur": 1.39
+},
+"de12af33": {
+"text": "Can you spell key?",
+"dur": 1.17
+},
+"c28b816f": {
+"text": "key! You spelled key!",
+"dur": 1.3
+},
+"403a07f4": {
+"text": "Yes! That says key!",
+"dur": 1.37
+},
+"8884dd6a": {
+"text": "Can you spell car?",
+"dur": 1.15
+},
+"58963993": {
+"text": "car! You spelled car!",
+"dur": 1.43
+},
+"9a65b0c9": {
+"text": "Yes! That says car!",
+"dur": 1.45
+},
+"58c2711f": {
+"text": "Can you spell pen?",
+"dur": 1.19
+},
+"b833cd3f": {
+"text": "pen! You spelled pen!",
+"dur": 1.39
+},
+"77c79ca8": {
+"text": "Yes! That says pen!",
+"dur": 1.45
+},
+"7f9cd7d1": {
+"text": "Can you spell van?",
+"dur": 1.19
+},
+"cc8debeb": {
+"text": "van! You spelled van!",
+"dur": 1.45
+},
+"9ea3965a": {
+"text": "Yes! That says van!",
+"dur": 1.49
+},
+"f9e20db4": {
+"text": "That's a van.",
+"dur": 1.01
+},
+"bc9977cf": {
+"text": "Can you spell nut?",
+"dur": 1.15
+},
+"3fde0f37": {
+"text": "nut! You spelled nut!",
+"dur": 1.41
+},
+"eb6bf120": {
+"text": "Yes! That says nut!",
+"dur": 1.41
+},
+"bd6fb6be": {
+"text": "That's a nut.",
+"dur": 0.97
+},
+"cb9110a8": {
+"text": "Can you spell toe?",
+"dur": 1.19
+},
+"9c336c57": {
+"text": "toe! You spelled toe!",
+"dur": 1.43
+},
+"ac65d0cb": {
+"text": "Yes! That says toe!",
+"dur": 1.41
+},
+"adf6cf39": {
+"text": "That's a toe.",
+"dur": 0.98
+},
+"65d87be4": {
+"text": "Can you spell jam?",
+"dur": 1.22
+},
+"5828daf7": {
+"text": "jam! You spelled jam!",
+"dur": 1.58
+},
+"b9120c03": {
+"text": "Yes! That says jam!",
+"dur": 1.51
+},
+"11c9d161": {
+"text": "That's a jam.",
+"dur": 1.02
+},
+"00e8926b": {
+"text": "Can you spell ice?",
+"dur": 1.17
+},
+"b94b74db": {
+"text": "ice! You spelled ice!",
+"dur": 1.5
+},
+"592a4bf8": {
+"text": "Yes! That says ice!",
+"dur": 1.41
+},
+"410fff22": {
+"text": "That's an ice.",
+"dur": 1.04
+},
+"0001cc0d": {
+"text": "What is 1 plus 1?",
+"dur": 1.36
+},
+"0fcbd778": {
+"text": "Yes! 1 plus 1 is 2!",
+"dur": 1.81
+},
+"fd01c754": {
+"text": "What is 1 plus 2?",
+"dur": 1.38
+},
+"8e0c9910": {
+"text": "Yes! 1 plus 2 is 3!",
+"dur": 1.83
+},
+"fe01c8e7": {
+"text": "What is 1 plus 3?",
+"dur": 1.43
+},
+"86fe312c": {
+"text": "Yes! 1 plus 3 is 4!",
+"dur": 1.88
+},
+"fb01c42e": {
+"text": "What is 1 plus 4?",
+"dur": 1.4
+},
+"ae236c8c": {
+"text": "Yes! 1 plus 4 is 5!",
+"dur": 1.92
+},
+"fc01c5c1": {
+"text": "What is 1 plus 5?",
+"dur": 1.37
+},
+"eeea8890": {
+"text": "Yes! 1 plus 5 is 6!",
+"dur": 1.9
+},
+"f901c108": {
+"text": "What is 1 plus 6?",
+"dur": 1.38
+},
+"86bd3f88": {
+"text": "Yes! 1 plus 6 is 7!",
+"dur": 1.96
+},
+"fa01c29b": {
+"text": "What is 1 plus 7?",
+"dur": 1.42
+},
+"47321dac": {
+"text": "Yes! 1 plus 7 is 8!",
+"dur": 1.92
+},
+"f701bde2": {
+"text": "What is 1 plus 8?",
+"dur": 1.42
+},
+"dc658d8c": {
+"text": "Yes! 1 plus 8 is 9!",
+"dur": 1.86
+},
+"f801bf75": {
+"text": "What is 1 plus 9?",
+"dur": 1.41
+},
+"2fd7b6eb": {
+"text": "Yes! 1 plus 9 is 10!",
+"dur": 1.96
+},
+"f8a76622": {
+"text": "What is 2 plus 1?",
+"dur": 1.37
+},
+"ce866dba": {
+"text": "Yes! 2 plus 1 is 3!",
+"dur": 1.73
+},
+"f7a7648f": {
+"text": "What is 2 plus 2?",
+"dur": 1.35
+},
+"5d6bf6a4": {
+"text": "Yes! 2 plus 2 is 4!",
+"dur": 1.71
+},
+"f6a762fc": {
+"text": "What is 2 plus 3?",
+"dur": 1.39
+},
+"6625687a": {
+"text": "Yes! 2 plus 3 is 5!",
+"dur": 1.88
+},
+"f5a76169": {
+"text": "What is 2 plus 4?",
+"dur": 1.35
+},
+"dc6fd288": {
+"text": "Yes! 2 plus 4 is 6!",
+"dur": 1.79
+},
+"f4a75fd6": {
+"text": "What is 2 plus 5?",
+"dur": 1.35
+},
+"023cff2a": {
+"text": "Yes! 2 plus 5 is 7!",
+"dur": 1.9
+},
+"f3a75e43": {
+"text": "What is 2 plus 6?",
+"dur": 1.33
+},
+"f02b2b14": {
+"text": "Yes! 2 plus 6 is 8!",
+"dur": 1.75
+},
+"f2a75cb0": {
+"text": "What is 2 plus 7?",
+"dur": 1.39
+},
+"ea1a2aca": {
+"text": "Yes! 2 plus 7 is 9!",
+"dur": 1.9
+},
+"01a7744d": {
+"text": "What is 2 plus 8?",
+"dur": 1.34
+},
+"d9e6d583": {
+"text": "Yes! 2 plus 8 is 10!",
+"dur": 1.75
+},
+"e7dbae97": {
+"text": "What is 3 plus 1?",
+"dur": 1.39
+},
+"9a1d8cb8": {
+"text": "Yes! 3 plus 1 is 4!",
+"dur": 1.79
+},
+"e8dbb02a": {
+"text": "What is 3 plus 2?",
+"dur": 1.37
+},
+"294de64c": {
+"text": "Yes! 3 plus 2 is 5!",
+"dur": 1.88
+},
+"e9dbb1bd": {
+"text": "What is 3 plus 3?",
+"dur": 1.41
+},
+"24893c50": {
+"text": "Yes! 3 plus 3 is 6!",
+"dur": 1.88
+},
+"e2dba6b8": {
+"text": "What is 3 plus 4?",
+"dur": 1.4
+},
+"0d37191c": {
+"text": "Yes! 3 plus 4 is 7!",
+"dur": 1.94
+},
+"e3dba84b": {
+"text": "What is 3 plus 5?",
+"dur": 1.37
+},
+"ecdbfc38": {
+"text": "Yes! 3 plus 5 is 8!",
+"dur": 1.92
+},
+"e4dba9de": {
+"text": "What is 3 plus 6?",
+"dur": 1.39
+},
+"1d525374": {
+"text": "Yes! 3 plus 6 is 9!",
+"dur": 1.96
+},
+"e5dbab71": {
+"text": "What is 3 plus 7?",
+"dur": 1.43
+},
+"c0c04cd3": {
+"text": "Yes! 3 plus 7 is 10!",
+"dur": 1.98
+},
+"ecf4c704": {
+"text": "What is 4 plus 1?",
+"dur": 1.33
+},
+"198ade6e": {
+"text": "Yes! 4 plus 1 is 5!",
+"dur": 1.9
+},
+"eff4cbbd": {
+"text": "What is 4 plus 2?",
+"dur": 1.35
+},
+"53791350": {
+"text": "Yes! 4 plus 2 is 6!",
+"dur": 1.83
+},
+"eef4ca2a": {
+"text": "What is 4 plus 3?",
+"dur": 1.37
+},
+"5a3dc072": {
+"text": "Yes! 4 plus 3 is 7!",
+"dur": 1.98
+},
+"e9f4c24b": {
+"text": "What is 4 plus 4?",
+"dur": 1.38
+},
+"1bcbd338": {
+"text": "Yes! 4 plus 4 is 8!",
+"dur": 1.86
+},
+"e8f4c0b8": {
+"text": "What is 4 plus 5?",
+"dur": 1.37
+},
+"4226f98e": {
+"text": "Yes! 4 plus 5 is 9!",
+"dur": 1.98
+},
+"ebf4c571": {
+"text": "What is 4 plus 6?",
+"dur": 1.4
+},
+"a44fc1d3": {
+"text": "Yes! 4 plus 6 is 10!",
+"dur": 1.86
+},
+"d5fa4969": {
+"text": "What is 5 plus 1?",
+"dur": 1.45
+},
+"68573b48": {
+"text": "Yes! 5 plus 1 is 6!",
+"dur": 1.9
+},
+"d2fa44b0": {
+"text": "What is 5 plus 2?",
+"dur": 1.47
+},
+"94408e80": {
+"text": "Yes! 5 plus 2 is 7!",
+"dur": 1.98
+},
+"d3fa4643": {
+"text": "What is 5 plus 3?",
+"dur": 1.51
+},
+"955f48d4": {
+"text": "Yes! 5 plus 3 is 8!",
+"dur": 1.92
+},
+"d8fa4e22": {
+"text": "What is 5 plus 4?",
+"dur": 1.47
+},
+"95f98cbc": {
+"text": "Yes! 5 plus 4 is 9!",
+"dur": 1.98
+},
+"d9fa4fb5": {
+"text": "What is 5 plus 5?",
+"dur": 1.47
+},
+"50d04a9b": {
+"text": "Yes! 5 plus 5 is 10!",
+"dur": 2.09
+},
+"c763795e": {
+"text": "What is 6 plus 1?",
+"dur": 1.39
+},
+"7b3cad22": {
+"text": "Yes! 6 plus 1 is 7!",
+"dur": 2.03
+},
+"c66377cb": {
+"text": "What is 6 plus 2?",
+"dur": 1.43
+},
+"4514ed1c": {
+"text": "Yes! 6 plus 2 is 8!",
+"dur": 1.83
+},
+"c5637638": {
+"text": "What is 6 plus 3?",
+"dur": 1.45
+},
+"4da14952": {
+"text": "Yes! 6 plus 3 is 9!",
+"dur": 1.98
+},
+"cc63813d": {
+"text": "What is 6 plus 4?",
+"dur": 1.44
+},
+"3fa422c3": {
+"text": "Yes! 6 plus 4 is 10!",
+"dur": 2.01
+},
+"af09a7d3": {
+"text": "What is 7 plus 1?",
+"dur": 1.47
+},
+"c6931868": {
+"text": "Yes! 7 plus 1 is 8!",
+"dur": 2.01
+},
+"b009a966": {
+"text": "What is 7 plus 2?",
+"dur": 1.45
+},
+"de5a8b64": {
+"text": "Yes! 7 plus 2 is 9!",
+"dur": 2.01
+},
+"b109aaf9": {
+"text": "What is 7 plus 3?",
+"dur": 1.51
+},
+"8bf35803": {
+"text": "Yes! 7 plus 3 is 10!",
+"dur": 2.05
+},
+"7c1c3f60": {
+"text": "What is 8 plus 1?",
+"dur": 1.4
+},
+"aa48b14e": {
+"text": "Yes! 8 plus 1 is 9!",
+"dur": 1.86
+},
+"7f1c4419": {
+"text": "What is 8 plus 2?",
+"dur": 1.36
+},
+"cc6cb713": {
+"text": "Yes! 8 plus 2 is 10!",
+"dur": 1.86
+},
+"3e944fa5": {
+"text": "What is 9 plus 1?",
+"dur": 1.43
+},
+"bcf0323b": {
+"text": "Yes! 9 plus 1 is 10!",
+"dur": 1.9
+},
+"e1986883": {
+"text": "What is 2 take away 1?",
+"dur": 1.55
+},
+"7e83da15": {
+"text": "Yes! 2 take away 1 is 1!",
+"dur": 1.96
+},
+"71a6cc40": {
+"text": "What is 3 take away 1?",
+"dur": 1.62
+},
+"4d288761": {
+"text": "Yes! 3 take away 1 is 2!",
+"dur": 1.92
+},
+"74a6d0f9": {
+"text": "What is 3 take away 2?",
+"dur": 1.62
+},
+"a28dbabf": {
+"text": "Yes! 3 take away 2 is 1!",
+"dur": 2.05
+},
+"2ac04ee5": {
+"text": "What is 4 take away 1?",
+"dur": 1.58
+},
+"92b73521": {
+"text": "Yes! 4 take away 1 is 3!",
+"dur": 1.98
+},
+"27c04a2c": {
+"text": "What is 4 take away 2?",
+"dur": 1.58
+},
+"8f12241d": {
+"text": "Yes! 4 take away 2 is 2!",
+"dur": 2.01
+},
+"28c04bbf": {
+"text": "What is 4 take away 3?",
+"dur": 1.6
+},
+"0a12b1b9": {
+"text": "Yes! 4 take away 3 is 1!",
+"dur": 2.09
+},
+"e9e64f0a": {
+"text": "What is 5 take away 1?",
+"dur": 1.6
+},
+"9b1898ed": {
+"text": "Yes! 5 take away 1 is 4!",
+"dur": 2.05
+},
+"e8e64d77": {
+"text": "What is 5 take away 2?",
+"dur": 1.64
+},
+"9cd2eb63": {
+"text": "Yes! 5 take away 2 is 3!",
+"dur": 2.13
+},
+"e7e64be4": {
+"text": "What is 5 take away 3?",
+"dur": 1.7
+},
+"55e04b2d": {
+"text": "Yes! 5 take away 3 is 2!",
+"dur": 2.15
+},
+"e6e64a51": {
+"text": "What is 5 take away 4?",
+"dur": 1.66
+},
+"0a2bf2ef": {
+"text": "Yes! 5 take away 4 is 1!",
+"dur": 2.2
+},
+"89458def": {
+"text": "What is 6 take away 1?",
+"dur": 1.6
+},
+"3652c78d": {
+"text": "Yes! 6 take away 1 is 5!",
+"dur": 2.13
+},
+"8a458f82": {
+"text": "What is 6 take away 2?",
+"dur": 1.64
+},
+"ad877b65": {
+"text": "Yes! 6 take away 2 is 4!",
+"dur": 2.11
+},
+"8b459115": {
+"text": "What is 6 take away 3?",
+"dur": 1.66
+},
+"ffb6da69": {
+"text": "Yes! 6 take away 3 is 3!",
+"dur": 2.15
+},
+"84458610": {
+"text": "What is 6 take away 4?",
+"dur": 1.71
+},
+"f9ff3409": {
+"text": "Yes! 6 take away 4 is 2!",
+"dur": 2.11
+},
+"854587a3": {
+"text": "What is 6 take away 5?",
+"dur": 1.71
+},
+"6187bfa5": {
+"text": "Yes! 6 take away 5 is 1!",
+"dur": 2.24
+},
+"8bfd343c": {
+"text": "What is 7 take away 1?",
+"dur": 1.73
+},
+"b33ab521": {
+"text": "Yes! 7 take away 1 is 6!",
+"dur": 2.18
+},
+"8efd38f5": {
+"text": "What is 7 take away 2?",
+"dur": 1.75
+},
+"1ebb73d7": {
+"text": "Yes! 7 take away 2 is 5!",
+"dur": 2.26
+},
+"8dfd3762": {
+"text": "What is 7 take away 3?",
+"dur": 1.73
+},
+"e326542d": {
+"text": "Yes! 7 take away 3 is 4!",
+"dur": 2.24
+},
+"88fd2f83": {
+"text": "What is 7 take away 4?",
+"dur": 1.73
+},
+"b114a607": {
+"text": "Yes! 7 take away 4 is 3!",
+"dur": 2.24
+},
+"87fd2df0": {
+"text": "What is 7 take away 5?",
+"dur": 1.79
+},
+"f9ffe691": {
+"text": "Yes! 7 take away 5 is 2!",
+"dur": 2.26
+},
+"8afd32a9": {
+"text": "What is 7 take away 6?",
+"dur": 1.75
+},
+"7e78bf2f": {
+"text": "Yes! 7 take away 6 is 1!",
+"dur": 2.18
+},
+"973f0661": {
+"text": "What is 8 take away 1?",
+"dur": 1.56
+},
+"74159a81": {
+"text": "Yes! 8 take away 1 is 7!",
+"dur": 2.15
+},
+"943f01a8": {
+"text": "What is 8 take away 2?",
+"dur": 1.58
+},
+"cf5d0495": {
+"text": "Yes! 8 take away 2 is 6!",
+"dur": 2.09
+},
+"953f033b": {
+"text": "What is 8 take away 3?",
+"dur": 1.62
+},
+"2ee58399": {
+"text": "Yes! 8 take away 3 is 5!",
+"dur": 2.18
+},
+"9a3f0b1a": {
+"text": "What is 8 take away 4?",
+"dur": 1.6
+},
+"52a634a5": {
+"text": "Yes! 8 take away 4 is 4!",
+"dur": 2.09
+},
+"9b3f0cad": {
+"text": "What is 8 take away 5?",
+"dur": 1.64
+},
+"a4d593a9": {
+"text": "Yes! 8 take away 5 is 3!",
+"dur": 2.13
+},
+"983f07f4": {
+"text": "What is 8 take away 6?",
+"dur": 1.6
+},
+"68dce125": {
+"text": "Yes! 8 take away 6 is 2!",
+"dur": 2.09
+},
+"993f0987": {
+"text": "What is 8 take away 7?",
+"dur": 1.69
+},
+"d7717a81": {
+"text": "Yes! 8 take away 7 is 1!",
+"dur": 2.15
+},
+"2c66b586": {
+"text": "What is 9 take away 1?",
+"dur": 1.66
+},
+"7a475145": {
+"text": "Yes! 9 take away 1 is 8!",
+"dur": 2.07
+},
+"2b66b3f3": {
+"text": "What is 9 take away 2?",
+"dur": 1.66
+},
+"308ae473": {
+"text": "Yes! 9 take away 2 is 7!",
+"dur": 2.18
+},
+"2a66b260": {
+"text": "What is 9 take away 3?",
+"dur": 1.66
+},
+"d3026895": {
+"text": "Yes! 9 take away 3 is 6!",
+"dur": 2.11
+},
+"3166bd65": {
+"text": "What is 9 take away 4?",
+"dur": 1.71
+},
+"aa7afacf": {
+"text": "Yes! 9 take away 4 is 5!",
+"dur": 2.22
+},
+"3066bbd2": {
+"text": "What is 9 take away 5?",
+"dur": 1.75
+},
+"564b98a5": {
+"text": "Yes! 9 take away 5 is 4!",
+"dur": 2.2
+},
+"2f66ba3f": {
+"text": "What is 9 take away 6?",
+"dur": 1.73
+},
+"d916db5b": {
+"text": "Yes! 9 take away 6 is 3!",
+"dur": 2.11
+},
+"2e66b8ac": {
+"text": "What is 9 take away 7?",
+"dur": 1.75
+},
+"6c824525": {
+"text": "Yes! 9 take away 7 is 2!",
+"dur": 2.22
+},
+"3566c3b1": {
+"text": "What is 9 take away 8?",
+"dur": 1.64
+},
+"7650d42f": {
+"text": "Yes! 9 take away 8 is 1!",
+"dur": 2.03
+},
+"bee6128a": {
+"text": "What is 10 take away 1?",
+"dur": 1.59
+},
+"10bf3070": {
+"text": "Yes! 10 take away 1 is 9!",
+"dur": 2.09
+},
+"bde610f7": {
+"text": "What is 10 take away 2?",
+"dur": 1.6
+},
+"7961b4a4": {
+"text": "Yes! 10 take away 2 is 8!",
+"dur": 2.05
+},
+"bce60f64": {
+"text": "What is 10 take away 3?",
+"dur": 1.64
+},
+"31e93b90": {
+"text": "Yes! 10 take away 3 is 7!",
+"dur": 2.15
+},
+"bbe60dd1": {
+"text": "What is 10 take away 4?",
+"dur": 1.66
+},
+"0900a2cc": {
+"text": "Yes! 10 take away 4 is 6!",
+"dur": 2.13
+},
+"bae60c3e": {
+"text": "What is 10 take away 5?",
+"dur": 1.66
+},
+"86000898": {
+"text": "Yes! 10 take away 5 is 5!",
+"dur": 2.24
+},
+"b9e60aab": {
+"text": "What is 10 take away 6?",
+"dur": 1.71
+},
+"91a52634": {
+"text": "Yes! 10 take away 6 is 4!",
+"dur": 2.07
+},
+"b8e60918": {
+"text": "What is 10 take away 7?",
+"dur": 1.73
+},
+"1ca70758": {
+"text": "Yes! 10 take away 7 is 3!",
+"dur": 2.18
+},
+"b7e60785": {
+"text": "What is 10 take away 8?",
+"dur": 1.62
+},
+"9885039c": {
+"text": "Yes! 10 take away 8 is 2!",
+"dur": 2.01
+},
+"b6e605f2": {
+"text": "What is 10 take away 9?",
+"dur": 1.62
+},
+"9549a100": {
+"text": "Yes! 10 take away 9 is 1!",
+"dur": 2.13
+},
+"c5114a17": {
+"text": "Listen to the owl's song, then play it back on the mushrooms!",
+"dur": 3.33
+},
+"e9ec29ea": {
+"text": "Listen to the dragon's beat, then drum it back!",
+"dur": 2.62
+},
+"b174e055": {
+"text": "Your turn!",
+"dur": 0.94
+},
+"087b1010": {
+"text": "Yes! Now a longer one!",
+"dur": 1.62
+},
+"af70c793": {
+"text": "Not quite. Listen again!",
+"dur": 1.57
+},
+"c99e727b": {
+"text": "Yes! You did it!",
+"dur": 1.3
+},
+"a3abed29": {
+"text": "What time is it?",
+"dur": 1.11
+},
+"b0e39c4c": {
+"text": "Yes! It's 1 o'clock!",
+"dur": 1.48
+},
+"36e3fe63": {
+"text": "Yes! It's half past 1!",
+"dur": 1.69
+},
+"61ca86b1": {
+"text": "That's 1 o'clock.",
+"dur": 1.19
+},
+"0cb4e64a": {
+"text": "That's half past 1.",
+"dur": 1.39
+},
+"0b8f11dd": {
+"text": "Yes! It's 2 o'clock!",
+"dur": 1.43
+},
+"37e3fff6": {
+"text": "Yes! It's half past 2!",
+"dur": 1.71
+},
+"e0c4c100": {
+"text": "That's 2 o'clock.",
+"dur": 1.22
+},
+"0bb4e4b7": {
+"text": "That's half past 2.",
+"dur": 1.41
+},
+"b20d4c02": {
+"text": "Yes! It's 3 o'clock!",
+"dur": 1.53
+},
+"38e40189": {
+"text": "Yes! It's half past 3!",
+"dur": 1.71
+},
+"e5fefc2b": {
+"text": "That's 3 o'clock.",
+"dur": 1.24
+},
+"0ab4e324": {
+"text": "That's half past 3.",
+"dur": 1.41
+},
+"5293037b": {
+"text": "Yes! It's 4 o'clock!",
+"dur": 1.54
+},
+"39e4031c": {
+"text": "Yes! It's half past 4!",
+"dur": 1.71
+},
+"e1ae8272": {
+"text": "That's 4 o'clock.",
+"dur": 1.21
+},
+"09b4e191": {
+"text": "That's half past 4.",
+"dur": 1.41
+},
+"26041ad0": {
+"text": "Yes! It's 5 o'clock!",
+"dur": 1.64
+},
+"3ae404af": {
+"text": "Yes! It's half past 5!",
+"dur": 1.75
+},
+"353ff14d": {
+"text": "That's 5 o'clock.",
+"dur": 1.28
+},
+"08b4dffe": {
+"text": "That's half past 5.",
+"dur": 1.47
+},
+"38959001": {
+"text": "Yes! It's 6 o'clock!",
+"dur": 1.53
+},
+"3be40642": {
+"text": "Yes! It's half past 6!",
+"dur": 1.71
+},
+"54cc0fbc": {
+"text": "That's 6 o'clock.",
+"dur": 1.25
+},
+"07b4de6b": {
+"text": "That's half past 6.",
+"dur": 1.43
+},
+"a5f2c466": {
+"text": "Yes! It's 7 o'clock!",
+"dur": 1.64
+},
+"3ce407d5": {
+"text": "Yes! It's half past 7!",
+"dur": 1.77
+},
+"7fab4a77": {
+"text": "That's 7 o'clock.",
+"dur": 1.38
+},
+"06b4dcd8": {
+"text": "That's half past 7.",
+"dur": 1.45
+},
+"295e279f": {
+"text": "Yes! It's 8 o'clock!",
+"dur": 1.47
+},
+"3de40968": {
+"text": "Yes! It's half past 8!",
+"dur": 1.71
+},
+"24a8d2ae": {
+"text": "That's 8 o'clock.",
+"dur": 1.26
+},
+"05b4db45": {
+"text": "That's half past 8.",
+"dur": 1.39
+},
+"e54b27c4": {
+"text": "Yes! It's 9 o'clock!",
+"dur": 1.6
+},
+"3ee40afb": {
+"text": "Yes! It's half past 9!",
+"dur": 1.75
+},
+"9e7c5b29": {
+"text": "That's 9 o'clock.",
+"dur": 1.28
+},
+"04b4d9b2": {
+"text": "That's half past 9.",
+"dur": 1.43
+},
+"64173d14": {
+"text": "Yes! It's 10 o'clock!",
+"dur": 1.54
+},
+"bbe95ca9": {
+"text": "Yes! It's half past 10!",
+"dur": 1.66
+},
+"a1a62763": {
+"text": "That's 10 o'clock.",
+"dur": 1.26
+},
+"7ac6d20e": {
+"text": "That's half past 10.",
+"dur": 1.39
+},
+"c164a9ef": {
+"text": "Yes! It's 11 o'clock!",
+"dur": 1.77
+},
+"bae95b16": {
+"text": "Yes! It's half past 11!",
+"dur": 1.94
+},
+"f64e6b58": {
+"text": "That's 11 o'clock.",
+"dur": 1.45
+},
+"7bc6d3a1": {
+"text": "That's half past 11.",
+"dur": 1.53
+},
+"da3c0aca": {
+"text": "Yes! It's 12 o'clock!",
+"dur": 1.6
+},
+"b9e95983": {
+"text": "Yes! It's half past 12!",
+"dur": 1.79
+},
+"63db09a9": {
+"text": "That's 12 o'clock.",
+"dur": 1.3
+},
+"78c6cee8": {
+"text": "That's half past 12.",
+"dur": 1.47
+},
+"21f44560": {
+"text": "What number is missing?",
+"dur": 1.41
+},
+"bb42fff3": {
+"text": "Yes! 1!",
+"dur": 0.98
+},
+"bc430186": {
+"text": "Yes! 2!",
+"dur": 1.02
+},
+"bd430319": {
+"text": "Yes! 3!",
+"dur": 0.98
+},
+"be4304ac": {
+"text": "Yes! 4!",
+"dur": 1.14
+},
+"bf43063f": {
+"text": "Yes! 5!",
+"dur": 1.15
+},
+"c04307d2": {
+"text": "Yes! 6!",
+"dur": 1.1
+},
+"c1430965": {
+"text": "Yes! 7!",
+"dur": 1.2
+},
+"c2430af8": {
+"text": "Yes! 8!",
+"dur": 1.02
+},
+"c3430c8b": {
+"text": "Yes! 9!",
+"dur": 1.05
+},
+"8d789ff9": {
+"text": "Yes! 10!",
+"dur": 1.02
+},
+"8c789e66": {
+"text": "Yes! 11!",
+"dur": 1.35
+},
+"71a4fc38": {
+"text": "That's 11.",
+"dur": 1.0
+},
+"8b789cd3": {
+"text": "Yes! 12!",
+"dur": 1.13
+},
+"74a500f1": {
+"text": "That's 12.",
+"dur": 1.0
+},
+"8a789b40": {
+"text": "Yes! 13!",
+"dur": 1.34
+},
+"73a4ff5e": {
+"text": "That's 13.",
+"dur": 1.09
+},
+"9178a645": {
+"text": "Yes! 14!",
+"dur": 1.27
+},
+"76a50417": {
+"text": "That's 14.",
+"dur": 1.06
+},
+"9078a4b2": {
+"text": "Yes! 15!",
+"dur": 1.28
+},
+"75a50284": {
+"text": "That's 15.",
+"dur": 1.05
+},
+"8f78a31f": {
+"text": "Yes! 16!",
+"dur": 1.22
+},
+"78a5073d": {
+"text": "That's 16.",
+"dur": 1.07
+},
+"8e78a18c": {
+"text": "Yes! 17!",
+"dur": 1.45
+},
+"77a505aa": {
+"text": "That's 17.",
+"dur": 1.19
+},
+"9578ac91": {
+"text": "Yes! 18!",
+"dur": 1.3
+},
+"6aa4f133": {
+"text": "That's 18.",
+"dur": 1.02
+},
+"9478aafe": {
+"text": "Yes! 19!",
+"dur": 1.17
+},
+"69a4efa0": {
+"text": "That's 19.",
+"dur": 1.1
+},
+"137bb182": {
+"text": "Yes! 20!",
+"dur": 1.16
+},
+"e09d5c30": {
+"text": "That's 20.",
+"dur": 1.02
+},
+"147bb315": {
+"text": "Yes! 21!",
+"dur": 1.34
+},
+"e19d5dc3": {
+"text": "That's 21.",
+"dur": 1.19
+},
+"117bae5c": {
+"text": "Yes! 22!",
+"dur": 1.37
+},
+"e29d5f56": {
+"text": "That's 22.",
+"dur": 1.19
+},
+"127bafef": {
+"text": "Yes! 23!",
+"dur": 1.37
+},
+"e39d60e9": {
+"text": "That's 23.",
+"dur": 1.17
+},
+"0f7bab36": {
+"text": "Yes! 24!",
+"dur": 1.41
+},
+"e49d627c": {
+"text": "That's 24.",
+"dur": 1.22
+},
+"107bacc9": {
+"text": "Yes! 25!",
+"dur": 1.41
+},
+"e59d640f": {
+"text": "That's 25.",
+"dur": 1.24
+},
+"0d7ba810": {
+"text": "Yes! 26!",
+"dur": 1.41
+},
+"e69d65a2": {
+"text": "That's 26.",
+"dur": 1.24
+},
+"0e7ba9a3": {
+"text": "Yes! 27!",
+"dur": 1.43
+},
+"e79d6735": {
+"text": "That's 27.",
+"dur": 1.24
+},
+"1b7bbe1a": {
+"text": "Yes! 28!",
+"dur": 1.34
+},
+"e89d68c8": {
+"text": "That's 28.",
+"dur": 1.15
+},
+"1c7bbfad": {
+"text": "Yes! 29!",
+"dur": 1.36
+},
+"e99d6a5b": {
+"text": "That's 29.",
+"dur": 1.19
+},
+"197df98b": {
+"text": "Yes! 30!",
+"dur": 1.25
+},
+"e69fa439": {
+"text": "That's 30.",
+"dur": 0.97
+},
+"187df7f8": {
+"text": "Yes! 31!",
+"dur": 1.39
+},
+"e59fa2a6": {
+"text": "That's 31.",
+"dur": 1.15
+},
+"1b7dfcb1": {
+"text": "Yes! 32!",
+"dur": 1.26
+},
+"e49fa113": {
+"text": "That's 32.",
+"dur": 1.09
+},
+"1a7dfb1e": {
+"text": "Yes! 33!",
+"dur": 1.26
+},
+"e39f9f80": {
+"text": "That's 33.",
+"dur": 1.13
+},
+"1d7dffd7": {
+"text": "Yes! 34!",
+"dur": 1.34
+},
+"ea9faa85": {
+"text": "That's 34.",
+"dur": 1.15
+},
+"1c7dfe44": {
+"text": "Yes! 35!",
+"dur": 1.34
+},
+"e99fa8f2": {
+"text": "That's 35.",
+"dur": 1.22
+},
+"1f7e02fd": {
+"text": "Yes! 36!",
+"dur": 1.32
+},
+"e89fa75f": {
+"text": "That's 36.",
+"dur": 1.19
+},
+"1e7e016a": {
+"text": "Yes! 37!",
+"dur": 1.43
+},
+"e79fa5cc": {
+"text": "That's 37.",
+"dur": 1.19
+},
+"117decf3": {
+"text": "Yes! 38!",
+"dur": 1.28
+},
+"ee9fb0d1": {
+"text": "That's 38.",
+"dur": 1.15
+},
+"107deb60": {
+"text": "Yes! 39!",
+"dur": 1.28
+},
+"ed9faf3e": {
+"text": "That's 39.",
+"dur": 1.15
+},
+"1f804194": {
+"text": "Yes! 40!",
+"dur": 1.09
+},
+"e4ac6d06": {
+"text": "That's 40.",
+"dur": 0.94
+},
+"20804327": {
+"text": "Yes! 41!",
+"dur": 1.34
+},
+"e5ac6e99": {
+"text": "That's 41.",
+"dur": 1.12
+},
+"218044ba": {
+"text": "Yes! 42!",
+"dur": 1.26
+},
+"e2ac69e0": {
+"text": "That's 42.",
+"dur": 1.11
+},
+"2280464d": {
+"text": "Yes! 43!",
+"dur": 1.3
+},
+"e3ac6b73": {
+"text": "That's 43.",
+"dur": 1.17
+},
+"1b803b48": {
+"text": "Yes! 44!",
+"dur": 1.37
+},
+"e8ac7352": {
+"text": "That's 44.",
+"dur": 1.17
+},
+"1c803cdb": {
+"text": "Yes! 45!",
+"dur": 1.34
+},
+"e9ac74e5": {
+"text": "That's 45.",
+"dur": 1.22
+},
+"1d803e6e": {
+"text": "Yes! 46!",
+"dur": 1.3
+},
+"e6ac702c": {
+"text": "That's 46.",
+"dur": 1.22
+},
+"1e804001": {
+"text": "Yes! 47!",
+"dur": 1.41
+},
+"e7ac71bf": {
+"text": "That's 47.",
+"dur": 1.22
+},
+"178034fc": {
+"text": "Yes! 48!",
+"dur": 1.32
+},
+"ecac799e": {
+"text": "That's 48.",
+"dur": 1.13
+},
+"1880368f": {
+"text": "Yes! 49!",
+"dur": 1.26
+},
+"edac7b31": {
+"text": "That's 49.",
+"dur": 1.17
+},
+"2582899d": {
+"text": "Yes! 50!",
+"dur": 1.19
+},
+"eaaeb50f": {
+"text": "That's 50.",
+"dur": 1.0
+}
+}
+}
