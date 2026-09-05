@@ -1,0 +1,25 @@
+:root { --ink: #3b0764; --bg: #f5f3ff; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: radial-gradient(ellipse at 50% 0%, #ede9fe 0%, var(--bg) 60%); color: var(--ink); font-family: Fredoka, "Arial Rounded MT Bold", system-ui, sans-serif; }
+.top { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding: 18px 28px; }
+.brand { font-size: 30px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.logo { font-size: 34px; }
+.promise { font-size: 16px; color: #6d28d9; background: #fff; border-radius: 999px; padding: 8px 16px; box-shadow: 0 2px 0 #ddd6fe; }
+main { max-width: 1100px; margin: 0 auto; padding: 8px 20px 60px; }
+h1 { text-align: center; font-size: clamp(32px, 5vw, 54px); margin: 10px 0 24px; color: #6d28d9; }
+.games { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+.card { display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: var(--ink); background: #fff; border-radius: 34px; padding: 26px 22px 24px; box-shadow: 0 10px 0 rgba(109,40,217,.12), 0 20px 40px rgba(76,29,149,.12); transition: transform .15s; border: 6px solid transparent; }
+.card:hover, .card:focus { transform: translateY(-4px) scale(1.02); }
+.card.melody { border-color: #f9a8d4; background: linear-gradient(#fff, #fdf2f8); }
+.card.germs { border-color: #86efac; background: linear-gradient(#fff, #f0fdf4); }
+.card.castle { border-color: #fcd34d; background: linear-gradient(#fff, #fffbeb); }
+.art { font-size: 84px; line-height: 1.1; margin-bottom: 8px; }
+.card h2 { margin: 6px 0 8px; font-size: 32px; }
+.card p { margin: 0 0 18px; font-size: 18px; color: #4c1d95; line-height: 1.35; }
+.play { font-size: 26px; font-weight: 700; color: #fff; background: linear-gradient(#4ade80, #16a34a); border-radius: 999px; padding: 12px 34px; box-shadow: 0 6px 0 #15803d; }
+.story { margin: 60px auto 0; max-width: 760px; background: #fff; border-radius: 30px; padding: 28px 32px; box-shadow: 0 10px 30px rgba(76,29,149,.1); }
+.story h2 { margin-top: 0; color: #6d28d9; }
+.story p { font-size: 19px; line-height: 1.5; }
+footer { text-align: center; padding: 20px; color: #6d28d9; }
+footer a { color: inherit; }
+@media (max-width: 600px) { .brand { font-size: 24px; } .top { padding: 14px 16px; } }
