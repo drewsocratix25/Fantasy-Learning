@@ -68,7 +68,7 @@ select
   count(*) filter (where supporter_until > now())                        as active_supporters,
   count(*) filter (where supporter_until > now() and plan = 'month')      as monthly,
   count(*) filter (where supporter_until > now() and plan = 'year')       as yearly,
-  count(*) filter (where supporter_until > now() and plan = 'month') * 1.00
+  count(*) filter (where supporter_until > now() and plan = 'month') * 2.00
     + count(*) filter (where supporter_until > now() and plan = 'year') * (10.00 / 12) as mrr_usd,
   count(*)                                                                as families,
   count(*) filter (where last_seen_at > now() - interval '30 days')       as families_active_30d

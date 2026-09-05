@@ -6,7 +6,7 @@ window.LW_CONFIG = {
   siteUrl: 'https://drewsocratix25.github.io/Fantasy-Learning/',
   supabaseUrl: '',           // e.g. 'https://abcdefghijklmnop.supabase.co'
   supabaseAnonKey: '',       // the project's anon (publishable) key, safe to publish
-  stripeMonthly: '',         // Stripe Payment Link for $1 / month
+  stripeMonthly: '',         // Stripe Payment Link for $2 / month
   stripeYearly: '',          // Stripe Payment Link for $10 / year
   stripePortal: '',          // Stripe Customer Portal link (manage / cancel)
   supportEmail: '',          // shown on the privacy + terms pages, e.g. 'hello@example.com'

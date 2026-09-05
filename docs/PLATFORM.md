@@ -6,7 +6,7 @@ documented in the README; this is everything around them.
 ## What we are building and why
 
 Little Wonders is a **catalogue** of small, ad-free learning games with one identity, one promise (no ads,
-no tracking, plays on anything) and one voluntary subscription ($1 a month or $10 a year). Melody Kingdom
+no tracking, plays on anything) and one voluntary subscription ($2 a month or $10 a year). Melody Kingdom
 is the first game; Germ Patrol and Castle Quest are being built now so the catalogue is worth
 subscribing to and coming back to. This platform layer exists so that:
 
@@ -26,7 +26,7 @@ subscribing to and coming back to. This platform layer exists so that:
 GitHub Pages (static, CDN)                 Supabase (one project)                 Stripe
 ┌───────────────────────────┐             ┌──────────────────────────────┐        ┌──────────────┐
 │ index.html   hub + cards  │  fetch      │ functions/family             │        │ Payment Link │
-│ games.json   registry     │────────────▶│   create/join/status/recover │        │ $1/mo $10/yr │
+│ games.json   registry     │────────────▶│   create/join/status/recover │        │ $2/mo $10/yr │
 │ games/*/     the games    │             │   pull/push (progress)       │        └──────┬───────┘
 │ platform/    LW client    │             │   ping (anonymous plays)     │  webhook      │
 │ privacy.html terms.html   │             │ functions/stripe-webhook ◀───┼───────────────┘
@@ -90,7 +90,7 @@ ready and tested against a mock. Do the steps in order.
 
 ### 2. Stripe
 
-1. Create a product "Support Little Wonders" with two recurring prices: $1.00 monthly and $10.00 yearly.
+1. Create a product "Support Little Wonders" with two recurring prices: $2.00 monthly and $10.00 yearly.
 2. Create a **Payment Link** for each price. In each link's settings turn on "Collect customer email"
    (default) and set the confirmation to redirect to `<SITE_URL>?thanks=1`.
 3. Create a **Customer Portal** link (Settings → Billing → Customer portal) so supporters can cancel.
@@ -140,10 +140,10 @@ registry check, the save-merge unit test and the browser smoke test on every pul
 | GitHub Pages | 100 GB/month bandwidth, soft limit | Netlify/Cloudflare Pages are drop-in (static folder) |
 | Supabase | 500 MB database, 500k function calls/month | $25/month Pro |
 | Resend | 3,000 emails/month | $20/month |
-| Stripe | pay-per-transaction | 2.9% + 30¢ per charge (on a $1 charge that is 33¢; the yearly plan is the one to nudge toward) |
+| Stripe | pay-per-transaction | 2.9% + 30¢ per charge (36¢ on a $2 charge, 59¢ on a $10 charge) |
 
-At $1 a month the Stripe fee eats a third of each payment. Two cheap fixes when it matters: raise the
-monthly price to $2, or lead with the yearly plan (the hub already lists both).
+Monthly was $1 originally; at that price the Stripe fee ate a third of each payment, so it is $2. The
+yearly plan is still the better deal for a family and the cheaper one to process, so lead with it.
 
 ## Roadmap this unlocks
 
