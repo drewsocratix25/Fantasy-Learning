@@ -11,6 +11,7 @@
     levels: { letters: 1, numbers: 1, shapes: 1, patterns: 1, piano: 1 },
     plays: {},            // gameId -> count
     songBest: {},         // songId -> best stars
+    drawings: {},         // drawingId -> small PNG data URL of her finished picture
     settings: { music: true, speech: true, speed: 'slow' },
     visited: [],
     firstRun: true,

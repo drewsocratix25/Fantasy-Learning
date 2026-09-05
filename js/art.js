@@ -239,6 +239,35 @@
     Art.emoji(ctx, '🎹', 0, -60, 54);
     ctx.restore();
   };
+  Art.studio = function (ctx, x, y, s, t) { // striped painting tent with an easel and a palette out front
+    t = t || 0;
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = 'rgba(0,0,0,.15)'; Art.ellipse(ctx, 0, 4, 160, 22); ctx.fill();
+    const OUT = 'rgba(112,26,117,.45)'; ctx.strokeStyle = OUT; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    // walls with pink stripes
+    ctx.fillStyle = '#fff'; Art.roundRect(ctx, -110, -118, 220, 120, 8); ctx.fill();
+    ctx.save(); Art.roundRect(ctx, -110, -118, 220, 120, 8); ctx.clip(); ctx.fillStyle = '#f9a8d4'; for (let i = 0; i < 6; i++) ctx.fillRect(-110 + i * 40, -118, 20, 120); ctx.restore();
+    Art.roundRect(ctx, -110, -118, 220, 120, 8); ctx.stroke();
+    ctx.fillStyle = '#5b21b6'; ctx.beginPath(); ctx.moveTo(-30, 2); ctx.lineTo(-30, -60); ctx.arc(0, -60, 30, Math.PI, 0); ctx.lineTo(30, 2); ctx.closePath(); ctx.fill(); ctx.stroke();
+    [[-75, -60, '#ef4444'], [70, -40, '#3b82f6'], [-40, -100, '#22c55e'], [55, -92, '#facc15']].forEach(([px, py, c]) => { ctx.fillStyle = c; Art.circle(ctx, px, py, 9); ctx.fill(); Art.circle(ctx, px + 10, py - 6, 5); ctx.fill(); Art.circle(ctx, px - 8, py + 8, 4); ctx.fill(); });
+    // roof with a scalloped edge and a flag
+    ctx.fillStyle = '#c026d3'; ctx.beginPath(); ctx.moveTo(-128, -114); ctx.lineTo(0, -212); ctx.lineTo(128, -114); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#e879f9'; ctx.beginPath(); ctx.moveTo(-128, -114); ctx.lineTo(0, -212); ctx.lineTo(-24, -114); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#c026d3'; ctx.beginPath(); for (let i = 0; i < 8; i++) { ctx.moveTo(-112 + i * 32 + 15, -114); ctx.arc(-112 + i * 32, -114, 15, 0, Math.PI); } ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = '#78350f'; ctx.beginPath(); ctx.moveTo(0, -212); ctx.lineTo(0, -246); ctx.stroke();
+    const wave = Math.sin(t * 6) * 4; ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.moveTo(0, -246); ctx.quadraticCurveTo(16, -242 + wave, 32, -238); ctx.lineTo(0, -226); ctx.closePath(); ctx.fill();
+    // easel with a rainbow painting
+    ctx.strokeStyle = '#92400e'; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(92, -150); ctx.lineTo(70, 4); ctx.moveTo(92, -150); ctx.lineTo(126, 4); ctx.moveTo(98, -100); ctx.lineTo(112, 4); ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = '#78350f'; ctx.lineWidth = 3; Art.roundRect(ctx, 60, -130, 76, 64, 4); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#4ade80'; ctx.fillRect(64, -80, 68, 10); Art.rainbow(ctx, 98, -78, 32, 4, 1); ctx.fillStyle = '#fde047'; Art.circle(ctx, 124, -118, 7); ctx.fill();
+    ctx.fillStyle = '#b45309'; Art.roundRect(ctx, 56, -70, 84, 8, 3); ctx.fill();
+    // palette and brush
+    ctx.fillStyle = '#d6b48b'; ctx.strokeStyle = OUT; ctx.lineWidth = 3; Art.ellipse(ctx, -84, -12, 34, 22); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#fff'; Art.circle(ctx, -66, -14, 6); ctx.fill();
+    [['#ef4444', -104, -20], ['#3b82f6', -90, -26], ['#facc15', -76, -26], ['#22c55e', -102, -4], ['#a855f7', -88, 0]].forEach(([c, px, py]) => { ctx.fillStyle = c; Art.circle(ctx, px, py, 5); ctx.fill(); });
+    Art.emoji(ctx, '🖌️', -118, -52 + Math.sin(t * 3) * 3, 30);
+    ctx.restore();
+  };
   Art.pond = function (ctx, x, y, rx, ry, t) {
     t = t || 0;
     ctx.save(); ctx.translate(x, y);

@@ -12,6 +12,7 @@ Explore a kingdom with your princess and a companion who hops along behind you. 
 | 🌈 **Rainbow Meadow** | Colours and shapes | Pop the balloon that matches: "the blue star", "the triangle", "the purple heart". |
 | 🎹 **Piano Pavilion** | Notes, melody, following a tune | A rainbow piano with four instruments. Free play, Listen (keys light up), and Teach me (follow the glowing key through a whole song). |
 | 🐻 **Pattern Bridge** | AB / AAB / ABC patterns | Musical creatures play a pattern; pick what comes next and hop across the stones. |
+| 🎨 **Art Studio** | Drawing step by step: shapes, following directions, fine motor skills | Pick a picture (sun, flower, house, ice cream, fish, tree, car, butterfly, cat, dog, bunny, rocket). A pencil draws each step on the left while she draws along with her finger on the right, with helper lines she can trace or switch off, then she colours it in with crayons. Finished pictures are saved in her gallery. |
 
 Everything is read aloud, every game gives stars, and stars unlock new companions (unicorn, dragon, butterfly, chick, penguin, fox, dolphin). Difficulty grows on its own as she earns three-star rounds. Progress is saved on the device.
 
@@ -65,11 +66,12 @@ css/style.css
 js/save.js            progress + settings (localStorage)
 js/audio.js           Web Audio synth: instruments, song scheduler, background music, sound effects, speech
 js/songs.js           nursery songs with syllable-aligned lyrics
+js/drawings.js        step-by-step drawing lessons (shapes + spoken instructions)
 js/art.js             cartoon drawing library (princess, castle, trees, particles)
 js/ui.js              buttons, HUD, results / friends / grown-up overlays
 js/title.js           choose a princess
 js/world.js           the explorable kingdom
-js/games/*.js         the six mini-games
+js/games/*.js         the seven mini-games
 manifest.webmanifest  installable web app
 sw.js                 offline cache
 .github/workflows     GitHub Pages deploy

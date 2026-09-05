@@ -9,11 +9,13 @@
     { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
     { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
     { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
+    { id: 'drawing', name: 'Art Studio', emoji: '🎨', x: 1620, y: 700, r: 120, scene: 'drawpick', hint: 'Learn to draw!' },
   ];
   const OBSTACLES = [
     { type: 'rect', x: 970, y: 300, w: 460, h: 340 },        // castle body
     { type: 'circle', x: 1980, y: 470, r: 190 },               // pond
     { type: 'circle', x: 1930, y: 1160, r: 110 },              // gazebo
+    { type: 'rect', x: 1505, y: 445, w: 230, h: 120 },        // art studio tent
     { type: 'rect', x: 0, y: 0, w: MAP_W, h: 90 }, { type: 'rect', x: 0, y: MAP_H - 70, w: MAP_W, h: 70 }, { type: 'rect', x: 0, y: 0, w: 80, h: MAP_H }, { type: 'rect', x: MAP_W - 80, y: 0, w: 80, h: MAP_H },
   ];
   function rng(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
@@ -24,7 +26,7 @@
     hud: { home: false },
     init() {
       const r = rng(7); this.decor = []; this.flowers = []; this.butterflies = []; this.clouds = [];
-      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200;
+      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200 && Math.hypot(1620 - x, 500 - y) > 240;
       // border trees
       for (let i = 0; i < 26; i++) { const x = 120 + (i / 25) * (MAP_W - 240); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: 120 + r() * 50, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: MAP_H - 30 - r() * 40, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
       for (let i = 0; i < 16; i++) { const y = 180 + (i / 15) * (MAP_H - 360); this.decor.push({ k: 'tree', x: 110 + r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: MAP_W - 110 - r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
@@ -159,6 +161,7 @@
       this.decor.forEach((d) => { if (d.x > cx - 150 && d.x < cx + g.W + 150 && d.y > cy - 50 && d.y < cy + g.H + 200) items.push({ y: d.y, f: () => (d.k === 'tree' ? A.tree(ctx, d.x, d.y, d.s, d.v, t) : A.bush(ctx, d.x, d.y, d.s)) }); });
       items.push({ y: 640, f: () => A.castle(ctx, 1200, 640, 1.05, t) });
       items.push({ y: 1160, f: () => A.gazebo(ctx, 1930, 1160, 1, t) });
+      items.push({ y: 562, f: () => A.studio(ctx, 1620, 560, 1, t) });
       LOCS.forEach((l) => { const isNear = this.near === l; const hint = this.hintLoc === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0; items.push({ y: l.y, f: () => A.sign(ctx, l.x, l.y, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 1 }) }); if (isNear || hint) items.push({ y: l.y - 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, l.x, l.y + 30, l.r, l.r * 0.45); ctx.stroke(); ctx.setLineDash([]); } }); });
       items.push({ y: this.py, f: () => A.princess(ctx, this.px, this.py, g.look, { t, walking: this.walking, facing: this.facing, wave: !this.walking && this.idle > 3 && this.idle < 5 }, 1) });
       items.push({ y: this.companion.y, f: () => { const hop = Math.abs(Math.sin(t * 8)) * (this.walking ? 14 : 3); ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, this.companion.x, this.companion.y, 22, 8); ctx.fill(); A.emoji(ctx, FL.Save.data.companion, this.companion.x, this.companion.y - 28 - hop, 56, { flip: this.facing < 0 }); } });
