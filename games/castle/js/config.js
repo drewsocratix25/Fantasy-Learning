@@ -6,4 +6,5 @@ FL.config = {
   voiceTestLine: 'Hello. Is it day or night? Wonderful. The sun is out, so it is day.',
   voiceTestLineNamed: (n) => `Hello ${n}. Is it day or night? Wonderful. The sun is out, so it is day.`,
   lineFiles: ['js/data.js', 'js/voicelines.js'],
+  defaults: { companion: '🐭', unlocked: ['🐭'] }, // the castle mouse starts as the companion (engine default is a bunny)
 };

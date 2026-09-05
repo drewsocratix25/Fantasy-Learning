@@ -64,7 +64,4 @@
   };
   // The quiz scaffold draws the hero through cfg.drawHero; every Castle Quest room passes this.
   FL.drawExplorer = (ctx, g, t, sc) => A.explorer(ctx, 120, g.H - 40, g.look, { t, facing: 1, wave: sc.locked }, 0.95);
-  // First run: the castle mouse is the starting companion instead of the engine's default bunny.
-  const d = FL.Save.data;
-  if (d.firstRun) { d.firstRun = false; d.companion = FL.Data.FRIENDS[0][0]; d.unlocked = [d.companion]; FL.Save.save(); }
 })();

@@ -19,10 +19,10 @@
     { id: 'c_vault', x: 1520, y: 700, w: 120, h: 360, floor: 'checker', ambient: 0.3 },
     { id: 'c_west', x: 1040, y: 1350, w: 270, h: 140, floor: 'checker', ambient: 0.08 },
     { id: 'c_east', x: 2190, y: 1350, w: 270, h: 140, floor: 'checker', ambient: 0.08 },
-    { id: 'c_south', x: 1330, y: 1790, w: 120, h: 520, floor: 'stairsDown', ambient: 0.4 },
-    { id: 'c_lab', x: 800, y: 2190, w: 650, h: 120, floor: 'dark', ambient: 0.5 },
-    { id: 'c_north2', x: 2050, y: 700, w: 120, h: 360, floor: 'stairsUp', ambient: 0.25 },
-    { id: 'c_tower', x: 2050, y: 700, w: 560, h: 120, floor: 'checker', ambient: 0.2 },
+    { id: 'c_south', x: 1490, y: 1790, w: 120, h: 520, floor: 'stairsDown', ambient: 0.4 },
+    { id: 'c_lab', x: 800, y: 2190, w: 810, h: 120, floor: 'dark', ambient: 0.5 },
+    { id: 'c_north2', x: 2050, y: 620, w: 120, h: 440, floor: 'stairsUp', ambient: 0.25 },
+    { id: 'c_tower', x: 2050, y: 620, w: 560, h: 120, floor: 'checker', ambient: 0.2 },
   ];
   const AREAS = Object.values(ROOMS).concat(CORS); AREAS.forEach((a) => { a.x1 = a.x + a.w; a.y1 = a.y + a.h; });
   // Where the games are: a sign with a Play bubble. `at` params put the explorer here on return.
@@ -33,13 +33,13 @@
     { id: 'menagerie', name: 'Royal Menagerie', emoji: '🐾', x: 2875, y: 1440, r: 130, scene: 'menagerie', hint: 'Meet the animals!', room: 'zoo' },
     { id: 'vault', name: 'Treasure Vault', emoji: '⚖️', x: 1760, y: 620, r: 130, scene: 'vault', hint: 'Heavy or light?', room: 'vault' },
   ];
-  const TORCHES = [[1330, 1000], [1520, 1000], [1990, 1000], [2180, 1000], [1560, 320], [1960, 320], [300, 2100], [800, 2100], [2600, 250], [3060, 250], [1580, 700], [2110, 700], [1100, 2190], [2350, 700]];
+  const TORCHES = [[1330, 1000], [1520, 1000], [1990, 1000], [2180, 1000], [1560, 320], [1960, 320], [300, 2100], [800, 2100], [2600, 250], [3060, 250], [1580, 700], [2110, 620], [1100, 2190], [2350, 620]];
   const PENS = [{ x: 2450, y: 1010, w: 380, h: 300, animals: ['🐄', '🐑'] }, { x: 2920, y: 1010, w: 380, h: 300, animals: ['🐔', '🐥', '🐥'] }, { x: 2450, y: 1560, w: 380, h: 220, animals: ['🐴'] }, { x: 2920, y: 1560, w: 380, h: 220, animals: ['🐐', '🐰'] }];
   const PILLARS = [[1400, 1260], [1400, 1560], [2100, 1260], [2100, 1560], [1480, 1090], [2020, 1090]];
   // Things you walk around: [x, y, w, h] rectangles (feet space) and [x, y, r] circles.
-  const RECTS = [[1670, 1030, 160, 80], [2450, 1010, 380, 300], [2920, 1010, 380, 300], [2450, 1560, 380, 220], [2920, 1560, 380, 220], [380, 1050, 280, 140], [220, 1000, 260, 200], [220, 1560, 260, 200], [820, 1000, 260, 200], [820, 1560, 260, 200], [1290, 1760, 380, 60], [1840, 1760, 380, 60]];
-  const CIRCLES = PILLARS.map(([x, y]) => [x, y, 44]).concat([[300, 1560, 34], [1000, 1560, 34], [1000, 1080, 34], [700, 2390, 70], [2960, 590, 50], [1950, 1130, 40]]);
-  const blocked = (x, y) => RECTS.some(([rx, ry, rw, rh]) => x > rx && x < rx + rw && y > ry && y < ry + rh) || CIRCLES.some(([cx, cy, r]) => Math.hypot(cx - x, cy - y) < r);
+  const RECTS = [[1670, 1030, 160, 80], [2450, 1010, 380, 300], [2920, 1010, 380, 300], [2450, 1560, 380, 220], [2920, 1560, 380, 220], [380, 1050, 280, 140], [220, 1000, 260, 200], [220, 1560, 260, 200], [820, 1000, 260, 200], [820, 1560, 260, 200], [1260, 1760, 206, 60], [1840, 1760, 380, 60]];
+  const CIRCLES = PILLARS.map(([x, y]) => [x, y, 44]).concat([[300, 1560, 34], [1000, 1560, 34], [1000, 1080, 34], [410, 2390, 60], [2960, 590, 50]]);
+  const blocked = (x, y) => (FL.Save.has('treasure', 'egg') && Math.hypot(1950 - x, 1130 - y) < 40) || RECTS.some(([rx, ry, rw, rh]) => x > rx && x < rx + rw && y > ry && y < ry + rh) || CIRCLES.some(([cx, cy, r]) => Math.hypot(cx - x, cy - y) < r);
   const walkable = (x, y) => !blocked(x, y) && AREAS.some((a) => x > a.x + M && x < a.x1 - M && y > a.y + M + 6 && y < a.y1 - M);
   const areaAt = (x, y) => AREAS.find((a) => x >= a.x && x <= a.x1 && y >= a.y && y <= a.y1) || null;
   const roomAt = (x, y) => Object.values(ROOMS).find((a) => x >= a.x && x <= a.x1 && y >= a.y && y <= a.y1) || null;
@@ -200,8 +200,8 @@
       const m = Math.hypot(vx, vy); if (m > 1) { vx /= m; vy /= m; }
       this.walking = m > 0.05;
       if (this.walking) {
-        const speed = 300; const nx = this.px + vx * speed * dt, ny = this.py + vy * speed * dt; let moved = false;
-        if (walkable(nx, this.py)) { this.px = nx; moved = true; } if (walkable(this.px, ny)) { this.py = ny; moved = true; }
+        const speed = 300; const nx = this.px + vx * speed * dt, ny = this.py + vy * speed * dt; const ox = this.px, oy = this.py;
+        if (walkable(nx, this.py)) this.px = nx; if (walkable(this.px, ny)) this.py = ny; const moved = Math.hypot(this.px - ox, this.py - oy) > 0.01;
         if (!moved && this.target) { this.stuck = (this.stuck || 0) + dt; if (this.stuck > 0.6) { this.stuck = 0; this.target = null; this.targetLoc = null; } } else this.stuck = 0;
         if (Math.abs(vx) > 0.1) this.facing = vx > 0 ? 1 : -1;
         if (Math.random() < dt * 3) this.fx.burst(this.px - this.facing * 10, this.py, { count: 1, colors: ['rgba(255,255,255,.6)'], speed: 30, life: 0.5, size: 8, gravity: -20 });
@@ -223,7 +223,7 @@
       switch (l.id) {
         case 'tower': telescope(ctx, l.x + 130, l.y - 10, t); break;
         case 'greenhouse': pot(ctx, l.x - 110, l.y - 10, 1.1, '#f472b6', t, 1); pot(ctx, l.x + 120, l.y - 6, 1.2, '#facc15', t, 2); A.tree(ctx, l.x + 230, l.y - 20, 0.9, 1, t); break;
-        case 'lab': cauldron(ctx, l.x + 140, l.y - 10, t); break;
+        case 'lab': cauldron(ctx, l.x - 150, l.y - 10, t); break;
         case 'menagerie': A.emoji(ctx, '🪣', l.x - 110, l.y - 30, 44); A.emoji(ctx, '🌾', l.x + 120, l.y - 30, 50); break;
         case 'vault': { ctx.fillStyle = 'rgba(0,0,0,.2)'; A.ellipse(ctx, l.x + 150, l.y, 60, 16); ctx.fill(); A.emoji(ctx, '🧰', l.x + 150, l.y - 40, 70); A.emoji(ctx, '🪙', l.x - 120, l.y - 24, 46); A.emoji(ctx, '💎', l.x - 160, l.y - 40, 36); break; }
         default: break;
@@ -252,7 +252,7 @@
       PILLARS.forEach(([px, py]) => { if (vis(px, py)) items.push({ y: py, f: () => pillar(ctx, px, py, 210) }); });
       items.push({ y: 1090, f: () => throne(ctx, 1750, 1090, t) });
       items.push({ y: 1240, f: () => { A.emoji(ctx, '🛡️', 1300, 1200, 50); A.emoji(ctx, '⚔️', 2200, 1200, 50); } });
-      D.TREASURES.slice(0, 8).forEach((tr, i) => { const px = i < 4 ? 1320 + i * 90 : 1870 + (i - 4) * 90, py = 1810; if (vis(px, py)) items.push({ y: py, f: () => pedestal(ctx, px, py, tr.emoji, FL.Save.has('treasure', tr.id), t) }); });
+      D.TREASURES.slice(0, 8).forEach((tr, i) => { const px = i < 3 ? 1290 + i * 72 : 1870 + (i - 3) * 80, py = 1810; if (vis(px, py)) items.push({ y: py, f: () => pedestal(ctx, px, py, tr.emoji, FL.Save.has('treasure', tr.id), t) }); });
       if (FL.Save.has('treasure', 'egg')) items.push({ y: 1130, f: () => { ctx.fillStyle = '#a16207'; A.ellipse(ctx, 1950, 1130, 46, 18); ctx.fill(); A.emoji(ctx, FL.Save.has('treasure', 'hatched') ? '🐉' : '🥚', 1950, 1105 + (FL.Save.has('treasure', 'hatched') ? Math.sin(t * 4) * 4 : 0), 48); } });
       PENS.forEach((p) => { if (vis(p.x + p.w / 2, p.y + p.h / 2, p.w)) { items.push({ y: p.y, f: () => { ctx.fillStyle = '#a16207'; ctx.fillRect(p.x, p.y - 32, p.w, 8); ctx.fillRect(p.x, p.y - 14, p.w, 8); for (let x = p.x; x <= p.x + p.w; x += 60) ctx.fillRect(x - 6, p.y - 40, 12, 46); } }); items.push({ y: p.y + p.h, f: () => fence(ctx, { x: p.x, y: p.y + p.h, w: p.w, h: 0 }) }); for (let y = p.y + 50; y < p.y + p.h; y += 50) { items.push({ y, f: () => { ctx.fillStyle = '#a16207'; ctx.fillRect(p.x - 6, y - 40, 12, 46); ctx.fillRect(p.x + p.w - 6, y - 40, 12, 46); } }); } items.push({ y: p.y + 30, f: () => A.emoji(ctx, '🌾', p.x + p.w - 50, p.y + 10, 40) }); } });
       // greenhouse plants, tower props, vault gold, lab props
