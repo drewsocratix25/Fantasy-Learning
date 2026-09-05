@@ -57,6 +57,9 @@
       add('What time is it?'); D_.CLOCK_HOURS.forEach((h) => { add(`Yes! It's ${h} o'clock!`); add(`Yes! It's half past ${h}!`); add(`That's ${h} o'clock.`); add(`That's half past ${h}.`); });
       // number line
       add('What number is missing?'); for (let n = 1; n <= D_.NUMBERLINE_MAX; n++) { add(`Yes! ${n}!`); if (n > D_.MAX_COUNT) add(`That's ${n}.`); }
+      // art studio (drawing lessons)
+      { const DR = FL.Drawings; const S = DR.LINES; [S.welcome, S.hint, S.colour, S.remind].concat(S.praise).forEach((s) => add(s));
+        DR.list.forEach((d) => { add(S.pick(d)); d.steps.forEach((st) => add(st.say, st.say.replace(/\bV\b/g, 'vee'))); }); }
       return L;
     },
     article(w) { return /^[aeiou]/i.test(w) ? 'an' : 'a'; },

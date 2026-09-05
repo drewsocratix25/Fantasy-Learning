@@ -14,7 +14,7 @@ async function exists(path) {
 }
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
-    if (["node_modules", ".git", ".kokoro-cache", "voice"].includes(entry.name))
+    if (["node_modules", ".git", "dist", ".kokoro-cache", "voice"].includes(entry.name))
       continue;
     const file = resolve(dir, entry.name);
     if (entry.isDirectory()) {
@@ -44,7 +44,7 @@ async function walk(dir) {
   }
 }
 await walk(root);
-for (const worker of ["sw.js", "games/melody/sw.js", "games/germs/sw.js"]) {
+for (const worker of ["sw.js", "games/melody/sw.js", "games/germs/sw.js", "games/castle/sw.js"]) {
   const text = await readFile(resolve(root, worker), "utf8");
   const block = /const (?:CORE|ASSETS) = (\[[\s\S]*?\]);/.exec(text)?.[1];
   if (!block) throw Error(`Missing pre-cache list: ${worker}`);
@@ -52,5 +52,5 @@ for (const worker of ["sw.js", "games/melody/sw.js", "games/germs/sw.js"]) {
     await exists(resolve(root, dirname(worker), match[1]));
 }
 console.log(
-  `Checked ${checked} JavaScript files, HTML references, manifests, and all three offline asset lists.`,
+  `Checked ${checked} JavaScript files, HTML references, manifests, and all four offline asset lists.`,
 );

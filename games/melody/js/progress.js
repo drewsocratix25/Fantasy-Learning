@@ -10,6 +10,11 @@
       const row = Math.floor(i / 10), col = i % 10; const x = px + 40 + col * (size + gap), y = py + 118 + row * (size + gap); const has = un.includes(e);
       buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need}⭐`, size: 14, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 44 : 22, enabled: has, r: 18, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${name} will come with you!`); UI.showFriends(); } }));
     });
+    const dog = FL.Save.data.dog;
+    if (dog && dog.adopted) {
+      const e = FL.Puppy.dogEmoji(dog);
+      buttons.push(new Button({ x: px + 630, y: py + 35, w: 210, h: 60, emoji: e, label: dog.name || 'Puppy', size: 20, color: '#fde047', onTap: () => { FL.Save.data.companion = e; FL.Save.save(); UI.showFriends(); } }));
+    }
     const crowns = [['gold', '👑', 0], ['flower', '🌸', 8], ['star', '⭐', 35], ['rainbow', '🌈', 62], ['leaf', '🍃', 150], ['ice', '❄️', 200]];
     labels.push({ text: 'Crowns', x: px + 40, y: py + 312 });
     crowns.forEach(([id, e, need], i) => { const has = id === 'gold' || FL.Save.has('crown', id); buttons.push(new Button({ x: px + 40 + i * (size + gap), y: py + 330, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need}⭐`, size: 14, color: !has ? '#cbd5e1' : FL.Save.data.crown === id ? '#fde047' : '#e9d5ff', emojiSize: has ? 40 : 22, enabled: has, r: 18, onTap: () => { FL.Save.data.crown = id; FL.Save.save(); G.refreshLook(); FL.Audio.sfx.sparkle(); UI.showFriends(); } })); });
@@ -23,7 +28,7 @@
     UI.showCollection({ title: 'My Things', buttons, labels, lines });
   };
   UI.FRIENDS = FL.Data.FRIENDS;
-  UI.friendName = (e) => (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1];
+  UI.friendName = (e) => (e === '🐶' || e === '🐕') && FL.Save.data.dog?.adopted ? FL.Save.data.dog.name || 'Puppy' : (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1];
   // The next reward of any kind (friend, crown, wand, decoration, song, region).
   UI.nextUnlock = function () {
     const s = FL.Save.data.stars; const c = [];

@@ -1826,3 +1826,14 @@ summary {
   transition: none !important;
   scroll-behavior: auto !important;
 }
+
+.adventures { margin: 36px 0 12px; padding: 28px; border: 1px solid #d6dfd8; border-radius: 28px; background: #f2f4e9; }
+.adventure-heading h2 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 32px); }
+.adventure-heading p { margin: 0 0 22px; color: #52645d; }
+.adventure-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.adventure-links a { display:grid; grid-template-columns:44px 1fr; column-gap:12px; padding:18px; min-height:90px; background:#fffdf5; border:1px solid #d6dfd8; border-radius:20px; color:#153e43; text-decoration:none; }
+.adventure-links a > span { grid-row:span 2; align-self:center; text-align:center; font-size:32px; }
+.adventure-links small { color:#52645d; line-height:1.5; }
+.adventure-links a:hover { background:#e4efdd; }
+@media(max-width:850px) { .adventure-links { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:520px) { .adventures { padding:20px 14px; } .adventure-links { grid-template-columns:1fr; } }

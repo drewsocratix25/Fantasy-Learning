@@ -52,14 +52,16 @@ function worker(file, key, others) {
 }
 test("activation only retires this game’s cache versions", async () => {
   const current = [
-    "little-wonders-world-v1",
-    "melody-kingdom-v5",
-    "germ-patrol-v3",
+    "little-wonders-world-v2",
+    "melody-kingdom-v6",
+    "germ-patrol-v4",
+    "castle-quest-v2",
   ];
   for (const [i, file] of [
     "sw.js",
     "games/melody/sw.js",
     "games/germs/sw.js",
+    "games/castle/sw.js",
   ].entries()) {
     const old = current[i].replace(/v\d+$/, "v0");
     const w = worker(file, current[i], [
@@ -78,7 +80,7 @@ test("activation only retires this game’s cache versions", async () => {
   }
 });
 test("missing scripts never receive an HTML navigation fallback", async () => {
-  for (const file of ["sw.js", "games/melody/sw.js", "games/germs/sw.js"]) {
+  for (const file of ["sw.js", "games/melody/sw.js", "games/germs/sw.js", "games/castle/sw.js"]) {
     const w = worker(file, "", []);
     let result;
     w.handlers.fetch({

@@ -1,10 +1,10 @@
 // Melody Kingdom service worker: caches the game so it loads fast and works offline on the iPad.
-const CACHE = 'melody-kingdom-v5';
+const CACHE = 'melody-kingdom-v6';
 const ASSETS = [
   './', './index.html', './css/style.css', './manifest.webmanifest', './js/config.js',
   '../../engine/save.js', '../../engine/audio.js', '../../engine/lines.js', '../../engine/art.js', '../../engine/ui.js', '../../engine/quiz.js', '../../engine/main.js',
-  './js/data.js', './js/songs.js', './js/voicelines.js', './js/progress.js', './js/title.js', './js/world.js', './voice/manifest.json',
-  './js/games/songselect.js', './js/games/rhythm.js', './js/games/letters.js', './js/games/numbers.js', './js/games/shapes.js', './js/games/piano.js', './js/games/patterns.js',
+  './js/data.js', './js/songs.js', './js/drawings.js', './js/voicelines.js', './js/progress.js', './js/title.js', './js/world.js', './voice/manifest.json',
+  './js/games/songselect.js', './js/games/rhythm.js', './js/games/letters.js', './js/games/numbers.js', './js/games/shapes.js', './js/games/piano.js', './js/games/patterns.js', './js/games/drawing.js', './js/games/puppysim.js', './js/games/puppy.js', './js/games/spell.js',
   './js/games/forest.js', './js/games/peaks.js', './js/games/spelling.js', './js/games/simon.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'
 ];

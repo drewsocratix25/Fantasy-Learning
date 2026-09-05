@@ -1,6 +1,6 @@
 html, body {
   margin: 0; padding: 0; height: 100%; overflow: hidden;
-  background: radial-gradient(ellipse at 50% 30%, #0ea5e9 0%, #0369a1 55%, #0c4a6e 100%);
+  background: radial-gradient(ellipse at 50% 30%, #3b82f6 0%, #1e3a8a 55%, #172554 100%);
   font-family: Fredoka, "Arial Rounded MT Bold", "Helvetica Rounded", system-ui, sans-serif;
   -webkit-user-select: none; user-select: none;
   -webkit-touch-callout: none;
@@ -27,19 +27,16 @@ html, body {
 #nameWrap label { font-size: 18px; letter-spacing: .5px; }
 #nameInput {
   font: 700 26px Fredoka, "Arial Rounded MT Bold", system-ui, sans-serif;
-  padding: 8px 14px; border-radius: 18px; border: 4px solid #f9a8d4;
-  background: #fff; color: #5b21b6; outline: none; width: 220px;
-  box-shadow: 0 6px 0 #db2777;
+  padding: 8px 14px; border-radius: 18px; border: 4px solid #93c5fd;
+  background: #fff; color: #1e3a8a; outline: none; width: 220px;
+  box-shadow: 0 6px 0 #1d4ed8;
 }
 #nameInput:focus { border-color: #fde68a; }
 #rotate {
   position: fixed; inset: 0; z-index: 10;
   display: flex; align-items: center; justify-content: center; text-align: center;
-  background: #0c4a6e; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
+  background: #1e3a8a; color: #fff; font-size: 34px; font-weight: 700; line-height: 1.4;
 }
 #rotate[hidden] { display: none; }
-
-.world-return { position: fixed; right: 12px; bottom: 12px; z-index: 11; display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 24px; background: #fff; color: #153e43; font: 700 14px system-ui, sans-serif; text-decoration: none; box-shadow: 0 3px 10px #0002; touch-action: manipulation; }
-.world-return:focus-visible { outline: 4px solid #f7c857; outline-offset: 3px; }
 
 .world-home { position:fixed; bottom:4px; left:8px; z-index:30; padding:8px 12px; border-radius:14px; background:#fff; color:#153e43; font:600 15px sans-serif; text-decoration:none; }

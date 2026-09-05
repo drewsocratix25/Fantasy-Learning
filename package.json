@@ -4,7 +4,7 @@
   "private": true,
   "description": "Build-free learning games for small explorers",
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs && node tools/test-puppy.mjs",
     "check": "node tools/check-site.mjs"
   },
   "devDependencies": {

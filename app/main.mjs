@@ -143,6 +143,14 @@ function home() {
           .join("")}</div></div></article>`,
     )
     .join("")}</section>
+  <section class="adventures" aria-labelledby="adventure-title"><div class="adventure-heading"><h2 id="adventure-title">A bigger adventure?</h2><p>Explore together. These adventures work best on a tablet held sideways.</p></div><div class="adventure-links">
+    <a href="games/melody/?activity=drawpick"><span aria-hidden="true">🎨</span><strong>Art Studio</strong><small>Draw, colour & create</small></a>
+    <a href="games/melody/?activity=puppy"><span aria-hidden="true">🐶</span><strong>Puppy Cottage</strong><small>Care for a little friend</small></a>
+    <a href="games/melody/?activity=spell"><span aria-hidden="true">🦉</span><strong>Spelling Owl</strong><small>Hear words, one letter at a time</small></a>
+    <a href="games/castle/"><span aria-hidden="true">🏰</span><strong>Castle Quest</strong><small>Explore a world of science</small></a>
+    <a href="games/melody/"><span aria-hidden="true">♫</span><strong>Melody Kingdom</strong><small>Songs, stories & discoveries</small></a>
+    <a href="games/germs/"><span aria-hidden="true">🧼</span><strong>Germ Patrol</strong><small>Healthy habits with a hero</small></a>
+  </div></section>
   <section class="home-bottom"><div class="little-note"><span aria-hidden="true">✳</span><p>Big discoveries. Little steps.<small>Always time to try, wonder, and try again.</small></p></div><button class="passport-link" id="passport-link"><span aria-hidden="true">✷</span> My discoveries <span>${ACTIVITIES.filter((a) => state.completed[a.id]).length} / 6</span></button></section>
   <footer class="home-footer"><span>Made by a dad & his daughter</span><span>Ages 3–6 <span aria-hidden="true">·</span> No ads. Just play.</span></footer>`;
   prompt =
@@ -200,6 +208,7 @@ function renderGame() {
   };
   $("#hint").onclick = hint;
   $("#next").onclick = () => {
+    if (session.free) return finish();
     if (!session.locked) return;
     session.round++;
     if (session.round >= session.total) finish();
@@ -430,6 +439,7 @@ function setMusicMode(free) {
   session.count = 0;
   session.showTune = false;
   $("#next").hidden = true;
+  $("#next").innerHTML = 'Next <span aria-hidden="true">→</span>';
   $("#hint").hidden = free;
   $("#play-tune").hidden = free;
   $("#free-mode").classList.toggle("active", free);
@@ -512,7 +522,7 @@ function playNote(n) {
         "Your tune is wonderful. Keep playing, or save your discovery.";
       $("#next").hidden = false;
       $("#next").innerHTML = 'My discovery <span aria-hidden="true">✷</span>';
-      $("#next").onclick = finish;
+      // The shared Next handler checks free-play mode at click time.
     }
     return;
   }
@@ -659,8 +669,8 @@ function parentPanel() {
   openDialog(`<p class="eyebrow">GROWN-UP CORNER</p><h2 id="dialog-title">Little steps. Real discovery.</h2><p>Play together, follow their curiosity, and stop whenever it feels right. Every activity has five short discoveries; music also has a free-play mode.</p>
     <div class="settings"><label class="setting"><span><strong>Spoken guidance</strong><small>Instructions are also shown on screen.</small></span><input type="checkbox" id="speech-setting" ${state.speech ? "checked" : ""}></label><label class="setting"><span><strong>Gentle animation</strong><small>Your device’s reduced-motion setting comes first.</small></span><input type="checkbox" id="motion-setting" ${state.motion ? "checked" : ""}></label><label class="setting" for="pace"><span><strong>Learning pace</strong><small>Applies when an activity starts.</small></span><select id="pace"><option value="adaptive">Grow with me</option><option value="gentle">Little steps · often 3–4</option><option value="stretch">More to explore · often 5–6</option></select></label></div>
     <details><summary>What we’re practising</summary><ul class="curriculum">${ACTIVITIES.map((a) => `<li><strong>${a.name}</strong><span>${a.skill} · ${state.completed[a.id] || 0} completed sessions</span></li>`).join("")}</ul><p>These counts describe play, not an assessment. “Grow with me” starts gently, adds challenge after two sessions without help, and eases back when more support is needed.</p></details>
-    <details><summary>The original adventures</summary><p>The original canvas adventures are best on a tablet held sideways. Their progress is separate.</p><a class="legacy-link" href="games/melody/">Melody Kingdom →</a><a class="legacy-link" href="games/germs/">Germ Patrol →</a></details>
-    <details><summary>About, privacy & offline play</summary><p>Made by a dad and his daughter. No ads, purchases, accounts, analytics, or personal profiles. Progress stays in this browser. Hosting providers still receive ordinary requests needed to load the game.</p><p>After the first successful load, the main world is saved for offline play when your browser supports it. Narration uses available local clips or your device’s voice; voice availability varies. The original adventures download separately. The app works without sound.</p><p>${storageAvailable ? "Progress is being saved on this device." : "This browser is not saving progress. Play still works for this visit."}</p><a class="legacy-link" href="https://github.com/drewsocratix25/Fantasy-Learning" target="_blank" rel="noopener noreferrer">View the project →</a></details>
+    <details><summary>The original adventures</summary><p>The original canvas adventures are best on a tablet held sideways. Their progress is separate.</p><a class="legacy-link" href="games/melody/">Melody Kingdom →</a><a class="legacy-link" href="games/germs/">Germ Patrol →</a><a class="legacy-link" href="games/castle/">Castle Quest →</a></details>
+    <details><summary>About, privacy & offline play</summary><p>Made by a dad and his daughter. No ads, purchases, accounts, analytics, or personal profiles. Progress stays in this browser. Hosting providers still receive ordinary requests needed to load the game.</p><p>After the first successful load, the main world is saved for offline play when your browser supports it. Narration uses available local clips or your device’s voice; voice availability varies. The original adventures download separately. The app works without sound. Spelling Owl’s optional microphone uses your browser’s speech service, which may process audio online; typing is always available.</p><p>${storageAvailable ? "Progress is being saved on this device." : "This browser is not saving progress. Play still works for this visit."}</p><a class="legacy-link" href="https://github.com/drewsocratix25/Fantasy-Learning" target="_blank" rel="noopener noreferrer">View the project →</a></details>
     <button class="text-button danger" id="reset">Reset this world’s discoveries</button>`);
   $("#pace").value = state.pace;
   $("#speech-setting").onchange = (e) => {

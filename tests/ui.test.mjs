@@ -309,3 +309,16 @@ test("leaving from pause cancels pending work and the rest screen is reversible"
   a.click("#return-world");
   assert(a.$(".worlds"));
 });
+
+test("free music returns to a full five-round echo discovery", () => {
+  const a = app(); a.open("music"); a.click("#free-mode");
+  for (let i = 0; i < 8; i++) a.click('[data-note="0"]');
+  a.click("#echo-mode");
+  for (let i = 0; i < 5; i++) {
+    a.click("#play-tune");
+    const notes = a.$$(".cue .shape").map(el => core.NOTES.findIndex(n => el.classList.contains(n.shape)));
+    a.tick(); for (const n of notes) a.click(`[data-note="${n}"]`);
+    a.click("#next");
+    assert.equal(!!a.$(".finish-screen"), i === 4);
+  }
+});

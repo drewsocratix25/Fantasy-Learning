@@ -48,6 +48,7 @@
     G.scene = G.scenes[name]; G.sceneName = name;
     G.refreshLook();
     const nw = document.getElementById('nameWrap'); if (nw) nw.hidden = name !== ((FL.config && FL.config.startScene) || 'title');
+    const sw = document.getElementById('spellWrap'); if (sw) sw.hidden = name !== 'spell';
     if (G.scene.enter) G.scene.enter(params || {});
     FL.Audio.music.play(G.scene.music || null);
   }
@@ -78,7 +79,15 @@
     if (G.scene && G.scene.up) G.scene.up(p);
   }
   canvas.addEventListener('pointerdown', onDown); canvas.addEventListener('pointermove', onMove);
-  canvas.addEventListener('pointerup', onUp); canvas.addEventListener('pointercancel', (e) => { const p = G.pointers.get(e.pointerId); if (p && p.button) p.button.pressed = false; G.pointers.delete(e.pointerId); });
+  function onCancel(e) {
+    const p = G.pointers.get(e.pointerId); if (!p) return;
+    if (p.button) { p.button.pressed = false; p.button = null; }
+    G.pointers.delete(e.pointerId);
+    if (G.scene && G.scene.cancel) G.scene.cancel(p);
+  }
+  canvas.addEventListener('pointerup', onUp);
+  canvas.addEventListener('pointercancel', onCancel);
+  canvas.addEventListener('lostpointercapture', onCancel);
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   // iOS Safari: block pinch-zoom and double-tap zoom gestures over the game.
   document.addEventListener('gesturestart', (e) => e.preventDefault());
@@ -125,7 +134,9 @@
   G.fx = new FL.Art.Particles();
   FL.Audio.loadVoicePack();
   resize();
-  switchScene((FL.config && FL.config.startScene) || 'title', {});
+  const requested = new URLSearchParams(location.search).get('activity');
+  const entry = (FL.config.entryScenes || []).includes(requested) && G.scenes[requested] ? requested : FL.config.startScene || 'title';
+  switchScene(entry, {});
   requestAnimationFrame(frame);
   if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !/localhost|127\.0\.0\.1/.test(location.hostname)) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));

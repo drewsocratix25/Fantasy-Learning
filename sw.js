@@ -1,5 +1,5 @@
 // Only this application's caches are managed here; sibling adventure caches are preserved.
-const CACHE = "little-wonders-world-v1";
+const CACHE = "little-wonders-world-v2";
 const CORE = [
   "./",
   "./index.html",
