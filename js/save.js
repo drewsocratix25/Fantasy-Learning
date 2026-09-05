@@ -14,6 +14,19 @@
     settings: { music: true, speech: true, speed: 'slow' },
     visited: [],
     firstRun: true,
+    dog: {                // Puppy Cottage (see js/games/puppysim.js)
+      adopted: false, name: '', pron: 0, coat: 0, born: '',          // born = local YYYY-MM-DD (FL.Puppy.todayKey())
+      stage: 0, points: 0, pendingGrow: '', rounds: 0,
+      pointsDay: { key: '', n: 0 },
+      needs: { food: 70, water: 70, play: 60, potty: 20 },
+      lastSeen: 0, dancing: false, mud: 0,
+      messes: [],                    // [{x, y, inside}] at most 2; x,y are fractions of W/H (0..1)
+      chart: { key: '', fed: false, water: false, potty: false, clean: false, play: false, done: false },
+      fetchCount: 0, lastRoundDay: '', week: [],
+      tricks: { sit: 0, spin: 0, five: 0, roll: 0 },
+      assist: { bag: 0, ball: 0 },
+      tutorialDone: false, crown: false, parties: 0, visits: 0, accidentsToday: { key: '', n: 0 },
+    },
   };
   let data = null;
 
@@ -36,7 +49,9 @@
   const Save = {
     get data() { return data || load(); },
     save,
-    reset() { data = JSON.parse(JSON.stringify(DEFAULTS)); save(); },
+    reset() { const dog = JSON.parse(JSON.stringify((data || load()).dog || DEFAULTS.dog)); data = JSON.parse(JSON.stringify(DEFAULTS)); data.dog = dog; save(); }, // the puppy survives a reset
+    defaultDog() { return JSON.parse(JSON.stringify(DEFAULTS.dog)); },
+    resetDog() { const d = this.data; d.dog = this.defaultDog(); d.unlocked = d.unlocked.filter((e) => e !== '🐶' && e !== '🐕'); if (d.companion === '🐶' || d.companion === '🐕') d.companion = '🐰'; save(); },
     level(game) { return (this.data.levels[game] || 1); },
     levelUp(game) { this.data.levels[game] = Math.min(6, this.level(game) + 1); save(); },
     addPlay(game) { this.data.plays[game] = (this.data.plays[game] || 0) + 1; save(); },

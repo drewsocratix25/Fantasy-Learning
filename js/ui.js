@@ -98,7 +98,7 @@
     FL.Save.addStars(o.stars); FL.Audio.sfx.fanfare();
     const bw = 260, bh = 92, gap = 26; const n = 2 + (o.other ? 1 : 0); const total = n * bw + (n - 1) * gap; let bx = G.W / 2 - total / 2; const by = G.H / 2 + 175;
     overlay.buttons = [];
-    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Again!', emoji: '🔁', color: '#4ade80', onTap: () => { UI.closeOverlay(); o.again(); } })); bx += bw + gap;
+    overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: o.againLabel || 'Again!', emoji: o.againEmoji || '🔁', color: '#4ade80', onTap: () => { UI.closeOverlay(); o.again(); } })); bx += bw + gap;
     if (o.other) { overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: o.otherLabel || 'More', emoji: o.otherEmoji || '🎵', color: '#fbbf24', onTap: () => { UI.closeOverlay(); o.other(); } })); bx += bw + gap; }
     overlay.buttons.push(new Button({ x: bx, y: by, w: bw, h: bh, label: 'Kingdom', emoji: '🏡', color: '#60a5fa', onTap: () => { UI.closeOverlay(); (o.home || (() => G.go('world')))(); } }));
     G.fx.burst(G.W / 2, G.H / 2 - 100, { count: 90, type: 'confetti', speed: 700, life: 2.2, size: 16, gravity: 500 });
@@ -108,32 +108,36 @@
   };
   UI.showFriends = function () {
     const G = FL.Game; overlay.kind = 'friends'; overlay.t = 0; overlay.buttons = [];
-    const un = FL.Save.data.unlocked; const size = 130, gap = 24; const perRow = 4; const total = perRow * size + (perRow - 1) * gap;
-    UI.FRIENDS.forEach(([e, name, need], i) => {
+    const un = FL.Save.data.unlocked; const size = 130, gap = 24; const perRow = 5; const total = perRow * size + (perRow - 1) * gap; const dog = FL.Save.data.dog;
+    UI.FRIENDS.forEach(([e0, name, need], i) => {
       const row = Math.floor(i / perRow), col = i % perRow; const x = G.W / 2 - total / 2 + col * (size + gap), y = G.H / 2 - 150 + row * (size + gap);
+      const e = e0 === '🐶' && FL.Puppy && dog && dog.adopted ? FL.Puppy.dogEmoji(dog) : e0; // the puppy grows into 🐕
       const has = un.includes(e);
-      overlay.buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : `${need} ⭐`, size: 20, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 80 : 34, enabled: has, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${name} will come with you!`); UI.closeOverlay(); } }));
+      overlay.buttons.push(new Button({ x, y, w: size, h: size, emoji: has ? e : '🔒', label: has ? '' : need < 0 ? '🏠 Cottage' : `${need} ⭐`, size: need < 0 ? 16 : 20, color: !has ? '#cbd5e1' : FL.Save.data.companion === e ? '#fde047' : '#f9a8d4', emojiSize: has ? 80 : 34, enabled: has, onTap: () => { FL.Save.data.companion = e; FL.Save.save(); FL.Audio.say(`${UI.friendName(e)} will come with you!`); UI.closeOverlay(); } }));
     });
     overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: G.H / 2 + 182, w: 240, h: 84, label: 'Done', emoji: '✅', color: '#4ade80', onTap: () => UI.closeOverlay() }));
   };
-  UI.FRIENDS = [['🐰', 'Bunny', 0], ['🦄', 'Unicorn', 12], ['🐉', 'Dragon', 30], ['🦋', 'Butterfly', 50], ['🐥', 'Chick', 75], ['🐧', 'Penguin', 100], ['🦊', 'Fox', 130], ['🐬', 'Dolphin', 170]];
-  UI.friendName = (e) => (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1];
-  UI.nextUnlock = function () { const s = FL.Save.data.stars; return UI.FRIENDS.find((f) => !FL.Save.data.unlocked.includes(f[0]) && f[2] > s) || null; };
+  UI.FRIENDS = [['🐰', 'Bunny', 0], ['🐶', 'Puppy', -1], ['🦄', 'Unicorn', 12], ['🐉', 'Dragon', 30], ['🦋', 'Butterfly', 50], ['🐥', 'Chick', 75], ['🐧', 'Penguin', 100], ['🦊', 'Fox', 130], ['🐬', 'Dolphin', 170]]; // need < 0 = adopt at the Puppy Cottage
+  UI.friendName = (e) => { const dog = FL.Save.data.dog; if ((e === '🐶' || e === '🐕') && dog && dog.adopted && dog.name) return dog.name; return (UI.FRIENDS.find((f) => f[0] === e) || [e, 'Friend'])[1]; };
+  UI.nextUnlock = function () { const s = FL.Save.data.stars; return UI.FRIENDS.find((f) => f[2] >= 0 && !FL.Save.data.unlocked.includes(f[0]) && f[2] > s) || null; };
   UI.checkUnlocks = function () {
     const s = FL.Save.data.stars;
     for (const [e, name, need] of UI.FRIENDS) {
+      if (need < 0) continue; // the puppy is adopted, never bought with stars
       if (s >= need && FL.Save.unlock(e)) { setTimeout(() => { UI.toast(`New friend: ${name}!`, e, '#db2777'); FL.Audio.sfx.unlock(); FL.Audio.say(`A new friend! ${name} wants to play with you!`, { interrupt: false }); }, 2500); }
     }
   };
   UI.showParent = function () {
     const G = FL.Game; overlay.kind = 'parent'; overlay.t = 0; overlay.buttons = []; const s = FL.Save.data.settings;
-    const mk = (i, label, emoji, color, fn) => new Button({ x: G.W / 2 - 200, y: G.H / 2 - 150 + i * 100, w: 400, h: 84, label, emoji, color, size: 28, onTap: fn });
+    const mk = (i, label, emoji, color, fn) => new Button({ x: G.W / 2 - 410 + (i % 2) * 420, y: G.H / 2 - 130 + Math.floor(i / 2) * 100, w: 400, h: 84, label, emoji, color, size: 28, onTap: fn }); // two columns inside the 860x560 panel
     const refresh = () => UI.showParent();
+    const confirmOr = (what, fn) => { if (overlay.data && overlay.data.confirm === what) { overlay.data = null; fn(); } else { overlay.data = { confirm: what }; UI.toast('Tap again to confirm', '⚠️', '#b91c1c'); } };
     overlay.buttons.push(mk(0, `Music: ${s.music ? 'On' : 'Off'}`, '🎵', s.music ? '#4ade80' : '#94a3b8', () => { s.music = !s.music; FL.Save.save(); FL.Audio.applySettings(); refresh(); }));
     overlay.buttons.push(mk(1, `Voice: ${s.speech ? 'On' : 'Off'}`, '🗣️', s.speech ? '#4ade80' : '#94a3b8', () => { s.speech = !s.speech; FL.Save.save(); if (!s.speech) FL.Audio.hush(); refresh(); }));
     overlay.buttons.push(mk(2, 'Change princess', '👸', '#f472b6', () => { UI.closeOverlay(); G.go('title'); }));
-    overlay.buttons.push(mk(3, 'Reset all progress', '🧹', '#f87171', () => { if (overlay.data && overlay.data.confirm) { FL.Save.reset(); UI.closeOverlay(); G.go('title'); } else { overlay.data = { confirm: true }; UI.toast('Tap again to confirm reset', '⚠️', '#b91c1c'); } }));
-    overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: G.H / 2 + 265, w: 240, h: 84, label: 'Close', emoji: '✅', color: '#60a5fa', onTap: () => UI.closeOverlay() }));
+    overlay.buttons.push(mk(3, 'Reset all progress', '🧹', '#f87171', () => confirmOr('all', () => { FL.Save.reset(); UI.closeOverlay(); G.go('title'); })));
+    overlay.buttons.push(mk(4, 'Start puppy over', '🐶', '#f87171', () => confirmOr('dog', () => { FL.Save.resetDog(); UI.toast('The Puppy Cottage is ready for a new puppy', '🐶', '#475569'); refresh(); })));
+    overlay.buttons.push(new Button({ x: G.W / 2 - 120, y: G.H / 2 + 180, w: 240, h: 84, label: 'Close', emoji: '✅', color: '#60a5fa', onTap: () => UI.closeOverlay() }));
   };
 
   UI.updateOverlay = function (dt) { if (!overlay.kind) return; overlay.t += dt; };
@@ -167,7 +171,9 @@
     } else if (overlay.kind === 'parent') {
       A.text(ctx, 'Grown-up Corner', G.W / 2, py + 60, { size: 46, color: '#7c3aed' });
       const p = FL.Save.data.plays; const played = Object.keys(p).reduce((a, k) => a + p[k], 0);
-      A.text(ctx, `${FL.Save.data.stars} stars · ${played} games played · levels: letters ${FL.Save.level('letters')}, numbers ${FL.Save.level('numbers')}, shapes ${FL.Save.level('shapes')}, patterns ${FL.Save.level('patterns')}`, G.W / 2, py + 108, { size: 20, color: '#6b7280' });
+      const stats = `${FL.Save.data.stars} stars · ${played} games played · levels: letters ${FL.Save.level('letters')}, numbers ${FL.Save.level('numbers')}, shapes ${FL.Save.level('shapes')}, patterns ${FL.Save.level('patterns')}`;
+      A.text(ctx, stats, G.W / 2, py + 104, { size: A.fitSize(ctx, stats, pw - 60, 20), color: '#6b7280' });
+      const dog = FL.Save.data.dog; if (dog && dog.adopted) A.text(ctx, `🐶 puppy: ${dog.name}, ${FL.Puppy ? FL.Puppy.STAGES[dog.stage].name : 'stage ' + dog.stage}, ${dog.points} paw point${dog.points === 1 ? '' : 's'}`, G.W / 2, py + 132, { size: 20, color: '#6b7280' });
     }
     overlay.buttons.forEach((b) => b.draw(ctx, G.time));
     ctx.restore();

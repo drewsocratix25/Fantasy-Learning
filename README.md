@@ -12,10 +12,13 @@ Explore a kingdom with your princess and a companion who hops along behind you. 
 | 🌈 **Rainbow Meadow** | Colours and shapes | Pop the balloon that matches: "the blue star", "the triangle", "the purple heart". |
 | 🎹 **Piano Pavilion** | Notes, melody, following a tune | A rainbow piano with four instruments. Free play, Listen (keys light up), and Teach me (follow the glowing key through a whole song). |
 | 🐻 **Pattern Bridge** | AB / AAB / ABC patterns | Musical creatures play a pattern; pick what comes next and hop across the stones. |
+| 🐶 **Puppy Cottage** | Responsibility, routines, cause and effect | Adopt a puppy, name it, and raise it: feed, water, potty walks, clean-ups and fetch fill the daily care chart with paw stamps; a well-cared-for puppy grows into a big dog that learns tricks and follows the princess around the kingdom. |
 
 Everything is read aloud, every game gives stars, and stars unlock new companions (unicorn, dragon, butterfly, chick, penguin, fox, dolphin). Difficulty grows on its own as she earns three-star rounds. Progress is saved on the device.
 
-There is a small **grown-up corner** (hold the ⚙️ in the top-left corner of the kingdom for two seconds) to mute music, turn the voice off, change princess, or reset progress.
+**Puppy Cottage** is a gentle, no-punishment take on a virtual pet. The puppy has four needs (tummy, water, play, potty) shown only as faces and icons, never numbers. Every morning and every evening there is a five-job care chart (feed, water, potty walk, clean-up, play); a full chart earns a paw stamp and three stars. Care points grow the puppy from Newborn to Puppy, Big Kid and Grown-up over about a week of real days, and each stage brings a new look and a new trick. Nothing bad happens while she is away: the puppy is at most a little hungry and in need of a walk when she comes back, and skipped days never undo anything. The grown-up corner has a **Start puppy over** button that resets only the puppy.
+
+There is a small **grown-up corner** (hold the ⚙️ in the top-left corner of the kingdom for two seconds) to mute music, turn the voice off, change princess, reset progress (the puppy is kept), or start the puppy over.
 
 ## Deploying it (about 5 minutes, one time)
 
@@ -55,7 +58,7 @@ npx http-server -p 8080 .
 # then open http://localhost:8080
 ```
 
-`tools/shoot.mjs` and `tools/make-icons.mjs` are optional development helpers that use Playwright to take screenshots and regenerate the PNG icons.
+`tools/shoot.mjs` and `tools/make-icons.mjs` are optional development helpers that use Playwright to take screenshots and regenerate the PNG icons. `node tools/test-puppy.mjs` runs the Puppy Cottage simulation tests (dates, decay, care chart, growth) in plain Node.
 
 ## Project layout
 
@@ -70,6 +73,8 @@ js/ui.js              buttons, HUD, results / friends / grown-up overlays
 js/title.js           choose a princess
 js/world.js           the explorable kingdom
 js/games/*.js         the six mini-games
+js/games/puppysim.js  Puppy Cottage rules: needs, care chart, growth (pure, no canvas)
+js/games/puppy.js     Puppy Cottage scene: adoption, feeding, walks, fetch, tricks
 manifest.webmanifest  installable web app
 sw.js                 offline cache
 .github/workflows     GitHub Pages deploy

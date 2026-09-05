@@ -9,11 +9,19 @@
     { id: 'shapes', name: 'Rainbow Meadow', emoji: '🌈', x: 470, y: 1290, r: 120, scene: 'shapes', hint: 'Pop the shapes!' },
     { id: 'piano', name: 'Piano Pavilion', emoji: '🎹', x: 1930, y: 1330, r: 120, scene: 'piano', hint: 'Play the piano!' },
     { id: 'patterns', name: 'Pattern Bridge', emoji: '🐻', x: 1200, y: 1380, r: 120, scene: 'patterns', hint: 'What comes next?' },
+    { id: 'puppy', name: 'Puppy Cottage', emoji: '🐶', x: 400, y: 990, r: 130, scene: 'puppy', hint: () => { const d = FL.Save.data.dog; return d && d.adopted ? `${d.name} is waiting for you!` : 'A puppy is waiting for you!'; } },
   ];
+  const hintOf = (l) => (typeof l.hint === 'function' ? l.hint() : l.hint);
+  // Puppy Cottage prop + the kingdom-map nudge lines (FL.Puppy loads after this file: guard every read at call time)
+  const COTTAGE = { x: 400, y: 860, houseX: 555, houseY: 880, dogX: 635, dogY: 905 }; // kennel sits just right of the sign board so its door stays visible
+  const NEED_ICON = { food: '🍖', water: '💧', play: '🎾', potty: '🌳' };
+  const NUDGE = { food: 'I think {name} is hungry.', water: 'I think {name} is thirsty.', play: 'I think {name} wants to play.', potty: 'I think {name} needs a potty walk!' };
+  const puppy = () => { const d = FL.Save.data.dog; return FL.Puppy && d && d.adopted ? d : null; };
   const OBSTACLES = [
     { type: 'rect', x: 970, y: 300, w: 460, h: 340 },        // castle body
     { type: 'circle', x: 1980, y: 470, r: 190 },               // pond
     { type: 'circle', x: 1930, y: 1160, r: 110 },              // gazebo
+    { type: 'rect', x: 300, y: 730, w: 260, h: 130 },          // puppy cottage
     { type: 'rect', x: 0, y: 0, w: MAP_W, h: 90 }, { type: 'rect', x: 0, y: MAP_H - 70, w: MAP_W, h: 70 }, { type: 'rect', x: 0, y: 0, w: 80, h: MAP_H }, { type: 'rect', x: MAP_W - 80, y: 0, w: 80, h: MAP_H },
   ];
   function rng(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
@@ -24,7 +32,7 @@
     hud: { home: false },
     init() {
       const r = rng(7); this.decor = []; this.flowers = []; this.butterflies = []; this.clouds = [];
-      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200;
+      const free = (x, y, d) => LOCS.every((l) => Math.hypot(l.x - x, l.y - y) > d) && Math.hypot(1200 - x, 960 - y) > 220 && !(x > 900 && x < 1500 && y < 700) && Math.hypot(1980 - x, 470 - y) > 260 && Math.hypot(1930 - x, 1160 - y) > 200 && Math.hypot(400 - x, 860 - y) > 230;
       // border trees
       for (let i = 0; i < 26; i++) { const x = 120 + (i / 25) * (MAP_W - 240); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: 120 + r() * 50, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: x + (r() - 0.5) * 40, y: MAP_H - 30 - r() * 40, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
       for (let i = 0; i < 16; i++) { const y = 180 + (i / 15) * (MAP_H - 360); this.decor.push({ k: 'tree', x: 110 + r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); this.decor.push({ k: 'tree', x: MAP_W - 110 - r() * 40, y, s: 0.9 + r() * 0.3, v: Math.floor(r() * 3) }); }
@@ -37,7 +45,7 @@
     },
     enter(params) {
       if (!this.inited) this.init();
-      const g = G(); this.t = 0; this.target = null; this.targetLoc = null; this.joy = null; this.idle = 0; this.hintLoc = null;
+      const g = G(); this.t = 0; this.target = null; this.targetLoc = null; this.joy = null; this.idle = 0; this.hintLoc = null; this.needT = 0; this.dogNeed = null;
       if (params && params.at) { const l = LOCS.find((x) => x.id === params.at); if (l) { this.px = l.x; this.py = l.y + 60; } }
       this.companion = { x: this.px - 70, y: this.py + 10 };
       this.cam.x = this.px - g.W / 2; this.cam.y = this.py - g.H / 2; this.clampCam();
@@ -116,7 +124,7 @@
       this.cam.x += (this.px - g.W / 2 - this.cam.x) * Math.min(1, dt * 5); this.cam.y += (this.py - g.H / 2 - this.cam.y) * Math.min(1, dt * 5); this.clampCam();
       // near a location
       const prev = this.near; this.near = LOCS.find((l) => Math.hypot(l.x - this.px, l.y - this.py) < l.r) || null;
-      if (this.near && this.near !== prev) { FL.Audio.sfx.sparkle(); FL.Audio.say(`${this.near.name}! ${this.near.hint}`); }
+      if (this.near && this.near !== prev) { FL.Audio.sfx.sparkle(); FL.Audio.say(`${this.near.name}! ${hintOf(this.near)}`); }
       if (this.near) { this.playBtn.x = this.near.x - this.cam.x - 115; this.playBtn.y = this.near.y - this.cam.y - 260; }
       // parent hold
       for (const p of g.pointers.values()) if (p.parent) this.hold += dt;
@@ -124,7 +132,14 @@
       this.butterflies.forEach((b) => { b.a += (Math.random() - 0.5) * dt * 3; b.x += Math.cos(b.a) * b.sp * dt; b.y += Math.sin(b.a) * b.sp * dt; if (b.x < 100 || b.x > MAP_W - 100 || b.y < 100 || b.y > MAP_H - 100) b.a += Math.PI; });
       this.clouds.forEach((c) => { c.x += 14 * dt; if (c.x > MAP_W + 200) c.x = -200; });
       this.fx.update(dt);
-      if (this.idle > 14) { this.idle = 0; const l = LOCS.find((x) => !FL.Save.data.visited.includes(x.id)) || LOCS[Math.floor(Math.random() * LOCS.length)]; this.hintLoc = l; this.hintT = 4; FL.Audio.say(`Let's go to the ${l.name}!`); }
+      // what the puppy needs right now (projected from the save once a second; the cottage nudge and the thought bubble read it)
+      this.needT -= dt; if (this.needT <= 0) { this.needT = 1; const d = puppy(); this.dogNeed = d ? FL.Puppy.project(d) : null; }
+      if (this.idle > 14) {
+        this.idle = 0; const d = puppy(); let l = null, line = null;
+        if (d && this.dogNeed) { l = LOCS.find((x) => x.id === 'puppy'); line = FL.Puppy.L(d, NUDGE[this.dogNeed] + " Let's visit the Puppy Cottage!"); }
+        if (!l) { l = LOCS.find((x) => !FL.Save.data.visited.includes(x.id)) || LOCS[Math.floor(Math.random() * LOCS.length)]; line = `Let's go to the ${l.name}!`; }
+        this.hintLoc = l; this.hintT = 4; FL.Audio.say(line);
+      }
       if (this.hintT > 0) { this.hintT -= dt; if (this.hintT <= 0) this.hintLoc = null; }
       this.friendsBtn.emoji = FL.Save.data.companion;
     },
@@ -159,9 +174,18 @@
       this.decor.forEach((d) => { if (d.x > cx - 150 && d.x < cx + g.W + 150 && d.y > cy - 50 && d.y < cy + g.H + 200) items.push({ y: d.y, f: () => (d.k === 'tree' ? A.tree(ctx, d.x, d.y, d.s, d.v, t) : A.bush(ctx, d.x, d.y, d.s)) }); });
       items.push({ y: 640, f: () => A.castle(ctx, 1200, 640, 1.05, t) });
       items.push({ y: 1160, f: () => A.gazebo(ctx, 1930, 1160, 1, t) });
+      // puppy cottage + doghouse; the dog waits by its house unless it is out walking with the princess
+      const dog = puppy(); const comp = FL.Save.data.companion; const dogIsComp = comp === '🐶' || comp === '🐕';
+      items.push({ y: COTTAGE.y, f: () => A.cottage(ctx, COTTAGE.x, COTTAGE.y, 1, t, { name: dog ? dog.name : null }) });
+      items.push({ y: COTTAGE.houseY, f: () => A.doghouse(ctx, COTTAGE.houseX, COTTAGE.houseY, 1, dog ? dog.name : null) });
+      if (dog && !dogIsComp) {
+        const near = Math.hypot(this.px - COTTAGE.dogX, this.py - COTTAGE.dogY) < 250;
+        items.push({ y: COTTAGE.dogY, f: () => A.dog(ctx, COTTAGE.dogX, COTTAGE.dogY, { coat: dog.coat, stage: dog.stage, mood: this.dogNeed ? 'pout' : 'happy', mud: 0, bandana: g.look && g.look.dress, crown: dog.crown }, { t, facing: this.px < COTTAGE.dogX ? -1 : 1, pose: 'sit', poseT: t, wag: near ? 1 : 0.15, seed: 3 }, 0.8) });
+      }
+      if (dog && this.dogNeed) items.push({ y: 99999, f: () => A.bubble(ctx, COTTAGE.dogX + 60, COTTAGE.dogY - 95 - Math.abs(Math.sin(t * 4)) * 10, NEED_ICON[this.dogNeed], 34) });
       LOCS.forEach((l) => { const isNear = this.near === l; const hint = this.hintLoc === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0; items.push({ y: l.y, f: () => A.sign(ctx, l.x, l.y, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 1 }) }); if (isNear || hint) items.push({ y: l.y - 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, l.x, l.y + 30, l.r, l.r * 0.45); ctx.stroke(); ctx.setLineDash([]); } }); });
       items.push({ y: this.py, f: () => A.princess(ctx, this.px, this.py, g.look, { t, walking: this.walking, facing: this.facing, wave: !this.walking && this.idle > 3 && this.idle < 5 }, 1) });
-      items.push({ y: this.companion.y, f: () => { const hop = Math.abs(Math.sin(t * 8)) * (this.walking ? 14 : 3); ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, this.companion.x, this.companion.y, 22, 8); ctx.fill(); A.emoji(ctx, FL.Save.data.companion, this.companion.x, this.companion.y - 28 - hop, 56, { flip: this.facing < 0 }); } });
+      items.push({ y: this.companion.y, f: () => { const hop = dogIsComp ? 0 : Math.abs(Math.sin(t * 8)) * (this.walking ? 14 : 3); ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, this.companion.x, this.companion.y, 22, 8); ctx.fill(); A.emoji(ctx, comp, this.companion.x, this.companion.y - 28 - hop, 56, { flip: this.facing < 0, rot: dogIsComp ? Math.sin(t * 12) * 0.08 : 0 }); } });
       this.butterflies.forEach((b) => items.push({ y: 99999, f: () => A.emoji(ctx, b.e, b.x, b.y + Math.sin(t * 10 + b.a) * 6, 30, { flip: Math.cos(b.a) < 0, scale: 0.7 + Math.abs(Math.sin(t * 14)) * 0.3 }) }));
       items.sort((a, b) => a.y - b.y).forEach((i) => i.f());
       this.fx.draw(ctx);
