@@ -38,7 +38,7 @@ games/castle/
   js/data.js            pure data: heroes, rooms, every quiz fact (also feeds the voice generator)
   js/hero.js            the explorer drawer (tunic, cape, hat) and companions
   js/title.js           pick an explorer, type a name
-  js/castle.js          the hub: a cutaway castle, tap a room to go in
+  js/castle.js          the hub: a walkable castle interior in 3/4 view (walls, doors, torches, minimap)
   js/progress.js        rewards: keys, treasures, companions, plugged into UI.hooks
   js/voicelines.js      FL.Lines.all(name): every sentence, for the Kokoro voice pack
   js/games/*.js         one file per room
@@ -91,13 +91,16 @@ before its pack existed. The voice pack is a follow-up step to run on a Mac; it 
 
 1. **Scaffold** (this branch): folder, shell, config, data, explorer hero, title screen, castle hub,
    rewards, service worker, icon. The hub card on the front page already points here.
+   The hub is a walkable castle interior (`js/castle.js`): a 3500 by 2650 map in a 3/4 view with
+   extruded stone walls, doorways, pillars, torch-lit shadows, a great hall, vault, greenhouse,
+   menagerie, dungeon lab and sky tower, joined by corridors and stairs. Tap-to-walk, thumb
+   joystick and arrow keys, a minimap, and a guide arrow when she has been idle for a while.
 2. **Five rooms** (this branch): Sky Tower, Greenhouse, Wizard's Lab (sink or float), Menagerie,
    Treasure Vault. Each playable end to end with stars and adaptive levels.
 3. **Smoke test**: static server plus `tools/shoot.mjs` screenshots of every scene, no console errors.
 4. **Voice pack**: render clips on a Mac, commit `games/castle/voice/`.
 5. **Play test with the actual kid**, then adjust: which rooms she returns to, where she gets stuck,
-   which prompts need rewording. Only after that: Map Room, Bell Tower, colour mixing, a walkable
-   castle instead of the tap-a-room map.
+   which prompts need rewording. Only after that: Map Room, Bell Tower, colour mixing.
 
 ## Open questions for Drew
 

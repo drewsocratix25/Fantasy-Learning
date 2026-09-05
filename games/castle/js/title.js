@@ -1,6 +1,35 @@
 // Title screen: pick an explorer, type a name (optional), press play.
 (function () {
   const A = FL.Art, UI = FL.UI, G = () => FL.Game;
+  // Stone castle facade for the title screen (feet of the castle at (x, y)).
+  A.castleQuest = function (ctx, x, y, s, t) {
+    t = t || 0; ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = 'rgba(0,0,0,.15)'; A.ellipse(ctx, 0, 6, 320, 26); ctx.fill();
+    const wall = '#e7e5e4', wallDark = '#d6d3d1', roof = '#2563eb', roofLight = '#60a5fa', stone = '#a8a29e';
+    ctx.strokeStyle = 'rgba(60,50,70,.5)'; ctx.lineWidth = 3;
+    function tower(tx, ty, tw, th) {
+      ctx.fillStyle = wallDark; A.roundRect(ctx, tx - tw / 2, ty - th, tw, th, 8); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = wall; ctx.fillRect(tx - tw / 2 + 6, ty - th + 6, tw * 0.4, th - 12);
+      ctx.fillStyle = stone; for (let i = -1; i <= 1; i++) ctx.fillRect(tx + i * tw * 0.36 - tw * 0.12, ty - th - 12, tw * 0.24, 14);
+      ctx.fillStyle = roof; ctx.beginPath(); ctx.moveTo(tx - tw * 0.7, ty - th - 8); ctx.lineTo(tx, ty - th - tw * 1.35); ctx.lineTo(tx + tw * 0.7, ty - th - 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = roofLight; ctx.beginPath(); ctx.moveTo(tx - tw * 0.7, ty - th - 8); ctx.lineTo(tx, ty - th - tw * 1.35); ctx.lineTo(tx - tw * 0.15, ty - th - 8); ctx.closePath(); ctx.fill();
+      const fx = tx, fy = ty - th - tw * 1.35; ctx.strokeStyle = '#78350f'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(fx, fy); ctx.lineTo(fx, fy - 34); ctx.stroke();
+      const wave = Math.sin(t * 6 + tx) * 4; ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.moveTo(fx, fy - 34); ctx.quadraticCurveTo(fx + 14, fy - 30 + wave, fx + 28, fy - 26); ctx.lineTo(fx, fy - 16); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(60,50,70,.5)'; ctx.lineWidth = 3; ctx.fillStyle = '#7dd3fc'; A.roundRect(ctx, tx - 10, ty - th * 0.62, 20, 30, 10); ctx.fill(); ctx.stroke();
+    }
+    ctx.fillStyle = wallDark; A.roundRect(ctx, -240, -190, 480, 190, 10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = wall; ctx.fillRect(-232, -182, 464, 174);
+    ctx.fillStyle = 'rgba(0,0,0,.06)'; for (let r = 0; r < 6; r++) for (let c = 0; c < 8; c++) ctx.fillRect(-232 + c * 58 + (r % 2) * 29, -175 + r * 29, 52, 22);
+    ctx.fillStyle = stone; for (let i = 0; i < 12; i++) ctx.fillRect(-240 + i * 40 + 8, -202, 24, 16);
+    tower(-250, 0, 74, 250); tower(250, 0, 74, 250); tower(0, -140, 96, 190);
+    ctx.fillStyle = '#92400e'; ctx.beginPath(); ctx.moveTo(-52, 0); ctx.lineTo(-52, -76); ctx.arc(0, -76, 52, Math.PI, 0); ctx.lineTo(52, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#b45309'; ctx.fillRect(-2, -120, 4, 118); ctx.strokeStyle = '#78350f'; ctx.lineWidth = 3; for (let i = 1; i < 4; i++) { ctx.beginPath(); ctx.moveTo(-52, -i * 24); ctx.lineTo(52, -i * 24); ctx.stroke(); }
+    ctx.strokeStyle = 'rgba(60,50,70,.5)'; ctx.fillStyle = '#7dd3fc'; [-160, -105, 105, 160].forEach((wx) => { A.roundRect(ctx, wx - 12, -140, 24, 36, 12); ctx.fill(); ctx.stroke(); });
+    [[-200, '#ef4444'], [200, '#3b82f6']].forEach(([bx, c]) => { ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(bx - 16, -175); ctx.lineTo(bx + 16, -175); ctx.lineTo(bx + 16, -115); ctx.lineTo(bx, -102); ctx.lineTo(bx - 16, -115); ctx.closePath(); ctx.fill(); ctx.stroke(); });
+    A.emoji(ctx, '🔭', -200, -145, 22); A.emoji(ctx, '🗝️', 200, -145, 22);
+    ctx.fillStyle = '#d6d3d1'; A.roundRect(ctx, -80, -4, 160, 22, 8); ctx.fill();
+    ctx.restore();
+  };
   const scene = {
     t: 0, buttons: [], swatches: [], sel: 0, motes: [], hud: null, music: 'title',
     enter() {
