@@ -5,7 +5,7 @@
     hud: { home: true, repeat: true }, music: 'bath', t: 0, state: 'paste', teeth: [], foam: [], brushT: 0, BRUSH: 30, pointer: null, said: {},
     enter() {
       const g = G(); this.t = 0; this.state = 'paste'; this.brushT = 0; this.foam = []; this.pointer = null; this.said = {}; FL.Save.addPlay('teeth'); this.layout();
-      this.teeth = []; for (let i = 0; i < 6; i++) { this.teeth.push({ x: g.W / 2 + (i - 2.5) * 96, y: g.H / 2 - 70, row: 'top', dirt: 1, bugs: 2 + (i % 2) }); this.teeth.push({ x: g.W / 2 + (i - 2.5) * 96, y: g.H / 2 + 110, row: 'bottom', dirt: 1, bugs: 2 + ((i + 1) % 2) }); }
+      this.teeth = []; for (let i = 0; i < 6; i++) { const arc = Math.abs(i - 2.5) * 6; this.teeth.push({ x: g.W / 2 + (i - 2.5) * 92, y: g.H / 2 - 60 + arc, row: 'top', dirt: 1, bugs: 2 + (i % 2) }); this.teeth.push({ x: g.W / 2 + (i - 2.5) * 92, y: g.H / 2 + 100 - arc, row: 'bottom', dirt: 1, bugs: 2 + ((i + 1) % 2) }); }
       FL.Audio.say('Sugar bugs are hiding on the teeth! Grab the toothbrush and scrub!'); FL.Game.later(() => FL.Audio.say('Squeeze a pea of toothpaste. Tap the toothpaste!', { interrupt: false }), 300);
     },
     layout() { const g = G(); this.paste = new UI.Button({ x: g.W - 200, y: g.H / 2 - 150, w: 130, h: 120, emoji: '🪥', color: '#f9a8d4', emojiSize: 70, pulse: true, onTap: () => this.tapPaste() }); this.cup = new UI.Button({ x: g.W - 200, y: g.H / 2 + 40, w: 130, h: 120, emoji: '🥤', color: '#bae6fd', emojiSize: 70, onTap: () => this.tapCup() }); this.buttons = [this.paste, this.cup]; },
@@ -27,9 +27,8 @@
       const g = G(); const t = this.t;
       const grad = ctx.createLinearGradient(0, 0, 0, g.H); grad.addColorStop(0, '#fce7f3'); grad.addColorStop(1, '#fbcfe8'); ctx.fillStyle = grad; ctx.fillRect(0, 0, g.W, g.H);
       // big smiling mouth
-      ctx.fillStyle = '#be123c'; ctx.strokeStyle = '#9f1239'; ctx.lineWidth = 8; ctx.beginPath(); ctx.ellipse(g.W / 2, g.H / 2 + 20, 380, 240, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = '#fb7185'; ctx.beginPath(); ctx.ellipse(g.W / 2, g.H / 2 + 180, 200, 70, 0, Math.PI, 0); ctx.fill(); // tongue
-      this.teeth.forEach((th) => { A.tooth(ctx, th.x, th.y, 80, 110, { color: th.dirt > 0.5 ? '#fef9c3' : '#fff' }); const n = Math.ceil(th.bugs * th.dirt); for (let i = 0; i < n; i++) A.germ(ctx, th.x - 20 + i * 22, th.y - 20 + (i % 2) * 36, 11, { shape: 'round', color: '#fb923c' }, t + i); });
+      A.mouth(ctx, g.W / 2, g.H / 2 + 20, 400, 230, t);
+      this.teeth.forEach((th) => { A.tooth2(ctx, th.x, th.y, 78, 108, th.row === 'bottom', { dirty: th.dirt > 0.5 }); const n = Math.ceil(th.bugs * th.dirt); for (let i = 0; i < n; i++) A.germ(ctx, th.x - 18 + i * 20, th.y - 18 + (i % 2) * 34, 11, { shape: 'round', color: '#fb923c' }, t + i); });
       this.foam.forEach((b) => A.bubble(ctx, b.x, b.y, b.r, Math.min(1, b.life)));
       if (this.state === 'brush' && this.pointer) { A.emoji(ctx, '🪥', this.pointer.x + 30, this.pointer.y - 30, 90, { rot: -0.6 }); }
       if (this.state === 'brush') { const frac = Math.min(1, this.brushT / this.BRUSH); ctx.fillStyle = 'rgba(0,0,0,.2)'; A.roundRect(ctx, g.W / 2 - 300, g.H - 70, 600, 30, 15); ctx.fill(); ctx.fillStyle = '#ec4899'; A.roundRect(ctx, g.W / 2 - 300, g.H - 70, 600 * frac, 30, 15); ctx.fill(); A.text(ctx, `${Math.round(this.cleanFrac() * 100)}% clean · brush all the teeth!`, g.W / 2, g.H - 100, { size: 28, color: '#831843' }); }

@@ -14,7 +14,7 @@
     { id: 'wash', name: 'Wash Station', emoji: '🧼', x: 0.18, y: 0.5, scene: 'wash', hint: 'Wash the germs away!' },
     { id: 'teeth', name: 'Toothbrush Time', emoji: '🪥', x: 0.40, y: 0.42, scene: 'teeth', hint: 'Brush away the sugar bugs!' },
     { id: 'kitchen', name: 'Kitchen Clean-Up', emoji: '🍎', x: 0.62, y: 0.5, scene: 'kitchen', hint: 'Keep the food safe!' },
-    { id: 'lab', name: 'Microscope Lab', emoji: '🔬', x: 0.84, y: 0.46, scene: 'lab', hint: 'Look at germs up close!' },
+    { id: 'lab', name: 'Microscope Lab', emoji: '🔬', x: 0.83, y: 0.5, scene: 'lab', hint: 'Look at germs up close!' },
     { id: 'sneeze', name: 'Sneeze Catcher', emoji: '🤧', x: 0.24, y: 0.82, scene: 'sneeze', hint: 'Catch the sneezes!' },
     { id: 'defend', name: 'Body Base', emoji: '🛡️', x: 0.66, y: 0.82, scene: 'defend', hint: 'Help your body guards!' },
   ];

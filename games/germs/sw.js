@@ -1,9 +1,9 @@
 // Melody Kingdom service worker: caches the game so it loads fast and works offline on the iPad.
-const CACHE = 'germ-patrol-v1';
+const CACHE = 'germ-patrol-v2';
 const ASSETS = [
   './', './index.html', './css/style.css', './manifest.webmanifest', './js/config.js',
   '../../engine/save.js', '../../engine/audio.js', '../../engine/lines.js', '../../engine/art.js', '../../engine/ui.js', '../../engine/quiz.js', '../../engine/main.js',
-  './js/data.js', './js/voicelines.js', './js/gart.js', './js/progress.js', './js/title.js', './js/town.js', './voice/manifest.json',
+  './js/data.js', './js/voicelines.js', './js/gart.js', './js/gart2.js', './js/progress.js', './js/title.js', './js/town.js', './voice/manifest.json',
   './js/games/wash.js', './js/games/teeth.js', './js/games/sneeze.js', './js/games/lab.js', './js/games/defend.js', './js/games/kitchen.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'
 ];

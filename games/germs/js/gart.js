@@ -11,7 +11,7 @@
     ctx.fillStyle = 'rgba(0,0,0,.18)'; A.ellipse(ctx, 0, 0, 28, 9); ctx.fill();
     ctx.translate(0, -bob); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; const OUT = 'rgba(30,40,70,.55)';
     // cape (behind), flowing
-    const flow = walking ? 0.5 : 0.15; ctx.fillStyle = look.cape; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5;
+    const flow = walking ? 0.5 : 0.15; const cg = ctx.createLinearGradient(0, -70, -40, 0); cg.addColorStop(0, A.shade(look.cape, 0.15)); cg.addColorStop(1, A.shade(look.cape, -0.1)); ctx.fillStyle = cg; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.moveTo(-14, -70); ctx.quadraticCurveTo(-40 - Math.sin(t * 8) * 10 * flow - 20 * flow, -40, -34 - Math.sin(t * 6) * 8 * flow - 30 * flow, -6 + Math.sin(t * 7) * 4); ctx.lineTo(-6, -14); ctx.lineTo(14, -70); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.fillStyle = look.capeDark; ctx.beginPath(); ctx.moveTo(-14, -70); ctx.quadraticCurveTo(-30 - 15 * flow, -45, -26 - 20 * flow, -14); ctx.lineTo(-10, -22); ctx.closePath(); ctx.fill();
     // legs & shoes
@@ -19,7 +19,7 @@
     ctx.fillStyle = '#1e293b'; A.ellipse(ctx, -9 + swing * 7, -3, 11, 6); ctx.fill(); A.ellipse(ctx, 9 - swing * 7, -3, 11, 6); ctx.fill();
     ctx.fillStyle = look.capeDark; A.roundRect(ctx, -16, -42, 32, 16, 6); ctx.fill(); // shorts
     // body / shirt
-    ctx.fillStyle = look.shirt; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5; A.roundRect(ctx, -17, -72, 34, 34, 10); ctx.fill(); ctx.stroke();
+    const shg = ctx.createLinearGradient(-17, 0, 17, 0); shg.addColorStop(0, A.shade(look.shirt, 0.18)); shg.addColorStop(1, A.shade(look.shirt, -0.18)); ctx.fillStyle = shg; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5; A.roundRect(ctx, -17, -72, 34, 34, 10); ctx.fill(); ctx.stroke();
     ctx.fillStyle = '#fde047'; A.starPath(ctx, 0, -56, 8, 3.5, 5); ctx.fill(); ctx.strokeStyle = '#b45309'; ctx.lineWidth = 1.5; ctx.stroke();
     // arms
     ctx.strokeStyle = look.skin; ctx.lineWidth = 7; const up = anim.cheer || anim.wave;
@@ -28,7 +28,7 @@
     ctx.fillStyle = look.skin; A.circle(ctx, la[0], la[1], 5.5); ctx.fill(); A.circle(ctx, ra[0], ra[1], 5.5); ctx.fill();
     ctx.fillStyle = look.shirt; A.circle(ctx, -15, -67, 7); ctx.fill(); A.circle(ctx, 15, -67, 7); ctx.fill();
     // head
-    ctx.fillStyle = look.skin; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5; ctx.fillRect(-5, -80, 10, 10); A.circle(ctx, 0, -98, 26); ctx.fill(); ctx.stroke();
+    const hg = ctx.createRadialGradient(-8, -106, 4, 0, -98, 30); hg.addColorStop(0, A.shade(look.skin, 0.12)); hg.addColorStop(1, A.shade(look.skin, -0.08)); ctx.fillStyle = look.skin; ctx.fillRect(-5, -80, 10, 10); ctx.fillStyle = hg; ctx.strokeStyle = OUT; ctx.lineWidth = 2.5; A.circle(ctx, 0, -98, 26); ctx.fill(); ctx.stroke();
     // hair
     ctx.fillStyle = look.hair;
     if (look.hairStyle === 'spiky') { ctx.beginPath(); ctx.moveTo(-26, -104); for (let i = 0; i < 6; i++) { ctx.lineTo(-22 + i * 9, -132 - (i % 2) * 8); ctx.lineTo(-17 + i * 9, -110); } ctx.lineTo(26, -104); ctx.arc(0, -100, 27, -0.15, Math.PI + 0.15, true); ctx.closePath(); ctx.fill(); }
@@ -51,9 +51,10 @@
   // Cartoon germ. germ = FL.Data.GERMS entry (or {shape,color,good}). r = radius.
   A.germ = function (ctx, x, y, r, germ, t, o) {
     o = o || {}; t = t || 0; ctx.save(); ctx.translate(x, y); if (o.alpha != null) ctx.globalAlpha = o.alpha; ctx.rotate(o.rot || Math.sin(t * 2 + x) * 0.1);
-    const c = germ.color; const dark = A.shade(c, -0.35); ctx.strokeStyle = dark; ctx.lineWidth = Math.max(2, r * 0.08); ctx.lineJoin = 'round';
+    const c0 = germ.color; const dark = A.shade(c0, -0.35); ctx.strokeStyle = dark; ctx.lineWidth = Math.max(2, r * 0.08); ctx.lineJoin = 'round';
     const wob = 1 + Math.sin(t * 5 + x) * 0.05;
-    if (germ.shape === 'spiky') { ctx.fillStyle = c; ctx.beginPath(); for (let i = 0; i < 24; i++) { const a = (i / 24) * Math.PI * 2; const rr = i % 2 ? r * 0.72 : r * 1.05 * wob; ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillStyle = A.shade(c, 0.35); A.circle(ctx, 0, 0, r * 0.6); ctx.fill(); }
+    const c = ctx.createRadialGradient(-r * 0.3, -r * 0.35, r * 0.1, 0, 0, r * 1.2); c.addColorStop(0, A.shade(c0, 0.35)); c.addColorStop(0.6, c0); c.addColorStop(1, A.shade(c0, -0.2));
+    if (germ.shape === 'spiky') { ctx.fillStyle = c; ctx.beginPath(); for (let i = 0; i < 24; i++) { const a = (i / 24) * Math.PI * 2; const rr = i % 2 ? r * 0.72 : r * 1.05 * wob; ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillStyle = A.shade(c0, 0.35); A.circle(ctx, 0, 0, r * 0.6); ctx.fill(); }
     else if (germ.shape === 'rod') { ctx.fillStyle = c; A.roundRect(ctx, -r * 1.3, -r * 0.65, r * 2.6, r * 1.3 * wob, r * 0.65); ctx.fill(); ctx.stroke(); ctx.fillStyle = 'rgba(255,255,255,.35)'; A.ellipse(ctx, -r * 0.6, -r * 0.3, r * 0.5, r * 0.18); ctx.fill(); for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; ctx.strokeStyle = dark; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(Math.cos(a) * r * 1.1, Math.sin(a) * r * 0.6); ctx.lineTo(Math.cos(a) * r * 1.5, Math.sin(a) * r * 0.9 + Math.sin(t * 8 + i) * 3); ctx.stroke(); } }
     else if (germ.shape === 'fuzzy') { ctx.fillStyle = c; ctx.beginPath(); for (let i = 0; i < 40; i++) { const a = (i / 40) * Math.PI * 2; const rr = r * (0.85 + Math.sin(i * 3 + t * 3) * 0.12); ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.strokeStyle = dark; ctx.lineWidth = 2; for (let i = 0; i < 10; i++) { const a = (i / 10) * Math.PI * 2 + 0.3; ctx.beginPath(); ctx.moveTo(Math.cos(a) * r * 0.8, Math.sin(a) * r * 0.8); ctx.lineTo(Math.cos(a) * r * 1.35, Math.sin(a) * r * 1.35); ctx.lineTo(Math.cos(a + 0.25) * r * 1.5, Math.sin(a + 0.25) * r * 1.5); ctx.stroke(); } }
     else { ctx.fillStyle = c; A.circle(ctx, 0, 0, r * wob); ctx.fill(); ctx.stroke(); ctx.fillStyle = 'rgba(255,255,255,.35)'; A.ellipse(ctx, -r * 0.35, -r * 0.35, r * 0.3, r * 0.18); ctx.fill(); if (!germ.good) { ctx.fillStyle = dark; for (let i = 0; i < 5; i++) { const a = (i / 5) * Math.PI * 2 + t; A.circle(ctx, Math.cos(a) * r * 0.55, Math.sin(a) * r * 0.55, r * 0.1); ctx.fill(); } } }

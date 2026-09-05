@@ -51,23 +51,31 @@
     },
     draw(ctx) {
       const g = G(); const t = this.t;
-      A.sky(ctx, g.W, g.H, '#7dd3fc', '#e0f2fe'); A.sun(ctx, g.W * 0.62, 78, 40, t);
-      A.cloud(ctx, 200 + Math.sin(t * 0.3) * 30, 110, 34, 0.9); A.cloud(ctx, g.W * 0.55, 70, 28, 0.85);
-      A.hills(ctx, g.W, g.H, g.H * 0.26, '#bbf7d0', 2); A.grass(ctx, g.W, g.H, g.H * 0.3, '#86efac', '#4ade80');
-      // roads
-      ctx.strokeStyle = '#d6d3d1'; ctx.lineWidth = 70; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(60, g.H * 0.62); ctx.lineTo(g.W - 60, g.H * 0.62); ctx.stroke(); ctx.beginPath(); ctx.moveTo(g.W * 0.45, g.H * 0.62); ctx.lineTo(g.W * 0.45, g.H - 40); ctx.stroke();
-      ctx.strokeStyle = '#fef3c7'; ctx.lineWidth = 6; ctx.setLineDash([30, 26]); ctx.beginPath(); ctx.moveTo(60, g.H * 0.62); ctx.lineTo(g.W - 60, g.H * 0.62); ctx.stroke(); ctx.setLineDash([]);
+      A.sky(ctx, g.W, g.H, '#60a5fa', '#e0f2fe'); const glow = ctx.createRadialGradient(g.W * 0.62, 78, 10, g.W * 0.62, 78, 220); glow.addColorStop(0, 'rgba(254,240,138,.7)'); glow.addColorStop(1, 'rgba(254,240,138,0)'); ctx.fillStyle = glow; ctx.fillRect(0, 0, g.W, 300); A.sun(ctx, g.W * 0.62, 78, 40, t);
+      A.cloud(ctx, 200 + Math.sin(t * 0.3) * 30, 110, 34, 0.95); A.cloud(ctx, g.W * 0.4, 60, 26, 0.85); A.cloud(ctx, g.W * 0.88, 130, 30, 0.9);
+      A.hills(ctx, g.W, g.H, g.H * 0.22, '#a7f3d0', 2); for (let i = 0; i < 14; i++) A.tree(ctx, (i / 13) * g.W + 20, g.H * 0.27 + Math.sin(i * 1.7) * 8, 0.42, i % 3, t);
+      A.hills(ctx, g.W, g.H, g.H * 0.27, '#86efac', 5); A.grass(ctx, g.W, g.H, g.H * 0.3, '#86efac', '#4ade80');
+      ctx.strokeStyle = 'rgba(22,101,52,.25)'; ctx.lineWidth = 2; for (let i = 0; i < 90; i++) { const gx = (i * 137) % g.W, gy = g.H * 0.32 + ((i * 89) % (g.H * 0.66)); ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(gx - 4, gy - 9); ctx.moveTo(gx, gy); ctx.lineTo(gx + 5, gy - 8); ctx.stroke(); }
+      // fence along the top field
+      ctx.fillStyle = '#fff7ed'; ctx.strokeStyle = 'rgba(120,53,15,.35)'; ctx.lineWidth = 2; for (let fx = 20; fx < g.W; fx += 46) { A.roundRect(ctx, fx, g.H * 0.29, 12, 40, 4); ctx.fill(); ctx.stroke(); } ctx.fillRect(0, g.H * 0.3, g.W, 6); ctx.fillRect(0, g.H * 0.315 + 12, g.W, 6);
+      // roads with curbs and crossing
+      const ry = g.H * 0.62; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 84; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(60, ry); ctx.lineTo(g.W - 60, ry); ctx.stroke(); ctx.beginPath(); ctx.moveTo(g.W * 0.45, ry); ctx.lineTo(g.W * 0.45, g.H - 40); ctx.stroke();
+      ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 70; ctx.beginPath(); ctx.moveTo(60, ry); ctx.lineTo(g.W - 60, ry); ctx.stroke(); ctx.beginPath(); ctx.moveTo(g.W * 0.45, ry); ctx.lineTo(g.W * 0.45, g.H - 40); ctx.stroke();
+      ctx.strokeStyle = '#fef3c7'; ctx.lineWidth = 6; ctx.setLineDash([30, 26]); ctx.beginPath(); ctx.moveTo(60, ry); ctx.lineTo(g.W - 60, ry); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(255,255,255,.85)'; for (let i = 0; i < 5; i++) ctx.fillRect(g.W * 0.45 - 30 + i * 14, ry + 40, 8, 40);
+      // flower patches
+      for (let i = 0; i < 26; i++) { const fx = (i * 173) % g.W, fy = g.H * 0.34 + ((i * 97) % (g.H * 0.6)); if (Math.abs(fy - ry) < 60 || (Math.abs(fx - g.W * 0.45) < 50 && fy > ry)) continue; A.flower(ctx, fx, fy, 0.7, ['#f472b6', '#facc15', '#fff', '#c084fc', '#fb923c'][i % 5], t, i); }
       this.birds.forEach((b) => A.emoji(ctx, b.e, b.x, b.y + Math.sin(t * 6 + b.x) * 6, 30));
       const items = []; const L = this.locs();
       L.forEach(({ l, x, y }) => {
         const isNear = this.near && this.near.l === l; const hint = this.hint && this.hint.l === l; const b = isNear || hint ? Math.abs(Math.sin(t * 6)) * 12 : 0;
         items.push({ y: y - 1, f: () => {
-          if (l.id === 'wash') A.building(ctx, x, y - 100, 190, 130, { wall: '#bfdbfe', roof: '#2563eb', sign: '🛁' });
-          else if (l.id === 'teeth') A.building(ctx, x, y - 100, 180, 140, { wall: '#fce7f3', roof: '#db2777', sign: '🦷' });
-          else if (l.id === 'kitchen') A.building(ctx, x, y - 100, 210, 130, { wall: '#fef3c7', roof: '#f59e0b', sign: '🍽️' });
-          else if (l.id === 'lab') A.building(ctx, x, y - 100, 190, 140, { wall: '#f1f5f9', roof: '#0f766e', sign: '🔬' });
-          else if (l.id === 'sneeze') { ctx.fillStyle = 'rgba(0,0,0,.12)'; A.ellipse(ctx, x, y - 96, 150, 20); ctx.fill(); A.emoji(ctx, '🛝', x - 60, y - 150, 120); A.emoji(ctx, '🌳', x + 110, y - 160, 110); A.emoji(ctx, '⚽', x + 20, y - 110, 36); }
-          else if (l.id === 'defend') { ctx.fillStyle = '#fbcfe8'; ctx.strokeStyle = '#be185d'; ctx.lineWidth = 5; A.circle(ctx, x, y - 150, 60); ctx.fill(); ctx.stroke(); A.roundRect(ctx, x - 70, y - 100, 140, 120, 40); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#f472b6'; A.heartPath(ctx, x - 25, y - 50, 16); ctx.fill(); ctx.fillStyle = '#7c3aed'; A.roundRect(ctx, x - 20, y - 40, 40, 56, 10); ctx.fill(); ctx.strokeStyle = '#4c1d95'; ctx.lineWidth = 3; ctx.stroke(); A.emoji(ctx, '🛡️', x + 30, y - 60, 40); ctx.fillStyle = '#1e293b'; A.circle(ctx, x - 18, y - 158, 5); ctx.fill(); A.circle(ctx, x + 18, y - 158, 5); ctx.fill(); ctx.strokeStyle = '#9f1239'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y - 140, 14, 0.15 * Math.PI, 0.85 * Math.PI); ctx.stroke(); }
+          if (l.id === 'wash') A.house(ctx, x, y - 100, { w: 190, h: 130, wall: '#dbeafe', roof: '#2563eb', trim: '#fff', door: '#1e40af', sign: '🛁', style: 'bath', curtain: '#38bdf8', t });
+          else if (l.id === 'teeth') A.house(ctx, x, y - 100, { w: 180, h: 140, wall: '#fce7f3', roof: '#db2777', trim: '#fff', door: '#9d174d', sign: '🦷', style: 'tooth', curtain: '#f472b6', t });
+          else if (l.id === 'kitchen') A.house(ctx, x, y - 100, { w: 210, h: 130, wall: '#fef3c7', roof: '#f59e0b', trim: '#fff7ed', door: '#b45309', sign: '🍽️', style: 'cafe', curtain: '#fb923c', t });
+          else if (l.id === 'lab') A.house(ctx, x, y - 100, { w: 180, h: 120, wall: '#f1f5f9', roof: '#0f766e', trim: '#fff', door: '#0f766e', sign: '🔬', style: 'lab', curtain: '#14b8a6', t });
+          else if (l.id === 'sneeze') { ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.beginPath(); ctx.ellipse(x, y - 96, 160, 22, 0, 0, Math.PI * 2); ctx.fill(); A.slide(ctx, x - 70, y - 100, t); A.tree(ctx, x + 120, y - 110, 1.1, 0, t); A.emoji(ctx, '⚽', x + 30, y - 108, 34); }
+          else if (l.id === 'defend') A.bodyBase(ctx, x, y - 100, t);
         } });
         items.push({ y: y + 2, f: () => A.sign(ctx, x, y + 40, l.emoji, l.name, { bounce: b, glow: isNear ? 0.5 + Math.sin(t * 6) * 0.4 : hint ? 0.7 : 0, scale: 0.85 }) });
         if (isNear || hint) items.push({ y: y + 1, f: () => { ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = 5; ctx.setLineDash([16, 14]); ctx.lineDashOffset = -t * 40; A.ellipse(ctx, x, y + 60, 120, 50); ctx.stroke(); ctx.setLineDash([]); } });

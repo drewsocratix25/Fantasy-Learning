@@ -10,13 +10,24 @@
       this.germs = []; ZONES.forEach(([z]) => { for (let i = 0; i < 3; i++) { const p = this.zonePoint(z, i); this.germs.push({ x: p.x, y: p.y, zone: z, g: D.GERMS[(i + z.length) % 4], r: 14 + Math.random() * 6, gone: 0 }); } });
       FL.Audio.say('First, turn on the water. Tap the tap!');
     },
-    layout() { const g = G(); this.cx = g.W / 2; this.cy = g.H / 2 + 40; this.tap = new UI.Button({ x: g.W / 2 - 60, y: 130, w: 120, h: 100, emoji: '🚰', color: '#94a3b8', emojiSize: 64, onTap: () => this.tapTap() }); this.soap = new UI.Button({ x: g.W - 200, y: g.H / 2 - 120, w: 130, h: 120, emoji: '🧴', color: '#f9a8d4', emojiSize: 70, onTap: () => this.tapSoap() }); this.towel = new UI.Button({ x: g.W - 200, y: g.H / 2 + 60, w: 130, h: 120, emoji: '🧻', color: '#fde68a', emojiSize: 70, onTap: () => this.tapTowel() }); this.buttons = [this.tap, this.soap, this.towel]; },
+    layout() { const g = G(); this.cx = g.W / 2; this.cy = g.H / 2 + 250; this.hs = 0.92; this.tap = new UI.Button({ x: g.W / 2 - 90, y: 150, w: 180, h: 130, onTap: () => this.tapTap(), custom: (ctx, b, t) => this.drawFaucet(ctx, b, t) }); this.soap = new UI.Button({ x: g.W - 200, y: g.H / 2 - 120, w: 130, h: 120, emoji: '🧴', color: '#f9a8d4', emojiSize: 70, onTap: () => this.tapSoap() }); this.towel = new UI.Button({ x: g.W - 200, y: g.H / 2 + 60, w: 130, h: 120, emoji: '🧻', color: '#fde68a', emojiSize: 70, onTap: () => this.tapTowel() }); this.buttons = [this.tap, this.soap, this.towel]; },
+    drawFaucet(ctx, b, t) {
+      const cx = b.x + b.w / 2, top = b.y + 20; const active = this.state === 'water' || this.state === 'rinse'; const on = this.state !== 'water' && this.state !== 'check' && this.state !== 'dry';
+      ctx.save(); if (active) { ctx.shadowColor = '#38bdf8'; ctx.shadowBlur = 24 + Math.sin(t * 5) * 10; }
+      const chrome = ctx.createLinearGradient(cx - 40, 0, cx + 40, 0); chrome.addColorStop(0, '#94a3b8'); chrome.addColorStop(0.4, '#f8fafc'); chrome.addColorStop(0.6, '#e2e8f0'); chrome.addColorStop(1, '#64748b');
+      ctx.strokeStyle = 'rgba(30,41,59,.6)'; ctx.lineWidth = 3; ctx.fillStyle = chrome; A.roundRect(ctx, cx - 70, top + 70, 140, 40, 14); ctx.fill(); ctx.stroke(); // base plate
+      ctx.lineCap = 'round'; ctx.strokeStyle = '#334155'; ctx.lineWidth = 34; ctx.beginPath(); ctx.moveTo(cx - 40, top + 80); ctx.quadraticCurveTo(cx - 40, top, cx + 10, top); ctx.quadraticCurveTo(cx + 55, top, cx + 55, top + 50); ctx.stroke();
+      ctx.strokeStyle = chrome; ctx.lineWidth = 28; ctx.beginPath(); ctx.moveTo(cx - 40, top + 80); ctx.quadraticCurveTo(cx - 40, top, cx + 10, top); ctx.quadraticCurveTo(cx + 55, top, cx + 55, top + 50); ctx.stroke();
+      ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(cx - 46, top + 70); ctx.quadraticCurveTo(cx - 46, top + 6, cx + 10, top + 6); ctx.stroke();
+      ctx.fillStyle = on ? '#38bdf8' : '#f87171'; ctx.strokeStyle = 'rgba(30,41,59,.6)'; ctx.lineWidth = 3; A.circle(ctx, cx - 40, top + 60, 18); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#fff'; A.roundRect(ctx, cx - 44, top + 40, 8, 22, 4); ctx.fill(); // handle
+      ctx.restore(); this.spoutX = cx + 55; this.spoutY = top + 66;
+      if (active) A.emoji(ctx, '👆', cx + 100, top + 40 + Math.sin(t * 6) * 8, 46);
+    },
     resize() { this.layout(); },
     exit() { if (this.songGroup) this.songGroup.stop(); },
-    handPos(side) { return { x: this.cx + side * 190, y: this.cy }; },
-    zonePoint(z, i) { const L = this.handPos(-1), R = this.handPos(1); const j = (i - 1) * 34;
-      switch (z) { case 'palmL': return { x: L.x + j, y: L.y + 20 + (i % 2) * 30 }; case 'palmR': return { x: R.x + j, y: R.y + 20 + (i % 2) * 30 }; case 'fingersL': return { x: L.x - 60 + i * 45, y: L.y - 120 }; case 'fingersR': return { x: R.x - 60 + i * 45, y: R.y - 120 }; case 'thumbs': return { x: i < 2 ? L.x + 100 : R.x - 100, y: L.y - 20 + (i % 2) * 30 }; default: return { x: (i < 2 ? L.x : R.x) - 40 + (i % 2) * 70, y: L.y - 190 }; } },
-    zoneAt(x, y) { const L = this.handPos(-1), R = this.handPos(1); for (const side of [L, R]) { const dx = x - side.x, dy = y - side.y; const left = side === L; if (Math.abs(dx) < 120 && dy > -60 && dy < 110) { if (Math.abs(dx) > 80 && ((left && dx > 0) || (!left && dx < 0))) return 'thumbs'; return left ? 'palmL' : 'palmR'; } if (Math.abs(dx) < 120 && dy < -60 && dy > -160) return left ? 'fingersL' : 'fingersR'; if (Math.abs(dx) < 120 && dy <= -160 && dy > -230) return 'tips'; } return null; },
+    handPos(side) { return { x: this.cx + side * 215, y: this.cy }; },
+    zonePoint(z, i) { const side = /L$/.test(z) ? -1 : /R$/.test(z) ? 1 : (i < 2 ? -1 : 1); const zone = z.replace(/[LR]$/, ''); const H = this.handPos(side); return A.handPoint(zone, i, H.x, H.y, side, this.hs); },
+    zoneAt(x, y) { for (const side of [-1, 1]) { const H = this.handPos(side); const z = A.handZone(x, y, H.x, H.y, side, this.hs); if (z) { if (z === 'palm' || z === 'fingers') return z + (side === -1 ? 'L' : 'R'); return z === 'thumb' ? 'thumbs' : z; } } return null; },
     tapTap() { if (this.state === 'water') { this.state = 'soap'; FL.Audio.sfx.whoosh(); FL.Audio.say('Now get some soap. Tap the soap!'); } else if (this.state === 'rinse') { this.state = 'dry'; FL.Audio.sfx.whoosh(); this.bubbles = []; this.germs.forEach((gm) => { if (this.zones[gm.zone].clean >= this.zones[gm.zone].need) gm.gone = 1; }); FL.Audio.say('Dry your hands. Tap the towel!'); } },
     tapSoap() { if (this.state !== 'soap') return; this.state = 'scrub'; this.scrubT = 0; FL.Audio.sfx.pop(); for (let i = 0; i < 12; i++) this.spawnBubble(this.cx + (Math.random() - 0.5) * 400, this.cy + (Math.random() - 0.5) * 200); FL.Audio.say('Scrub scrub scrub! Rub the hands until the song ends!'); this.playSong(); },
     tapTowel() { if (this.state !== 'dry') return; this.state = 'check'; FL.Audio.sfx.sparkle(); FL.Audio.say('Sparkle check! Let\'s look for leftover germs.'); FL.Game.later(() => this.finish(), 2600); },
@@ -41,20 +52,16 @@
       const grad = ctx.createLinearGradient(0, 0, 0, g.H); grad.addColorStop(0, '#e0f2fe'); grad.addColorStop(1, '#bae6fd'); ctx.fillStyle = grad; ctx.fillRect(0, 0, g.W, g.H);
       for (let i = 0; i < 40; i++) { ctx.fillStyle = 'rgba(255,255,255,.5)'; ctx.fillRect((i % 10) * (g.W / 10) + 4, Math.floor(i / 10) * 60 + 4, g.W / 10 - 8, 52); }
       // sink
-      ctx.fillStyle = '#f8fafc'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 4; A.roundRect(ctx, g.W / 2 - 420, this.cy - 40, 840, 360, 60); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#cbd5e1'; A.circle(ctx, g.W / 2, this.cy + 250, 26); ctx.fill();
+      ctx.fillStyle = '#f8fafc'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 4; const sg = ctx.createLinearGradient(0, this.cy - 330, 0, this.cy + 40); sg.addColorStop(0, '#ffffff'); sg.addColorStop(1, '#e2e8f0'); ctx.fillStyle = sg; A.roundRect(ctx, g.W / 2 - 440, this.cy - 330, 880, 380, 70); ctx.fill(); ctx.stroke(); ctx.fillStyle = 'rgba(148,163,184,.35)'; ctx.beginPath(); ctx.ellipse(g.W / 2, this.cy - 60, 330, 150, 0, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#94a3b8'; ctx.strokeStyle = '#64748b'; A.circle(ctx, g.W / 2, this.cy - 40, 24); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#475569'; for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; A.circle(ctx, g.W / 2 + Math.cos(a) * 12, this.cy - 40 + Math.sin(a) * 12, 3); ctx.fill(); }
       // water stream
-      if (this.state !== 'water' && this.state !== 'check' && this.state !== 'dry') { ctx.fillStyle = 'rgba(56,189,248,.55)'; A.roundRect(ctx, g.W / 2 - 14, 230, 28, this.cy - 60 - 230 + 20, 10); ctx.fill(); for (let i = 0; i < 6; i++) { ctx.fillStyle = 'rgba(255,255,255,.7)'; A.circle(ctx, g.W / 2 + Math.sin(t * 8 + i) * 8, 250 + ((t * 300 + i * 60) % (this.cy - 300)), 4); ctx.fill(); } }
+      if (this.state !== 'water' && this.state !== 'check' && this.state !== 'dry') { const sx = this.spoutX || g.W / 2 + 55, sy = this.spoutY || 236; const wg = ctx.createLinearGradient(sx - 12, 0, sx + 12, 0); wg.addColorStop(0, 'rgba(125,211,252,.5)'); wg.addColorStop(0.5, 'rgba(224,242,254,.85)'); wg.addColorStop(1, 'rgba(56,189,248,.5)'); ctx.fillStyle = wg; A.roundRect(ctx, sx - 12, sy, 24, this.cy - 300 - sy + 40, 10); ctx.fill(); for (let i = 0; i < 6; i++) { ctx.fillStyle = 'rgba(255,255,255,.8)'; A.circle(ctx, sx + Math.sin(t * 8 + i) * 6, sy + 20 + ((t * 300 + i * 60) % (this.cy - 320 - sy)), 3.5); ctx.fill(); } }
       // hands
-      [-1, 1].forEach((side) => { const P = this.handPos(side); ctx.save(); ctx.translate(P.x, P.y); ctx.scale(side, 1); ctx.fillStyle = g.look.skin; ctx.strokeStyle = 'rgba(120,53,15,.5)'; ctx.lineWidth = 3;
-        A.roundRect(ctx, -110, -60, 220, 170, 70); ctx.fill(); ctx.stroke(); // palm
-        for (let f = 0; f < 4; f++) { const fx = -85 + f * 55; const fh = [150, 175, 165, 130][f]; A.roundRect(ctx, fx - 22, -60 - fh, 44, fh + 30, 22); ctx.fill(); ctx.stroke(); }
-        ctx.save(); ctx.translate(100, 0); ctx.rotate(0.6); A.roundRect(ctx, -22, -120, 44, 140, 22); ctx.fill(); ctx.stroke(); ctx.restore(); // thumb
-        ctx.restore(); });
+      [-1, 1].forEach((side) => { const P = this.handPos(side); A.hand(ctx, P.x, P.y, side, g.look.skin, { scale: this.hs, cuff: g.look.shirt }); });
       // germs
       this.germs.forEach((gm) => { if (gm.gone >= 1) return; const a = 1 - gm.gone; A.germ(ctx, gm.x, gm.y, gm.r * (1 - gm.gone * 0.5), gm.g, t, { alpha: this.state === 'check' ? 1 : a * 0.95 }); });
       if (this.state === 'check') { ctx.fillStyle = 'rgba(147,51,234,.18)'; ctx.fillRect(0, 0, g.W, g.H); this.germs.forEach((gm) => { if (gm.gone < 1) { ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 4; A.circle(ctx, gm.x, gm.y, gm.r + 12 + Math.sin(t * 8) * 4); ctx.stroke(); } }); }
       // soap suds
-      if (scrub || this.state === 'rinse') { ctx.fillStyle = 'rgba(255,255,255,.55)'; Object.keys(this.zones).forEach((z) => { const Z = this.zones[z]; const p = this.zonePoint(z, 1); if (Z.clean > 0) { A.circle(ctx, p.x, p.y, 40 + (Z.clean / Z.need) * 30); ctx.fill(); } }); }
+      if (scrub || this.state === 'rinse') { ctx.fillStyle = 'rgba(255,255,255,.55)'; Object.keys(this.zones).forEach((z) => { const Z = this.zones[z]; const p = this.zonePoint(z, 1); if (Z.clean > 0) { A.circle(ctx, p.x, p.y, 34 + (Z.clean / Z.need) * 26); ctx.fill(); } }); }
       this.bubbles.forEach((b) => A.bubble(ctx, b.x, b.y, b.r, Math.min(1, b.life)));
       // zone progress + timer
       if (scrub) { const frac = Math.min(1, this.scrubT / this.SCRUB); ctx.fillStyle = 'rgba(0,0,0,.2)'; A.roundRect(ctx, g.W / 2 - 300, g.H - 70, 600, 30, 15); ctx.fill(); ctx.fillStyle = '#38bdf8'; A.roundRect(ctx, g.W / 2 - 300, g.H - 70, 600 * frac, 30, 15); ctx.fill(); A.text(ctx, `Scrub for ${Math.ceil(this.SCRUB - this.scrubT)} more seconds 🎵`, g.W / 2, g.H - 100, { size: 28, color: '#0c4a6e' }); }
@@ -62,12 +69,12 @@
       UI.banner(ctx, step, { emoji: '🧼', size: 38 });
       // step dots
       const steps = ['water', 'soap', 'scrub', 'rinse', 'dry', 'check']; UI.progressDots(ctx, steps.indexOf(this.state), steps.length, 140);
-      this.tap.color = this.state === 'water' || this.state === 'rinse' ? '#38bdf8' : '#94a3b8'; this.tap.pulse = this.state === 'water' || this.state === 'rinse'; this.soap.pulse = this.state === 'soap'; this.towel.pulse = this.state === 'dry';
+      this.soap.pulse = this.state === 'soap'; this.towel.pulse = this.state === 'dry';
       this.buttons.forEach((b) => b.draw(ctx, t));
       A.hero(ctx, 110, g.H - 40, g.look, { t, facing: 1, cheer: this.state === 'check' }, 0.9);
       A.emoji(ctx, FL.Save.data.companion, 195, g.H - 60 - Math.abs(Math.sin(t * 5)) * 8, 48);
       // zone hint arrows
-      if (scrub) { const z = ZONES.find(([zz]) => this.zones[zz].clean < this.zones[zz].need); if (z) { const p = this.zonePoint(z[0], 1); A.emoji(ctx, '👆', p.x + 30, p.y + 50 + Math.sin(t * 6) * 8, 44); } }
+      if (scrub) { const z = ZONES.find(([zz]) => this.zones[zz].clean < this.zones[zz].need); if (z) { const p = this.zonePoint(z[0], 1); A.emoji(ctx, '👆', p.x + 30, p.y + 46 + Math.sin(t * 6) * 8, 44); } }
     },
   };
   FL.scenes.wash = scene;
