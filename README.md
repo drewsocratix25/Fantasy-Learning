@@ -1,3 +1,30 @@
+# ✨ Little Wonders
+
+Simple, ad-free learning games for ages 3 to 6, made by a dad and his daughter. Plain web pages, so they run on any iPad, phone or computer with nothing to install. The root `index.html` is the hub that lists the games; each game lives in `games/<id>/` on a shared engine in `engine/` (see `GAMES.md` to add one).
+
+| Game | Folder | What it is |
+| --- | --- | --- |
+| 👸 Melody Kingdom | `games/melody/` | A princess music adventure: letters, numbers, shapes, rhythm, songs, step-by-step drawing, and an expanding world. |
+| 🦸 Germ Patrol | `games/germs/` | A germ-busting hero game: handwashing, brushing, sneezes, food safety, how germs work, and how the body fights them. |
+| 🏰 Castle Quest | `games/castle/` | Castle exploration with science (in progress). |
+
+## 🦸 Germ Patrol
+
+Pick a hero, then explore Sunnyville and visit six stations. Everything is scientifically accurate, cartoon, and never scary: the germs are mischievous little characters, and one of them (Lacto) is a helper germ.
+
+| Station | What she learns | How it plays |
+| --- | --- | --- |
+| 🧼 **Wash Station** | Water, soap, 20 seconds (Happy Birthday twice), rinse, dry. Palms, backs, between fingers, thumbs, nails. | Scrub two big hands with a finger while the song plays; a sparkle check shows leftover germs. |
+| 🦷 **Toothbrush Time** | "Sugar bugs" are bacteria that eat sugar and make acid. Brush morning and night. | Scrub every tooth clean, then rinse and spit. |
+| 🤧 **Sneeze Catcher** | Sneeze into your elbow; germs travel far; wash hands after. | Tap a friend before they sneeze so they catch it in their elbow. |
+| 🔬 **Microscope Lab** | Bacteria, viruses, fungi, helper germs; which is smallest; where germs hide. | Look through the microscope and tap the right germ or picture. |
+| 🛡️ **Body Base** | White blood cells are the body's guards; fever, rest, water, food, and what a vaccine does. | Tap germs so guards catch them; power-ups explain each idea as they're used. |
+| 🍎 **Kitchen Clean-Up** | Wash produce, cook meat, keep food cold, throw away food that sat out or fell. | Pick the right action for each food. |
+
+Stars unlock sidekicks, cape colours, goggles and town decorations, and each station awards a Patrol Badge after three plays. After every game the narrator shares a "Did you know?" fact.
+
+---
+
 # 👑 Melody Kingdom
 
 A cartoon princess music adventure that teaches kindergarten skills. Built for an iPad in the browser, no app store needed.
@@ -14,9 +41,45 @@ Explore a kingdom with your princess and a companion who hops along behind you. 
 | 🐻 **Pattern Bridge** | AB / AAB / ABC patterns | Musical creatures play a pattern; pick what comes next and hop across the stones. |
 | 🎨 **Art Studio** | Drawing step by step: shapes, following directions, fine motor skills | Pick a picture (sun, flower, house, ice cream, fish, tree, car, butterfly, cat, dog, bunny, rocket). A pencil draws each step on the left while she draws along with her finger on the right, with helper lines she can trace or switch off, then she colours it in with crayons. Finished pictures are saved in her gallery. |
 
-Everything is read aloud, every game gives stars, and stars unlock new companions (unicorn, dragon, butterfly, chick, penguin, fox, dolphin). Difficulty grows on its own as she earns three-star rounds. Progress is saved on the device.
+Everything is read aloud, every game gives stars, and difficulty grows on its own as she earns three-star rounds. Progress is saved on the device.
 
-There is a small **grown-up corner** (hold the ⚙️ in the top-left corner of the kingdom for two seconds) to mute music, turn the voice off, change princess, or reset progress.
+## Stars, rewards, and a growing world
+
+Stars pay out often. Roughly every few stars something new happens: a new **friend** who follows her around (unicorn at 5 stars, then dragon, chick, butterfly, penguin, fox, dolphin), a new **song** for the castle, a new **crown** (flower, star, rainbow, leaf, ice), new **dress colours**, a **magic wand** that leaves a sparkle trail, and **decorations** that appear in the kingdom (a fountain, a hot-air balloon, fireworks). The kingdom shows the next reward and how many stars away it is, and everything collected lives in *My Things* (the friend button in the corner).
+
+When all eight kingdom friends are collected, the gate at the east edge of the map opens onto the **Enchanted Forest**, with four harder games and six forest friends (owl, deer, squirrel, hedgehog, wolf, fairy). Collecting all of those opens the **Crystal Peaks** with four more games and five more friends (polar bear, eagle, goat, seal, swan).
+
+| Enchanted Forest | What she learns | How it plays |
+| --- | --- | --- |
+| 🌳 **Rhyme Tree** | Rhyming | "Which one rhymes with cat?" Tap the picture that rhymes. |
+| 🐿️ **Acorn Spelling** | Spelling three-letter words | Tap the acorn letters in order; every letter sings a note. |
+| 🦉 **Owl School** | Adding, then taking away, within 10 | Picture sums: "What is 3 plus 2?" with apples, acorns, ladybugs. |
+| 🍄 **Echo Cave** | Musical memory | The owl plays a tune on singing mushrooms; play it back. It gets one note longer each round. |
+
+| Crystal Peaks | What she learns | How it plays |
+| --- | --- | --- |
+| 🕰️ **Cloud Clock** | Telling time to the hour, then half past | Read the clock, tap the time. |
+| 📖 **Reading Rock** | Reading simple words | Read the word, tap its picture. |
+| 💎 **Crystal Stairs** | Number order, then counting by 2s, 5s and 10s | Find the missing number on the stairs. |
+| 🥁 **Dragon Drums** | Rhythm memory | The dragon drums a pattern; drum it back on three drums. |
+
+## Voice and music
+
+**The narrator is a pre-rendered studio voice.** Every sentence the game can say (about 1,100 lines) is rendered ahead of time with [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M), an open-source (Apache-2.0) neural text-to-speech model, and shipped as small MP3 clips in `voice/`. The game plays those clips through its own audio engine, so the voice sounds the same on every device, works offline, and needs no setup. If a line has no clip (for example one that includes a custom name), the game falls back to the device's built-in speech, ranking Apple's Enhanced/Premium voices first; the grown-up corner lets you pick and preview that fallback voice.
+
+**Baking her name into the voice** (optional, on your Mac):
+
+```bash
+pip install kokoro-onnx lameenc numpy      # once
+python3 tools/make-voices.py --name Ava     # renders only the new name lines
+git add voice && git commit -m "Voice pack with Ava" && git push
+```
+
+The script fetches the Kokoro model through npm (`expo-kokoro` bundles the weights), so it works without a HuggingFace account. Existing clips are kept. Use `--voice af_bella` (or any voice in the model: af_heart, af_bella, af_nicole, af_sarah, bf_emma, bf_isabella...) to change the narrator; delete the `voice/` folder first to re-render everything.
+
+**The background music is generated live**, not looped: it composes from rotating chord progressions, a melody that develops a short motif and answers it, instruments and textures that change every phrase, and gentle key changes. Each area has its own mood (a music-box kingdom theme, a flute waltz in the garden, marimba at the pond, a bright waltz in the meadow, a soft pad on the bridge), the music ducks whenever the narrator speaks, and the music games play with no backing track so the songs stay clear.
+
+There is a small **grown-up corner** (hold the ⚙️ in the top-left corner of the kingdom for two seconds) to mute music, turn the voice off or change it, change princess, or reset progress.
 
 ## Deploying it (about 5 minutes, one time)
 
@@ -61,20 +124,28 @@ npx http-server -p 8080 .
 ## Project layout
 
 ```
-index.html            page shell
-css/style.css
-js/save.js            progress + settings (localStorage)
-js/audio.js           Web Audio synth: instruments, song scheduler, background music, sound effects, speech
-js/songs.js           nursery songs with syllable-aligned lyrics
-js/drawings.js        step-by-step drawing lessons (shapes + spoken instructions)
-js/art.js             cartoon drawing library (princess, castle, trees, particles)
-js/ui.js              buttons, HUD, results / friends / grown-up overlays
-js/title.js           choose a princess
-js/world.js           the explorable kingdom
-js/games/*.js         the seven mini-games
-manifest.webmanifest  installable web app
-sw.js                 offline cache
-.github/workflows     GitHub Pages deploy
+index.html                  the Little Wonders hub
+engine/save.js              progress + settings (localStorage)
+engine/audio.js             Web Audio synth: instruments, song scheduler, generative music, sound effects, narrator
+engine/lines.js             narrator line ids shared by every game
+engine/art.js               cartoon drawing library (princess, castle, trees, particles)
+engine/ui.js                buttons, HUD, results / collection / grown-up overlays
+engine/quiz.js              shared quiz-game scaffold
+engine/main.js              canvas scaling, input, scene manager, main loop
+games/melody/index.html     page shell
+games/melody/js/config.js   game settings (storage key, start scene, line files)
+games/melody/js/data.js     all game content (locations, friends, rewards, words)
+games/melody/js/songs.js    nursery songs with syllable-aligned lyrics
+games/melody/js/drawings.js step-by-step drawing lessons (shapes + spoken instructions)
+games/melody/js/voicelines.js  every sentence the narrator can say
+games/melody/js/progress.js rewards, regions and the My Things panel
+games/melody/js/title.js    choose a princess
+games/melody/js/world.js    the explorable kingdom, forest and peaks
+games/melody/js/games/*.js  the mini-games
+games/melody/voice/         pre-rendered narrator clips
+games/melody/manifest.webmanifest  installable web app
+games/melody/sw.js          offline cache
+.github/workflows           GitHub Pages deploy
 ```
 
 All artwork is drawn in code or uses emoji, and all music is synthesized, so the whole game is a few hundred kilobytes and needs no asset downloads.

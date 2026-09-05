@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Germ Patrol</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="description" content="Germ Patrol: a cartoon hero game that teaches children aged 3 to 6 how germs work and how to stay healthy.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Germ Patrol">
+<meta name="theme-color" content="#0369a1">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" aria-label="Germ Patrol game"></canvas>
+  <div id="nameWrap" hidden>
+    <label for="nameInput">Hero name</label>
+    <input id="nameInput" type="text" maxlength="14" autocomplete="off" autocapitalize="words" placeholder="Type a name">
+  </div>
+</div>
+<div id="rotate" hidden><div>📱 ➡️ 🔄<br>Please turn sideways!</div></div>
+<script src="js/config.js"></script>
+<script src="../../engine/save.js"></script>
+<script src="js/data.js"></script>
+<script src="../../engine/audio.js"></script>
+<script src="../../engine/lines.js"></script>
+<script src="js/voicelines.js"></script>
+<script src="../../engine/art.js"></script>
+<script src="js/gart.js"></script>
+<script src="js/gart2.js"></script>
+<script src="../../engine/ui.js"></script>
+<script src="../../engine/quiz.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/title.js"></script>
+<script src="js/town.js"></script>
+<script src="js/games/wash.js"></script>
+<script src="js/games/teeth.js"></script>
+<script src="js/games/sneeze.js"></script>
+<script src="js/games/lab.js"></script>
+<script src="js/games/defend.js"></script>
+<script src="js/games/kitchen.js"></script>
+<script src="../../engine/main.js"></script>
+</body>
+</html>
